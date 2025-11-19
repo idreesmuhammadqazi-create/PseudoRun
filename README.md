@@ -4,14 +4,13 @@
 
 **A powerful web-based pseudocode editor for Cambridge IGCSE Computer Science (0478/0984) and A-Level (9618)**
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://pseudocode-runner.netlify.app)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://pseudocode-runner.netlify.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://pseudorun.vercel.app)
 
-**[🚀 Try it Live](https://pseudocode-runner.netlify.app)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development)
+**[🚀 Try it Live](https://pseudorun.vercel.app)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development)
 
 ---
 
-*Built with* [**Compyle**](https://compyle.com) *- AI-powered development platform*
+*Built with* [**Compyle**](https://compyle.ai) *- AI-powered development platform*
 
 </div>
 
@@ -173,7 +172,7 @@ The editor includes **22 comprehensive examples** covering:
 
 ### Online (Recommended)
 
-Simply visit **[https://pseudocode-runner.netlify.app](https://pseudocode-runner.netlify.app)** and start coding immediately!
+Simply visit **[https://pseudorun.vercel.app](https://pseudorun.vercel.app)** and start coding immediately!
 
 ### Local Development
 
@@ -443,12 +442,12 @@ MIT License - feel free to use in your projects!
 
 <div align="center">
 
-**Made with ❤️ using [Compyle](https://compyle.com)**
+**Made with ❤️ using [Compyle](https://compyle.ai)**
 
 *Compyle - Build software faster with AI-powered development*
 
-[![Visit Compyle](https://img.shields.io/badge/Powered%20by-Compyle-blue?style=for-the-badge)](https://compyle.com)
+[![Visit Compyle](https://img.shields.io/badge/Powered%20by-Compyle-blue?style=for-the-badge)](https://compyle.ai)
 
-[🌐 Live Demo](https://pseudocode-runner.netlify.app) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/test) • [🐛 Report Bug](https://github.com/idreesmuhammadqazi-create/test/issues)
+[🌐 Live Demo](https://pseudorun.vercel.app) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🐛 Report Bug](https://github.com/idreesmuhammadqazi-create/PseudoRun/issues)
 
 </div>
