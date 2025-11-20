@@ -139,7 +139,7 @@ export const SEOAnalytics: React.FC<SEOAnalyticsProps> = ({
 
     // Vercel Analytics custom events
     if (typeof window !== 'undefined' && window.va) {
-      window.va('track', event.eventName);
+      window.va('event', event.eventName);
     }
 
     console.log('Analytics event tracked:', event);
