@@ -18,6 +18,8 @@ import SyntaxReference from './components/SyntaxReference/SyntaxReference';
 import PracticeProblems from './components/PracticeProblems/PracticeProblems';
 import ExamMode, { ExamModeStartModal } from './components/ExamMode/ExamMode';
 import LearningTools from './components/LearningTools/LearningTools';
+import SEOManager from './components/SEOManager/SEOManager';
+import { useSEO } from './hooks/useSEO';
 import { tokenize } from './interpreter/lexer';
 import { parse } from './interpreter/parser';
 import { Interpreter } from './interpreter/interpreter';
