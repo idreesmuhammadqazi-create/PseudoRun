@@ -1,0 +1,283 @@
+.shareButton {
+  position: relative;
+  display: inline-block;
+}
+
+.shareButtonCompact {
+  position: relative;
+  display: inline-block;
+}
+
+.shareToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.shareToggle:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.shareToggle:active {
+  transform: translateY(0);
+}
+
+.shareIcon {
+  font-size: 18px;
+}
+
+.shareMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 320px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e5e7eb;
+  z-index: 1000;
+  overflow: hidden;
+  animation: slideDown 0.2s ease-out;
+}
+
+.shareMenuCompact {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e5e7eb;
+  z-index: 1000;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.shareHeader {
+  padding: 20px 20px 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.shareHeader h4 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.shareHeader p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.shareOptions {
+  padding: 12px;
+}
+
+.shareOption {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  gap: 12px;
+}
+
+.shareOption:hover {
+  background: #f9fafb;
+  transform: translateX(4px);
+}
+
+.shareMenuCompact .shareOption {
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.shareMenuCompact .shareOption:hover {
+  background: #f3f4f6;
+  transform: scale(1.1);
+}
+
+.platformIcon {
+  font-size: 20px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.shareMenuCompact .platformIcon {
+  font-size: 16px;
+  width: 20px;
+  height: 20px;
+}
+
+.platformInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.shareMenuCompact .platformInfo {
+  display: none;
+}
+
+.platformName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.platformDesc {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.3;
+}
+
+.shareFooter {
+  padding: 12px 20px 20px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.shareImpact {
+  margin: 0;
+  font-size: 12px;
+  color: #059669;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .shareMenu {
+    background: #1f2937;
+    border-color: #374151;
+  }
+
+  .shareMenuCompact {
+    background: #1f2937;
+    border-color: #374151;
+  }
+
+  .shareHeader {
+    border-bottom-color: #374151;
+  }
+
+  .shareHeader h4 {
+    color: #f9fafb;
+  }
+
+  .shareHeader p {
+    color: #9ca3af;
+  }
+
+  .shareOption:hover {
+    background: #374151;
+  }
+
+  .shareMenuCompact .shareOption:hover {
+    background: #374151;
+  }
+
+  .platformName {
+    color: #f9fafb;
+  }
+
+  .platformDesc {
+    color: #9ca3af;
+  }
+
+  .shareFooter {
+    border-top-color: #374151;
+  }
+
+  .shareImpact {
+    color: #10b981;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+  .shareMenu {
+    min-width: 280px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .shareHeader {
+    padding: 16px 16px 12px;
+  }
+
+  .shareOptions {
+    padding: 8px;
+  }
+
+  .shareOption {
+    padding: 12px;
+  }
+
+  .shareFooter {
+    padding: 12px 16px 16px;
+  }
+
+  .shareToggle {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .shareIcon {
+    font-size: 16px;
+  }
+}
+
+/* Focus and accessibility */
+.shareToggle:focus,
+.shareOption:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Animation for copy success */
+.shareOption:has(.platformIcon:contains("✅")) {
+  background: #ecfdf5;
+}
+
+.shareOption:has(.platformIcon:contains("✅")):hover {
+  background: #d1fae5;
+}

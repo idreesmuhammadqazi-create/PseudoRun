@@ -18,6 +18,8 @@ import SyntaxReference from './components/SyntaxReference/SyntaxReference';
 import PracticeProblems from './components/PracticeProblems/PracticeProblems';
 import ExamMode, { ExamModeStartModal } from './components/ExamMode/ExamMode';
 import LearningTools from './components/LearningTools/LearningTools';
+import SEOManager from './components/SEOManager/SEOManager';
+import { useSEO } from './hooks/useSEO';
 import { tokenize } from './interpreter/lexer';
 import { parse } from './interpreter/parser';
 import { Interpreter } from './interpreter/interpreter';
@@ -79,6 +81,27 @@ function App() {
   const [showLearningTools, setShowLearningTools] = useState(false);
   const [showExamModeStart, setShowExamModeStart] = useState(false);
   const [examMode, setExamMode] = useState<{ active: boolean; duration: number }>({ active: false, duration: 45 });
+
+  // SEO integration
+  const { trackEvent } = useSEO({
+    feature: 'editor',
+    trackEvent: true,
+    eventName: 'app_loaded',
+    eventParams: {
+      user_authenticated: !!currentUser,
+      guest_mode: isGuestMode
+    }
+  });
+
+  // Determine current SEO feature based on app state
+  const getCurrentSEOFeature = () => {
+    if (!currentUser && !isGuestMode) return 'landing';
+    if (showPracticeProblems) return 'practice';
+    if (showTutorial) return 'tutorial';
+    if (showSyntaxReference) return 'syntax';
+    if (examMode.active) return 'exam';
+    return 'editor';
+  };
 
   // Load code from LocalStorage on mount
   useEffect(() => {
@@ -146,6 +169,13 @@ function App() {
 
   // Handle run execution
   const handleRun = async () => {
+    // Track run event for SEO analytics
+    trackEvent('code_executed', {
+      has_errors: errors.length > 0,
+      code_length: code.length,
+      user_authenticated: !!currentUser
+    });
+
     // Check for syntax errors first
     if (errors.length > 0 && errors.some(e => e.type === 'syntax')) {
       alert('Fix syntax errors before running');
@@ -531,6 +561,13 @@ function App() {
 
   const handleLoadCodeFromFeature = (newCode: string) => {
     setCode(newCode);
+
+    // Track feature usage for SEO analytics
+    trackEvent('code_loaded_from_feature', {
+      feature: showTutorial ? 'tutorial' : showPracticeProblems ? 'practice' : 'unknown',
+      code_length: newCode.length,
+      user_authenticated: !!currentUser
+    });
   };
 
   // Auto-save current program every 30 seconds
@@ -560,6 +597,7 @@ function App() {
 
   return (
     <div className={styles.container}>
+      <SEOManager feature={getCurrentSEOFeature()} />
       <Toolbar
         onRun={handleRun}
         onDebug={handleDebug}

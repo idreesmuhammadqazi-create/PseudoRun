@@ -1,16 +1,26 @@
 /**
- * Example pseudocode snippets for IGCSE/A-LEVELS syntax
+ * IGCSE Pseudocode Examples for PseudoRun - Comprehensive learning examples
+ * Aligned with Cambridge IGCSE Computer Science syllabus
  */
 
 export interface Example {
   title: string;
+  description: string;
+  category: 'basics' | 'control-structures' | 'arrays' | 'functions' | 'algorithms' | 'files' | 'advanced';
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  examRelevance: string;
   code: string;
+  tags: string[];
 }
 
 export const EXAMPLES: Example[] = [
   {
     title: 'Basic Input/Output',
-    code: `// Simple input and output
+    description: 'Learn fundamental IGCSE pseudocode input/output operations with variables and user interaction',
+    category: 'basics',
+    difficulty: 'beginner',
+    examRelevance: 'Essential for IGCSE Paper 2 - Practical programming skills',
+    code: `// Simple input and output - PseudoRun IGCSE Example
 DECLARE name : STRING
 DECLARE age : INTEGER
 
@@ -20,11 +30,16 @@ OUTPUT "Enter your age: "
 INPUT age
 
 OUTPUT "Hello ", name
-OUTPUT "You are ", age, " years old"`
+OUTPUT "You are ", age, " years old"`,
+    tags: ['IGCSE', 'input-output', 'variables', 'beginner', 'paper-2']
   },
   {
-    title: 'IF Statement',
-    code: `// Grade calculator
+    title: 'IF Statement - Grade Calculator',
+    description: 'Master conditional statements with this IGCSE grade calculator example using IF-ELSEIF-ELSE structure',
+    category: 'control-structures',
+    difficulty: 'beginner',
+    examRelevance: 'Core IGCSE concept - frequently tested in both theory and practical papers',
+    code: `// IGCSE Grade Calculator - PseudoRun Example
 DECLARE score : INTEGER
 
 OUTPUT "Enter your score: "
@@ -40,7 +55,8 @@ ELSE IF score >= 60 THEN
     OUTPUT "Grade: C"
 ELSE
     OUTPUT "Grade: D"
-ENDIF`
+ENDIF`,
+    tags: ['IGCSE', 'conditional', 'if-statement', 'grade-calculator', 'paper-1', 'paper-2']
   },
   {
     title: 'FOR Loop',

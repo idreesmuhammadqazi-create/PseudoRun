@@ -1,6 +1,26 @@
 {
-  "name": "igcse-pseudocode-editor",
+  "name": "pseudorun",
   "version": "1.0.0",
+  "description": "PseudoRun - The #1 IGCSE Pseudocode Editor & Simulator for Computer Science students",
+  "keywords": [
+    "IGCSE",
+    "pseudocode",
+    "editor",
+    "simulator",
+    "computer science",
+    "education",
+    "debugger",
+    "validator",
+    "exam preparation",
+    "learning tools"
+  ],
+  "author": "PseudoRun",
+  "homepage": "https://pseudorun.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pseudorun/pseudorun"
+  },
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

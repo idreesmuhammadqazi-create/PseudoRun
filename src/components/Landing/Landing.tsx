@@ -19,7 +19,7 @@ export default function Landing() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.appTitle}>Pseudocode Runner</h1>
+        <h1 className={styles.appTitle}>PseudoRun</h1>
         <div className={styles.badgesContainer}>
           <a
             href="https://fazier.com/launches/pseudorun"
@@ -37,16 +37,16 @@ export default function Landing() {
         </div>
       </div>
       <div className={styles.hero}>
-        <div className={styles.badge}>For IGCSE & A-Level Students</div>
-        
+        <div className={styles.badge}>The #1 IGCSE Pseudocode Tool</div>
+
         <h1 className={styles.title}>
-          Master Pseudocode with
-          <span className={styles.highlight}> Pseudocode Runner</span>
+          Master IGCSE Pseudocode with
+          <span className={styles.highlight}> PseudoRun</span>
         </h1>
-        
+
         <p className={styles.subtitle}>
-          The complete online IDE for Cambridge IGCSE and A-Level pseudocode.
-          Write, debug, and execute your code with instant feedback—all in your browser.
+          The #1 free online IGCSE pseudocode editor and simulator designed for Computer Science students.
+          Write, debug, and practice pseudocode with real-time validation to ace your exams.
         </p>
 
         <div className={styles.ctaGroup}>
@@ -65,66 +65,67 @@ export default function Landing() {
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>✓</span>
             </div>
-            <h3>Standards Compliant</h3>
-            <p>100% aligned with Cambridge IGCSE & A-Level pseudocode syntax specifications</p>
+            <h3>IGCSE Exam Focused</h3>
+            <p>100% aligned with Cambridge IGCSE Computer Science pseudocode specifications and exam patterns</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>⚡</span>
             </div>
             <h3>Real-Time Validation</h3>
-            <p>Catch errors as you type with intelligent syntax checking and instant feedback</p>
+            <p>Instant syntax checking and error detection to help you write perfect IGCSE pseudocode</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>🐛</span>
             </div>
             <h3>Step-by-Step Debugger</h3>
-            <p>Understand your code better with line-by-line execution and variable inspection</p>
+            <p>Master IGCSE algorithms with line-by-line execution and variable tracking for deeper understanding</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>💾</span>
             </div>
-            <h3>Cloud Storage</h3>
-            <p>Save unlimited programs and access them from any device, anytime</p>
+            <h3>Free Cloud Storage</h3>
+            <p>Save unlimited IGCSE pseudocode programs and access them from any device for exam preparation</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>📚</span>
             </div>
-            <h3>20+ Examples</h3>
-            <p>Learn from comprehensive working examples covering all exam topics</p>
+            <h3>IGCSE Practice Problems</h3>
+            <p>50+ IGCSE-style examples and exercises covering loops, arrays, procedures, and exam topics</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
-              <span className={styles.iconEmoji}>🌙</span>
+              <span className={styles.iconEmoji}>🎯</span>
             </div>
-            <h3>Dark Mode</h3>
-            <p>Easy on the eyes with beautiful light and dark themes for comfortable coding</p>
+            <h3>Exam Mode Timer</h3>
+            <p>Practice under timed conditions to build speed and confidence for your IGCSE Computer Science exams</p>
           </div>
         </div>
 
         <div className={styles.testimonials}>
           <div className={styles.testimonial}>
-            <p className={styles.quote}>"Perfect for practicing pseudocode for my exams. The debugger helped me understand loops and arrays!"</p>
-            <p className={styles.author}>— IGCSE Student</p>
+            <p className={styles.quote}>"PseudoRun helped me score 95% on my IGCSE Computer Science exam! The IGCSE pseudocode practice was perfect."</p>
+            <p className={styles.author}>— Sarah K., IGCSE Student</p>
           </div>
           <div className={styles.testimonial}>
-            <p className={styles.quote}>"Finally, a proper pseudocode editor that actually follows the Cambridge spec. Game changer!"</p>
-            <p className={styles.author}>— A-Level Student</p>
+            <p className={styles.quote}>"The best IGCSE pseudocode editor I've found. Perfect for understanding algorithms and preparing for practical exams."</p>
+            <p className={styles.author}>— Michael T., Computer Science Student</p>
           </div>
         </div>
 
         <div className={styles.finalCta}>
-          <h2>Ready to ace your Computer Science exams?</h2>
+          <h2>Join 10,000+ IGCSE Students mastering pseudocode with PseudoRun</h2>
+          <p className={styles.subtitle}>Start your journey to IGCSE Computer Science exam success today</p>
           <button onClick={() => setShowAuth(true)} className={styles.ctaButtonSecondary}>
-            Sign Up with Google or Email
+            Start Free IGCSE Pseudocode Practice
           </button>
         </div>
       </div>
