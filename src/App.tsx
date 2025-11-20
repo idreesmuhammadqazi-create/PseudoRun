@@ -82,6 +82,27 @@ function App() {
   const [showExamModeStart, setShowExamModeStart] = useState(false);
   const [examMode, setExamMode] = useState<{ active: boolean; duration: number }>({ active: false, duration: 45 });
 
+  // SEO integration
+  const { trackEvent } = useSEO({
+    feature: 'editor',
+    trackEvent: true,
+    eventName: 'app_loaded',
+    eventParams: {
+      user_authenticated: !!currentUser,
+      guest_mode: isGuestMode
+    }
+  });
+
+  // Determine current SEO feature based on app state
+  const getCurrentSEOFeature = () => {
+    if (!currentUser && !isGuestMode) return 'landing';
+    if (showPracticeProblems) return 'practice';
+    if (showTutorial) return 'tutorial';
+    if (showSyntaxReference) return 'syntax';
+    if (examMode.active) return 'exam';
+    return 'editor';
+  };
+
   // Load code from LocalStorage on mount
   useEffect(() => {
     const savedCode = loadCode();
