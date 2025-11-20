@@ -19,7 +19,7 @@ export default function Landing() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.appTitle}>Pseudocode Runner</h1>
+        <h1 className={styles.appTitle}>PseudoRun</h1>
         <div className={styles.badgesContainer}>
           <a
             href="https://fazier.com/launches/pseudorun"
@@ -37,16 +37,16 @@ export default function Landing() {
         </div>
       </div>
       <div className={styles.hero}>
-        <div className={styles.badge}>For IGCSE & A-Level Students</div>
-        
+        <div className={styles.badge}>The #1 IGCSE Pseudocode Tool</div>
+
         <h1 className={styles.title}>
-          Master Pseudocode with
-          <span className={styles.highlight}> Pseudocode Runner</span>
+          Master IGCSE Pseudocode with
+          <span className={styles.highlight}> PseudoRun</span>
         </h1>
-        
+
         <p className={styles.subtitle}>
-          The complete online IDE for Cambridge IGCSE and A-Level pseudocode.
-          Write, debug, and execute your code with instant feedback—all in your browser.
+          The #1 free online IGCSE pseudocode editor and simulator designed for Computer Science students.
+          Write, debug, and practice pseudocode with real-time validation to ace your exams.
         </p>
 
         <div className={styles.ctaGroup}>
