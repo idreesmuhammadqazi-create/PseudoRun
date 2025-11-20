@@ -583,6 +583,7 @@ function App() {
 
   return (
     <div className={styles.container}>
+      <SEOManager feature={getCurrentSEOFeature()} />
       <Toolbar
         onRun={handleRun}
         onDebug={handleDebug}
