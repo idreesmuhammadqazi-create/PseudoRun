@@ -5,12 +5,12 @@
 
 export interface Example {
   title: string;
-  description: string;
-  category: 'basics' | 'control-structures' | 'arrays' | 'functions' | 'algorithms' | 'files' | 'advanced';
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
-  examRelevance: string;
+  description?: string;
+  category?: 'basics' | 'control-structures' | 'arrays' | 'functions' | 'algorithms' | 'files' | 'advanced';
+  difficulty?: 'beginner' | 'intermediate' | 'advanced';
+  examRelevance?: string;
   code: string;
-  tags: string[];
+  tags?: string[];
 }
 
 export const EXAMPLES: Example[] = [

@@ -147,10 +147,7 @@ export const useSEO = (options: UseSEOOptions = {}) => {
 
     // Vercel Analytics tracking (automatically tracks page views)
     if (typeof window !== 'undefined' && window.va) {
-      window.va('track', 'Page View', {
-        path: location.pathname + location.search,
-        title
-      });
+      window.va('pageview');
     }
   };
 
@@ -165,7 +162,7 @@ export const useSEO = (options: UseSEOOptions = {}) => {
 
     // Vercel Analytics custom events
     if (typeof window !== 'undefined' && window.va) {
-      window.va('track', eventName, params);
+      window.va('event', eventName);
     }
   };
 

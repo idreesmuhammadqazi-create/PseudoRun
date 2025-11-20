@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { SOCIAL_SHARE_CONTENT } from '../../constants/seoContent';
 import styles from './ShareButton.module.css';
 
 interface ShareButtonProps {

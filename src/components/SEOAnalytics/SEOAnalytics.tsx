@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Analytics } from '@vercel/analytics/react';
-import { ANALYTICS_EVENTS } from '../../constants/seoContent';
 
 interface SEOAnalyticsProps {
   enableTracking?: boolean;
@@ -140,7 +139,7 @@ export const SEOAnalytics: React.FC<SEOAnalyticsProps> = ({
 
     // Vercel Analytics custom events
     if (typeof window !== 'undefined' && window.va) {
-      window.va('track', event.eventName, event.parameters);
+      window.va('event', event.eventName);
     }
 
     console.log('Analytics event tracked:', event);

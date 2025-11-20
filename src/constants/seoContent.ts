@@ -56,7 +56,7 @@ export const STRUCTURED_DATA = {
     offers: {
       "@type": "Offer",
       price: "0",
-      priceCurrency": "USD"
+      priceCurrency: "USD"
     }
   },
   course: {
@@ -76,7 +76,7 @@ export const STRUCTURED_DATA = {
 // Social media sharing content
 export const SOCIAL_SHARE_CONTENT = {
   twitter: {
-    text: "Practice IGCSE pseudocode with PseudoRun - the free online editor for Computer Science students. Perfect for exam preparation! 🚀",
+    text: "Practice IGCSE pseudocode with PseudoRun - the free online editor for Computer Science students. Perfect for exam preparation!",
     hashtags: ["IGCSE", "ComputerScience", "Pseudocode", "PseudoRun", "ExamPrep"]
   },
   facebook: {
