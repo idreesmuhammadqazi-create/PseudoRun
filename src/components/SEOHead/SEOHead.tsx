@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getSEOContent, OG_IMAGES, CANONICAL_URLS } from '../../constants/seoContent';
+import { getSEOContent } from '../../constants/seoContent';
 
 interface SEOHeadProps {
   title?: string;
