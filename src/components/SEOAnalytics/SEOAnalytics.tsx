@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Analytics } from '@vercel/analytics/react';
-import { ANALYTICS_EVENTS } from '../../constants/seoContent';
 
 interface SEOAnalyticsProps {
   enableTracking?: boolean;
