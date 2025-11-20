@@ -162,7 +162,7 @@ export const useSEO = (options: UseSEOOptions = {}) => {
 
     // Vercel Analytics custom events
     if (typeof window !== 'undefined' && window.va) {
-      window.va('track', eventName);
+      window.va('event', eventName);
     }
   };
 
