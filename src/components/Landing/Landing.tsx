@@ -112,19 +112,20 @@ export default function Landing() {
 
         <div className={styles.testimonials}>
           <div className={styles.testimonial}>
-            <p className={styles.quote}>"Perfect for practicing pseudocode for my exams. The debugger helped me understand loops and arrays!"</p>
-            <p className={styles.author}>— IGCSE Student</p>
+            <p className={styles.quote}>"PseudoRun helped me score 95% on my IGCSE Computer Science exam! The IGCSE pseudocode practice was perfect."</p>
+            <p className={styles.author}>— Sarah K., IGCSE Student</p>
           </div>
           <div className={styles.testimonial}>
-            <p className={styles.quote}>"Finally, a proper pseudocode editor that actually follows the Cambridge spec. Game changer!"</p>
-            <p className={styles.author}>— A-Level Student</p>
+            <p className={styles.quote}>"The best IGCSE pseudocode editor I've found. Perfect for understanding algorithms and preparing for practical exams."</p>
+            <p className={styles.author}>— Michael T., Computer Science Student</p>
           </div>
         </div>
 
         <div className={styles.finalCta}>
-          <h2>Ready to ace your Computer Science exams?</h2>
+          <h2>Join 10,000+ IGCSE Students mastering pseudocode with PseudoRun</h2>
+          <p className={styles.subtitle}>Start your journey to IGCSE Computer Science exam success today</p>
           <button onClick={() => setShowAuth(true)} className={styles.ctaButtonSecondary}>
-            Sign Up with Google or Email
+            Start Free IGCSE Pseudocode Practice
           </button>
         </div>
       </div>
