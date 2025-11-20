@@ -36,27 +36,6 @@ import styles from './App.module.css';
 
 function App() {
   const { currentUser, isGuestMode, setGuestMode } = useAuth();
-
-  // SEO integration
-  const { trackEvent } = useSEO({
-    feature: 'editor',
-    trackEvent: true,
-    eventName: 'app_loaded',
-    eventParams: {
-      user_authenticated: !!currentUser,
-      guest_mode: isGuestMode
-    }
-  });
-
-  // Determine current SEO feature based on app state
-  const getCurrentSEOFeature = () => {
-    if (!currentUser && !isGuestMode) return 'landing';
-    if (showPracticeProblems) return 'practice';
-    if (showTutorial) return 'tutorial';
-    if (showSyntaxReference) return 'syntax';
-    if (examMode.active) return 'exam';
-    return 'editor';
-  };
   const [code, setCode] = useState('');
   const [output, setOutput] = useState<string[]>([]);
   const [errors, setErrors] = useState<ErrorMessage[]>([]);
