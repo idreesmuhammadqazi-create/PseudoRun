@@ -65,48 +65,48 @@ export default function Landing() {
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>✓</span>
             </div>
-            <h3>Standards Compliant</h3>
-            <p>100% aligned with Cambridge IGCSE & A-Level pseudocode syntax specifications</p>
+            <h3>IGCSE Exam Focused</h3>
+            <p>100% aligned with Cambridge IGCSE Computer Science pseudocode specifications and exam patterns</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>⚡</span>
             </div>
             <h3>Real-Time Validation</h3>
-            <p>Catch errors as you type with intelligent syntax checking and instant feedback</p>
+            <p>Instant syntax checking and error detection to help you write perfect IGCSE pseudocode</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>🐛</span>
             </div>
             <h3>Step-by-Step Debugger</h3>
-            <p>Understand your code better with line-by-line execution and variable inspection</p>
+            <p>Master IGCSE algorithms with line-by-line execution and variable tracking for deeper understanding</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>💾</span>
             </div>
-            <h3>Cloud Storage</h3>
-            <p>Save unlimited programs and access them from any device, anytime</p>
+            <h3>Free Cloud Storage</h3>
+            <p>Save unlimited IGCSE pseudocode programs and access them from any device for exam preparation</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
               <span className={styles.iconEmoji}>📚</span>
             </div>
-            <h3>20+ Examples</h3>
-            <p>Learn from comprehensive working examples covering all exam topics</p>
+            <h3>IGCSE Practice Problems</h3>
+            <p>50+ IGCSE-style examples and exercises covering loops, arrays, procedures, and exam topics</p>
           </div>
-          
+
           <div className={styles.feature}>
             <div className={styles.featureIcon}>
-              <span className={styles.iconEmoji}>🌙</span>
+              <span className={styles.iconEmoji}>🎯</span>
             </div>
-            <h3>Dark Mode</h3>
-            <p>Easy on the eyes with beautiful light and dark themes for comfortable coding</p>
+            <h3>Exam Mode Timer</h3>
+            <p>Practice under timed conditions to build speed and confidence for your IGCSE Computer Science exams</p>
           </div>
         </div>
 
