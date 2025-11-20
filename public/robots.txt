@@ -1,0 +1,60 @@
+# PseudoRun - IGCSE Pseudocode Editor
+# robots.txt for search engine crawling
+
+User-agent: *
+Allow: /
+Allow: /src/
+Allow: /public/
+Allow: /components/
+
+# Disallow temporary or private directories
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /.git/
+Disallow: /functions/
+Disallow: /.cache/
+
+# Allow common asset types
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.svg
+Allow: *.ico
+Allow: *.woff
+Allow: *.woff2
+
+# Crawl delay for respect (1 second)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://pseudorun.com/sitemap.xml
+
+# Additional instructions for major crawlers
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Block unwanted crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
