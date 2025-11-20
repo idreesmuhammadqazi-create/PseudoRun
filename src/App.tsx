@@ -169,6 +169,13 @@ function App() {
 
   // Handle run execution
   const handleRun = async () => {
+    // Track run event for SEO analytics
+    trackEvent('code_executed', {
+      has_errors: errors.length > 0,
+      code_length: code.length,
+      user_authenticated: !!currentUser
+    });
+
     // Check for syntax errors first
     if (errors.length > 0 && errors.some(e => e.type === 'syntax')) {
       alert('Fix syntax errors before running');
