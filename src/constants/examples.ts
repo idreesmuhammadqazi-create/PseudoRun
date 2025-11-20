@@ -1,10 +1,16 @@
 /**
- * Example pseudocode snippets for IGCSE/A-LEVELS syntax
+ * IGCSE Pseudocode Examples for PseudoRun - Comprehensive learning examples
+ * Aligned with Cambridge IGCSE Computer Science syllabus
  */
 
 export interface Example {
   title: string;
+  description: string;
+  category: 'basics' | 'control-structures' | 'arrays' | 'functions' | 'algorithms' | 'files' | 'advanced';
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  examRelevance: string;
   code: string;
+  tags: string[];
 }
 
 export const EXAMPLES: Example[] = [
