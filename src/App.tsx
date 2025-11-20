@@ -561,6 +561,13 @@ function App() {
 
   const handleLoadCodeFromFeature = (newCode: string) => {
     setCode(newCode);
+
+    // Track feature usage for SEO analytics
+    trackEvent('code_loaded_from_feature', {
+      feature: showTutorial ? 'tutorial' : showPracticeProblems ? 'practice' : 'unknown',
+      code_length: newCode.length,
+      user_authenticated: !!currentUser
+    });
   };
 
   // Auto-save current program every 30 seconds
