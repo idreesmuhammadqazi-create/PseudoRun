@@ -35,7 +35,7 @@ export default function Landing() {
             />
           </a>
           <a href="https://launchigniter.com/product/pseudorun?ref=badge-pseudorun" target="_blank">
-  <img src="https://launchigniter.com/api/badge/pseudorun?theme=dark" alt="Featured on LaunchIgniter" width="212" height="55" />
+  <img src="https://launchigniter.com/api/badge/pseudorun?theme=light" alt="Featured on LaunchIgniter" width="212" height="55" />
 </a>
         </div>
       </div>
