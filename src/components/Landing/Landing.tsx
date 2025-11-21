@@ -34,6 +34,9 @@ export default function Landing() {
               alt="Fazier badge"
             />
           </a>
+          <a href="https://launchigniter.com/product/pseudorun?ref=badge-pseudorun" target="_blank">
+  <img src="https://launchigniter.com/api/badge/pseudorun?theme=dark" alt="Featured on LaunchIgniter" width="212" height="55" />
+</a>
         </div>
       </div>
       <div className={styles.hero}>
