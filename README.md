@@ -4,9 +4,9 @@
 
 **A powerful web-based pseudocode editor for Cambridge IGCSE Computer Science (0478/0984) and A-Level (9618)**
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://pseudorun.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://pseudorun.tech)
 
-**[🚀 Try it Live](https://pseudorun.vercel.app)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development)
+**[🚀 Try it Live](https://pseudorun.tech)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development)
 
 ---
 
@@ -172,7 +172,7 @@ The editor includes **22 comprehensive examples** covering:
 
 ### Online (Recommended)
 
-Simply visit **[https://pseudorun.vercel.app](https://pseudorun.vercel.app)** and start coding immediately!
+Simply visit **[https://pseudorun.vercel.app](https://pseudorun.tech)** and start coding immediately!
 
 ### Local Development
 
@@ -435,7 +435,7 @@ MIT License - feel free to use in your projects!
 
 - **Cambridge International** - For the IGCSE/A-LEVELS pseudocode specification
 - **CodeMirror** - For the excellent code editor
-- **Netlify** - For reliable hosting
+- **Vercel** - For reliable hosting
 - **Compyle** - For AI-powered development tools
 
 ---
@@ -448,6 +448,6 @@ MIT License - feel free to use in your projects!
 
 [![Visit Compyle](https://img.shields.io/badge/Powered%20by-Compyle-blue?style=for-the-badge)](https://compyle.ai)
 
-[🌐 Live Demo](https://pseudorun.vercel.app) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🐛 Report Bug](https://github.com/idreesmuhammadqazi-create/PseudoRun/issues)
+[🌐 Live Demo](https://pseudorun.tech) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🐛 Report Bug](https://github.com/idreesmuhammadqazi-create/PseudoRun/issues)
 
 </div>
