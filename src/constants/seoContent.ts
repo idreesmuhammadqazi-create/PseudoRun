@@ -129,6 +129,10 @@ export const FAQ_CONTENT = [
   {
     question: "Can I use PseudoRun for exam preparation?",
     answer: "Yes, PseudoRun is perfect for IGCSE exam preparation. It includes timed exam mode, practice problems covering all syllabus topics, and real-time validation to help you perfect your pseudocode skills."
+  },
+  {
+    question: "Will PseudoRun ever have ads?",
+    answer: "No. We are committed to providing a completely ad-free and distraction-free learning environment. Our mission is to support students, not to profit from advertisements."
   }
 ];
 
