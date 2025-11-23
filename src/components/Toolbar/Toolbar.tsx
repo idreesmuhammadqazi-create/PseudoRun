@@ -246,6 +246,15 @@ export default function Toolbar({
       </div>
 
       <a
+        href="https://linktr.ee/pseudorun"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.linktreeBadge}
+      >
+        🔗 Connect
+      </a>
+
+      <a
         href="https://fazier.com/launches/pseudorun"
         target="_blank"
         rel="noopener noreferrer"
