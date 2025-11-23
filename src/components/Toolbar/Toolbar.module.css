@@ -225,6 +225,18 @@
   border: 1px solid var(--border-color);
 }
 
+.linktreeBadge {
+  composes: button;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--border-color);
+}
+
+.linktreeBadge:hover {
+  background-color: var(--button-hover);
+  border-color: var(--border-focus);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .toolbar {
