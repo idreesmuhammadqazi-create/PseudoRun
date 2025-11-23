@@ -5,7 +5,7 @@
 
 // Meta descriptions for different app contexts
 export const META_DESCRIPTIONS = {
-  landing: "Practice IGCSE pseudocode with PseudoRun - the free online editor designed for Computer Science students. Perfect for exam preparation with real-time validation.",
+  landing: "Practice IGCSE pseudocode with PseudoRun - the 100% free, ad-free online editor designed for Computer Science students. Perfect for exam preparation with real-time validation and no distractions.",
   editor: "Write and test IGCSE pseudocode instantly. PseudoRun offers syntax highlighting, debugging, and export features to help you ace your exams.",
   tutorial: "Master IGCSE pseudocode with our comprehensive tutorial. Learn algorithms, loops, arrays, and procedures step-by-step.",
   practice: "Test your skills with IGCSE pseudocode practice problems. From basic concepts to advanced algorithms, prepare for your exams.",
