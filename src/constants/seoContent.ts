@@ -26,7 +26,7 @@ export const PAGE_TITLES = {
 // SEO keywords by feature
 export const SEO_KEYWORDS = {
   primary: "IGCSE pseudocode editor, pseudocode simulator, IGCSE computer science, pseudocode practice, computer science pseudocode tool",
-  landing: "IGCSE pseudocode editor, PseudoRun, Cambridge IGCSE, computer science exam, pseudocode practice online, free pseudocode tool",
+  landing: "IGCSE pseudocode editor, PseudoRun, Cambridge IGCSE, computer science exam, pseudocode practice online, free pseudocode tool, ad-free pseudocode editor, student-focused pseudocode practice, distraction-free coding platform, IGCSE learning tool no ads",
   editor: "online pseudocode editor, IGCSE pseudocode writer, pseudocode debugger, syntax highlighting, real-time validation",
   tutorial: "IGCSE pseudocode tutorial, learn pseudocode, pseudocode guide, computer science tutorial, algorithm tutorial",
   practice: "IGCSE pseudocode practice, pseudocode exercises, computer science problems, exam practice, algorithm problems",
