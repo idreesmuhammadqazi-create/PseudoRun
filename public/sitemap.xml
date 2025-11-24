@@ -6,102 +6,110 @@
 
   <!-- Main Application Page -->
   <url>
-    <loc>https://pseudorun.com/</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- Link Building Page -->
+  <url>
+    <loc>https://pseudorun.tech/tryingtogetbacklinks</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Main App Features (as SPA routes) -->
   <url>
-    <loc>https://pseudorun.com/?action=editor</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=editor</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=tutorial</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=tutorial</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=practice</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=practice</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=examples</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=examples</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=syntax-reference</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=syntax-reference</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=exam-mode</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=exam-mode</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Authentication Pages -->
   <url>
-    <loc>https://pseudorun.com/?action=login</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=login</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=register</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=register</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <!-- Learning Resources -->
   <url>
-    <loc>https://pseudorun.com/?action=debug-tutorial</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=debug-tutorial</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=variables-guide</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=variables-guide</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=loops-guide</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=loops-guide</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=arrays-guide</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=arrays-guide</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=procedures-guide</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://pseudorun.tech/?action=procedures-guide</loc>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
