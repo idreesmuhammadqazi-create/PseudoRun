@@ -75,7 +75,7 @@ export default function Toolbar({
       onOpenAuth();
       return;
     }
-    
+
     // Otherwise, normal logout
     if (confirm('Are you sure you want to logout?')) {
       try {
@@ -84,6 +84,37 @@ export default function Toolbar({
         console.error('Logout error:', error);
       }
     }
+  };
+
+  const handleReportBug = () => {
+    const subject = encodeURIComponent('Bug Report - PseudoRun');
+    const body = encodeURIComponent(`Please describe the bug you encountered:
+
+Browser: ${navigator.userAgent}
+Page URL: ${window.location.href}
+User Agent: ${navigator.userAgent}
+
+Describe the bug:
+[Please describe what happened]
+
+Steps to reproduce:
+1.
+2.
+3.
+
+Expected behavior:
+[What should have happened]
+
+Actual behavior:
+[What actually happened]
+
+Screenshots (if applicable):
+[Please attach screenshots if helpful]
+
+Additional context:
+[Any other relevant information]`);
+
+    window.location.href = `mailto:support@pseudorun.tech?subject=${subject}&body=${body}`;
   };
 
   // Close dropdown when clicking outside
