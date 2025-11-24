@@ -37,7 +37,7 @@ export default function Landing() {
           <a href="https://launchigniter.com/product/pseudorun?ref=badge-pseudorun" target="_blank">
   <img src="https://launchigniter.com/api/badge/pseudorun?theme=light" alt="Featured on LaunchIgniter" width="212" height="55" />
 </a>
-<a href="https://twelve.tools" target="_blank"><img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" width="200" height="54"></a>
+<a href="https://twelve.tools" target="_blank"><img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" width="200" height="54"/></a>
         </div>
       </div>
       <div className={styles.hero}>
