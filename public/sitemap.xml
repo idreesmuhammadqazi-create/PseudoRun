@@ -6,7 +6,7 @@
 
   <!-- Main Application Page -->
   <url>
-    <loc>https://pseudorun.com/</loc>
+    <loc>https://pseudorun.tech/</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,42 +14,42 @@
 
   <!-- Main App Features (as SPA routes) -->
   <url>
-    <loc>https://pseudorun.com/?action=editor</loc>
+    <loc>https://pseudorun.tech/?action=editor</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=tutorial</loc>
+    <loc>https://pseudorun.tech/?action=tutorial</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=practice</loc>
+    <loc>https://pseudorun.tech/?action=practice</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=examples</loc>
+    <loc>https://pseudorun.tech/?action=examples</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=syntax-reference</loc>
+    <loc>https://pseudorun.tech/?action=syntax-reference</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=exam-mode</loc>
+    <loc>https://pseudorun.tech/?action=exam-mode</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -57,14 +57,14 @@
 
   <!-- Authentication Pages -->
   <url>
-    <loc>https://pseudorun.com/?action=login</loc>
+    <loc>https://pseudorun.tech/?action=login</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=register</loc>
+    <loc>https://pseudorun.tech/?action=register</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -72,35 +72,35 @@
 
   <!-- Learning Resources -->
   <url>
-    <loc>https://pseudorun.com/?action=debug-tutorial</loc>
+    <loc>https://pseudorun.tech/?action=debug-tutorial</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=variables-guide</loc>
+    <loc>https://pseudorun.tech/?action=variables-guide</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=loops-guide</loc>
+    <loc>https://pseudorun.tech/?action=loops-guide</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=arrays-guide</loc>
+    <loc>https://pseudorun.tech/?action=arrays-guide</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://pseudorun.com/?action=procedures-guide</loc>
+    <loc>https://pseudorun.tech/?action=procedures-guide</loc>
     <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
