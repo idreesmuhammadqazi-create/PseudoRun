@@ -488,6 +488,6 @@ MIT License - feel free to use in your projects!
 
 [![Visit Compyle](https://img.shields.io/badge/Powered%20by-Compyle-blue?style=for-the-badge)](https://compyle.ai)
 
-[🌐 Live Demo](https://pseudorun.tech) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🐛 Report Bug](https://github.com/idreesmuhammadqazi-create/PseudoRun/issues)
+[🌐 Live Demo](https://pseudorun.tech) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🔗 Connect](https://pseudorun.tech/tryingtogetbacklinks) • [🐛 Report Bug](mailto:support@pseudorun.tech)
 
 </div>
