@@ -138,7 +138,7 @@ export const FAQ_CONTENT = [
 
 // Open Graph images by context
 export const OG_IMAGES = {
-  landing: "https://pseudorun.com/og-image.png",
+  landing: "https://pseudorun.tech/og-image.png",
   editor: "https://pseudorun.com/editor-og-image.png",
   tutorial: "https://pseudorun.com/tutorial-og-image.png",
   practice: "https://pseudorun.com/practice-og-image.png",
