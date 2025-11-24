@@ -41,7 +41,7 @@ export const STRUCTURED_DATA = {
     "@type": "EducationalOrganization",
     name: "PseudoRun",
     description: "The #1 online pseudocode editor for IGCSE Computer Science students",
-    url: "https://pseudorun.com",
+    url: "https://pseudorun.tech",
     educationalLevel: "High School",
     about: "IGCSE Computer Science Pseudocode",
     applicationCategory: "EducationalApplication"
