@@ -259,7 +259,15 @@ Additional context:
         </>
       )}
 
-      <button 
+      <button
+        className={styles.reportBugButton}
+        onClick={handleReportBug}
+        title="Report a Bug"
+      >
+        🐛 Report Bug
+      </button>
+
+      <button
         className={styles.themeToggle}
         onClick={toggleTheme}
         title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
