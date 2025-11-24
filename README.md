@@ -6,7 +6,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://pseudorun.tech)
 
-**[🚀 Try it Live](https://pseudorun.tech)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development)
+**[🚀 Try it Live](https://pseudorun.tech)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development) | [🔗 Connect With Us](https://pseudorun.tech/tryingtogetbacklinks)
 
 ---
 
