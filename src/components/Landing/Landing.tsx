@@ -152,6 +152,12 @@ export default function Landing() {
         <a href="https://wired.business" target="_blank" rel="noopener noreferrer">
           <img src="https://wired.business/badge3-light.svg" alt="Featured on Wired Business" width="200" height="54" />
         </a>
+        <a href="https://findly.tools/pseudorun?utm_source=pseudorun" target="_blank" rel="noopener noreferrer">
+          <img src="https://findly.tools/badges/findly-tools-badge-light.svg" alt="Featured on findly.tools" width="150" />
+        </a>
+        <a href="https://submithunt.com" target="_blank" rel="noopener noreferrer">
+          <img src="https://submithunt.com/badge.png" alt="Featured on SubmitHunt" width="150" height="45" />
+        </a>
       </div>
     </div>
   );

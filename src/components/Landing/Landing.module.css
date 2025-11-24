@@ -433,6 +433,44 @@
     width: 100%;
     max-width: 320px;
   }
+
+  .badgeFooter {
+    gap: 12px;
+    margin: 32px auto 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .badgeFooter img {
+    max-width: 140px;
+    height: auto;
+  }
+}
+
+.badgeFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 40px auto 0 auto;
+  max-width: fit-content;
+  flex-wrap: wrap;
+}
+
+.badgeFooter a {
+  display: inline-block;
+  transition: opacity 0.3s ease;
+  line-height: 0;
+}
+
+.badgeFooter a:hover {
+  opacity: 0.8;
+}
+
+.badgeFooter img {
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Accessibility - High Contrast Mode */
