@@ -434,20 +434,20 @@
     max-width: 320px;
   }
 
-  .badgeFooter {
+  .footer {
     gap: 12px;
     margin: 32px auto 0 auto;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .badgeFooter img {
+  .footer img {
     max-width: 140px;
     height: auto;
   }
 }
 
-.badgeFooter {
+.footer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -457,17 +457,17 @@
   flex-wrap: wrap;
 }
 
-.badgeFooter a {
+.footer a {
   display: inline-block;
   transition: opacity 0.3s ease;
   line-height: 0;
 }
 
-.badgeFooter a:hover {
+.footer a:hover {
   opacity: 0.8;
 }
 
-.badgeFooter img {
+.footer img {
   display: block;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
