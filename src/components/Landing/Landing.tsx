@@ -21,7 +21,7 @@ export default function Landing() {
       <div className={styles.header}>
         <h1 className={styles.appTitle}>PseudoRun</h1>
         <div className={styles.badgesContainer}>
-          
+          <a
             href="https://fazier.com/launches/pseudorun"
             target="_blank"
             rel="noopener noreferrer"
@@ -34,9 +34,9 @@ export default function Landing() {
               alt="Fazier badge"
             />
           </a>
-          
         </div>
       </div>
+      
       <div className={styles.hero}>
         <div className={styles.badge}>The #1 IGCSE Pseudocode Tool</div>
 
@@ -140,7 +140,7 @@ export default function Landing() {
 
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
       
-      <div>
+      <div className={styles.badgeFooter}>
         <a href="https://launchigniter.com/product/pseudorun?ref=badge-pseudorun" target="_blank" rel="noopener noreferrer">
           <img src="https://launchigniter.com/api/badge/pseudorun?theme=light" alt="Featured on LaunchIgniter" width="212" height="55" />
         </a>
@@ -149,7 +149,7 @@ export default function Landing() {
         </a>
         <a href="https://wired.business" target="_blank" rel="noopener noreferrer">
           <img src="https://wired.business/badge3-light.svg" alt="Featured on Wired Business" width="200" height="54" />
-        </a>    
+        </a>
       </div>
     </div>
   );
