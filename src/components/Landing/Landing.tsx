@@ -21,7 +21,7 @@ export default function Landing() {
       <div className={styles.header}>
         <h1 className={styles.appTitle}>PseudoRun</h1>
         <div className={styles.badgesContainer}>
-          <a
+          
             href="https://fazier.com/launches/pseudorun"
             target="_blank"
             rel="noopener noreferrer"
@@ -30,7 +30,7 @@ export default function Landing() {
             <img
               src="https://fazier.com/api/v1/public/badges/embed_image.svg?launch_id=5789&badge_type=monthly&theme=light"
               width={250}
-            height={54}
+              height={54}
               alt="Fazier badge"
             />
           </a>
@@ -139,13 +139,19 @@ export default function Landing() {
       </div>
 
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
-    </div>
-    <div>
-        <a href="https://launchigniter.com/product/pseudorun?ref=badge-pseudorun" target="_blank">
-  <img src="https://launchigniter.com/api/badge/pseudorun?theme=light" alt="Featured on LaunchIgniter" width="212" height="55" />
+      
+      <div>
+        <a href="https://launchigniter.com/product/pseudorun?ref=badge-pseudorun" target="_blank" rel="noopener noreferrer">
+          <img src="https://launchigniter.com/api/badge/pseudorun?theme=light" alt="Featured on LaunchIgniter" width="212" height="55" />
         </a>
-        <a href="https://twelve.tools" target="_blank"><img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" width="200" height="54"/></a>
-        <a href="https://wired.business" target="_blank"><img src="https://wired.business/badge3-light.svg" alt="Featured on Wired Business" width="200" height="54"/></a>    
+        <a href="https://twelve.tools" target="_blank" rel="noopener noreferrer">
+          <img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" width="200" height="54"/>
+        </a>
+        <a href="https://wired.business" target="_blank" rel="noopener noreferrer">
+          <img src="https://wired.business/badge3-light.svg" alt="Featured on Wired Business" width="200" height="54"/>
+        </a>
+        <a href="https://frogdr.com/pseudorun.tech?utm_source=pseudorun.tech" target="_blank"><img src="https://frogdr.com/pseudorun.tech/badge-light.svg?badge=1" alt="Monitor&#0032;your&#0032;Domain&#0032;Rating&#0032;with&#0032;FrogDR" width="250" height="54"></a>
+      </div>
     </div>
   );
 }
