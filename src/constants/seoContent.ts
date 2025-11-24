@@ -41,7 +41,7 @@ export const STRUCTURED_DATA = {
     "@type": "EducationalOrganization",
     name: "PseudoRun",
     description: "The #1 online pseudocode editor for IGCSE Computer Science students",
-    url: "https://pseudorun.com",
+    url: "https://pseudorun.tech",
     educationalLevel: "High School",
     about: "IGCSE Computer Science Pseudocode",
     applicationCategory: "EducationalApplication"
@@ -138,22 +138,22 @@ export const FAQ_CONTENT = [
 
 // Open Graph images by context
 export const OG_IMAGES = {
-  landing: "https://pseudorun.com/og-image.png",
-  editor: "https://pseudorun.com/editor-og-image.png",
-  tutorial: "https://pseudorun.com/tutorial-og-image.png",
-  practice: "https://pseudorun.com/practice-og-image.png",
-  syntax: "https://pseudorun.com/syntax-og-image.png",
-  exam: "https://pseudorun.com/exam-og-image.png"
+  landing: "https://pseudorun.tech/og-image.png",
+  editor: "https://pseudorun.tech/editor-og-image.png",
+  tutorial: "https://pseudorun.tech/tutorial-og-image.png",
+  practice: "https://pseudorun.tech/practice-og-image.png",
+  syntax: "https://pseudorun.tech/syntax-og-image.png",
+  exam: "https://pseudorun.tech/exam-og-image.png"
 };
 
 // Canonical URLs
 export const CANONICAL_URLS = {
-  landing: "https://pseudorun.com",
-  editor: "https://pseudorun.com/?action=editor",
-  tutorial: "https://pseudorun.com/?action=tutorial",
-  practice: "https://pseudorun.com/?action=practice",
-  syntax: "https://pseudorun.com/?action=syntax-reference",
-  exam: "https://pseudorun.com/?action=exam-mode"
+  landing: "https://pseudorun.tech",
+  editor: "https://pseudorun.tech/?action=editor",
+  tutorial: "https://pseudorun.tech/?action=tutorial",
+  practice: "https://pseudorun.tech/?action=practice",
+  syntax: "https://pseudorun.tech/?action=syntax-reference",
+  exam: "https://pseudorun.tech/?action=exam-mode"
 };
 
 // Analytics event tracking configuration

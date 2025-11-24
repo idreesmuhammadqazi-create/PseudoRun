@@ -23,16 +23,16 @@ const defaultSEOData: Record<string, SEOData> = {
     title: 'PseudoRun - #1 IGCSE Pseudocode Editor & Simulator',
     description: 'Practice IGCSE pseudocode with PseudoRun - the free online editor designed for Computer Science students. Perfect for exam preparation with real-time validation.',
     keywords: 'IGCSE pseudocode editor, pseudocode simulator, IGCSE computer science, pseudocode practice, computer science tool',
-    ogImage: 'https://pseudorun.com/og-image.png',
+    ogImage: 'https://pseudorun.tech/og-image.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
-    canonicalUrl: 'https://pseudorun.com',
+    canonicalUrl: 'https://pseudorun.tech',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'EducationalOrganization',
       name: 'PseudoRun',
       description: 'The #1 online pseudocode editor for IGCSE Computer Science students',
-      url: 'https://pseudorun.com',
+      url: 'https://pseudorun.tech',
       educationalLevel: 'High School',
       about: 'IGCSE Computer Science Pseudocode'
     }
@@ -41,10 +41,10 @@ const defaultSEOData: Record<string, SEOData> = {
     title: 'PseudoRun - Practice IGCSE Pseudocode Online',
     description: 'Write and test IGCSE pseudocode instantly. PseudoRun offers syntax highlighting, debugging, and export features to help you ace your exams.',
     keywords: 'IGCSE pseudocode editor, online pseudocode writer, pseudocode debugger, IGCSE CS practice',
-    ogImage: 'https://pseudorun.com/editor-og-image.png',
+    ogImage: 'https://pseudorun.tech/editor-og-image.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
-    canonicalUrl: 'https://pseudorun.com/?action=editor',
+    canonicalUrl: 'https://pseudorun.tech/?action=editor',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
@@ -63,10 +63,10 @@ const defaultSEOData: Record<string, SEOData> = {
     title: 'Learn IGCSE Pseudocode - Free Tutorial | PseudoRun',
     description: 'Master IGCSE pseudocode with our comprehensive tutorial. Learn algorithms, loops, arrays, and procedures step-by-step.',
     keywords: 'IGCSE pseudocode tutorial, learn pseudocode, pseudocode guide, computer science tutorial',
-    ogImage: 'https://pseudorun.com/tutorial-og-image.png',
+    ogImage: 'https://pseudorun.tech/tutorial-og-image.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
-    canonicalUrl: 'https://pseudorun.com/?action=tutorial',
+    canonicalUrl: 'https://pseudorun.tech/?action=tutorial',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'Course',
@@ -84,10 +84,10 @@ const defaultSEOData: Record<string, SEOData> = {
     title: 'IGCSE Pseudocode Practice Problems | PseudoRun',
     description: 'Test your skills with IGCSE pseudocode practice problems. From basic concepts to advanced algorithms, prepare for your exams.',
     keywords: 'IGCSE pseudocode practice, pseudocode exercises, computer science problems, exam practice',
-    ogImage: 'https://pseudorun.com/practice-og-image.png',
+    ogImage: 'https://pseudorun.tech/practice-og-image.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
-    canonicalUrl: 'https://pseudorun.com/?action=practice',
+    canonicalUrl: 'https://pseudorun.tech/?action=practice',
     structuredData: {
       '@context': 'https://schema.org',
       '@type': 'Quiz',
@@ -101,19 +101,19 @@ const defaultSEOData: Record<string, SEOData> = {
     title: 'IGCSE Pseudocode Syntax Reference | PseudoRun',
     description: 'Complete IGCSE pseudocode syntax reference. Learn proper syntax, commands, and structures for pseudocode programming.',
     keywords: 'IGCSE pseudocode syntax, pseudocode reference, pseudocode commands, computer science syntax',
-    ogImage: 'https://pseudorun.com/syntax-og-image.png',
+    ogImage: 'https://pseudorun.tech/syntax-og-image.png',
     ogType: 'website',
     twitterCard: 'summary',
-    canonicalUrl: 'https://pseudorun.com/?action=syntax-reference'
+    canonicalUrl: 'https://pseudorun.tech/?action=syntax-reference'
   },
   exam: {
     title: 'IGCSE Exam Mode - Timed Pseudocode Practice | PseudoRun',
     description: 'Practice IGCSE pseudocode under exam conditions with timed challenges. Build speed and confidence for your Computer Science exams.',
     keywords: 'IGCSE exam practice, timed pseudocode, exam simulator, computer science exam preparation',
-    ogImage: 'https://pseudorun.com/exam-og-image.png',
+    ogImage: 'https://pseudorun.tech/exam-og-image.png',
     ogType: 'website',
     twitterCard: 'summary_large_image',
-    canonicalUrl: 'https://pseudorun.com/?action=exam-mode',
+    canonicalUrl: 'https://pseudorun.tech/?action=exam-mode',
     noIndex: true
   }
 };
