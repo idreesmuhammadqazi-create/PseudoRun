@@ -7,9 +7,17 @@
   <!-- Main Application Page -->
   <url>
     <loc>https://pseudorun.tech/</loc>
-    <lastmod>2025-11-20</lastmod>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Link Building Page -->
+  <url>
+    <loc>https://pseudorun.tech/tryingtogetbacklinks</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Main App Features (as SPA routes) -->
