@@ -284,6 +284,10 @@
   .fazierBadge {
     display: none;
   }
+
+  .reportBugButton {
+    display: none;
+  }
 }
 
 /* Accessibility - Focus States */
