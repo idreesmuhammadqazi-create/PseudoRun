@@ -5,6 +5,7 @@
 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import App from './App';
+import TryingToGetBacklinks from './components/TryingToGetBacklinks/TryingToGetBacklinks';
 
 export default function AppRouter() {
   return (
