@@ -226,15 +226,25 @@
 }
 
 .linktreeBadge {
-  composes: button;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
   background-color: var(--button-bg);
   color: var(--button-text);
   border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 6px;
 }
 
 .linktreeBadge:hover {
   background-color: var(--button-hover);
   border-color: var(--border-focus);
+  transform: translateY(-1px);
 }
 
 /* Responsive Design */
