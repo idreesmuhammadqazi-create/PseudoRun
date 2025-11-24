@@ -140,6 +140,8 @@ export default function Landing() {
 
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
       
+      <div style={{ height: '60px' }}></div>
+      
       <div className={styles.badgeFooter}>
         <a href="https://launchigniter.com/product/pseudorun?ref=badge-pseudorun" target="_blank" rel="noopener noreferrer">
           <img src="https://launchigniter.com/api/badge/pseudorun?theme=light" alt="Featured on LaunchIgniter" width="212" height="55" />
