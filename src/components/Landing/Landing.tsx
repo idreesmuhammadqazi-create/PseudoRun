@@ -145,12 +145,11 @@ export default function Landing() {
           <img src="https://launchigniter.com/api/badge/pseudorun?theme=light" alt="Featured on LaunchIgniter" width="212" height="55" />
         </a>
         <a href="https://twelve.tools" target="_blank" rel="noopener noreferrer">
-          <img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" width="200" height="54"/>
+          <img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" width="200" height="54" />
         </a>
         <a href="https://wired.business" target="_blank" rel="noopener noreferrer">
-          <img src="https://wired.business/badge3-light.svg" alt="Featured on Wired Business" width="200" height="54"/>
-        </a>
-        <a href="https://frogdr.com/pseudorun.tech?utm_source=pseudorun.tech" target="_blank"><img src="https://frogdr.com/pseudorun.tech/badge-light.svg?badge=1" alt="Monitor&#0032;your&#0032;Domain&#0032;Rating&#0032;with&#0032;FrogDR" width="250" height="54"></a>
+          <img src="https://wired.business/badge3-light.svg" alt="Featured on Wired Business" width="200" height="54" />
+        </a>    
       </div>
     </div>
   );
