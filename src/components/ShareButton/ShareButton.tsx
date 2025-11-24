@@ -11,7 +11,7 @@ interface ShareButtonProps {
 }
 
 export const ShareButton: React.FC<ShareButtonProps> = ({
-  url = typeof window !== 'undefined' ? window.location.href : 'https://pseudorun.com',
+  url = typeof window !== 'undefined' ? window.location.href : 'https://pseudorun.tech',
   title = 'PseudoRun - #1 IGCSE Pseudocode Editor',
   description = 'Practice IGCSE pseudocode with PseudoRun - the free online editor for Computer Science students',
   hashtags = ['IGCSE', 'ComputerScience', 'Pseudocode', 'PseudoRun'],
