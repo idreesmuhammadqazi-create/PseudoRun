@@ -204,6 +204,19 @@
   background-color: #dc2626;
 }
 
+.reportBugButton {
+  composes: button;
+  background-color: #f59e0b;
+  color: white;
+  font-size: 13px;
+  padding: 8px 16px;
+  gap: 6px;
+}
+
+.reportBugButton:hover {
+  background-color: #d97706;
+}
+
 .fazierBadge {
   display: inline-flex;
   align-items: center;
@@ -223,6 +236,28 @@
   height: 54px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
+}
+
+.linktreeBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 6px;
+}
+
+.linktreeBadge:hover {
+  background-color: var(--button-hover);
+  border-color: var(--border-focus);
+  transform: translateY(-1px);
 }
 
 /* Responsive Design */
@@ -247,6 +282,10 @@
   }
 
   .fazierBadge {
+    display: none;
+  }
+
+  .reportBugButton {
     display: none;
   }
 }

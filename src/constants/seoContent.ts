@@ -5,7 +5,7 @@
 
 // Meta descriptions for different app contexts
 export const META_DESCRIPTIONS = {
-  landing: "Practice IGCSE pseudocode with PseudoRun - the free online editor designed for Computer Science students. Perfect for exam preparation with real-time validation.",
+  landing: "Practice IGCSE pseudocode with PseudoRun - the 100% free, ad-free online editor designed for Computer Science students. Perfect for exam preparation with real-time validation and no distractions.",
   editor: "Write and test IGCSE pseudocode instantly. PseudoRun offers syntax highlighting, debugging, and export features to help you ace your exams.",
   tutorial: "Master IGCSE pseudocode with our comprehensive tutorial. Learn algorithms, loops, arrays, and procedures step-by-step.",
   practice: "Test your skills with IGCSE pseudocode practice problems. From basic concepts to advanced algorithms, prepare for your exams.",
@@ -26,7 +26,7 @@ export const PAGE_TITLES = {
 // SEO keywords by feature
 export const SEO_KEYWORDS = {
   primary: "IGCSE pseudocode editor, pseudocode simulator, IGCSE computer science, pseudocode practice, computer science pseudocode tool",
-  landing: "IGCSE pseudocode editor, PseudoRun, Cambridge IGCSE, computer science exam, pseudocode practice online, free pseudocode tool",
+  landing: "IGCSE pseudocode editor, PseudoRun, Cambridge IGCSE, computer science exam, pseudocode practice online, free pseudocode tool, ad-free pseudocode editor, student-focused pseudocode practice, distraction-free coding platform, IGCSE learning tool no ads",
   editor: "online pseudocode editor, IGCSE pseudocode writer, pseudocode debugger, syntax highlighting, real-time validation",
   tutorial: "IGCSE pseudocode tutorial, learn pseudocode, pseudocode guide, computer science tutorial, algorithm tutorial",
   practice: "IGCSE pseudocode practice, pseudocode exercises, computer science problems, exam practice, algorithm problems",
@@ -129,6 +129,10 @@ export const FAQ_CONTENT = [
   {
     question: "Can I use PseudoRun for exam preparation?",
     answer: "Yes, PseudoRun is perfect for IGCSE exam preparation. It includes timed exam mode, practice problems covering all syllabus topics, and real-time validation to help you perfect your pseudocode skills."
+  },
+  {
+    question: "Will PseudoRun ever have ads?",
+    answer: "No. We are committed to providing a completely ad-free and distraction-free learning environment. Our mission is to support students, not to profit from advertisements."
   }
 ];
 

@@ -332,6 +332,29 @@
   transform: translateY(0);
 }
 
+.whySection {
+  background-color: rgba(255, 255, 10, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 10, 0.2);
+  margin-bottom: 80px;
+  animation: fadeInUp 0.8s ease-out 1s both;
+}
+
+.whySection h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+}
+
+.whySection p {
+  font-size: 16px;
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
@@ -431,7 +454,7 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .feature:hover,
   .testimonial:hover,
   .ctaButton:hover {
