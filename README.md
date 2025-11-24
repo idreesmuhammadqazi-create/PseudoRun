@@ -28,6 +28,20 @@
 - ✅ **22 Built-in Examples** - Learn from comprehensive sample programs
 - ✅ **Responsive Design** - Works on desktop, tablet, and mobile
 - ✅ **User Authentication** - Secure login with Google or Email/Password
+- ✅ **Step-by-Step Debugger** - Debug code line by line with variable tracking
+- ✅ **Free Cloud Storage** - Save unlimited programs with user accounts
+- ✅ **Share Code** - Generate shareable links to your pseudocode
+- ✅ **Practice Problems** - 50+ IGCSE-style exercises and examples
+- ✅ **Timed Exam Mode** - Practice under exam conditions
+- ✅ **Interactive Tutorial** - Learn pseudocode concepts step-by-step
+- ✅ **Syntax Reference** - Complete Cambridge IGCSE pseudocode guide
+
+### 🌟 Student-Focused Features
+- 🚫 **100% Ad-Free** - No distractions, zero pop-ups, no ads forever
+- 🎓 **IGCSE Exam Focused** - Perfectly aligned with Cambridge syllabus requirements
+- 💡 **Interactive Learning** - Hands-on practice with instant feedback
+- 🔒 **Privacy First** - Student data protection and security prioritized
+- 🆓 **Completely Free** - All features accessible without payment or premium barriers
 
 ### 🎨 User Experience
 - 🖱️ **Split-view Editor** - Code on left, output on right
