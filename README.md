@@ -428,16 +428,26 @@ The editor detects and reports:
 - 🔬 **Algorithm Testing** - Verify logic before implementation
 - 💡 **Quick Prototyping** - Test ideas rapidly
 
-## 🎯 Roadmap
+## 🎯 Recent Updates
+
+### ✅ Latest Features (November 2024)
+- ✅ **Step-by-Step Debugger** - Debug code line by line with variable tracking
+- ✅ **Free Cloud Storage** - Save unlimited programs with user accounts
+- ✅ **Report a Bug** - Easy bug reporting with pre-filled email to support@pseudorun.tech
+- ✅ **Connect Page** - New `/tryingtogetbacklinks` page with all our social links
+- ✅ **Complete SEO Optimization** - All pages optimized for search engines
+- ✅ **Enhanced Mobile Experience** - Improved responsive design and usability
+
+### 🎯 Roadmap
 
 Future enhancements:
-- [ ] Dark mode
+- [ ] Dark mode (under consideration)
 - [ ] Syntax highlighting customization
-- [ ] Share code via URL
-- [ ] Step-by-step debugger
-- [ ] More example programs
-- [ ] Export to PDF
-- [ ] Collaborative editing
+- [ ] More collaborative features
+- [ ] Additional export formats (PDF, Word)
+- [ ] More practice problems and challenges
+- [ ] Teacher dashboard features
+- [ ] Progress tracking and analytics
 
 ## 🤝 Contributing
 
