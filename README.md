@@ -6,7 +6,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://pseudorun.tech)
 
-**[🚀 Try it Live](https://pseudorun.tech)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development)
+**[🚀 Try it Live](https://pseudorun.tech)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development) | [🔗 Connect With Us](https://pseudorun.tech/tryingtogetbacklinks)
 
 ---
 
@@ -28,6 +28,20 @@
 - ✅ **22 Built-in Examples** - Learn from comprehensive sample programs
 - ✅ **Responsive Design** - Works on desktop, tablet, and mobile
 - ✅ **User Authentication** - Secure login with Google or Email/Password
+- ✅ **Step-by-Step Debugger** - Debug code line by line with variable tracking
+- ✅ **Free Cloud Storage** - Save unlimited programs with user accounts
+- ✅ **Share Code** - Generate shareable links to your pseudocode
+- ✅ **Practice Problems** - 50+ IGCSE-style exercises and examples
+- ✅ **Timed Exam Mode** - Practice under exam conditions
+- ✅ **Interactive Tutorial** - Learn pseudocode concepts step-by-step
+- ✅ **Syntax Reference** - Complete Cambridge IGCSE pseudocode guide
+
+### 🌟 Student-Focused Features
+- 🚫 **100% Ad-Free** - No distractions, zero pop-ups, no ads forever
+- 🎓 **IGCSE Exam Focused** - Perfectly aligned with Cambridge syllabus requirements
+- 💡 **Interactive Learning** - Hands-on practice with instant feedback
+- 🔒 **Privacy First** - Student data protection and security prioritized
+- 🆓 **Completely Free** - All features accessible without payment or premium barriers
 
 ### 🎨 User Experience
 - 🖱️ **Split-view Editor** - Code on left, output on right
@@ -172,7 +186,13 @@ The editor includes **22 comprehensive examples** covering:
 
 ### Online (Recommended)
 
-Simply visit **[https://pseudorun.vercel.app](https://pseudorun.tech)** and start coding immediately!
+Simply visit **[https://pseudorun.tech](https://pseudorun.tech)** and start coding immediately!
+
+### Connect With Us
+
+Want to see all our links and stay updated? Visit our connection page:
+- **[🔗 Connect With Us](https://pseudorun.tech/tryingtogetbacklinks)** - All our social links and resources
+- **🐛 Report a Bug** - Found an issue? Email us at [support@pseudorun.tech](mailto:support@pseudorun.tech)
 
 ### Local Development
 
@@ -408,24 +428,44 @@ The editor detects and reports:
 - 🔬 **Algorithm Testing** - Verify logic before implementation
 - 💡 **Quick Prototyping** - Test ideas rapidly
 
-## 🎯 Roadmap
+## 🎯 Recent Updates
+
+### ✅ Latest Features (November 2024)
+- ✅ **Step-by-Step Debugger** - Debug code line by line with variable tracking
+- ✅ **Free Cloud Storage** - Save unlimited programs with user accounts
+- ✅ **Report a Bug** - Easy bug reporting with pre-filled email to support@pseudorun.tech
+- ✅ **Connect Page** - New `/tryingtogetbacklinks` page with all our social links
+- ✅ **Complete SEO Optimization** - All pages optimized for search engines
+- ✅ **Enhanced Mobile Experience** - Improved responsive design and usability
+
+### 🎯 Roadmap
 
 Future enhancements:
-- [ ] Dark mode
+- [ ] Dark mode (under consideration)
 - [ ] Syntax highlighting customization
-- [ ] Share code via URL
-- [ ] Step-by-step debugger
-- [ ] More example programs
-- [ ] Export to PDF
-- [ ] Collaborative editing
+- [ ] More collaborative features
+- [ ] Additional export formats (PDF, Word)
+- [ ] More practice problems and challenges
+- [ ] Teacher dashboard features
+- [ ] Progress tracking and analytics
 
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
-- Report bugs
+- Report bugs via email: [support@pseudorun.tech](mailto:support@pseudorun.tech)
 - Suggest features
 - Submit pull requests
 - Improve documentation
+- Help with practice problems and examples
+
+### 🐛 Bug Reporting
+Found an issue? Please report it with:
+- Browser and version
+- Steps to reproduce
+- Expected vs actual behavior
+- Any screenshots if applicable
+
+**Quick Report:** Use the "🐛 Report Bug" button in the toolbar or email [support@pseudorun.tech](mailto:support@pseudorun.tech)
 
 ## 📄 License
 
@@ -448,6 +488,6 @@ MIT License - feel free to use in your projects!
 
 [![Visit Compyle](https://img.shields.io/badge/Powered%20by-Compyle-blue?style=for-the-badge)](https://compyle.ai)
 
-[🌐 Live Demo](https://pseudorun.tech) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🐛 Report Bug](https://github.com/idreesmuhammadqazi-create/PseudoRun/issues)
+[🌐 Live Demo](https://pseudorun.tech) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🔗 Connect](https://pseudorun.tech/tryingtogetbacklinks) • [🐛 Report Bug](mailto:support@pseudorun.tech)
 
 </div>
