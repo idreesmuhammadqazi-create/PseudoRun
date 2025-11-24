@@ -186,7 +186,13 @@ The editor includes **22 comprehensive examples** covering:
 
 ### Online (Recommended)
 
-Simply visit **[https://pseudorun.vercel.app](https://pseudorun.tech)** and start coding immediately!
+Simply visit **[https://pseudorun.tech](https://pseudorun.tech)** and start coding immediately!
+
+### Connect With Us
+
+Want to see all our links and stay updated? Visit our connection page:
+- **[🔗 Connect With Us](https://pseudorun.tech/tryingtogetbacklinks)** - All our social links and resources
+- **🐛 Report a Bug** - Found an issue? Email us at [support@pseudorun.tech](mailto:support@pseudorun.tech)
 
 ### Local Development
 
