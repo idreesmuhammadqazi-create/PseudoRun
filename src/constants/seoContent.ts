@@ -148,7 +148,7 @@ export const OG_IMAGES = {
 
 // Canonical URLs
 export const CANONICAL_URLS = {
-  landing: "https://pseudorun.com",
+  landing: "https://pseudorun.tech",
   editor: "https://pseudorun.tech/?action=editor",
   tutorial: "https://pseudorun.tech/?action=tutorial",
   practice: "https://pseudorun.tech/?action=practice",
