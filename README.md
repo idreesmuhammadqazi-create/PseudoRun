@@ -452,10 +452,20 @@ Future enhancements:
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
-- Report bugs
+- Report bugs via email: [support@pseudorun.tech](mailto:support@pseudorun.tech)
 - Suggest features
 - Submit pull requests
 - Improve documentation
+- Help with practice problems and examples
+
+### 🐛 Bug Reporting
+Found an issue? Please report it with:
+- Browser and version
+- Steps to reproduce
+- Expected vs actual behavior
+- Any screenshots if applicable
+
+**Quick Report:** Use the "🐛 Report Bug" button in the toolbar or email [support@pseudorun.tech](mailto:support@pseudorun.tech)
 
 ## 📄 License
 
