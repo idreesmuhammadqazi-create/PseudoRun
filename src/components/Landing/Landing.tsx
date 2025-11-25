@@ -156,6 +156,12 @@ export default function Landing() {
           <img src="https://findly.tools/badges/findly-tools-badge-light.svg" alt="Featured on findly.tools" width="150" />
         </a>
         <a href="https://ufind.best/products/pseudorun?utm_source=pseudorun" target="_blank" rel="noopener"><img src="https://ufind.best/badges/ufind-best-badge-light.svg" alt="Featured on ufind.best" width="150" /></a>
+        <a href="https://dofollow.tools" target="_blank"><img src="https://dofollow.tools/badge/badge_light.svg" alt="Featured on Dofollow.Tools" width="200" height="54" /></a>
+        <a style={{display: "block", width: "fit-content"}} href="https://launch-list.org/product/pseudorun" target="_blank">
+          <img style={{height: "50px"}}
+             src="https://launch-list.org/badges/svg/launch_list_badge_live.svg"
+             alt="Launch List Badge" />
+        </a>
         <a href="https://submithunt.com" target="_blank" rel="noopener noreferrer">
           <img src="https://submithunt.com/badge.png" alt="Featured on SubmitHunt" width="150" height="45" />
         </a>
