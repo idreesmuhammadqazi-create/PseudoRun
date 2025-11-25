@@ -155,6 +155,7 @@ export default function Landing() {
         <a href="https://findly.tools/pseudorun?utm_source=pseudorun" target="_blank" rel="noopener noreferrer">
           <img src="https://findly.tools/badges/findly-tools-badge-light.svg" alt="Featured on findly.tools" width="150" />
         </a>
+        <a href="https://ufind.best/products/pseudorun?utm_source=pseudorun" target="_blank" rel="noopener"><img src="https://ufind.best/badges/ufind-best-badge-light.svg" alt="Featured on ufind.best" width="150" /></a>
         <a href="https://submithunt.com" target="_blank" rel="noopener noreferrer">
           <img src="https://submithunt.com/badge.png" alt="Featured on SubmitHunt" width="150" height="45" />
         </a>
