@@ -158,7 +158,7 @@ export default function Landing() {
         <a href="https://submithunt.com" target="_blank" rel="noopener noreferrer">
           <img src="https://submithunt.com/badge.png" alt="Featured on SubmitHunt" width="150" height="45" />
         </a>
-        <a href="https://fast-wan.com/">Fast Wan</a>
+        
         
       </footer>
       
