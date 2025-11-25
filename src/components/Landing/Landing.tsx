@@ -159,6 +159,7 @@ export default function Landing() {
           <img src="https://submithunt.com/badge.png" alt="Featured on SubmitHunt" width="150" height="45" />
         </a>
       </footer>
+      <script type="text/javascript" src="https://cdn.seojuice.io/suggestions.v1.js" defer></script>
     </div>
   );
 }
