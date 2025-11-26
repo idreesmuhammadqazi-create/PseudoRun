@@ -163,10 +163,11 @@ export default function Landing() {
              alt="Launch List Badge" />
         </a>
         <a href="https://turbo0.com/item/pseudorun" target="_blank" rel="noopener noreferrer">
-          {/* @ts-expect-error - Turbo0 badge requires exact string format for bot verification */}
-          <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0" style="height: 54px; width: auto;" />
+          <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0" height="54px" width="171" />
         </a>
-        <a href="https://startupfa.me/s/pseudorun?utm_source=pseudorun.tech" target="_blank"><img src="https://startupfa.me/badges/featured-badge.webp" alt="PseudoRun - Featured on Startup Fame" width="171" height="54" /></a>
+        <a href="https://startupfa.me/s/pseudorun?utm_source=pseudorun.tech" target="_blank">
+          <img src="https://startupfa.me/badges/featured-badge.webp" alt="PseudoRun - Featured on Startup Fame" width="171" height="54" />
+        </a>
         <a href="https://submithunt.com" target="_blank" rel="noopener noreferrer">
           <img src="https://submithunt.com/badge.png" alt="Featured on SubmitHunt" width="150" height="45" />
         </a>
