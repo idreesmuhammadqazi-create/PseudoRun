@@ -162,6 +162,9 @@ export default function Landing() {
              src="https://launch-list.org/badges/svg/launch_list_badge_live.svg"
              alt="Launch List Badge" />
         </a>
+        <a href="https://turbo0.com/item/pseudorun" target="_blank" rel="noopener noreferrer">
+          <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0" style="height: 54px; width: auto;" />
+        </a>
         <a href="https://submithunt.com" target="_blank" rel="noopener noreferrer">
           <img src="https://submithunt.com/badge.png" alt="Featured on SubmitHunt" width="150" height="45" />
         </a>
