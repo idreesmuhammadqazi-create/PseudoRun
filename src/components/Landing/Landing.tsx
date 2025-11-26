@@ -22,16 +22,16 @@ export default function Landing() {
         <h1 className={styles.appTitle}>PseudoRun</h1>
         <div className={styles.badgesContainer}>
           <a
-            href="https://fazier.com/launches/pseudorun"
+            href="https://launchiest.com/launches/pseudorun"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.fazierBadge}
           >
             <img
-              src="https://fazier.com/api/v1/public/badges/embed_image.svg?launch_id=5789&badge_type=monthly&theme=light"
+              src="https://launchiest.com/api/v1/public/badges/embed_image.svg?launch_id=5789&badge_type=monthly&theme=light"
               width={250}
               height={54}
-              alt="Fazier badge"
+              alt="Launchiest badge"
             />
           </a>
         </div>
@@ -41,7 +41,7 @@ export default function Landing() {
         <div className={styles.badge}>The #1 IGCSE Pseudocode Tool</div>
 
         <h1 className={styles.title}>
-          Master IGCSE Pseudocode with
+          Master IGCSE pseudocode with
           <span className={styles.highlight}> PseudoRun</span>
         </h1>
 
