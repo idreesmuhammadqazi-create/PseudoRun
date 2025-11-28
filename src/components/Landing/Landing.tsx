@@ -168,6 +168,7 @@ export default function Landing() {
         <a href="https://startupfa.me/s/pseudorun?utm_source=pseudorun.tech" target="_blank">
           <img src="https://startupfa.me/badges/featured-badge.webp" alt="PseudoRun - Featured on Startup Fame" width="171" height="54" />
         </a>
+        <a href="https://fwfw.app/item/pseudorun" target="_blank"><img src="https://fwfw.app/badge-white.svg" width="250" height="54" alt="Featured on FWFW" /></a>
         <a href="https://submithunt.com" target="_blank" rel="noopener noreferrer">
           <img src="https://submithunt.com/badge.png" alt="Featured on SubmitHunt" width="150" height="45" />
         </a>
