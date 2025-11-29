@@ -1,0 +1,2441 @@
+.technicalDeepDive {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+  color: #e8e8f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Navigation Sidebar */
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: rgba(15, 15, 35, 0.95);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.navHeader {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+.navHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navHeader p {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.technicalLevelSelector {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.technicalLevelSelector label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: #d1d5db;
+  font-weight: 500;
+}
+
+.technicalLevelSelector select {
+  width: 100%;
+  padding: 0.5rem;
+  background: rgba(31, 41, 55, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 4px;
+  color: #e8e8f0;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navList li {
+  margin-bottom: 0.25rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #9ca3af;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.navLink:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: #e8e8f0;
+  transform: translateX(4px);
+}
+
+.navLink.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: #fff;
+  border-left: 3px solid #6366f1;
+}
+
+.navIcon {
+  margin-right: 0.75rem;
+  font-size: 1rem;
+}
+
+.navLabel {
+  flex: 1;
+}
+
+/* Main Content */
+.content {
+  margin-left: 280px;
+  flex: 1;
+  padding: 2rem 4rem;
+  max-width: none;
+}
+
+.section {
+  margin-bottom: 8rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll Progress Indicator */
+.scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 280px;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1001;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  transition: width 0.1s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .navigation {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .navigation.open {
+    transform: translateX(0);
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .scrollProgress {
+    left: 0;
+  }
+
+  .mobileMenuButton {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1002;
+    background: rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 8px;
+    padding: 0.5rem;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 1rem 0.5rem;
+  }
+
+  .section {
+    margin-bottom: 4rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .navigation,
+  .scrollProgress,
+  .mobileMenuButton {
+    display: none;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 0;
+  }
+
+  .section {
+    margin-bottom: 2rem;
+    page-break-inside: avoid;
+  }
+}
+
+/* Code Block Styling */
+.codeBlock {
+  background: #1a1a2e;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.codeBlock::-webkit-scrollbar {
+  height: 8px;
+}
+
+.codeBlock::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.codeBlock::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.5);
+  border-radius: 4px;
+}
+
+/* Interactive Elements */
+.interactiveDemo {
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+.button {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* Performance Metrics */
+.metricCard {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.metricCard:hover {
+  background: rgba(99, 102, 241, 0.15);
+  transform: translateY(-2px);
+}
+
+.metricValue {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.metricLabel {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
+}
+
+/* Loading Animation */
+.loadingAnimation {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(99, 102, 241, 0.2);
+  border-top: 3px solid #6366f1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Visual Elements */
+.diagram {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.highlight {
+  background: rgba(99, 102, 241, 0.2);
+  padding: 0.125rem 0.25rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.errorText {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 0.125rem 0.25rem;
+  border-radius: 4px;
+}
+
+.successText {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.125rem 0.25rem;
+  border-radius: 4px;
+}
+
+.warningText {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 0.125rem 0.25rem;
+  border-radius: 4px;
+}
+
+/* Hero Section Styling */
+.heroSection {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.heroContent {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.heroHeader {
+  margin-bottom: 4rem;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  color: #9ca3af;
+  margin: 0 0 2rem 0;
+  font-weight: 600;
+}
+
+.heroDescription {
+  font-size: 1.125rem;
+  color: #d1d5db;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Pipeline Visualization */
+.pipelineVisualization {
+  margin: 4rem 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.stagesContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.stage.active {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+}
+
+.stageIcon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.stage.active .stageIcon {
+  transform: scale(1.2);
+}
+
+.stageName {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #e8e8f0;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.stageDetails {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  text-align: center;
+  max-width: 120px;
+  line-height: 1.4;
+}
+
+.pipelineCanvas {
+  width: 100%;
+  height: 60px;
+  border-radius: 8px;
+  background: rgba(15, 15, 35, 0.5);
+}
+
+/* Metrics Grid */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.metricCard {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.metricCard:hover {
+  background: rgba(99, 102, 241, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.2);
+}
+
+/* Technical Highlights */
+.technicalHighlights {
+  margin: 4rem 0;
+}
+
+.highlightGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.highlightItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.highlightItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-3px);
+}
+
+.highlightItem h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.125rem;
+  color: #e8e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.highlightItem p {
+  margin: 0;
+  color: #9ca3af;
+  line-height: 1.6;
+  font-size: 0.875rem;
+}
+
+/* Animation Controls */
+.animationControls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design for Hero Section */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.25rem;
+  }
+
+  .stagesContainer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stage {
+    min-width: auto;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .stageIcon {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+
+  .pipelineCanvas {
+    display: none;
+  }
+
+  .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .highlightGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 2rem 1rem;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Architecture Overview Styling */
+.architectureOverview {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.architectureHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.architectureHeader h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.architectureHeader h3 {
+  font-size: 1.5rem;
+  color: #9ca3af;
+  margin: 0 0 2rem 0;
+  font-weight: 600;
+}
+
+.architectureHeader p {
+  font-size: 1.125rem;
+  color: #d1d5db;
+  line-height: 1.7;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Architecture Diagram */
+.architectureDiagram {
+  margin: 4rem 0;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+}
+
+.diagramContainer {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  margin: 2rem 0;
+}
+
+.diagramCanvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: rgba(15, 15, 35, 0.3);
+}
+
+.componentNode {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.componentNode:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.6);
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+}
+
+.componentNode.hovered {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.8);
+  transform: scale(1.1);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+}
+
+.componentNode.selected {
+  background: rgba(236, 72, 153, 0.2);
+  border-color: rgba(236, 72, 153, 0.8);
+  transform: scale(1.1);
+  box-shadow: 0 15px 40px rgba(236, 72, 153, 0.4);
+}
+
+.componentIcon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.componentName {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Component Details Panel */
+.componentDetails {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  width: 400px;
+  max-height: 500px;
+  background: rgba(15, 15, 35, 0.95);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(20px);
+  overflow-y: auto;
+  z-index: 10;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.detailsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detailsHeader h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e8e8f0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.detailsContent {
+  color: #d1d5db;
+}
+
+.componentDescription {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.technologiesSection {
+  margin-bottom: 1.5rem;
+}
+
+.technologiesSection h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e8e8f0;
+}
+
+.technologyTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.technologyTag {
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 16px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #a5b4fc;
+}
+
+.deepDetails h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e8e8f0;
+}
+
+.deepDetails ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: none;
+}
+
+.deepDetails li {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.deepDetails li::before {
+  content: '→';
+  position: absolute;
+  left: -1.25rem;
+  color: #6366f1;
+  font-weight: 600;
+}
+
+/* Technology Stack */
+.technologyStack {
+  margin: 4rem 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.technologyStack h3 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 2rem 0;
+  color: #e8e8f0;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.techCategory {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.techCategory h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  text-align: center;
+}
+
+.techList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: #d1d5db;
+}
+
+.techIcon {
+  font-size: 1.125rem;
+  width: 24px;
+  text-align: center;
+}
+
+/* Architecture Principles */
+.architecturePrinciples {
+  margin: 4rem 0;
+}
+
+.architecturePrinciples h3 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 2rem 0;
+  color: #e8e8f0;
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.principle {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.principle:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-5px);
+}
+
+.principleIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.principle h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e8e8f0;
+}
+
+.principle p {
+  margin: 0;
+  color: #9ca3af;
+  line-height: 1.6;
+  font-size: 0.875rem;
+}
+
+/* Architecture Metrics */
+.architectureMetrics {
+  margin: 4rem 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.architectureMetrics h3 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 2rem 0;
+  color: #e8e8f0;
+}
+
+.architectureMetrics .metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.architectureMetrics .metric {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.architectureMetrics .metricValue {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.architectureMetrics .metricLabel {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* Responsive Design for Architecture Overview */
+@media (max-width: 1024px) {
+  .componentDetails {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+  }
+
+  .techGrid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .principlesGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .architectureHeader h2 {
+    font-size: 2rem;
+  }
+
+  .architectureHeader h3 {
+    font-size: 1.25rem;
+  }
+
+  .diagramContainer {
+    height: 400px;
+  }
+
+  .componentNode {
+    width: 100px;
+    height: 100px;
+  }
+
+  .componentIcon {
+    font-size: 1.5rem;
+  }
+
+  .componentName {
+    font-size: 0.75rem;
+  }
+
+  .componentDetails {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .techGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .principlesGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .architectureMetrics .metricsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .architectureOverview {
+    padding: 1rem;
+  }
+
+  .architectureHeader {
+    margin-bottom: 2rem;
+  }
+
+  .diagramContainer {
+    height: 300px;
+  }
+
+  .componentNode {
+    width: 80px;
+    height: 80px;
+  }
+
+  .componentIcon {
+    font-size: 1.25rem;
+  }
+
+  .componentName {
+    font-size: 0.6875rem;
+  }
+
+  .architectureMetrics .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .techCategory,
+  .principle {
+    padding: 1rem;
+  }
+}
+
+/* Lexer Deep-Dive Styling */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionHeader h3 {
+  font-size: 1.5rem;
+  color: #9ca3af;
+  margin: 0 0 2rem 0;
+  font-weight: 600;
+}
+
+.sectionHeader p {
+  font-size: 1.125rem;
+  color: #d1d5db;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Lexer Playground */
+.lexerPlayground {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 4rem 0;
+}
+
+.playgroundHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.playgroundHeader h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin: 0 0 0.5rem 0;
+}
+
+.playgroundHeader p {
+  font-size: 1rem;
+  color: #9ca3af;
+  margin: 0;
+}
+
+.playgroundGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.codeInput {
+  background: rgba(15, 15, 35, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.codeInput h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.codeTextarea {
+  width: 100%;
+  min-height: 300px;
+  background: rgba(15, 15, 35, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  color: #e8e8f0;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.codeTextarea:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.sampleCodeSection {
+  margin-top: 1.5rem;
+}
+
+.sampleCodeSection h6 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #d1d5db;
+  margin: 0 0 0.75rem 0;
+}
+
+.sampleCodeGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sampleButton {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 20px;
+  padding: 0.375rem 0.75rem;
+  color: #a5b4fc;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sampleButton:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Token Output */
+.tokenOutput {
+  background: rgba(15, 15, 35, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.tokenOutput h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.tokenControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.speedControl {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #d1d5db;
+  font-size: 0.875rem;
+}
+
+.speedControl input[type="range"] {
+  width: 100px;
+}
+
+.tokenDisplay {
+  background: rgba(15, 15, 35, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.emptyState p {
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.tokenList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.75rem;
+}
+
+.token {
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.token:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.token.animated {
+  background: rgba(139, 92, 246, 0.2);
+  animation: tokenHighlight 0.5s ease-out;
+}
+
+@keyframes tokenHighlight {
+  0% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+.tokenType {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.05em;
+}
+
+.tokenValue {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #e8e8f0;
+  margin-bottom: 0.25rem;
+  word-break: break-all;
+  font-family: 'Fira Code', monospace;
+}
+
+.tokenPosition {
+  font-size: 0.625rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Token Tooltip */
+.tokenTooltip {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 15, 35, 0.95);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 200px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.tooltipHeader {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tooltipContent {
+  font-size: 0.6875rem;
+  color: #d1d5db;
+}
+
+.tooltipRow {
+  margin-bottom: 0.375rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tooltipRow strong {
+  color: #a5b4fc;
+}
+
+/* Token Statistics */
+.tokenStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.statItem {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #a5b4fc;
+  margin-bottom: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* Implementation Details */
+.implementationDetails {
+  margin: 4rem 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.implementationDetails h4 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.mediumDetailGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.deepDetailGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.detailItem,
+.deepDetailItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.detailItem:hover,
+.deepDetailItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-3px);
+}
+
+.detailItem h5,
+.deepDetailItem h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin: 0 0 0.75rem 0;
+}
+
+.detailItem p,
+.deepDetailItem p {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.codeReference {
+  margin-top: 1rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #a5b4fc;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Performance Section */
+.performanceSection {
+  margin: 4rem 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.performanceSection h4 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.performanceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.performanceItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.performanceItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-3px);
+}
+
+.performanceMetric {
+  margin-bottom: 1rem;
+}
+
+.performanceItem p {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* IGCSE Support */
+.igcseSupport {
+  margin: 4rem 0;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+.igcseSupport h4 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.supportGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.supportCategory {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.supportCategory:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-3px);
+}
+
+.supportCategory h5 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  margin: 0 0 1rem 0;
+}
+
+.supportCategory ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.supportCategory li {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Design for Lexer */
+@media (max-width: 1024px) {
+  .playgroundGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .mediumDetailGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .deepDetailGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+
+  .sectionHeader h3 {
+    font-size: 1.25rem;
+  }
+
+  .playgroundHeader h4 {
+    font-size: 1.25rem;
+  }
+
+  .tokenControls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .speedControl {
+    justify-content: center;
+  }
+
+  .tokenList {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .tokenStats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .performanceGrid,
+  .supportGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .mediumDetailGrid,
+  .deepDetailGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lexerPlayground {
+    padding: 1rem;
+  }
+
+  .codeInput,
+  .tokenOutput {
+    padding: 1rem;
+  }
+
+  .codeTextarea {
+    min-height: 200px;
+    font-size: 0.8125rem;
+  }
+
+  .tokenDisplay {
+    min-height: 200px;
+    max-height: 250px;
+  }
+
+  .tokenList {
+    grid-template-columns: 1fr;
+  }
+
+  .tokenStats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .sampleCodeGrid {
+    flex-direction: column;
+  }
+
+  .implementationDetails,
+  .performanceSection,
+  .igcseSupport {
+    padding: 1rem;
+  }
+}
+
+/* Additional Component Styling */
+
+/* Parser Deep-Dive */
+.astNode {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.astNode:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.6);
+  transform: translateY(-1px);
+}
+
+.astNode.selected {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.8);
+}
+
+.nodeHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nodeType {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6366f1;
+  text-transform: uppercase;
+}
+
+.nodeValue {
+  font-size: 0.75rem;
+  color: #ef4444;
+  font-family: 'Fira Code', monospace;
+}
+
+.expandIcon {
+  margin-left: auto;
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+
+.nodeDetails {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6875rem;
+  margin-bottom: 0.25rem;
+}
+
+.nodePanel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(15, 15, 35, 0.95);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  min-width: 300px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Interpreter Deep-Dive */
+.interpreterDeepDive .featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.interpreterDeepDive .featureCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.interpreterDeepDive .featureCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-3px);
+}
+
+.interpreterDeepDive .featureIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.interpreterDeepDive .featureCard h4 {
+  margin: 0 0 0.75rem 0;
+  color: #e8e8f0;
+}
+
+.interpreterDeepDive .featureCard p {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Interactive Playground */
+.interactivePlayground .playgroundContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.interactivePlayground .editorPanel,
+.interactivePlayground .outputPanel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.interactivePlayground .panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.interactivePlayground .editorControls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.interactivePlayground .sampleSelect {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 4px;
+  color: #e8e8f0;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.interactivePlayground .runControls {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.interactivePlayground .running {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.interactivePlayground .outputContainer {
+  background: rgba(15, 15, 35, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 1rem;
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.interactivePlayground .outputLines {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.interactivePlayground .outputLine {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.interactivePlayground .lineNumber {
+  color: #6b7280;
+  margin-right: 0.75rem;
+  min-width: 2rem;
+}
+
+.interactivePlayground .lineContent {
+  color: #e8e8f0;
+}
+
+.interactivePlayground .errorOutput {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.interactivePlayground .errorHeader {
+  color: #ef4444;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.interactivePlayground .errorMessage {
+  color: #fca5a5;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+}
+
+/* Debug System Deep-Dive */
+.debugSystemDeepDive .debugPlayground {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.debugSystemDeepDive .debugControls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.debugSystemDeepDive .stepModeSelector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #d1d5db;
+  font-size: 0.875rem;
+}
+
+.debugSystemDeepDive .stepModeSelector select {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 4px;
+  color: #e8e8f0;
+  padding: 0.25rem 0.5rem;
+}
+
+.debugSystemDeepDive .debugCode,
+.debugSystemDeepDive .variablePanel,
+.debugSystemDeepDive .callStackPanel,
+.debugSystemDeepDive .outputPanel {
+  background: rgba(15, 15, 35, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.debugSystemDeepDive .codeWithHighlight {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+
+.debugSystemDeepDive .codeLine {
+  display: flex;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.debugSystemDeepDive .codeLine.highlight {
+  background: rgba(139, 92, 246, 0.2);
+  border-left: 3px solid #8b5cf6;
+}
+
+.debugSystemDeepDive .lineNumber {
+  color: #6b7280;
+  margin-right: 1rem;
+  min-width: 2rem;
+  text-align: right;
+}
+
+.debugSystemDeepDive .variablesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.debugSystemDeepDive .variableItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.debugSystemDeepDive .variableName {
+  font-weight: 600;
+  color: #6366f1;
+}
+
+.debugSystemDeepDive .variableType {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.debugSystemDeepDive .variableValue {
+  font-family: 'Fira Code', monospace;
+  color: #10b981;
+  font-size: 0.875rem;
+}
+
+.debugSystemDeepDive .variableValue.uninitialized {
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Trace Table */
+.debugSystemDeepDive .traceTable {
+  background: rgba(15, 15, 35, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+}
+
+.debugSystemDeepDive .traceTableElement {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.debugSystemDeepDive .traceTableElement th,
+.debugSystemDeepDive .traceTableElement td {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.debugSystemDeepDive .traceTableElement th {
+  background: rgba(99, 102, 241, 0.2);
+  color: #e8e8f0;
+  font-weight: 600;
+}
+
+.debugSystemDeepDive .traceTableElement tr.currentRow {
+  background: rgba(139, 92, 246, 0.2);
+}
+
+/* Developer Resources */
+.developerResources .contributionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.developerResources .contributionCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.developerResources .contributionCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-3px);
+}
+
+.developerResources .contributionIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.developerResources .skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.developerResources .skillTag {
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 12px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  color: #a5b4fc;
+}
+
+.developerResources .stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.developerResources .stepCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.developerResources .stepNumber {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.developerResources .commandBlock {
+  background: rgba(15, 15, 35, 0.8);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.developerResources .commandBlock code {
+  color: #a5b4fc;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.875rem;
+}
+
+/* API Documentation */
+.developerResources .apiCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.developerResources .apiMethod {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.developerResources .method {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.developerResources .method.post {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.developerResources .method.get {
+  background: rgba(99, 102, 241, 0.2);
+  color: #6366f1;
+}
+
+.developerResources .endpoint {
+  font-family: 'Fira Code', monospace;
+  color: #e8e8f0;
+}
+
+/* Community Section */
+.developerResources .communityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.developerResources .communityItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.developerResources .communityItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-3px);
+}
+
+.developerResources .communityLink {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 6px;
+  color: #a5b4fc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.developerResources .communityLink:hover {
+  background: rgba(99, 102, 241, 0.3);
+  color: #fff;
+}
+
+/* Roadmap */
+.developerResources .roadmapTimeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.developerResources .roadmapItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.developerResources .roadmapMarker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.developerResources .roadmapVersion {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.developerResources .roadmapStatus {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Performance Section Specific */
+.performanceSection .metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.performanceSection .securityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.performanceSection .scalabilityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.performanceSection .performanceCard,
+.performanceSection .securityCard,
+.performanceSection .scalabilityItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.performanceSection .performanceCard:hover,
+.performanceSection .securityCard:hover,
+.performanceSection .scalabilityItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-3px);
+}
+
+.performanceSection .securityIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Design for New Components */
+@media (max-width: 1024px) {
+  .interactivePlayground .playgroundContainer {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .developerResources .contributionGrid,
+  .developerResources .stepsGrid,
+  .developerResources .communityGrid,
+  .developerResources .roadmapTimeline {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .debugSystemDeepDive .debugControls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .debugSystemDeepDive .debugPlayground {
+    padding: 1rem;
+  }
+
+  .debugSystemDeepDive .variablesList {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .debugSystemDeepDive .traceTable {
+    overflow-x: scroll;
+  }
+
+  .performanceSection .metricsGrid,
+  .performanceSection .securityGrid,
+  .performanceSection .scalabilityGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .developerResources .contributionGrid,
+  .developerResources .stepsGrid,
+  .developerResources .communityGrid,
+  .developerResources .roadmapTimeline {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .interactivePlayground .editorPanel,
+  .interactivePlayground .outputPanel {
+    padding: 1rem;
+  }
+
+  .interactivePlayground .runControls {
+    flex-direction: column;
+  }
+
+  .interactivePlayground .editorControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .debugSystemDeepDive .debugControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .debugSystemDeepDive .stepModeSelector {
+    justify-content: center;
+  }
+
+  .debugSystemDeepDive .codeLine {
+    font-size: 0.75rem;
+  }
+
+  .debugSystemDeepDive .variableItem {
+    padding: 0.5rem;
+  }
+
+  .debugSystemDeepDive .traceTableElement th,
+  .debugSystemDeepDive .traceTableElement td {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .developerResources .commandBlock {
+    padding: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .interactivePlayground .editorPanel,
+  .interactivePlayground .outputPanel {
+    padding: 0.75rem;
+  }
+
+  .interactivePlayground .outputContainer {
+    min-height: 150px;
+    font-size: 0.75rem;
+  }
+}

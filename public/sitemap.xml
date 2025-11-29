@@ -78,6 +78,14 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Technical Deep-Dive -->
+  <url>
+    <loc>https://pseudorun.tech/how-it-works</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Learning Resources -->
   <url>
     <loc>https://pseudorun.tech/?action=debug-tutorial</loc>
