@@ -1,0 +1,25 @@
+// Temporary file to test escaping
+
+const testLines = [
+  'DECLARE name : STRING',
+  'DECLARE age : INTEGER',
+  'DECLARE score : REAL',
+  'name ← "Alice"',
+  'age ← 25',
+  'score ← 95.5',
+  'OUTPUT "Name: " + name',
+  'OUTPUT "Age: " + age',
+  'IF age >= 18 THEN',
+  '    OUTPUT "Adult"',
+  'ELSE',
+  '    OUTPUT "Minor"',
+  'ENDIF',
+  'FOR i ← 1 TO 3',
+  '    OUTPUT "Count: " + i',
+  'NEXT i'
+];
+
+const testString = testLines.join('\\n');
+
+console.log('Test string:', testString);
+export default testString;
