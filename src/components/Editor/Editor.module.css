@@ -82,13 +82,13 @@
 }
 
 .cm-cursor {
-  border-left: 2px solid var(--primary-color) !important;
+  border-left: 2px solid var(--text-primary) !important;
 }
 
 /* CodeMirror Content Styling */
 .cm-content {
   padding: 8px 0;
-  caret-color: var(--primary-color);
+  caret-color: var(--text-primary);
 }
 
 /* Placeholder Styling */
