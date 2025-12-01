@@ -520,7 +520,7 @@ export class Parser {
       this.skipNewlines();
 
       const statements: ASTNode[] = [];
-      while (!this.isAtEnd() && !this.check('KEYWORD')) {
+      while (!this.isAtEnd()) {
         this.skipNewlines();
         if (this.isAtEnd()) break;
 
