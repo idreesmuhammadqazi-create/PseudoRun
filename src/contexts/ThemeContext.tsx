@@ -49,6 +49,12 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
+
+    // Update meta theme color
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', theme === 'dark' ? '#0f172a' : '#2563eb');
+    }
   }, [theme]);
 
   const value: ThemeContextType = {

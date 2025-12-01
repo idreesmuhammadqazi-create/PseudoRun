@@ -85,20 +85,10 @@
   border-left: 2px solid var(--primary-color) !important;
 }
 
-/* Dark mode cursor - make it visible */
-[data-theme='dark'] .cm-cursor {
-  border-left: 2px solid #f1f5f9 !important;
-}
-
 /* CodeMirror Content Styling */
 .cm-content {
   padding: 8px 0;
   caret-color: var(--primary-color);
-}
-
-/* Dark mode caret color */
-[data-theme='dark'] .cm-content {
-  caret-color: #f1f5f9 !important;
 }
 
 /* Placeholder Styling */
@@ -109,18 +99,18 @@
 
 /* Autocomplete Dropdown Styling - Global styles for CodeMirror tooltips */
 :global(.cm-tooltip-autocomplete) {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
+  background-color: var(--dropdown-bg) !important;
+  border: 1px solid var(--border-color) !important;
   border-radius: 6px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: var(--shadow-md) !important;
   padding: 4px !important;
   font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace !important;
 }
 
 :global([data-theme='dark'] .cm-tooltip-autocomplete) {
-  background-color: #1e293b !important;
-  border-color: #334155 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  background-color: var(--dropdown-bg) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: var(--dropdown-shadow) !important;
 }
 
 :global(.cm-tooltip-autocomplete ul) {
@@ -135,7 +125,7 @@
   padding: 6px 10px !important;
   cursor: pointer !important;
   border-radius: 4px !important;
-  color: #1e293b !important;
+  color: var(--text-primary) !important;
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;

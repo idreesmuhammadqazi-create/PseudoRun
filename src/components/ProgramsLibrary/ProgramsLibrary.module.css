@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--modal-overlay);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -97,7 +97,7 @@
 .searchInput:focus {
   outline: none;
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 3px var(--focus-shadow);
 }
 
 .searchInput::placeholder {
@@ -105,11 +105,11 @@
 }
 
 .error {
-  color: #ef4444;
+  color: var(--error-text);
   font-size: 14px;
   padding: 16px 28px;
   background-color: var(--error-bg);
-  border-left: 4px solid #ef4444;
+  border-left: 4px solid var(--error-border);
   margin: 0 28px 16px;
   border-radius: var(--radius-md);
 }
@@ -199,7 +199,7 @@
 
 .editInput:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 3px var(--focus-shadow);
 }
 
 .programDate {
@@ -236,8 +236,8 @@
 }
 
 .actionButton:hover:nth-child(4) {
-  background-color: #ef4444;
-  border-color: #ef4444;
+  background-color: var(--logout-button-bg);
+  border-color: var(--logout-button-bg);
 }
 
 .footer {

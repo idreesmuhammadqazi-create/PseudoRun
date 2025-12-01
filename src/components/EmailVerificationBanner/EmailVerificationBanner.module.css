@@ -1,6 +1,6 @@
 .banner {
-  background-color: #fff3cd;
-  border-bottom: 2px solid #ffc107;
+  background-color: var(--warning-bg);
+  border-bottom: 2px solid var(--warning-border);
   padding: 12px 20px;
   width: 100%;
   box-sizing: border-box;
@@ -22,7 +22,7 @@
 .text {
   flex: 1;
   font-size: 14px;
-  color: #856404;
+  color: var(--warning-text);
 }
 
 .text strong {
@@ -37,8 +37,8 @@
 }
 
 .button {
-  background-color: #ffc107;
-  color: #856404;
+  background-color: var(--warning-button-bg);
+  color: var(--warning-text);
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -51,7 +51,7 @@
 }
 
 .button:hover:not(:disabled) {
-  background-color: #ffb300;
+  background-color: var(--warning-button-hover);
 }
 
 .button:disabled {
@@ -62,9 +62,9 @@
 .message {
   margin-top: 8px;
   padding: 8px 12px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: var(--warning-bg);
   border-radius: 4px;
   font-size: 13px;
-  color: #856404;
+  color: var(--warning-text);
   text-align: center;
 }

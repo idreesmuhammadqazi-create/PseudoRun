@@ -195,26 +195,26 @@
 
 .logoutButton {
   composes: button;
-  background-color: #ef4444;
-  color: #ffffff;
+  background-color: var(--logout-button-bg);
+  color: var(--logout-button-text);
   padding: 10px 20px;
 }
 
 .logoutButton:hover {
-  background-color: #dc2626;
+  background-color: var(--logout-button-hover);
 }
 
 .reportBugButton {
   composes: button;
-  background-color: #f59e0b;
-  color: white;
+  background-color: var(--report-bug-button-bg);
+  color: var(--report-bug-button-text);
   font-size: 13px;
   padding: 8px 16px;
   gap: 6px;
 }
 
 .reportBugButton:hover {
-  background-color: #d97706;
+  background-color: var(--report-bug-button-hover);
 }
 
 .fazierBadge {

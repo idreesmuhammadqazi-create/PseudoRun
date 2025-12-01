@@ -37,6 +37,23 @@
   --debug-button-bg: #f59e0b;
   --debug-button-hover: #d97706;
 
+  --logout-button-bg: #ef4444;
+  --logout-button-hover: #dc2626;
+  --logout-button-text: #ffffff;
+
+  --report-bug-button-bg: #f59e0b;
+  --report-bug-button-hover: #d97706;
+  --report-bug-button-text: #ffffff;
+
+  --warning-bg: #fffbeb;
+  --warning-border: #fde68a;
+  --warning-text: #92400e;
+  --warning-button-bg: #fbbf24;
+  --warning-button-hover: #f59e0b;
+
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --focus-shadow: rgba(99, 102, 241, 0.1);
+
   --error-bg: #fef3c7;
   --error-border: #fde68a;
   --error-text: #92400e;
@@ -105,6 +122,23 @@
 
   --debug-button-bg: #f59e0b;
   --debug-button-hover: #fbbf24;
+
+  --logout-button-bg: #dc2626;
+  --logout-button-hover: #ef4444;
+  --logout-button-text: #ffffff;
+
+  --report-bug-button-bg: #d97706;
+  --report-bug-button-hover: #f59e0b;
+  --report-bug-button-text: #ffffff;
+
+  --warning-bg: #422006;
+  --warning-border: #713f12;
+  --warning-text: #fef3c7;
+  --warning-button-bg: #d97706;
+  --warning-button-hover: #f59e0b;
+
+  --modal-overlay: rgba(0, 0, 0, 0.7);
+  --focus-shadow: rgba(129, 140, 248, 0.2);
 
   --error-bg: #422006;
   --error-border: #713f12;
