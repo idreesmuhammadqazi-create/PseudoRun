@@ -72,32 +72,32 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
       landing: {
         name: "PseudoRun - IGCSE Pseudocode Editor Landing Page",
         description: "The #1 free online IGCSE pseudocode editor for Computer Science students. Start practicing pseudocode today with real-time validation.",
-        url: "https://pseudorun.tech"
+        url: "https://www.pseudorun.tech/"
       },
       editor: {
         name: "PseudoRun - IGCSE Pseudocode Editor",
         description: "Write and test IGCSE pseudocode instantly with syntax highlighting, debugging, and real-time validation.",
-        url: "https://pseudorun.tech/?action=editor"
+        url: "https://www.pseudorun.tech/?action=editor"
       },
       tutorial: {
         name: "IGCSE Pseudocode Tutorial - PseudoRun",
         description: "Complete IGCSE pseudocode tutorial covering all syllabus topics with step-by-step examples and exercises.",
-        url: "https://pseudorun.tech/?action=tutorial"
+        url: "https://www.pseudorun.tech/?action=tutorial"
       },
       practice: {
         name: "IGCSE Pseudocode Practice Problems - PseudoRun",
         description: "Practice IGCSE pseudocode with 50+ problems covering all exam topics. Build confidence for your Computer Science exams.",
-        url: "https://pseudorun.tech/?action=practice"
+        url: "https://www.pseudorun.tech/?action=practice"
       },
       syntax: {
         name: "IGCSE Pseudocode Syntax Reference - PseudoRun",
         description: "Complete reference for Cambridge IGCSE pseudocode syntax, commands, and programming structures.",
-        url: "https://pseudorun.tech/?action=syntax-reference"
+        url: "https://www.pseudorun.tech/?action=syntax-reference"
       },
       exam: {
         name: "IGCSE Pseudocode Exam Mode - PseudoRun",
         description: "Practice IGCSE pseudocode under timed exam conditions. Perfect preparation for Computer Science exams.",
-        url: "https://pseudorun.tech/?action=exam-mode"
+        url: "https://www.pseudorun.tech/?action=exam-mode"
       }
     };
 
@@ -192,7 +192,7 @@ export const CourseSchema = () => (
       provider: {
         "@type": "Organization",
         name: "PseudoRun",
-        url: "https://pseudorun.tech"
+        url: "https://www.pseudorun.tech/"
       },
       educationalLevel: "High School",
       about: "IGCSE Computer Science Pseudocode",
@@ -234,7 +234,7 @@ export const LandingPageStructuredData = () => (
         "@type": "WebPage",
         name: "PseudoRun - #1 IGCSE Pseudocode Editor & Simulator",
         description: "Practice IGCSE pseudocode with PseudoRun - the free online editor designed for Computer Science students. Perfect for exam preparation with real-time validation.",
-        url: "https://pseudorun.tech",
+        url: "https://www.pseudorun.tech/",
         mainEntity: {
           "@type": "EducationalOrganization",
           name: "PseudoRun"
@@ -246,7 +246,7 @@ export const LandingPageStructuredData = () => (
               "@type": "ListItem",
               position: 1,
               name: "Home",
-              item: "https://pseudorun.tech"
+              item: "https://www.pseudorun.tech/"
             }
           ]
         }

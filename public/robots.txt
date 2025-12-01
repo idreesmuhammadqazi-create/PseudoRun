@@ -30,7 +30,7 @@ Allow: *.woff2
 Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://pseudorun.tech/sitemap.xml
+Sitemap: https://www.pseudorun.tech/sitemap.xml
 
 # Additional instructions for major crawlers
 User-agent: Googlebot

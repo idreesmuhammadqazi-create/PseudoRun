@@ -4,9 +4,9 @@
 
 **A powerful web-based pseudocode editor for Cambridge IGCSE Computer Science (0478/0984) and A-Level (9618)**
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://pseudorun.tech)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://www.pseudorun.tech/)
 
-**[🚀 Try it Live](https://pseudorun.tech)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development) | [🔗 Connect With Us](https://pseudorun.tech/tryingtogetbacklinks)
+**[🚀 Try it Live](https://www.pseudorun.tech/)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development) | [🔗 Connect With Us](https://www.pseudorun.tech/tryingtogetbacklinks)
 
 ---
 
@@ -186,12 +186,12 @@ The editor includes **22 comprehensive examples** covering:
 
 ### Online (Recommended)
 
-Simply visit **[https://pseudorun.tech](https://pseudorun.tech)** and start coding immediately!
+Simply visit **[https://www.pseudorun.tech/](https://www.pseudorun.tech/)** and start coding immediately!
 
 ### Connect With Us
 
 Want to see all our links and stay updated? Visit our connection page:
-- **[🔗 Connect With Us](https://pseudorun.tech/tryingtogetbacklinks)** - All our social links and resources
+- **[🔗 Connect With Us](https://www.pseudorun.tech/tryingtogetbacklinks)** - All our social links and resources
 - **🐛 Report a Bug** - Found an issue? Email us at [support@pseudorun.tech](mailto:support@pseudorun.tech)
 
 ### Local Development
@@ -488,6 +488,6 @@ MIT License - feel free to use in your projects!
 
 [![Visit Compyle](https://img.shields.io/badge/Powered%20by-Compyle-blue?style=for-the-badge)](https://compyle.ai)
 
-[🌐 Live Demo](https://pseudorun.tech) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🔗 Connect](https://pseudorun.tech/tryingtogetbacklinks) • [🐛 Report Bug](mailto:support@pseudorun.tech)
+[🌐 Live Demo](https://www.pseudorun.tech/) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🔗 Connect](https://www.pseudorun.tech/tryingtogetbacklinks) • [🐛 Report Bug](mailto:support@pseudorun.tech)
 
 </div>

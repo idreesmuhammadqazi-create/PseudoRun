@@ -152,10 +152,10 @@ export default function Landing() {
         <a href="https://wired.business" target="_blank" rel="noopener noreferrer">
           <img src="https://wired.business/badge3-light.svg" alt="Featured on Wired Business" width="200" height="54" />
         </a>
-        <a href="https://findly.tools/pseudorun?utm_source=pseudorun" target="_blank" rel="noopener noreferrer">
+        <a href="https://findly.tools/pseudorun?utm_source=www.pseudorun.tech" target="_blank" rel="noopener noreferrer">
           <img src="https://findly.tools/badges/findly-tools-badge-light.svg" alt="Featured on findly.tools" width="150" />
         </a>
-        <a href="https://ufind.best/products/pseudorun?utm_source=pseudorun" target="_blank" rel="noopener"><img src="https://ufind.best/badges/ufind-best-badge-light.svg" alt="Featured on ufind.best" width="150" /></a>
+        <a href="https://ufind.best/products/pseudorun?utm_source=www.pseudorun.tech" target="_blank" rel="noopener"><img src="https://ufind.best/badges/ufind-best-badge-light.svg" alt="Featured on ufind.best" width="150" /></a>
         <a href="https://dofollow.tools" target="_blank"><img src="https://dofollow.tools/badge/badge_light.svg" alt="Featured on Dofollow.Tools" width="200" height="54" /></a>
         <a style={{display: "block", width: "fit-content"}} href="https://launch-list.org/product/pseudorun" target="_blank">
           <img style={{height: "50px"}}
@@ -165,7 +165,7 @@ export default function Landing() {
         <a href="https://turbo0.com/item/pseudorun" target="_blank" rel="noopener noreferrer">
           <img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0" height="54px" width="171" />
         </a>
-        <a href="https://startupfa.me/s/pseudorun?utm_source=pseudorun.tech" target="_blank">
+        <a href="https://startupfa.me/s/pseudorun?utm_source=www.pseudorun.tech" target="_blank">
           <img src="https://startupfa.me/badges/featured-badge.webp" alt="PseudoRun - Featured on Startup Fame" width="171" height="54" />
         </a>
         <a href="https://fwfw.app/item/pseudorun" target="_blank"><img src="https://fwfw.app/badge-white.svg" width="250" height="54" alt="Featured on FWFW" /></a>
