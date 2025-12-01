@@ -81,14 +81,22 @@
   background-color: rgba(99, 102, 241, 0.3) !important;
 }
 
-.cm-cursor {
-  border-left: 2px solid var(--text-primary) !important;
+:global(.cm-cursor) {
+  border-left: 2px solid #1e293b !important;
+}
+
+:global([data-theme='dark']) :global(.cm-cursor) {
+  border-left: 2px solid #f1f5f9 !important;
 }
 
 /* CodeMirror Content Styling */
-.cm-content {
+:global(.cm-content) {
   padding: 8px 0;
-  caret-color: var(--text-primary);
+  caret-color: #1e293b;
+}
+
+:global([data-theme='dark']) :global(.cm-content) {
+  caret-color: #f1f5f9 !important;
 }
 
 /* Placeholder Styling */
