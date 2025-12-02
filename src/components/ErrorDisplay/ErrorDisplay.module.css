@@ -97,6 +97,11 @@
   color: white;
 }
 
+.semanticBadge {
+  background-color: #8b5cf6;
+  color: white;
+}
+
 .runtimeBadge {
   background-color: #ef4444;
   color: white;
