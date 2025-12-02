@@ -430,7 +430,7 @@ function validateArrayAccess(node: ArrayAccessNode, scope: VariableScope, contex
   // Check if array is declared
   const arrayDeclaration = scope.lookupVariable(node.array);
   if (!arrayDeclaration) {
-    errors.push(createUndeclaredVariableError(node.array, node.line, 'array_access'));
+    errors.push(createUndeclaredVariableError(node.array, node.line, context === 'input' ? 'input' : 'array_access'));
   }
 
   // Validate indices

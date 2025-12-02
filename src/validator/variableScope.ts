@@ -2,7 +2,7 @@
  * Variable scope tracking for semantic validation
  */
 
-import { ASTNode, DeclareNode, ProcedureNode, FunctionNode, ForNode } from '../interpreter/types';
+import { DeclareNode, ProcedureNode, FunctionNode, ForNode } from '../interpreter/types';
 
 export interface VariableDeclaration {
   name: string;
@@ -18,20 +18,20 @@ export interface VariableDeclaration {
 export interface ScopeInfo {
   type: 'global' | 'procedure' | 'function' | 'for_loop';
   name: string;
-  variables: Map<string, VariableDeclaration>;
+  variables: { [key: string]: VariableDeclaration };
   parent?: ScopeInfo;
 }
 
 export class VariableScope {
   private currentScope: ScopeInfo;
   private allScopes: ScopeInfo[] = [];
-  private globalVariables: Map<string, VariableDeclaration> = new Map();
+  private globalVariables: { [key: string]: VariableDeclaration } = {};
 
   constructor() {
     this.currentScope = {
       type: 'global',
       name: 'global',
-      variables: new Map()
+      variables: {}
     };
     this.allScopes.push(this.currentScope);
   }
@@ -46,10 +46,10 @@ export class VariableScope {
       elementType
     };
 
-    this.currentScope.variables.set(name, declaration);
+    this.currentScope.variables[name] = declaration;
 
     if (this.currentScope.type === 'global') {
-      this.globalVariables.set(name, declaration);
+      this.globalVariables[name] = declaration;
     }
   }
 
@@ -63,14 +63,14 @@ export class VariableScope {
       byRef
     };
 
-    this.currentScope.variables.set(name, declaration);
+    this.currentScope.variables[name] = declaration;
   }
 
   enterScope(scopeType: 'procedure' | 'function' | 'for_loop', name: string): void {
     const newScope: ScopeInfo = {
       type: scopeType,
       name,
-      variables: new Map(),
+      variables: {},
       parent: this.currentScope
     };
 
@@ -88,8 +88,8 @@ export class VariableScope {
     let scope: ScopeInfo | undefined = this.currentScope;
 
     while (scope) {
-      if (scope.variables.has(name)) {
-        return scope.variables.get(name)!;
+      if (scope.variables[name] !== undefined) {
+        return scope.variables[name]!;
       }
       scope = scope.parent;
     }
@@ -98,7 +98,7 @@ export class VariableScope {
   }
 
   isGlobalVariable(name: string): boolean {
-    return this.globalVariables.has(name);
+    return this.globalVariables[name] !== undefined;
   }
 
   getCurrentScopeType(): string {
@@ -109,8 +109,8 @@ export class VariableScope {
     const allDeclarations: VariableDeclaration[] = [];
 
     for (const scope of this.allScopes) {
-      for (const declaration of scope.variables.values()) {
-        allDeclarations.push(declaration);
+      for (const key in scope.variables) {
+        allDeclarations.push(scope.variables[key]);
       }
     }
 
@@ -118,7 +118,11 @@ export class VariableScope {
   }
 
   getVariablesInCurrentScope(): VariableDeclaration[] {
-    return Array.from(this.currentScope.variables.values());
+    const result: VariableDeclaration[] = [];
+    for (const key in this.currentScope.variables) {
+      result.push(this.currentScope.variables[key]);
+    }
+    return result;
   }
 
   processDeclareStatement(node: DeclareNode): void {
