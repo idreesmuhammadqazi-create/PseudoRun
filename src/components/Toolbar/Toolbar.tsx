@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { EXAMPLES } from '../../constants/examples';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
+import BugReportModal from '../BugReport/BugReportModal';
 import styles from './Toolbar.module.css';
 
 interface ToolbarProps {
@@ -49,6 +50,7 @@ export default function Toolbar({
   const { theme, toggleTheme } = useTheme();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showExamplesMenu, setShowExamplesMenu] = useState(false);
+  const [showBugReportModal, setShowBugReportModal] = useState(false);
   const examplesRef = useRef<HTMLDivElement>(null);
 
   const handleUploadClick = () => {
@@ -87,34 +89,7 @@ export default function Toolbar({
   };
 
   const handleReportBug = () => {
-    const subject = encodeURIComponent('Bug Report - PseudoRun');
-    const body = encodeURIComponent(`Please describe the bug you encountered:
-
-Browser: ${navigator.userAgent}
-Page URL: ${window.location.href}
-User Agent: ${navigator.userAgent}
-
-Describe the bug:
-[Please describe what happened]
-
-Steps to reproduce:
-1.
-2.
-3.
-
-Expected behavior:
-[What should have happened]
-
-Actual behavior:
-[What actually happened]
-
-Screenshots (if applicable):
-[Please attach screenshots if helpful]
-
-Additional context:
-[Any other relevant information]`);
-
-    window.location.href = `mailto:support@pseudorun.tech?subject=${subject}&body=${body}`;
+    setShowBugReportModal(true);
   };
 
   // Close dropdown when clicking outside
@@ -306,6 +281,10 @@ Additional context:
           alt="Fazier badge"
         />
       </a>
+
+      {showBugReportModal && (
+        <BugReportModal onClose={() => setShowBugReportModal(false)} />
+      )}
     </div>
   );
 }
