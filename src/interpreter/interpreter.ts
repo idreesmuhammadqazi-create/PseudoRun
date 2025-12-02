@@ -253,8 +253,9 @@ export class Interpreter {
       const varName = (node.target as IdentifierNode).name;
       const variable = this.getVariable(varName, context);
 
+      // Variable should exist if execution reaches this point (semantic validation)
       if (!variable) {
-        throw new RuntimeError(`Variable '${varName}' not declared`, node.line);
+        throw new RuntimeError(`Variable '${varName}' not found in context`, node.line);
       }
 
       variable.value = value;
@@ -322,8 +323,9 @@ export class Interpreter {
       const varName = (node.target as IdentifierNode).name;
       const variable = this.getVariable(varName, context);
 
+      // Variable should exist if execution reaches this point (semantic validation)
       if (!variable) {
-        throw new RuntimeError(`Variable '${varName}' not declared`, node.line);
+        throw new RuntimeError(`Variable '${varName}' not found in context`, node.line);
       }
 
       // Use the inputHandler to get input
@@ -355,8 +357,9 @@ export class Interpreter {
       const arrayAccess = node.target as ArrayAccessNode;
       const variable = this.getVariable(arrayAccess.array, context);
 
+      // Array should exist if execution reaches this point (semantic validation)
       if (!variable) {
-        throw new RuntimeError(`Array '${arrayAccess.array}' not declared`, node.line);
+        throw new RuntimeError(`Array '${arrayAccess.array}' not found in context`, node.line);
       }
 
       if (variable.type !== 'ARRAY') {
@@ -682,8 +685,9 @@ export class Interpreter {
       const varName = (node.target as IdentifierNode).name;
       const variable = this.getVariable(varName, context);
 
+      // Variable should exist if execution reaches this point (semantic validation)
       if (!variable) {
-        throw new RuntimeError(`Variable '${varName}' not declared`, node.line);
+        throw new RuntimeError(`Variable '${varName}' not found in context`, node.line);
       }
 
       let value: any;
@@ -943,8 +947,9 @@ export class Interpreter {
       const varName = (node.target as IdentifierNode).name;
       const variable = this.getVariable(varName, context);
 
+      // Variable should exist if execution reaches this point (semantic validation)
       if (!variable) {
-        throw new RuntimeError(`Variable '${varName}' not declared`, node.line);
+        throw new RuntimeError(`Variable '${varName}' not found in context`, node.line);
       }
 
       variable.value = value;
@@ -1158,8 +1163,9 @@ export class Interpreter {
   private evaluateIdentifier(node: IdentifierNode, context: ExecutionContext): any {
     const variable = this.getVariable(node.name, context);
 
+    // Variable should exist if execution reaches this point (semantic validation)
     if (!variable) {
-      throw new RuntimeError(`Variable '${node.name}' not declared`, node.line);
+      throw new RuntimeError(`Variable '${node.name}' not found in context`, node.line);
     }
 
     if (!variable.initialized) {
@@ -1172,8 +1178,9 @@ export class Interpreter {
   private evaluateArrayAccess(node: ArrayAccessNode, context: ExecutionContext): any {
     const variable = this.getVariable(node.array, context);
 
+    // Array should exist if execution reaches this point (semantic validation)
     if (!variable) {
-      throw new RuntimeError(`Array '${node.array}' not declared`, node.line);
+      throw new RuntimeError(`Array '${node.array}' not found in context`, node.line);
     }
 
     if (variable.type !== 'ARRAY') {
