@@ -107,12 +107,12 @@ export default function ProgramsLibrary({ onLoad, onClose }: ProgramsLibraryProp
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <h2 className={styles.title}>My Programs</h2>
           <button className={styles.closeButton} onClick={onClose}>
             ✕
           </button>
-        </div>
+        </header>
 
         <input
           type="text"
@@ -195,11 +195,11 @@ export default function ProgramsLibrary({ onLoad, onClose }: ProgramsLibraryProp
           )}
         </div>
 
-        <div className={styles.footer}>
+        <footer className={styles.footer}>
           <span className={styles.count}>
             {filteredPrograms.length} program{filteredPrograms.length !== 1 ? 's' : ''}
           </span>
-        </div>
+        </footer>
       </div>
     </div>
   );

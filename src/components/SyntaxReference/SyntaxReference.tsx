@@ -203,10 +203,10 @@ export default function SyntaxReference({ onClose }: SyntaxReferenceProps) {
   return (
     <div className={styles.overlay}>
       <div className={styles.panel}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <h2>Syntax Reference</h2>
           <button className={styles.closeButton} onClick={onClose}>×</button>
-        </div>
+        </header>
 
         <div className={styles.searchBar}>
           <input
@@ -219,7 +219,7 @@ export default function SyntaxReference({ onClose }: SyntaxReferenceProps) {
         </div>
 
         <div className={styles.content}>
-          <div className={styles.sidebar}>
+          <aside className={styles.sidebar}>
             {filteredData.map((category) => (
               <button
                 key={category.category}
@@ -231,11 +231,11 @@ export default function SyntaxReference({ onClose }: SyntaxReferenceProps) {
                 {category.category}
               </button>
             ))}
-          </div>
+          </aside>
 
           <div className={styles.main}>
             {currentCategory && currentCategory.items.map((item) => (
-              <div key={item.title} className={styles.syntaxItem}>
+              <article key={item.title} className={styles.syntaxItem}>
                 <h3 className={styles.itemTitle}>{item.title}</h3>
                 <p className={styles.itemDescription}>{item.description}</p>
 
@@ -248,7 +248,7 @@ export default function SyntaxReference({ onClose }: SyntaxReferenceProps) {
                   <div className={styles.exampleLabel}>Example:</div>
                   <pre className={styles.exampleCode}>{item.example}</pre>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>

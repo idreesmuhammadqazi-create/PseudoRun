@@ -38,10 +38,10 @@ export default function VariablesPanel({ variables, currentLine }: VariablesPane
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <h3 className={styles.title}>Variables</h3>
         <span className={styles.line}>Line {currentLine}</span>
-      </div>
+      </header>
 
       <div className={styles.list}>
         {variablesList.length === 0 ? (

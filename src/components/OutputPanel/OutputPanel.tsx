@@ -56,11 +56,11 @@ export default function OutputPanel({
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <span>Output</span>
         {isRunning && <span className={styles.statusRunning}>Running...</span>}
         {!isRunning && output.length > 0 && <span className={styles.statusCompleted}>Completed</span>}
-      </div>
+      </header>
 
       <div className={styles.outputArea} ref={outputRef}>
         {output.length === 0 && !isRunning && (
@@ -116,7 +116,7 @@ export default function OutputPanel({
       </div>
 
       {createdFiles && createdFiles.length > 0 && (
-        <div className={styles.filesSection}>
+        <section className={styles.filesSection} aria-label="Created Files">
           <h3 className={styles.filesHeader}>Files Created/Opened:</h3>
           {createdFiles.map((file, index) => (
             <div key={index} className={styles.fileItem}>
@@ -145,7 +145,7 @@ export default function OutputPanel({
               )}
             </div>
           ))}
-        </div>
+        </section>
       )}
     </div>
   );

@@ -96,9 +96,9 @@ export function ExamModeStartModal({ onStart, onCancel }: ExamModeStartModalProp
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <div className={styles.modalHeader}>
+        <header className={styles.modalHeader}>
           <h2>Start Exam Mode</h2>
-        </div>
+        </header>
 
         <div className={styles.modalContent}>
           <p className={styles.description}>
@@ -128,7 +128,7 @@ export function ExamModeStartModal({ onStart, onCancel }: ExamModeStartModalProp
           </div>
         </div>
 
-        <div className={styles.modalFooter}>
+        <footer className={styles.modalFooter}>
           <button className={styles.cancelButton} onClick={onCancel}>
             Cancel
           </button>
@@ -138,7 +138,7 @@ export function ExamModeStartModal({ onStart, onCancel }: ExamModeStartModalProp
           >
             Start Exam
           </button>
-        </div>
+        </footer>
       </div>
     </div>
   );

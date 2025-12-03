@@ -119,10 +119,10 @@ export default function Tutorial({ onClose, onLoadCode }: TutorialProps) {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <h2>{step.title}</h2>
           <button className={styles.closeButton} onClick={onClose}>×</button>
-        </div>
+        </header>
 
         <div className={styles.content}>
           <p className={styles.description}>{step.content}</p>
@@ -137,7 +137,7 @@ export default function Tutorial({ onClose, onLoadCode }: TutorialProps) {
           )}
         </div>
 
-        <div className={styles.footer}>
+        <footer className={styles.footer}>
           <div className={styles.progress}>
             Step {currentStep + 1} of {tutorialSteps.length}
           </div>
@@ -156,7 +156,7 @@ export default function Tutorial({ onClose, onLoadCode }: TutorialProps) {
               {currentStep === tutorialSteps.length - 1 ? 'Finish' : 'Next'}
             </button>
           </div>
-        </div>
+        </footer>
       </div>
     </div>
   );

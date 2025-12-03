@@ -17,13 +17,13 @@ export default function TryingToGetBacklinks() {
     <div className={styles.container}>
       <SEOManager feature="landing" />
 
-      <div className={styles.content}>
+      <main className={styles.content}>
         <h1 className={styles.title}>Connect With PseudoRun</h1>
         <p className={styles.description}>
           The #1 free IGCSE pseudocode editor for Computer Science students.
         </p>
 
-        <div className={styles.linkSection}>
+        <section className={styles.linkSection} aria-label="Connect Links">
           <h2>🔗 Connect With Us</h2>
           <p>Find all our links and connect with us on various platforms:</p>
 
@@ -41,44 +41,44 @@ export default function TryingToGetBacklinks() {
               </div>
             </div>
           </a>
-        </div>
+        </section>
 
-        <div className={styles.featuresSection}>
+        <section className={styles.featuresSection} aria-label="Features">
           <h2>Why PseudoRun?</h2>
           <div className={styles.features}>
-            <div className={styles.feature}>
+            <article className={styles.feature}>
               <h3>🎯 IGCSE Focused</h3>
               <p>100% aligned with Cambridge IGCSE Computer Science specifications</p>
-            </div>
-            <div className={styles.feature}>
+            </article>
+            <article className={styles.feature}>
               <h3>💯 Ad-Free</h3>
               <p>Zero ads, forever. Focus on learning without distractions</p>
-            </div>
-            <div className={styles.feature}>
+            </article>
+            <article className={styles.feature}>
               <h3>⚡ Real-Time Validation</h3>
               <p>Instant syntax checking and error detection</p>
-            </div>
-            <div className={styles.feature}>
+            </article>
+            <article className={styles.feature}>
               <h3>🐛 Step-by-Step Debugger</h3>
               <p>Master algorithms with line-by-line execution</p>
-            </div>
-            <div className={styles.feature}>
+            </article>
+            <article className={styles.feature}>
               <h3>📚 Practice Problems</h3>
               <p>50+ IGCSE-style examples and exercises</p>
-            </div>
-            <div className={styles.feature}>
+            </article>
+            <article className={styles.feature}>
               <h3>💾 Free Cloud Storage</h3>
               <p>Save unlimited programs and access anywhere</p>
-            </div>
+            </article>
           </div>
-        </div>
+        </section>
 
-        <div className={styles.ctaSection}>
+        <section className={styles.ctaSection} aria-label="Navigation">
           <a href="/" className={styles.backButton}>
             ← Back to PseudoRun
           </a>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }
