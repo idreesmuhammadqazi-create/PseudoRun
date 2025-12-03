@@ -33,12 +33,12 @@ export const ShareModal: React.FC<ShareModalProps> = ({ shareUrl, onClose }) => 
   return (
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <h2 className={styles.title}>Share Your Code</h2>
           <button className={styles.closeButton} onClick={onClose}>
             ×
           </button>
-        </div>
+        </header>
 
         <div className={styles.content}>
           <p className={styles.description}>
@@ -92,11 +92,11 @@ export const ShareModal: React.FC<ShareModalProps> = ({ shareUrl, onClose }) => 
           </div>
         </div>
 
-        <div className={styles.footer}>
+        <footer className={styles.footer}>
           <button className={styles.doneButton} onClick={onClose}>
             Done
           </button>
-        </div>
+        </footer>
       </div>
     </div>
   );

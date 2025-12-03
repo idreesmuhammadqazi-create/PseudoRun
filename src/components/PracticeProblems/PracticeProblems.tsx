@@ -2774,13 +2774,13 @@ export default function PracticeProblems({ onClose, onLoadCode }: PracticeProble
   return (
     <div className={styles.overlay}>
       <div className={styles.panel}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <h2>Practice Problems</h2>
           <button className={styles.closeButton} onClick={onClose}>×</button>
-        </div>
+        </header>
 
         <div className={styles.content}>
-          <div className={styles.sidebar}>
+          <aside className={styles.sidebar}>
             <div className={styles.filterButtons}>
               <button
                 className={`${styles.filterButton} ${filterLevel === 'All' ? styles.active : ''}`}
@@ -2817,7 +2817,7 @@ export default function PracticeProblems({ onClose, onLoadCode }: PracticeProble
                 </button>
               ))}
             </div>
-          </div>
+          </aside>
 
           <div className={styles.main}>
             {selectedProblem ? (
@@ -2830,21 +2830,21 @@ export default function PracticeProblems({ onClose, onLoadCode }: PracticeProble
                   <h3>{selectedProblem.title}</h3>
                 </div>
 
-                <div className={styles.problemDescription}>
+                <section className={styles.problemDescription} aria-label="Problem Description">
                   <h4>Problem:</h4>
                   <p>{selectedProblem.description}</p>
-                </div>
+                </section>
 
-                <div className={styles.hintsSection}>
+                <section className={styles.hintsSection} aria-label="Hints">
                   <h4>Hints:</h4>
                   <ul>
                     {selectedProblem.hints.map((hint, index) => (
                       <li key={index}>{hint}</li>
                     ))}
                   </ul>
-                </div>
+                </section>
 
-                <div className={styles.solutionSection}>
+                <section className={styles.solutionSection} aria-label="Solution">
                   <button
                     className={styles.solutionButton}
                     onClick={() => setShowSolution(!showSolution)}
@@ -2863,7 +2863,7 @@ export default function PracticeProblems({ onClose, onLoadCode }: PracticeProble
                       </button>
                     </div>
                   )}
-                </div>
+                </section>
               </>
             ) : (
               <div className={styles.emptyState}>
