@@ -172,8 +172,11 @@ export default function Landing() {
         <a href="https://submithunt.com" target="_blank" rel="noopener noreferrer">
           <img src="https://submithunt.com/badge.png" alt="Featured on SubmitHunt" width="150" height="45" />
         </a>
-        
-        
+        <a href="https://saasfame.com/item/pseudorun" target="_blank" rel="noopener noreferrer">
+          <img src="https://saasfame.com/badge-light.svg" alt="Featured on saasfame.com" style={{height: "54px", width: "auto"}} />
+        </a>
+
+
       </footer>
       
       
