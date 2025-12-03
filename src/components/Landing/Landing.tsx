@@ -175,6 +175,9 @@ export default function Landing() {
         <a href="https://saasfame.com/item/pseudorun" target="_blank" rel="noopener noreferrer">
           <img src="https://saasfame.com/badge-light.svg" alt="Featured on saasfame.com" style={{height: "54px", width: "auto"}} />
         </a>
+        <a href="https://toolfame.com/item/pseudorun" target="_blank" rel="noopener noreferrer">
+          <img src="https://toolfame.com/badge-light.svg" alt="Featured on toolfame.com" style={{height: "54px", width: "auto"}} />
+        </a>
 
 
       </footer>
