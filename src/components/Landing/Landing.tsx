@@ -182,6 +182,8 @@ export default function Landing() {
         <a target="_blank" href="https://productlistdir.com"><img src="https://productlistdir.com/assets/images/badge.png" alt="Product List Dir" height="54"/></a>
         <a target="_blank" href="https://milliondothomepage.com"><img src="https://milliondothomepage.com/assets/images/badge.png" alt="Million Dot Homepage" height="54"/></a>
         <a target="_blank" href="https://launchclash.com"><img src="https://launchclash.com/static/images/badge.png" alt="LaunchClash" height="54"/></a>
+        <a target="_blank" href="https://shinylaunch.com"><img src="https://shinylaunch.com/static/images/badge.png" alt="ShinyLaunch" height="54"/></a>
+        <a target="_blank" href="https://acidtools.com"><img src="https://acidtools.com/assets/images/badge.png" alt="Acid Tools" height="54"/></a>
 
       </footer>
       
