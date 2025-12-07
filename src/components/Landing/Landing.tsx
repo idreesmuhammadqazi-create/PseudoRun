@@ -186,6 +186,8 @@ export default function Landing() {
         <a target="_blank" href="https://acidtools.com"><img src="https://acidtools.com/assets/images/badge.png" alt="Acid Tools" height="54"/></a>
         <a target="_blank" href="https://aigc160.com"><img src="https://aigc160.com/assets/images/badge.png" alt="AIGC 160" height="54"/></a>
         <a target="_blank" href="https://aitechviral.com"><img src="https://aitechviral.com/assets/images/badge.png" alt="AI Tech Viral" height="54"/></a>
+        <a target="_blank" href="https://aitoolzs.com"><img src="https://aitoolzs.com/assets/images/badge.png" alt="AI Toolz" height="54"/></a>
+        <a target="_blank" href="https://aixcollection.com"><img src="https://aixcollection.com/assets/images/badge.png" alt="AI X Collection" height="54"/></a>
 
       </footer>
       
