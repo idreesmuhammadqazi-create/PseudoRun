@@ -188,6 +188,10 @@ export default function Landing() {
         <a target="_blank" href="https://aitechviral.com"><img src="https://aitechviral.com/assets/images/badge.png" alt="AI Tech Viral" height="54"/></a>
         <a target="_blank" href="https://aitoolzs.com"><img src="https://aitoolzs.com/assets/images/badge.png" alt="AI Toolz" height="54"/></a>
         <a target="_blank" href="https://aixcollection.com"><img src="https://aixcollection.com/assets/images/badge.png" alt="AI X Collection" height="54"/></a>
+        <a target="_blank" href="https://appalist.com"><img src="https://appalist.com/assets/images/badge.png" alt="Appa List" height="54"/></a>
+        <a target="_blank" href="https://appsytools.com"><img src="https://appsytools.com/assets/images/badge.png" alt="Appsy Tools" height="54"/></a>
+        <a target="_blank" href="https://ashlist.com"><img src="https://ashlist.com/assets/images/badge.png" alt="Ash List" height="54"/</a>
+        <a target="_blank" href="https://beamtools.com"><img src="https://beamtools.com/assets/images/badge.png" alt="Beam Tools" height="54"/></a>
 
       </footer>
       
