@@ -195,6 +195,9 @@ export default function Landing() {
         <a target="_blank" href="https://huntfortools.com"><img src="https://huntfortools.com/assets/images/badge.png" alt="Hunt for Tools" height="54"/></a>
         <a target="_blank" href="https://latestaiupdates.com"><img src="https://latestaiupdates.com/assets/images/badge.png" alt="Latest AI Updates" height="54"/></a>
         <a target="_blank" href="https://besttoolvault.com"><img src="https://besttoolvault.com/assets/images/badge.png" alt="Best Tool Vault" height="54"/></a>
+        <a target="_blank" href="https://launchscroll.com"><img src="https://launchscroll.com/assets/images/badge.png" alt="Launch Scroll" height="54"/></a>
+        <a target="_blank" href="https://mystarttools.com"><img src="https://mystarttools.com/assets/images/badge.png" alt="My Start Tools" height="54"/></a>
+        <a target="_blank" href="https://mylaunchstash.com"><img src="https://mylaunchstash.com/assets/images/badge.png" alt="My Launch Stash" height="54"/></a>
 
       </footer>
       
