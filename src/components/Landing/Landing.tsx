@@ -198,6 +198,11 @@ export default function Landing() {
         <a target="_blank" href="https://launchscroll.com"><img src="https://launchscroll.com/assets/images/badge.png" alt="Launch Scroll" height="54"/></a>
         <a target="_blank" href="https://mystarttools.com"><img src="https://mystarttools.com/assets/images/badge.png" alt="My Start Tools" height="54"/></a>
         <a target="_blank" href="https://mylaunchstash.com"><img src="https://mylaunchstash.com/assets/images/badge.png" alt="My Launch Stash" height="54"/></a>
+        <a target="_blank" href="https://saasfield.com"><img src="https://saasfield.com/assets/images/badge.png" alt="SaaS Field" height="54"/></a>
+        <a target="_blank" href="https://saashubdirectory.com"><img src="https://saashubdirectory.com/assets/images/badge.png" alt="SaaS Hub Directory" height="54"/></a>
+        <a target="_blank" href="https://saasroots.com"><img src="https://saasroots.com/assets/images/badge.png" alt="SaaS Roots" height="54"/></a>
+        <a target="_blank" href="https://poweruptools.com"><img src="https://poweruptools.com/assets/images/badge.png" alt="Power Up Tools" height="54"/></a>
+        <a target="_blank" href="https://productwing.com"><img src="https://productwing.com/assets/images/badge.png" alt="Product Wing" height="54"/></a>
 
       </footer>
       
