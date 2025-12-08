@@ -215,6 +215,9 @@ export default function Landing() {
         <a target="_blank" href="https://startupvessel.com"><img src="https://startupvessel.com/assets/images/badge.png" alt="Startup Vessel" height="54"/></a>
         <a target="_blank" href="https://superaiboom.com"><img src="https://superaiboom.com/assets/images/badge.png" alt="Super AI Boom" height="54"/></a>
         <a target="_blank" href="https://thatappshow.com"><img src="https://thatappshow.com/assets/images/badge.png" alt="That App Show" height="54"/></a>
+        <a target="_blank" href="https://theapptools.com"><img src="https://theapptools.com/assets/images/badge.png" alt="The App Tools" height="54"/></a>
+        <a target="_blank" href="https://thecoretools.com"><img src="https://thecoretools.com/assets/images/badge.png" alt="The Core Tools" height="54"/></a>
+        <a target="_blank" href="https://thekeytools.com"><img src="https://thekeytools.com/assets/images/badge.png" alt="The Key Tools" height="54"/></a>
 
       </footer>
       
