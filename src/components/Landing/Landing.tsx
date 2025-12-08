@@ -206,6 +206,9 @@ export default function Landing() {
         <a target="_blank" href="https://saastoolsdir.com"><img src="https://saastoolsdir.com/assets/images/badge.png" alt="SaaS Tools Dir" height="54"/></a>
         <a target="_blank" href="https://saaswheel.com"><img src="https://saaswheel.com/assets/images/badge.png" alt="SaaS Wheel" height="54"/></a>
         <a target="_blank" href="https://smartkithub.com"><img src="https://smartkithub.com/assets/images/badge.png" alt="Smart Kit Hub" height="54"/></a>
+        <a target="_blank" href="https://softwarebolt.com"><img src="https://softwarebolt.com/assets/images/badge.png" alt="Software Bolt" height="54"/></a>
+        <a target="_blank" href="https://solvertools.com"><img src="https://solvertools.com/assets/images/badge.png" alt="Solver Tools" height="54"/></a>
+        <a target="_blank" href="https://sourcedir.com"><img src="https://sourcedir.com/assets/images/badge.png" alt="Source Dir" height="54"/></a>
 
       </footer>
       
