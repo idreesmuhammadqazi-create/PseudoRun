@@ -209,6 +209,9 @@ export default function Landing() {
         <a target="_blank" href="https://softwarebolt.com"><img src="https://softwarebolt.com/assets/images/badge.png" alt="Software Bolt" height="54"/></a>
         <a target="_blank" href="https://solvertools.com"><img src="https://solvertools.com/assets/images/badge.png" alt="Solver Tools" height="54"/></a>
         <a target="_blank" href="https://sourcedir.com"><img src="https://sourcedir.com/assets/images/badge.png" alt="Source Dir" height="54"/></a>
+        <a target="_blank" href="https://stackdirectory.com"><img src="https://stackdirectory.com/assets/images/badge.png" alt="Stack Directory" height="54"/></a>
+        <a target="_blank" href="https://startupaideas.com"><img src="https://startupaideas.com/assets/images/badge.png" alt="Startup AIdeas" height="54"/></a>
+        <a target="_blank" href="https://startupbenchmarks.com"><img src="https://startupbenchmarks.com/assets/images/badge.png" alt="Startup Benchmarks" height="54"/></a>
 
       </footer>
       
