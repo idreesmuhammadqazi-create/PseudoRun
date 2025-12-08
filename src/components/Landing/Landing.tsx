@@ -192,6 +192,9 @@ export default function Landing() {
         <a target="_blank" href="https://appsytools.com"><img src="https://appsytools.com/assets/images/badge.png" alt="Appsy Tools" height="54"/></a>
         <a target="_blank" href="https://ashlist.com"><img src="https://ashlist.com/assets/images/badge.png" alt="Ash List" height="54"/></a>
         <a target="_blank" href="https://beamtools.com"><img src="https://beamtools.com/assets/images/badge.png" alt="Beam Tools" height="54"/></a>
+        <a target="_blank" href="https://huntfortools.com"><img src="https://huntfortools.com/assets/images/badge.png" alt="Hunt for Tools" height="54"/></a>
+        <a target="_blank" href="https://latestaiupdates.com"><img src="https://latestaiupdates.com/assets/images/badge.png" alt="Latest AI Updates" height="54"/></a>
+        <a target="_blank" href="https://besttoolvault.com"><img src="https://besttoolvault.com/assets/images/badge.png" alt="Best Tool Vault" height="54"/></a>
 
       </footer>
       
