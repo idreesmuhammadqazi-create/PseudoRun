@@ -179,46 +179,7 @@ export default function Landing() {
         <a href="https://toolfame.com/item/pseudorun" target="_blank" rel="noopener noreferrer">
           <img src="https://toolfame.com/badge-light.svg" alt="Featured on toolfame.com" style={{height: "54px", width: "auto"}} />
         </a>
-        <a target="_blank" href="https://toshilist.com"><img src="https://toshilist.com/assets/images/badge.png" alt="Toshi List" height="54"/></a>
-        <a target="_blank" href="https://productlistdir.com"><img src="https://productlistdir.com/assets/images/badge.png" alt="Product List Dir" height="54"/></a>
-        <a target="_blank" href="https://milliondothomepage.com"><img src="https://milliondothomepage.com/assets/images/badge.png" alt="Million Dot Homepage" height="54"/></a>
-        <a target="_blank" href="https://launchclash.com"><img src="https://launchclash.com/static/images/badge.png" alt="LaunchClash" height="54"/></a>
-        <a target="_blank" href="https://shinylaunch.com"><img src="https://shinylaunch.com/static/images/badge.png" alt="ShinyLaunch" height="54"/></a>
-        <a target="_blank" href="https://acidtools.com"><img src="https://acidtools.com/assets/images/badge.png" alt="Acid Tools" height="54"/></a>
-        <a target="_blank" href="https://aigc160.com"><img src="https://aigc160.com/assets/images/badge.png" alt="AIGC 160" height="54"/></a>
-        <a target="_blank" href="https://aitechviral.com"><img src="https://aitechviral.com/assets/images/badge.png" alt="AI Tech Viral" height="54"/></a>
-        <a target="_blank" href="https://aitoolzs.com"><img src="https://aitoolzs.com/assets/images/badge.png" alt="AI Toolz" height="54"/></a>
-        <a target="_blank" href="https://aixcollection.com"><img src="https://aixcollection.com/assets/images/badge.png" alt="AI X Collection" height="54"/></a>
-        <a target="_blank" href="https://appalist.com"><img src="https://appalist.com/assets/images/badge.png" alt="Appa List" height="54"/></a>
-        <a target="_blank" href="https://appsytools.com"><img src="https://appsytools.com/assets/images/badge.png" alt="Appsy Tools" height="54"/></a>
-        <a target="_blank" href="https://ashlist.com"><img src="https://ashlist.com/assets/images/badge.png" alt="Ash List" height="54"/></a>
-        <a target="_blank" href="https://beamtools.com"><img src="https://beamtools.com/assets/images/badge.png" alt="Beam Tools" height="54"/></a>
-        <a target="_blank" href="https://huntfortools.com"><img src="https://huntfortools.com/assets/images/badge.png" alt="Hunt for Tools" height="54"/></a>
-        <a target="_blank" href="https://latestaiupdates.com"><img src="https://latestaiupdates.com/assets/images/badge.png" alt="Latest AI Updates" height="54"/></a>
-        <a target="_blank" href="https://besttoolvault.com"><img src="https://besttoolvault.com/assets/images/badge.png" alt="Best Tool Vault" height="54"/></a>
-        <a target="_blank" href="https://launchscroll.com"><img src="https://launchscroll.com/assets/images/badge.png" alt="Launch Scroll" height="54"/></a>
-        <a target="_blank" href="https://mystarttools.com"><img src="https://mystarttools.com/assets/images/badge.png" alt="My Start Tools" height="54"/></a>
-        <a target="_blank" href="https://mylaunchstash.com"><img src="https://mylaunchstash.com/assets/images/badge.png" alt="My Launch Stash" height="54"/></a>
-        <a target="_blank" href="https://saasfield.com"><img src="https://saasfield.com/assets/images/badge.png" alt="SaaS Field" height="54"/></a>
-        <a target="_blank" href="https://saashubdirectory.com"><img src="https://saashubdirectory.com/assets/images/badge.png" alt="SaaS Hub Directory" height="54"/></a>
-        <a target="_blank" href="https://saasroots.com"><img src="https://saasroots.com/assets/images/badge.png" alt="SaaS Roots" height="54"/></a>
-        <a target="_blank" href="https://poweruptools.com"><img src="https://poweruptools.com/assets/images/badge.png" alt="Power Up Tools" height="54"/></a>
-        <a target="_blank" href="https://productwing.com"><img src="https://productwing.com/assets/images/badge.png" alt="Product Wing" height="54"/></a>
-        <a target="_blank" href="https://saastoolsdir.com"><img src="https://saastoolsdir.com/assets/images/badge.png" alt="SaaS Tools Dir" height="54"/></a>
-        <a target="_blank" href="https://saaswheel.com"><img src="https://saaswheel.com/assets/images/badge.png" alt="SaaS Wheel" height="54"/></a>
-        <a target="_blank" href="https://smartkithub.com"><img src="https://smartkithub.com/assets/images/badge.png" alt="Smart Kit Hub" height="54"/></a>
-        <a target="_blank" href="https://softwarebolt.com"><img src="https://softwarebolt.com/assets/images/badge.png" alt="Software Bolt" height="54"/></a>
-        <a target="_blank" href="https://solvertools.com"><img src="https://solvertools.com/assets/images/badge.png" alt="Solver Tools" height="54"/></a>
-        <a target="_blank" href="https://sourcedir.com"><img src="https://sourcedir.com/assets/images/badge.png" alt="Source Dir" height="54"/></a>
-        <a target="_blank" href="https://stackdirectory.com"><img src="https://stackdirectory.com/assets/images/badge.png" alt="Stack Directory" height="54"/></a>
-        <a target="_blank" href="https://startupaideas.com"><img src="https://startupaideas.com/assets/images/badge.png" alt="Startup AIdeas" height="54"/></a>
-        <a target="_blank" href="https://startupbenchmarks.com"><img src="https://startupbenchmarks.com/assets/images/badge.png" alt="Startup Benchmarks" height="54"/></a>
-        <a target="_blank" href="https://startupvessel.com"><img src="https://startupvessel.com/assets/images/badge.png" alt="Startup Vessel" height="54"/></a>
-        <a target="_blank" href="https://superaiboom.com"><img src="https://superaiboom.com/assets/images/badge.png" alt="Super AI Boom" height="54"/></a>
-        <a target="_blank" href="https://thatappshow.com"><img src="https://thatappshow.com/assets/images/badge.png" alt="That App Show" height="54"/></a>
-        <a target="_blank" href="https://theapptools.com"><img src="https://theapptools.com/assets/images/badge.png" alt="The App Tools" height="54"/></a>
-        <a target="_blank" href="https://thecoretools.com"><img src="https://thecoretools.com/assets/images/badge.png" alt="The Core Tools" height="54"/></a>
-        <a target="_blank" href="https://thekeytools.com"><img src="https://thekeytools.com/assets/images/badge.png" alt="The Key Tools" height="54"/></a>
+        
 
       </footer>
       
