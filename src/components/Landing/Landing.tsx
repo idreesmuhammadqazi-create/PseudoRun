@@ -34,6 +34,7 @@ export default function Landing() {
               alt="Fazier badge"
             />
           </a>
+          <a href="https://frogdr.com/pseudorun.tech?utm_source=pseudorun.tech" target="_blank"><img src="https://frogdr.com/pseudorun.tech/badge-white.svg" alt="Monitor your Domain Rating with FrogDR" width="250" height="54"/></a>
         </div>
       </header>
 
