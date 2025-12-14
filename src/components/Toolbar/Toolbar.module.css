@@ -260,6 +260,28 @@
   transform: translateY(-1px);
 }
 
+.coffeeSupportButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #3B82F6;
+  color: white;
+  border: 1px solid #2563EB;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 6px;
+}
+
+.coffeeSupportButton:hover {
+  background-color: #2563EB;
+  transform: translateY(-1px);
+  border-color: #1D4ED8;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .toolbar {
@@ -292,6 +314,11 @@
 
 /* Accessibility - Focus States */
 .button:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.coffeeSupportButton:focus-visible {
   outline: 2px solid var(--border-focus);
   outline-offset: 2px;
 }
