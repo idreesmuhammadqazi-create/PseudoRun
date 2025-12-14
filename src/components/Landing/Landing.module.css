@@ -332,6 +332,31 @@
   transform: translateY(0);
 }
 
+.coffeeSupportLanding {
+  background-color: #8B4513;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.coffeeSupportLanding:hover {
+  transform: translateY(-2px);
+  background-color: #654321;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.coffeeSupportLanding:active {
+  transform: translateY(0);
+}
+
 .whySection {
   background-color: rgba(255, 255, 10, 0.1);
   backdrop-filter: blur(10px);
@@ -434,6 +459,13 @@
     max-width: 320px;
   }
 
+  .coffeeSupportLanding {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+
   .footer {
     gap: 12px;
     margin: 32px auto 0 auto;
@@ -473,6 +505,12 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Accessibility - Focus States */
+.coffeeSupportLanding:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
 /* Accessibility - High Contrast Mode */
 @media (prefers-contrast: high) {
   .feature,
@@ -482,6 +520,10 @@
 
   .ctaButton {
     border: 2px solid var(--primary-color);
+  }
+
+  .coffeeSupportLanding {
+    border: 2px solid rgba(255, 255, 255, 0.8);
   }
 }
 
@@ -495,7 +537,8 @@
 
   .feature:hover,
   .testimonial:hover,
-  .ctaButton:hover {
+  .ctaButton:hover,
+  .coffeeSupportLanding:hover {
     transform: none;
   }
 }

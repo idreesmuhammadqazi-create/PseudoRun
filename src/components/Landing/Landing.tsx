@@ -136,6 +136,17 @@ export default function Landing() {
           <button onClick={() => setShowAuth(true)} className={styles.ctaButtonSecondary}>
             Start Free IGCSE Pseudocode Practice
           </button>
+          <div style={{ marginTop: '20px' }}>
+            <a
+              href="https://crypt0phage.gumroad.com/coffee"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.coffeeSupportLanding}
+              title="Buy us a coffee to support PseudoRun"
+            >
+              ☕ Buy Me a Coffee
+            </a>
+          </div>
         </section>
       </main>
 

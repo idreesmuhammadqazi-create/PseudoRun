@@ -282,6 +282,16 @@ export default function Toolbar({
         />
       </a>
 
+      <a
+        href="https://crypt0phage.gumroad.com/coffee"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.coffeeSupportButton}
+        title="Buy us a coffee to support PseudoRun"
+      >
+        ☕ Buy Me a Coffee
+      </a>
+
       {showBugReportModal && (
         <BugReportModal onClose={() => setShowBugReportModal(false)} />
       )}
