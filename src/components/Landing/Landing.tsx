@@ -128,15 +128,7 @@ export default function Landing() {
           <p><strong>The Problem:</strong> As a student, I was frustrated with online learning platforms that bombarded me with interruptive pop-up ads, banner distractions, and premium paywalls hiding essential features.</p>
           <p><strong>Our Promise:</strong> PseudoRun is built differently. Our promise is simple: Zero ads, forever. All features are free. We prioritize student privacy above all else. Every feature is laser-focused on IGCSE success.</p>
           <p><strong>Our Mission:</strong> To provide every IGCSE Computer Science student with the best pseudocode learning tool - free from distractions and focused entirely on your success.</p>
-        </section>
-
-        <section className={styles.finalCta} aria-label="Get Started">
-          <h2>Join 10,000+ IGCSE Students mastering pseudocode with PseudoRun</h2>
-          <p className={styles.subtitle}>Start your journey to IGCSE Computer Science exam success today</p>
-          <button onClick={() => setShowAuth(true)} className={styles.ctaButtonSecondary}>
-            Start Free IGCSE Pseudocode Practice
-          </button>
-          <div style={{ marginTop: '20px' }}>
+          <div style={{ marginTop: '24px', textAlign: 'center' }}>
             <a
               href="https://crypt0phage.gumroad.com/coffee"
               target="_blank"
@@ -147,6 +139,14 @@ export default function Landing() {
               ☕ Buy Me a Coffee
             </a>
           </div>
+        </section>
+
+        <section className={styles.finalCta} aria-label="Get Started">
+          <h2>Join 10,000+ IGCSE Students mastering pseudocode with PseudoRun</h2>
+          <p className={styles.subtitle}>Start your journey to IGCSE Computer Science exam success today</p>
+          <button onClick={() => setShowAuth(true)} className={styles.ctaButtonSecondary}>
+            Start Free IGCSE Pseudocode Practice
+          </button>
         </section>
       </main>
 
