@@ -126,9 +126,9 @@ export function generateTraceTable(code: string): TraceTable {
       }
     }
 
-    // Handle assignments (using <- or :=)
-    if (trimmed.includes('<-') || trimmed.includes(':=')) {
-      const separator = trimmed.includes('<-') ? '<-' : ':=';
+    // Handle assignments (using <-- or :=)
+    if (trimmed.includes('<--') || trimmed.includes(':=')) {
+      const separator = trimmed.includes('<--') ? '<--' : ':=';
       const parts = trimmed.split(separator);
       if (parts.length === 2) {
         const varName = parts[0].trim();

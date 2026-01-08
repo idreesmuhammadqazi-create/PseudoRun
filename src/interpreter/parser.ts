@@ -239,7 +239,7 @@ export class Parser {
       };
     }
 
-    this.consume('ASSIGNMENT', 'Expected <- in assignment');
+    this.consume('ASSIGNMENT', 'Expected <-- in assignment');
     const value = this.parseExpression();
 
     return {
@@ -418,7 +418,7 @@ export class Parser {
     const line = this.advance().line; // consume FOR
 
     const variable = this.consume('IDENTIFIER', 'Expected variable name after FOR').value;
-    this.consume('ASSIGNMENT', 'Expected <- after FOR variable');
+    this.consume('ASSIGNMENT', 'Expected <-- after FOR variable');
 
     const start = this.parseExpression();
 

@@ -22,14 +22,14 @@ export function detectCommonMistakes(code: string): CommonMistake[] {
     // Skip empty lines and comments
     if (!trimmed || trimmed.startsWith('//')) return;
 
-    // Mistake 1: Using = instead of <- for assignment
+    // Mistake 1: Using = instead of <-- for assignment
     if (/\w+\s*=\s*[^=<>]/.test(trimmed) && !/IF|WHILE|UNTIL/.test(trimmed)) {
       mistakes.push({
         line: lineNum,
         type: 'warning',
         category: 'Assignment',
-        message: 'Using = for assignment (should use <-)',
-        suggestion: 'In pseudocode, use <- for assignment, not ='
+        message: 'Using = for assignment (should use <--)',
+        suggestion: 'In pseudocode, use <-- for assignment, not ='
       });
     }
 
@@ -45,7 +45,7 @@ export function detectCommonMistakes(code: string): CommonMistake[] {
     }
 
     // Mistake 3: Missing DECLARE
-    if (/^[A-Z][a-zA-Z0-9]*\s*<-/.test(trimmed) && !code.includes(`DECLARE ${trimmed.split('<-')[0].trim()}`)) {
+    if (/^[A-Z][a-zA-Z0-9]*\s*<--/.test(trimmed) && !code.includes(`DECLARE ${trimmed.split('<--')[0].trim()}`)) {
       mistakes.push({
         line: lineNum,
         type: 'info',
@@ -98,7 +98,7 @@ export function detectCommonMistakes(code: string): CommonMistake[] {
         type: 'warning',
         category: 'Loops',
         message: 'Using programming language syntax for loop',
-        suggestion: 'Use: FOR i <- 1 TO 10 ... NEXT i'
+        suggestion: 'Use: FOR i <-- 1 TO 10 ... NEXT i'
       });
     }
 
