@@ -1039,8 +1039,8 @@ export class Parser {
       return expr;
     }
 
-    // Type conversion functions (INT, REAL, STRING are keywords but can be function calls)
-    if (token.type === 'KEYWORD' && ['INT', 'REAL', 'STRING'].includes(token.value)) {
+    // Type conversion functions (INT, REAL, STRING, EOF are keywords but can be function calls)
+    if (token.type === 'KEYWORD' && ['INT', 'REAL', 'STRING', 'EOF'].includes(token.value)) {
       if (this.tokens[this.current + 1]?.type === 'LPAREN') {
         const name = this.advance().value;
         this.advance(); // consume (
