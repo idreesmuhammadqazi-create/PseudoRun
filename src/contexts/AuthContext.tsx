@@ -12,8 +12,7 @@ import {
   onAuthStateChanged,
   signInWithPopup,
   updateProfile,
-  sendEmailVerification,
-  getIdTokenResult
+  sendEmailVerification
 } from 'firebase/auth';
 import { auth, googleProvider } from '../config/firebase';
 
