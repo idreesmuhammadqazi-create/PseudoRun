@@ -142,24 +142,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return false;
     }
 
-    try {
-      // Try Firebase Custom Claims first (if Cloud Functions are deployed)
-      const tokenResult = await getIdTokenResult(currentUser, true);
-      if (tokenResult.claims.admin === true) {
-        return true;
-      }
+    // Fallback: Check if email matches admin email
+    // This works without Cloud Functions deployment
+    const ADMIN_EMAIL = 'idreesmuhammadqazi@gmail.com';
+    const isEmailMatch = currentUser.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
 
-      // Fallback: Check if email matches admin email
-      // This works without Cloud Functions deployment
-      const ADMIN_EMAIL = 'idreesmuhammadqazi@gmail.com';
-      return currentUser.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-    } catch (error) {
-      console.error('Error checking admin status:', error);
+    // Also verify by UID for Firestore rules
+    const ADMIN_UID = 'uCq41rG68iS9piAhlCpZdtXI8zC3';
+    const isUidMatch = currentUser.uid === ADMIN_UID;
 
-      // Fallback to email comparison on error
-      const ADMIN_EMAIL = 'idreesmuhammadqazi@gmail.com';
-      return currentUser.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-    }
+    return isEmailMatch && isUidMatch;
   }
 
   // Listen for auth state changes
