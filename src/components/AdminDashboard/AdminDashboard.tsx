@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { getAllProgramsSDK, getStatsSDK, getUserEmail } from '../../services/adminServiceSDK';
+import { getAllProgramsSDK, getStatsSDK } from '../../services/adminServiceSDK';
 import { Program } from '../../types/program';
 import { AdminStats } from '../../types/admin';
 import styles from './AdminDashboard.module.css';
@@ -24,7 +24,6 @@ export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [userFilter, setUserFilter] = useState('');
   const [programsToShow, setProgramsToShow] = useState(20);
-  const [userEmails, setUserEmails] = useState<Map<string, string>>(new Map());
 
   // Check admin authorization
   useEffect(() => {
@@ -48,7 +47,6 @@ export default function AdminDashboard() {
         setLoading(false);
       }
     }
-
     checkAdminStatus();
   }, [currentUser, isAdmin]);
 
@@ -65,19 +63,6 @@ export default function AdminDashboard() {
       setStats(statsData);
       setPrograms(programsData);
       setDisplayedPrograms(programsData.slice(0, programsToShow));
-
-      // Fetch user emails for all unique userIds
-      const uniqueUserIds = new Set(programsData.map(p => p.userId));
-      const emailMap = new Map<string, string>();
-
-      for (const uid of uniqueUserIds) {
-        const email = await getUserEmail(uid);
-        if (email) {
-          emailMap.set(uid, email);
-        }
-      }
-
-      setUserEmails(emailMap);
       setLoading(false);
     } catch (err: any) {
       setError(err.message || 'Failed to load admin data');
@@ -114,10 +99,9 @@ export default function AdminDashboard() {
   }
 
   function handleViewProgram(program: Program) {
-    // For now, just log - will implement navigation in next step
     console.log('View program:', program.id, program.name);
     // TODO: Navigate to program with read-only mode
-    window.location.href = `/?programId=${program.id}&readOnly=true`;
+    // For now, just log it
   }
 
   function formatDate(date: Date): string {
@@ -126,7 +110,7 @@ export default function AdminDashboard() {
       day: 'numeric',
       year: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     }).format(date);
   }
 
@@ -142,7 +126,7 @@ export default function AdminDashboard() {
     return (
       <div className={styles.accessDenied}>
         <h2>Access Denied</h2>
-        <p>You don't have permission to access the admin dashboard.</p>
+        <p>You don't have permission to access admin dashboard.</p>
       </div>
     );
   }
@@ -204,7 +188,7 @@ export default function AdminDashboard() {
                 <div key={program.id} className={styles.programItem}>
                   <div className={styles.programInfo}>
                     <div className={styles.programName}>{program.name}</div>
-                    <div className={styles.programUser}>User: {userEmails.get(program.userId) || program.userId}</div>
+                    <div className={styles.programUser}>User: {program.userId}</div>
                     <div className={styles.programDate}>
                       {formatDate(program.updatedAt)}
                     </div>
@@ -258,7 +242,7 @@ export default function AdminDashboard() {
                 <div key={program.id} className={styles.programItem}>
                   <div className={styles.programInfo}>
                     <div className={styles.programName}>{program.name}</div>
-                    <div className={styles.programUser}>User: {userEmails.get(program.userId) || program.userId}</div>
+                    <div className={styles.programUser}>User: {program.userId}</div>
                     <div className={styles.programDate}>
                       {formatDate(program.updatedAt)}
                     </div>
@@ -271,9 +255,6 @@ export default function AdminDashboard() {
                   </button>
                 </div>
               ))}
-              {displayedPrograms.length === 0 && (
-                <div className={styles.noResults}>No programs found</div>
-              )}
             </div>
 
             {/* Load More Button */}
@@ -285,7 +266,8 @@ export default function AdminDashboard() {
                 Load More Programs
               </button>
             )}
-          </div>
+            </div>
+          )}
         )}
       </main>
     </div>
