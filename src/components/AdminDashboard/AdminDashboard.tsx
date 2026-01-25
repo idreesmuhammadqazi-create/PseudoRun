@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { getAllPrograms, getStats } from '../../services/adminService';
+import { getAllProgramsSDK, getStatsSDK, getUserEmail } from '../../services/adminServiceSDK';
 import { Program } from '../../types/program';
 import { AdminStats } from '../../types/admin';
 import styles from './AdminDashboard.module.css';
@@ -55,14 +55,28 @@ export default function AdminDashboard() {
   async function loadData() {
     try {
       setError('');
+
       const [statsData, programsData] = await Promise.all([
-        getStats(),
-        getAllPrograms()
+        getStatsSDK(),
+        getAllProgramsSDK()
       ]);
 
       setStats(statsData);
       setPrograms(programsData);
       setDisplayedPrograms(programsData.slice(0, programsToShow));
+
+      // Fetch user emails for all unique userIds
+      const uniqueUserIds = new Set(programsData.map(p => p.userId));
+      const emailMap = new Map<string, string>();
+
+      for (const uid of uniqueUserIds) {
+        const email = await getUserEmail(uid);
+        if (email) {
+          emailMap.set(uid, email);
+        }
+      }
+
+      setUserEmails(emailMap);
       setLoading(false);
     } catch (err: any) {
       setError(err.message || 'Failed to load admin data');
@@ -189,7 +203,7 @@ export default function AdminDashboard() {
                 <div key={program.id} className={styles.programItem}>
                   <div className={styles.programInfo}>
                     <div className={styles.programName}>{program.name}</div>
-                    <div className={styles.programUser}>User: {program.userId}</div>
+                    <div className={styles.programUser}>User: {userEmails.get(program.userId) || program.userId}</div>
                     <div className={styles.programDate}>
                       {formatDate(program.updatedAt)}
                     </div>
@@ -243,7 +257,7 @@ export default function AdminDashboard() {
                 <div key={program.id} className={styles.programItem}>
                   <div className={styles.programInfo}>
                     <div className={styles.programName}>{program.name}</div>
-                    <div className={styles.programUser}>User: {program.userId}</div>
+                    <div className={styles.programUser}>User: {userEmails.get(program.userId) || program.userId}</div>
                     <div className={styles.programDate}>
                       {formatDate(program.updatedAt)}
                     </div>
