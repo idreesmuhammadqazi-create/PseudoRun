@@ -12,7 +12,8 @@ import {
   onAuthStateChanged,
   signInWithPopup,
   updateProfile,
-  sendEmailVerification
+  sendEmailVerification,
+  getIdTokenResult
 } from 'firebase/auth';
 import { auth, googleProvider } from '../config/firebase';
 
@@ -26,6 +27,7 @@ interface AuthContextType {
   logout: () => Promise<void>;
   setGuestMode: (isGuest: boolean) => void;
   resendVerificationEmail: () => Promise<void>;
+  isAdmin: () => Promise<boolean>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -134,6 +136,32 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  // Check if current user has admin role
+  async function isAdmin(): Promise<boolean> {
+    if (!currentUser) {
+      return false;
+    }
+
+    try {
+      // Try Firebase Custom Claims first (if Cloud Functions are deployed)
+      const tokenResult = await getIdTokenResult(currentUser, true);
+      if (tokenResult.claims.admin === true) {
+        return true;
+      }
+
+      // Fallback: Check if email matches admin email
+      // This works without Cloud Functions deployment
+      const ADMIN_EMAIL = 'idreesmuhammadqazi@gmail.com';
+      return currentUser.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+    } catch (error) {
+      console.error('Error checking admin status:', error);
+
+      // Fallback to email comparison on error
+      const ADMIN_EMAIL = 'idreesmuhammadqazi@gmail.com';
+      return currentUser.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+    }
+  }
+
   // Listen for auth state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -153,7 +181,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     loginWithGoogle,
     logout,
     setGuestMode,
-    resendVerificationEmail
+    resendVerificationEmail,
+    isAdmin
   };
 
   // Only show loading screen on initial mount, not during transitions
