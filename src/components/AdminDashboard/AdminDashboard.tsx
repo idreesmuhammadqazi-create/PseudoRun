@@ -63,9 +63,11 @@ export default function AdminDashboard() {
       setStats(statsData);
       setPrograms(programsData);
       setDisplayedPrograms(programsData.slice(0, programsToShow));
+      setLoading(false);
     } catch (err: any) {
       setError(err.message || 'Failed to load admin data');
       console.error('Error loading admin data:', err);
+      setLoading(false);
     }
   }
 
