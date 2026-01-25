@@ -24,6 +24,7 @@ export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [userFilter, setUserFilter] = useState('');
   const [programsToShow, setProgramsToShow] = useState(20);
+  const [userEmails, setUserEmails] = useState<Map<string, string>>(new Map());
 
   // Check admin authorization
   useEffect(() => {
