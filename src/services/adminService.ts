@@ -6,9 +6,7 @@
 import {
   collection,
   getDocs,
-  Timestamp,
-  query,
-  where
+  Timestamp
 } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { Program } from '../types/program';

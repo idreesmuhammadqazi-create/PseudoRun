@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { EditorState } from '@codemirror/state';
-import { EditorView, keymap, placeholder, lineNumbers, readOnly as readOnlyExtension } from '@codemirror/view';
+import { EditorView, keymap, placeholder, lineNumbers } from '@codemirror/view';
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
 import { syntaxHighlighting, HighlightStyle } from '@codemirror/language';
 import { tags as t } from '@lezer/highlight';
@@ -122,7 +122,7 @@ export default function Editor({ value, onChange, readOnly = false, viewingUserE
         syntaxHighlighting(igcseHighlightStyle),
         autocompletion({ override: [igcseAutocomplete] }),
         EditorView.lineWrapping,
-        readOnlyExtension.of(readOnly),
+        EditorState.readOnly.of(readOnly),
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
             const newValue = update.state.doc.toString();
