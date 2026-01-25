@@ -3,8 +3,21 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     // Programs collection - only authenticated users can read/write their own
+    // Admins can read all programs but cannot write other users' programs
     match /programs/{programId} {
-      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+      // Fallback: Check if request is from admin by email (used when Cloud Functions unavailable)
+      // Admin email: idreesmuhammadqazi@gmail.com
+      // Note: This is less secure than Custom Claims but works without Cloud Functions deployment
+      allow read: if request.auth != null &&
+        (request.auth.uid == resource.data.userId ||
+         request.auth.token.admin == true ||
+         (request.auth.token.email == 'idreesmuhammadqazi@gmail.com' &&
+          !request.auth.token.admin)); // Email-based fallback
+
+      // Users can write only their own programs, admins cannot write other users' programs
+      allow write: if request.auth != null && request.auth.uid == resource.data.userId;
+
+      // Users can create programs with their own userId
       allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
     }
 

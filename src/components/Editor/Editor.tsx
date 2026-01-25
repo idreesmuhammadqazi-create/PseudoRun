@@ -10,6 +10,8 @@ import styles from './Editor.module.css';
 interface EditorProps {
   value: string;
   onChange: (value: string) => void;
+  readOnly?: boolean;
+  viewingUserEmail?: string;
 }
 
 // IGCSE Pseudocode autocomplete suggestions
@@ -103,7 +105,7 @@ const igcseHighlightStyle = HighlightStyle.define([
   { tag: t.number, color: '#9933cc' },
 ]);
 
-export default function Editor({ value, onChange }: EditorProps) {
+export default function Editor({ value, onChange, readOnly = false, viewingUserEmail }: EditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
 
@@ -120,6 +122,7 @@ export default function Editor({ value, onChange }: EditorProps) {
         syntaxHighlighting(igcseHighlightStyle),
         autocompletion({ override: [igcseAutocomplete] }),
         EditorView.lineWrapping,
+        EditorState.readOnly.of(readOnly),
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
             const newValue = update.state.doc.toString();
@@ -139,13 +142,14 @@ export default function Editor({ value, onChange }: EditorProps) {
           '.cm-content': {
             fontFamily: 'Consolas, Monaco, "Courier New", monospace',
             padding: '10px 0',
+            backgroundColor: readOnly ? '#f9f9f9' : 'transparent',
           },
           '.cm-line': {
             padding: '0 8px',
             lineHeight: '1.5',
           },
           '.cm-gutters': {
-            backgroundColor: '#f5f5f5',
+            backgroundColor: readOnly ? '#eeeeee' : '#f5f5f5',
             border: 'none',
           },
           '.cm-activeLineGutter': {
@@ -185,6 +189,11 @@ export default function Editor({ value, onChange }: EditorProps) {
 
   return (
     <div className={styles.editorContainer}>
+      {readOnly && viewingUserEmail && (
+        <div className={styles.readOnlyBanner}>
+          Viewing program by {viewingUserEmail}
+        </div>
+      )}
       <div ref={editorRef} className={styles.editor}></div>
     </div>
   );
