@@ -1,0 +1,25 @@
+// Test 1: Constant with initial value
+CONSTANT PI : REAL <-- 3.14159
+OUTPUT PI
+
+// Test 2: Constant without initial value + INPUT
+CONSTANT MAX : INTEGER
+INPUT MAX
+OUTPUT MAX
+
+// Test 3: Constant in expression
+CONSTANT MULTIPLIER : INTEGER <-- 10
+DECLARE result : INTEGER
+result <-- MULTIPLIER * 5
+OUTPUT result
+
+// Test 4: All data types
+CONSTANT A : INTEGER <-- 42
+CONSTANT B : REAL <-- 3.14
+CONSTANT C : STRING <-- "Hello"
+CONSTANT D : BOOLEAN <-- TRUE
+OUTPUT A, B, C, D
+
+// Test 5: Reassignment should fail (semantic error)
+CONSTANT X : INTEGER <-- 5
+X <-- 10

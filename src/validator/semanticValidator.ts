@@ -5,6 +5,7 @@
 import {
   ASTNode,
   DeclareNode,
+  ConstantNode,
   AssignmentNode,
   OutputNode,
   InputNode,
@@ -25,11 +26,11 @@ import {
   RepeatNode,
   CaseNode
 } from '../interpreter/types';
-import { UndeclaredVariableError } from './errorTypes';
+import { UndeclaredVariableError, ConstantReassignmentError, ValidationError } from './errorTypes';
 import { VariableScope } from './variableScope';
 
-export function validateSemantics(ast: ASTNode[]): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+export function validateSemantics(ast: ASTNode[]): ValidationError[] {
+  const errors: ValidationError[] = [];
   const scope = new VariableScope();
 
   // First pass: collect all variable declarations (procedures, functions, global variables)
@@ -42,6 +43,8 @@ export function validateSemantics(ast: ASTNode[]): UndeclaredVariableError[] {
       continue;
     } else if (node.type === 'Declare') {
       scope.processDeclareStatement(node as DeclareNode);
+    } else if (node.type === 'Constant') {
+      scope.processConstantStatement(node as ConstantNode);
     }
   }
 
@@ -55,12 +58,16 @@ export function validateSemantics(ast: ASTNode[]): UndeclaredVariableError[] {
   return errors.sort((a, b) => a.line - b.line);
 }
 
-function validateNode(node: ASTNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateNode(node: ASTNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   switch (node.type) {
     case 'Declare':
       // Declarations are already processed in first pass
+      break;
+
+    case 'Constant':
+      errors.push(...validateConstant(node as ConstantNode, scope));
       break;
 
     case 'Assignment':
@@ -134,8 +141,19 @@ function validateNode(node: ASTNode, scope: VariableScope): UndeclaredVariableEr
   return errors;
 }
 
-function validateAssignment(node: AssignmentNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateConstant(node: ConstantNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
+
+  // Validate initial value expression if present
+  if (node.value) {
+    errors.push(...validateExpression(node.value, scope));
+  }
+
+  return errors;
+}
+
+function validateAssignment(node: AssignmentNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   if (node.target.type === 'Identifier') {
     const varName = (node.target as IdentifierNode).name;
@@ -144,6 +162,17 @@ function validateAssignment(node: AssignmentNode, scope: VariableScope): Undecla
     if (!declaration) {
       errors.push(createUndeclaredVariableError(varName, node.line, 'assignment'));
     } else {
+      // Check if trying to reassign a constant
+      if (declaration.isConstant) {
+        errors.push({
+          type: 'semantic',
+          errorSubtype: 'constant_reassignment',
+          line: node.line,
+          message: `Cannot reassign constant '${varName}'`,
+          constantName: varName
+        } as ConstantReassignmentError);
+      }
+
       // Validate the expression being assigned
       errors.push(...validateExpression(node.value, scope));
     }
@@ -156,8 +185,8 @@ function validateAssignment(node: AssignmentNode, scope: VariableScope): Undecla
   return errors;
 }
 
-function validateOutput(node: OutputNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateOutput(node: OutputNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   for (const expr of node.expressions) {
     errors.push(...validateExpression(expr, scope));
@@ -166,8 +195,8 @@ function validateOutput(node: OutputNode, scope: VariableScope): UndeclaredVaria
   return errors;
 }
 
-function validateInput(node: InputNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateInput(node: InputNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   if (node.target.type === 'Identifier') {
     const varName = (node.target as IdentifierNode).name;
@@ -184,8 +213,8 @@ function validateInput(node: InputNode, scope: VariableScope): UndeclaredVariabl
   return errors;
 }
 
-function validateIf(node: IfNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateIf(node: IfNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Validate condition
   errors.push(...validateExpression(node.condition, scope));
@@ -215,8 +244,8 @@ function validateIf(node: IfNode, scope: VariableScope): UndeclaredVariableError
   return errors;
 }
 
-function validateWhile(node: WhileNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateWhile(node: WhileNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Validate condition
   errors.push(...validateExpression(node.condition, scope));
@@ -229,8 +258,8 @@ function validateWhile(node: WhileNode, scope: VariableScope): UndeclaredVariabl
   return errors;
 }
 
-function validateRepeat(node: RepeatNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateRepeat(node: RepeatNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Validate body
   for (const stmt of node.body) {
@@ -243,8 +272,8 @@ function validateRepeat(node: RepeatNode, scope: VariableScope): UndeclaredVaria
   return errors;
 }
 
-function validateFor(node: ForNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateFor(node: ForNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Process for loop scope
   scope.processForLoop(node);
@@ -265,8 +294,8 @@ function validateFor(node: ForNode, scope: VariableScope): UndeclaredVariableErr
   return errors;
 }
 
-function validateCase(node: CaseNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateCase(node: CaseNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Validate expression
   errors.push(...validateExpression(node.expression, scope));
@@ -295,8 +324,8 @@ function validateCase(node: CaseNode, scope: VariableScope): UndeclaredVariableE
   return errors;
 }
 
-function validateCall(node: CallNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateCall(node: CallNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Validate arguments
   for (const arg of node.arguments) {
@@ -306,8 +335,8 @@ function validateCall(node: CallNode, scope: VariableScope): UndeclaredVariableE
   return errors;
 }
 
-function validateProcedure(node: ProcedureNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateProcedure(node: ProcedureNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Enter procedure scope
   scope.processProcedureDeclaration(node);
@@ -323,8 +352,8 @@ function validateProcedure(node: ProcedureNode, scope: VariableScope): Undeclare
   return errors;
 }
 
-function validateFunction(node: FunctionNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateFunction(node: FunctionNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Enter function scope
   scope.processFunctionDeclaration(node);
@@ -340,20 +369,20 @@ function validateFunction(node: FunctionNode, scope: VariableScope): UndeclaredV
   return errors;
 }
 
-function validateReturn(node: ReturnNode, scope: VariableScope): UndeclaredVariableError[] {
+function validateReturn(node: ReturnNode, scope: VariableScope): ValidationError[] {
   return validateExpression(node.value, scope);
 }
 
-function validateOpenFile(node: OpenFileNode, scope: VariableScope): UndeclaredVariableError[] {
+function validateOpenFile(node: OpenFileNode, scope: VariableScope): ValidationError[] {
   return validateExpression(node.filename, scope);
 }
 
-function validateCloseFile(node: CloseFileNode, scope: VariableScope): UndeclaredVariableError[] {
+function validateCloseFile(node: CloseFileNode, scope: VariableScope): ValidationError[] {
   return validateExpression(node.filename, scope);
 }
 
-function validateReadFile(node: ReadFileNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateReadFile(node: ReadFileNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Validate filename
   errors.push(...validateExpression(node.filename, scope));
@@ -374,8 +403,8 @@ function validateReadFile(node: ReadFileNode, scope: VariableScope): UndeclaredV
   return errors;
 }
 
-function validateWriteFile(node: WriteFileNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateWriteFile(node: WriteFileNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   errors.push(...validateExpression(node.filename, scope));
   errors.push(...validateExpression(node.data, scope));
@@ -383,8 +412,8 @@ function validateWriteFile(node: WriteFileNode, scope: VariableScope): Undeclare
   return errors;
 }
 
-function validateExpression(expr: any, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateExpression(expr: any, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   switch (expr.type) {
     case 'Literal':
@@ -424,8 +453,8 @@ function validateExpression(expr: any, scope: VariableScope): UndeclaredVariable
   return errors;
 }
 
-function validateArrayAccess(node: ArrayAccessNode, scope: VariableScope, context: 'access' | 'assignment' | 'input'): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateArrayAccess(node: ArrayAccessNode, scope: VariableScope, context: 'access' | 'assignment' | 'input'): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Check if array is declared
   const arrayDeclaration = scope.lookupVariable(node.array);
@@ -441,8 +470,8 @@ function validateArrayAccess(node: ArrayAccessNode, scope: VariableScope, contex
   return errors;
 }
 
-function validateFunctionCall(node: FunctionCallNode, scope: VariableScope): UndeclaredVariableError[] {
-  const errors: UndeclaredVariableError[] = [];
+function validateFunctionCall(node: FunctionCallNode, scope: VariableScope): ValidationError[] {
+  const errors: ValidationError[] = [];
 
   // Validate arguments
   for (const arg of node.arguments) {
