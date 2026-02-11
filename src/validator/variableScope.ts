@@ -2,7 +2,7 @@
  * Variable scope tracking for semantic validation
  */
 
-import { DeclareNode, ProcedureNode, FunctionNode, ForNode } from '../interpreter/types';
+import { DeclareNode, ConstantNode, ProcedureNode, FunctionNode, ForNode } from '../interpreter/types';
 
 export interface VariableDeclaration {
   name: string;
@@ -13,6 +13,7 @@ export interface VariableDeclaration {
   byRef?: boolean;
   arrayDimensions?: Array<{ lower: number; upper: number }>;
   elementType?: string;
+  isConstant?: boolean;
 }
 
 export interface ScopeInfo {
@@ -36,12 +37,13 @@ export class VariableScope {
     this.allScopes.push(this.currentScope);
   }
 
-  declareVariable(name: string, type: string, line: number, arrayDimensions?: Array<{ lower: number; upper: number }>, elementType?: string): void {
+  declareVariable(name: string, type: string, line: number, isConstant?: boolean, arrayDimensions?: Array<{ lower: number; upper: number }>, elementType?: string): void {
     const declaration: VariableDeclaration = {
       name,
       type,
       line,
       scopeType: this.currentScope.type,
+      isConstant,
       arrayDimensions,
       elementType
     };
@@ -131,12 +133,22 @@ export class VariableScope {
         node.identifier,
         'ARRAY',
         node.line,
+        false,
         node.arrayBounds?.dimensions,
         node.arrayElementType
       );
     } else {
       this.declareVariable(node.identifier, node.dataType, node.line);
     }
+  }
+
+  processConstantStatement(node: ConstantNode): void {
+    this.declareVariable(
+      node.identifier,
+      node.dataType,
+      node.line,
+      true
+    );
   }
 
   processProcedureDeclaration(node: ProcedureNode): void {

@@ -8,6 +8,7 @@ import {
   ASTNode,
   ExpressionNode,
   DeclareNode,
+  ConstantNode,
   AssignmentNode,
   OutputNode,
   InputNode,
@@ -147,6 +148,32 @@ export class Parser {
     return nodes;
   }
 
+  private parseConstant(): ConstantNode {
+    const line = this.advance().line; // consume CONSTANT
+
+    const identifier = this.consume('IDENTIFIER', 'Expected identifier after CONSTANT').value;
+
+    this.consume('COLON', 'Expected : after identifier in CONSTANT');
+
+    const dataType = this.parseDataType();
+
+    // Check for optional initialization
+    let value: ExpressionNode | undefined;
+
+    if (this.check('ASSIGNMENT')) {
+      this.advance(); // consume <--
+      value = this.parseExpression();
+    }
+
+    return {
+      type: 'Constant',
+      identifier,
+      dataType,
+      value,
+      line
+    };
+  }
+
   private parseStatement(): ASTNode | null {
     const token = this.peek();
 
@@ -175,7 +202,7 @@ export class Parser {
         case 'RETURN':
           return this.parseReturn();
         case 'CONSTANT':
-          throw new Error(`Feature not supported: ${token.value} at line ${token.line}`);
+          return this.parseConstant();
         case 'OPENFILE':
           return this.parseOpenFile();
         case 'CLOSEFILE':

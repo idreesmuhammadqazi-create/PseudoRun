@@ -16,3 +16,9 @@ export interface UndeclaredVariableError extends ValidationError {
   variableName: string;
   context: 'access' | 'assignment' | 'input' | 'array_access' | 'function_call';
 }
+
+export interface ConstantReassignmentError extends ValidationError {
+  type: 'semantic';
+  errorSubtype: 'constant_reassignment';
+  constantName: string;
+}

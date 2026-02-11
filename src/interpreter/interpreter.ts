@@ -7,6 +7,7 @@ import {
   ASTNode,
   ExpressionNode,
   DeclareNode,
+  ConstantNode,
   AssignmentNode,
   OutputNode,
   InputNode,
@@ -162,6 +163,9 @@ export class Interpreter {
       case 'Declare':
         this.executeDeclare(node as DeclareNode, context);
         break;
+      case 'Constant':
+        yield* this.executeConstant(node as ConstantNode, context);
+        break;
       case 'Assignment':
         yield* this.executeAssignment(node as AssignmentNode, context);
         break;
@@ -228,6 +232,25 @@ export class Interpreter {
     }
   }
 
+  private async* executeConstant(node: ConstantNode, context: ExecutionContext): AsyncGenerator<string, void, unknown> {
+    // Evaluate initial value if provided
+    let initialValue: any = undefined;
+    let initialized = false;
+
+    if (node.value) {
+      initialValue = this.evaluateExpression(node.value, context);
+      initialized = true;
+    }
+
+    // Create constant variable
+    context.variables.set(node.identifier, {
+      type: node.dataType,
+      value: initialValue,
+      initialized: initialized,
+      isConstant: true
+    });
+  }
+
   private createArray(dimensions: Array<{ lower: number; upper: number }>): any {
     if (dimensions.length === 1) {
       const { lower, upper } = dimensions[0];
@@ -256,6 +279,11 @@ export class Interpreter {
       // Variable should exist if execution reaches this point (semantic validation)
       if (!variable) {
         throw new RuntimeError(`Variable '${varName}' not found in context`, node.line);
+      }
+
+      // Check if trying to reassign a constant
+      if (variable.isConstant && variable.initialized) {
+        throw new RuntimeError(`Cannot reassign constant '${varName}'`, node.line);
       }
 
       variable.value = value;
@@ -326,6 +354,11 @@ export class Interpreter {
       // Variable should exist if execution reaches this point (semantic validation)
       if (!variable) {
         throw new RuntimeError(`Variable '${varName}' not found in context`, node.line);
+      }
+
+      // Check if trying to INPUT to already-initialized constant
+      if (variable.isConstant && variable.initialized) {
+        throw new RuntimeError(`Cannot reassign constant '${varName}' via INPUT`, node.line);
       }
 
       // Use the inputHandler to get input
@@ -950,6 +983,11 @@ export class Interpreter {
       // Variable should exist if execution reaches this point (semantic validation)
       if (!variable) {
         throw new RuntimeError(`Variable '${varName}' not found in context`, node.line);
+      }
+
+      // Check if trying to reassign a constant
+      if (variable.isConstant && variable.initialized) {
+        throw new RuntimeError(`Cannot reassign constant '${varName}'`, node.line);
       }
 
       variable.value = value;

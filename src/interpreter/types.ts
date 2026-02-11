@@ -33,6 +33,7 @@ export type DataType = 'INTEGER' | 'REAL' | 'STRING' | 'CHAR' | 'BOOLEAN' | 'ARR
 // AST Node types
 export type ASTNode =
   | DeclareNode
+  | ConstantNode
   | AssignmentNode
   | OutputNode
   | InputNode
@@ -70,6 +71,13 @@ export interface DeclareNode extends BaseNode {
   dataType: DataType;
   arrayBounds?: ArrayBounds;
   arrayElementType?: DataType;
+}
+
+export interface ConstantNode extends BaseNode {
+  type: 'Constant';
+  identifier: string;
+  dataType: DataType;
+  value?: ExpressionNode;
 }
 
 export interface ArrayBounds {
@@ -232,6 +240,7 @@ export interface Variable {
   dimensions?: Array<{ lower: number; upper: number }>;
   elementType?: DataType;
   initialized: boolean;
+  isConstant?: boolean;
 }
 
 export interface ExecutionContext {
