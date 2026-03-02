@@ -26,7 +26,7 @@ import {
   RepeatNode,
   CaseNode
 } from '../interpreter/types';
-import { UndeclaredVariableError, ConstantReassignmentError, ValidationError } from './errorTypes';
+import { UndeclaredVariableError, ConstantReassignmentError, TypeMismatchError, ValidationError } from './errorTypes';
 import { VariableScope } from './variableScope';
 
 export function validateSemantics(ast: ASTNode[]): ValidationError[] {
@@ -175,11 +175,46 @@ function validateAssignment(node: AssignmentNode, scope: VariableScope): Validat
 
       // Validate the expression being assigned
       errors.push(...validateExpression(node.value, scope));
+
+      // Check type compatibility
+      const valueType = inferExpressionType(node.value, scope);
+      if (valueType !== null && declaration.type !== 'ARRAY') {
+        if (!isTypeCompatible(declaration.type, valueType)) {
+          errors.push({
+            type: 'semantic',
+            errorSubtype: 'type_mismatch',
+            line: node.line,
+            message: `Type mismatch: Cannot assign ${valueType} to variable '${varName}' of type ${declaration.type}`,
+            variableName: varName,
+            expectedType: declaration.type,
+            actualType: valueType
+          } as TypeMismatchError);
+        }
+      }
     }
   } else if (node.target.type === 'ArrayAccess') {
     const arrayAccess = node.target as ArrayAccessNode;
     errors.push(...validateArrayAccess(arrayAccess, scope, 'assignment'));
     errors.push(...validateExpression(node.value, scope));
+
+    // Check type compatibility for array element assignment
+    const arrayDeclaration = scope.lookupVariable(arrayAccess.array);
+    if (arrayDeclaration && arrayDeclaration.elementType) {
+      const valueType = inferExpressionType(node.value, scope);
+      if (valueType !== null) {
+        if (!isTypeCompatible(arrayDeclaration.elementType, valueType)) {
+          errors.push({
+            type: 'semantic',
+            errorSubtype: 'type_mismatch',
+            line: node.line,
+            message: `Type mismatch: Cannot assign ${valueType} to element of array '${arrayAccess.array}' of type ${arrayDeclaration.elementType}`,
+            variableName: arrayAccess.array,
+            expectedType: arrayDeclaration.elementType,
+            actualType: valueType
+          } as TypeMismatchError);
+        }
+      }
+    }
   }
 
   return errors;
@@ -479,6 +514,72 @@ function validateFunctionCall(node: FunctionCallNode, scope: VariableScope): Val
   }
 
   return errors;
+}
+
+function inferExpressionType(expr: any, scope: VariableScope): string | null {
+  switch (expr.type) {
+    case 'Literal': {
+      return expr.dataType; // LiteralNode already has dataType: 'INTEGER' | 'REAL' | 'STRING' | 'CHAR' | 'BOOLEAN'
+    }
+    case 'Identifier': {
+      const decl = scope.lookupVariable(expr.name);
+      return decl ? decl.type : null;
+    }
+    case 'ArrayAccess': {
+      const decl = scope.lookupVariable(expr.array);
+      if (decl && decl.type === 'ARRAY') {
+        return decl.elementType || null;
+      }
+      return null;
+    }
+    case 'FunctionCall': {
+      // Cannot easily infer function return types without a function registry; return null
+      return null;
+    }
+    case 'UnaryOp': {
+      if (expr.operator === 'NOT') return 'BOOLEAN';
+      if (expr.operator === '-') {
+        const operandType = inferExpressionType(expr.operand, scope);
+        return operandType; // negation preserves INTEGER/REAL
+      }
+      return null;
+    }
+    case 'BinaryOp': {
+      const op = expr.operator;
+      // Comparison and logical operators always return BOOLEAN
+      if (['=', '<>', '<', '>', '<=', '>=', 'AND', 'OR'].includes(op)) {
+        return 'BOOLEAN';
+      }
+      // String concatenation
+      if (op === '&') {
+        return 'STRING';
+      }
+      // Arithmetic: infer from operands
+      if (['+', '-', '*'].includes(op)) {
+        const leftType = inferExpressionType(expr.left, scope);
+        const rightType = inferExpressionType(expr.right, scope);
+        if (leftType === 'REAL' || rightType === 'REAL') return 'REAL';
+        if (leftType === 'INTEGER' && rightType === 'INTEGER') return 'INTEGER';
+        return leftType || rightType;
+      }
+      // Division always returns REAL
+      if (op === '/') return 'REAL';
+      // Integer division and modulo return INTEGER
+      if (op === 'DIV' || op === 'MOD') return 'INTEGER';
+      return null;
+    }
+    default:
+      return null;
+  }
+}
+
+function isTypeCompatible(declaredType: string, valueType: string): boolean {
+  if (declaredType === valueType) return true;
+  // Allow assigning INTEGER to REAL (widening)
+  if (declaredType === 'REAL' && valueType === 'INTEGER') return true;
+  // Allow assigning CHAR to STRING (a single char is a valid string)
+  if (declaredType === 'STRING' && valueType === 'CHAR') return true;
+  return false;
 }
 
 function createUndeclaredVariableError(variableName: string, line: number, context: 'access' | 'assignment' | 'input' | 'array_access' | 'function_call'): UndeclaredVariableError {
