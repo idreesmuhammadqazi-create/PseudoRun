@@ -286,7 +286,9 @@ export class Interpreter {
         throw new RuntimeError(`Cannot reassign constant '${varName}'`, node.line);
       }
 
-      variable.value = value;
+      // Type check before assignment
+      const checkedValue = this.coerceOrReject(value, variable.type, varName, node.line);
+      variable.value = checkedValue;
       variable.initialized = true;
     } else if (node.target.type === 'ArrayAccess') {
       const arrayAccess = node.target as ArrayAccessNode;
@@ -308,7 +310,43 @@ export class Interpreter {
         return Math.floor(val);
       });
 
-      this.setArrayElement(variable.value, indices, value, variable.dimensions!, node.line);
+      // Type check for array element
+      const checkedValue = variable.elementType
+        ? this.coerceOrReject(value, variable.elementType, arrayAccess.array, node.line)
+        : value;
+      
+      this.setArrayElement(variable.value, indices, checkedValue, variable.dimensions!, node.line);
+    }
+  }
+
+  private coerceOrReject(value: any, targetType: string, varName: string, line: number): any {
+    if (targetType === 'ARRAY') return value; // Arrays handled separately
+    
+    switch (targetType) {
+      case 'INTEGER':
+        if (typeof value === 'number' && Number.isInteger(value)) return value;
+        if (typeof value === 'number') return Math.floor(value); // REAL → INTEGER truncation
+        throw new RuntimeError(`Type mismatch: Cannot assign ${typeof value === 'string' ? 'STRING' : typeof value} value to INTEGER variable '${varName}'`, line);
+      
+      case 'REAL':
+        if (typeof value === 'number') return value;
+        throw new RuntimeError(`Type mismatch: Cannot assign ${typeof value === 'string' ? 'STRING' : typeof value} value to REAL variable '${varName}'`, line);
+      
+      case 'STRING':
+        if (typeof value === 'string') return value;
+        throw new RuntimeError(`Type mismatch: Cannot assign ${typeof value === 'number' ? 'NUMBER' : typeof value} value to STRING variable '${varName}'`, line);
+      
+      case 'CHAR':
+        if (typeof value === 'string' && value.length === 1) return value;
+        if (typeof value === 'string') throw new RuntimeError(`Type mismatch: Cannot assign STRING of length ${value.length} to CHAR variable '${varName}' (must be exactly 1 character)`, line);
+        throw new RuntimeError(`Type mismatch: Cannot assign ${typeof value} value to CHAR variable '${varName}'`, line);
+      
+      case 'BOOLEAN':
+        if (typeof value === 'boolean') return value;
+        throw new RuntimeError(`Type mismatch: Cannot assign ${typeof value === 'string' ? 'STRING' : typeof value} value to BOOLEAN variable '${varName}'`, line);
+      
+      default:
+        return value;
     }
   }
 

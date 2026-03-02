@@ -22,3 +22,11 @@ export interface ConstantReassignmentError extends ValidationError {
   errorSubtype: 'constant_reassignment';
   constantName: string;
 }
+
+export interface TypeMismatchError extends ValidationError {
+  type: 'semantic';
+  errorSubtype: 'type_mismatch';
+  variableName: string;
+  expectedType: string;
+  actualType: string;
+}
