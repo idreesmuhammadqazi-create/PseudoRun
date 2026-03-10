@@ -59,14 +59,14 @@ export class Interpreter {
   private callStack: CallStackFrame[];
   private stepCallback?: () => Promise<void>;
   private fileHandles: Map<string, FileHandle> = new Map();
-  private fileWriteOutput: boolean;
+  private closedFileData: Map<string, string[]> = new Map();
   private fileUploadHandler?: (filename: string) => Promise<string>;
 
   constructor(
     inputHandler?: (variableName: string, variableType: string) => Promise<string>,
     debugMode: boolean = false,
     stepCallback?: () => Promise<void>,
-    fileWriteOutput: boolean = true,
+    _fileWriteOutput: boolean = true,
     fileUploadHandler?: (filename: string) => Promise<string>
   ) {
     this.globalContext = {
@@ -78,7 +78,6 @@ export class Interpreter {
     this.debugMode = debugMode;
     this.callStack = [{ name: 'main', line: 1, type: 'main' }];
     this.stepCallback = stepCallback;
-    this.fileWriteOutput = fileWriteOutput;
     this.fileUploadHandler = fileUploadHandler;
   }
 
@@ -233,20 +232,24 @@ export class Interpreter {
   }
 
   private async* executeConstant(node: ConstantNode, context: ExecutionContext): AsyncGenerator<string, void, unknown> {
-    // Evaluate initial value if provided
-    let initialValue: any = undefined;
-    let initialized = false;
-
-    if (node.value) {
-      initialValue = this.evaluateExpression(node.value, context);
-      initialized = true;
+    // Evaluate the literal value
+    const initialValue = this.evaluateExpression(node.value, context);
+    
+    // Infer type from the literal value
+    let inferredType: string = 'STRING';
+    if (typeof initialValue === 'number') {
+      inferredType = Number.isInteger(initialValue) ? 'INTEGER' : 'REAL';
+    } else if (typeof initialValue === 'boolean') {
+      inferredType = 'BOOLEAN';
+    } else if (typeof initialValue === 'string') {
+      inferredType = initialValue.length === 1 ? 'CHAR' : 'STRING';
     }
 
     // Create constant variable
     context.variables.set(node.identifier, {
-      type: node.dataType,
+      type: inferredType as any,
       value: initialValue,
-      initialized: initialized,
+      initialized: true,
       isConstant: true
     });
   }
@@ -443,8 +446,6 @@ export class Interpreter {
       variable.value = value;
       variable.initialized = true;
       
-      // Echo the entered value to output
-      yield input;
     } else if (node.target.type === 'ArrayAccess') {
       // Array element input
       const arrayAccess = node.target as ArrayAccessNode;
@@ -513,9 +514,6 @@ export class Interpreter {
       }
 
       this.setArrayElement(variable.value, indices, value, variable.dimensions!, node.line);
-      
-      // Echo the entered value to output
-      yield input;
     }
   }
 
@@ -727,12 +725,12 @@ export class Interpreter {
         position: 0
       };
     } else { // APPEND
-      const existingHandle = this.fileHandles.get(filename);
-      if (existingHandle) {
+      const existingData = this.closedFileData.get(filename);
+      if (existingData) {
         fileHandle = {
           mode: 'APPEND',
-          data: existingHandle.data,
-          position: existingHandle.data.length
+          data: [...existingData],
+          position: existingData.length
         };
       } else {
         fileHandle = {
@@ -744,7 +742,6 @@ export class Interpreter {
     }
 
     this.fileHandles.set(filename, fileHandle);
-    yield `Opened file '${filename}' in ${mode} mode`;
   }
 
   private async* executeCloseFile(node: CloseFileNode, context: ExecutionContext): AsyncGenerator<string, void, unknown> {
@@ -761,12 +758,14 @@ export class Interpreter {
 
     const fileHandle = this.fileHandles.get(filename)!;
 
-    if (fileHandle.mode === 'WRITE' || fileHandle.mode === 'APPEND') {
-      yield `Closed file '${filename}' (${fileHandle.data.length} lines written)`;
-      // Keep file in fileHandles for potential APPEND operations
-    } else {
-      this.fileHandles.delete(filename);
-      yield `Closed file '${filename}'`;
+    // Store file data before deleting handle (for potential later APPEND reopening)
+    const fileData = fileHandle.data;
+    const fileMode = fileHandle.mode;
+    this.fileHandles.delete(filename);
+    
+    // Store written data separately so APPEND can recover it later
+    if (fileMode === 'WRITE' || fileMode === 'APPEND') {
+      this.closedFileData.set(filename, fileData);
     }
   }
 
@@ -860,8 +859,6 @@ export class Interpreter {
 
       this.setArrayElement(variable.value, indices, value, variable.dimensions!, node.line);
     }
-
-    yield line;
   }
 
   private async* executeWriteFile(node: WriteFileNode, context: ExecutionContext): AsyncGenerator<string, void, unknown> {
@@ -887,10 +884,6 @@ export class Interpreter {
 
     fileHandle.data.push(dataString);
     fileHandle.position++;
-
-    if (this.fileWriteOutput) {
-      yield `[Write to ${filename}] ${dataString}`;
-    }
   }
 
   private async* executeProcedure(
@@ -1025,9 +1018,17 @@ export class Interpreter {
   }
 
   private executeSyncNode(node: ASTNode, context: ExecutionContext): void {
+    this.iterationCount++;
+    if (this.iterationCount > MAX_ITERATIONS) {
+      throw new RuntimeError('Execution timeout: Possible infinite loop', node.line);
+    }
+
     switch (node.type) {
       case 'Declare':
         this.executeDeclare(node as DeclareNode, context);
+        break;
+      case 'Constant':
+        this.executeSyncConstant(node as ConstantNode, context);
         break;
       case 'Assignment':
         this.executeSyncAssignment(node as AssignmentNode, context);
@@ -1072,7 +1073,9 @@ export class Interpreter {
         throw new RuntimeError(`Cannot reassign constant '${varName}'`, node.line);
       }
 
-      variable.value = value;
+      // Type check before assignment (same as async path)
+      const checkedValue = this.coerceOrReject(value, variable.type, varName, node.line);
+      variable.value = checkedValue;
       variable.initialized = true;
     } else if (node.target.type === 'ArrayAccess') {
       const arrayAccess = node.target as ArrayAccessNode;
@@ -1094,7 +1097,11 @@ export class Interpreter {
         return Math.floor(val);
       });
 
-      this.setArrayElement(variable.value, indices, value, variable.dimensions!, node.line);
+      // Type check for array element
+      const checkedValue = variable.elementType
+        ? this.coerceOrReject(value, variable.elementType, arrayAccess.array, node.line)
+        : value;
+      this.setArrayElement(variable.value, indices, checkedValue, variable.dimensions!, node.line);
     }
   }
 
@@ -1254,6 +1261,26 @@ export class Interpreter {
     }
   }
 
+  private executeSyncConstant(node: ConstantNode, context: ExecutionContext): void {
+    const initialValue = this.evaluateExpression(node.value, context);
+    
+    let inferredType: string = 'STRING';
+    if (typeof initialValue === 'number') {
+      inferredType = Number.isInteger(initialValue) ? 'INTEGER' : 'REAL';
+    } else if (typeof initialValue === 'boolean') {
+      inferredType = 'BOOLEAN';
+    } else if (typeof initialValue === 'string') {
+      inferredType = initialValue.length === 1 ? 'CHAR' : 'STRING';
+    }
+
+    context.variables.set(node.identifier, {
+      type: inferredType as any,
+      value: initialValue,
+      initialized: true,
+      isConstant: true
+    });
+  }
+
   private evaluateExpression(expr: ExpressionNode, context: ExecutionContext): any {
     switch (expr.type) {
       case 'Literal':
@@ -1382,7 +1409,7 @@ export class Interpreter {
           if (right === 0) {
             throw new RuntimeError(`Division by zero`, node.line);
           }
-          return Math.floor(left / right);
+          return Math.trunc(left / right);
         }
         throw new RuntimeError(`Cannot perform arithmetic on non-numbers`, node.line);
 
@@ -1506,6 +1533,7 @@ export class Interpreter {
         }
         return str.length;
 
+      case 'MID':
       case 'SUBSTRING':
         if (args.length !== 3) {
           throw new RuntimeError(`SUBSTRING requires 3 parameters`, line);
@@ -1537,6 +1565,9 @@ export class Interpreter {
         if (typeof ucaseStr !== 'string') {
           throw new RuntimeError(`UCASE requires string parameter`, line);
         }
+        if (ucaseStr.length !== 1) {
+          throw new RuntimeError(`UCASE requires a single character (CHAR) parameter, got string of length ${ucaseStr.length}`, line);
+        }
         return ucaseStr.toUpperCase();
 
       case 'LCASE':
@@ -1547,6 +1578,9 @@ export class Interpreter {
         if (typeof lcaseStr !== 'string') {
           throw new RuntimeError(`LCASE requires string parameter`, line);
         }
+        if (lcaseStr.length !== 1) {
+          throw new RuntimeError(`LCASE requires a single character (CHAR) parameter, got string of length ${lcaseStr.length}`, line);
+        }
         return lcaseStr.toLowerCase();
 
       case 'INT':
@@ -1555,7 +1589,7 @@ export class Interpreter {
         }
         const intVal = this.evaluateExpression(args[0], context);
         if (typeof intVal === 'number') {
-          return Math.floor(intVal);
+          return Math.trunc(intVal);
         }
         if (typeof intVal === 'string') {
           const parsed = parseInt(intVal);
@@ -1604,11 +1638,16 @@ export class Interpreter {
         const multiplier = Math.pow(10, decimals);
         return Math.round(roundVal * multiplier) / multiplier;
 
+      case 'RAND':
       case 'RANDOM':
-        if (args.length !== 0) {
-          throw new RuntimeError(`RANDOM takes no parameters`, line);
+        if (args.length !== 1) {
+          throw new RuntimeError(`RAND requires 1 parameter`, line);
         }
-        return Math.random();
+        const randMax = this.evaluateExpression(args[0], context);
+        if (typeof randMax !== 'number') {
+          throw new RuntimeError(`RAND requires numeric parameter`, line);
+        }
+        return Math.random() * randMax;
 
       case 'EOF':
         if (args.length !== 1) {
@@ -1631,6 +1670,23 @@ export class Interpreter {
         }
         
         return fileHandle.position >= fileHandle.data.length;
+
+      case 'RIGHT':
+        if (args.length !== 2) {
+          throw new RuntimeError(`RIGHT requires 2 parameters`, line);
+        }
+        const rightStr = this.evaluateExpression(args[0], context);
+        const rightCount = this.evaluateExpression(args[1], context);
+        if (typeof rightStr !== 'string') {
+          throw new RuntimeError(`RIGHT requires string parameter`, line);
+        }
+        if (typeof rightCount !== 'number') {
+          throw new RuntimeError(`RIGHT requires integer parameter`, line);
+        }
+        if (rightCount < 0) {
+          throw new RuntimeError(`RIGHT count cannot be negative`, line);
+        }
+        return rightStr.slice(rightStr.length - Math.floor(rightCount));
 
       default:
         return undefined;

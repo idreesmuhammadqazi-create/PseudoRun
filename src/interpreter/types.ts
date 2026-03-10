@@ -76,8 +76,7 @@ export interface DeclareNode extends BaseNode {
 export interface ConstantNode extends BaseNode {
   type: 'Constant';
   identifier: string;
-  dataType: DataType;
-  value?: ExpressionNode;
+  value: LiteralNode;
 }
 
 export interface ArrayBounds {
