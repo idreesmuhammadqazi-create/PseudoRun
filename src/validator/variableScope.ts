@@ -145,7 +145,7 @@ export class VariableScope {
   processConstantStatement(node: ConstantNode): void {
     this.declareVariable(
       node.identifier,
-      node.dataType,
+      node.value.dataType,
       node.line,
       true
     );

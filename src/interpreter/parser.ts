@@ -153,23 +153,21 @@ export class Parser {
 
     const identifier = this.consume('IDENTIFIER', 'Expected identifier after CONSTANT').value;
 
-    this.consume('COLON', 'Expected : after identifier in CONSTANT');
+    this.consume('OPERATOR', 'Expected = after identifier in CONSTANT');
+    if (this.previous().value !== '=') {
+      throw new Error(`Expected = after identifier in CONSTANT at line ${line}`);
+    }
 
-    const dataType = this.parseDataType();
-
-    // Check for optional initialization
-    let value: ExpressionNode | undefined;
-
-    if (this.check('ASSIGNMENT')) {
-      this.advance(); // consume <--
-      value = this.parseExpression();
+    // Only literals are allowed as constant values
+    const value = this.parsePrimary();
+    if (value.type !== 'Literal') {
+      throw new Error(`Only literal values can be used in CONSTANT declarations at line ${line}`);
     }
 
     return {
       type: 'Constant',
       identifier,
-      dataType,
-      value,
+      value: value as LiteralNode,
       line
     };
   }
@@ -399,9 +397,9 @@ export class Parser {
     const line = this.advance().line; // consume WHILE
 
     const condition = this.parseExpression();
-    this.consume('KEYWORD', 'Expected DO after WHILE condition');
-    if (this.previous().value !== 'DO') {
-      throw new Error(`Expected DO after WHILE condition at line ${line}`);
+    // DO is not in the spec but accept it optionally for backwards compatibility
+    if (this.check('KEYWORD') && this.peek().value === 'DO') {
+      this.advance(); // consume optional DO
     }
 
     this.skipNewlines();
@@ -553,6 +551,7 @@ export class Parser {
 
         // Check if next line starts with a case value or OTHERWISE/ENDCASE
         if (this.check('NUMBER') || this.check('STRING') ||
+            (this.check('OPERATOR') && this.peek().value === '-' && this.tokens[this.current + 1]?.type === 'NUMBER') ||
             (this.check('KEYWORD') && (this.peek().value === 'TRUE' || this.peek().value === 'FALSE' ||
                                        this.peek().value === 'OTHERWISE' || this.peek().value === 'ENDCASE'))) {
           break;
@@ -807,13 +806,14 @@ export class Parser {
       return parameters;
     }
 
-    do {
-      let byRef = false;
+    let currentByRef = false; // default is BYVAL
 
+    do {
       if (this.check('KEYWORD') && this.peek().value === 'BYREF') {
-        byRef = true;
+        currentByRef = true;
         this.advance();
       } else if (this.check('KEYWORD') && this.peek().value === 'BYVAL') {
+        currentByRef = false;
         this.advance();
       }
 
@@ -832,7 +832,7 @@ export class Parser {
         arrayElementType = this.parseDataType();
       }
 
-      parameters.push({ name, type, byRef, arrayElementType });
+      parameters.push({ name, type, byRef: currentByRef, arrayElementType });
 
       if (this.check('COMMA')) {
         this.advance();
@@ -1033,7 +1033,7 @@ export class Parser {
       return {
         type: 'Literal',
         value: token.value,
-        dataType: 'STRING',
+        dataType: token.value.length === 1 ? 'CHAR' : 'STRING',
         line: token.line
       };
     }
