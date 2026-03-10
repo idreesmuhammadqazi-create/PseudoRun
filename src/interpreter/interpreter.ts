@@ -405,15 +405,37 @@ export class Interpreter {
       // Type conversion based on variable type
       let value: any;
       switch (variable.type) {
-        case 'INTEGER':
-          value = parseInt(input) || 0;
+        case 'INTEGER': {
+          const trimmed = input.trim();
+          if (!/^-?\d+$/.test(trimmed)) {
+            throw new RuntimeError(`Type mismatch: Cannot assign STRING value to INTEGER variable '${varName}'`, node.line);
+          }
+          value = parseInt(trimmed, 10);
           break;
-        case 'REAL':
-          value = parseFloat(input) || 0.0;
+        }
+        case 'REAL': {
+          const trimmed = input.trim();
+          if (!/^-?\d+(\.\d+)?([eE][+-]?\d+)?$/.test(trimmed)) {
+            throw new RuntimeError(`Type mismatch: Cannot assign STRING value to REAL variable '${varName}'`, node.line);
+          }
+          value = parseFloat(trimmed);
           break;
-        case 'BOOLEAN':
-          value = input.toLowerCase() === 'true';
+        }
+        case 'BOOLEAN': {
+          const trimmed = input.trim().toLowerCase();
+          if (trimmed !== 'true' && trimmed !== 'false') {
+            throw new RuntimeError(`Invalid BOOLEAN input '${input}' for variable '${varName}'. Expected TRUE or FALSE.`, node.line);
+          }
+          value = trimmed === 'true';
           break;
+        }
+        case 'CHAR': {
+          if (input.length !== 1) {
+            throw new RuntimeError(`Type mismatch: Cannot assign STRING value to CHAR variable '${varName}'`, node.line);
+          }
+          value = input;
+          break;
+        }
         default:
           value = input;
       }
@@ -455,15 +477,37 @@ export class Interpreter {
       // Type conversion based on element type
       let value: any;
       switch (elementType) {
-        case 'INTEGER':
-          value = parseInt(input) || 0;
+        case 'INTEGER': {
+          const trimmed = input.trim();
+          if (!/^-?\d+$/.test(trimmed)) {
+            throw new RuntimeError(`Type mismatch: Cannot assign STRING value to INTEGER variable '${promptName}'`, node.line);
+          }
+          value = parseInt(trimmed, 10);
           break;
-        case 'REAL':
-          value = parseFloat(input) || 0.0;
+        }
+        case 'REAL': {
+          const trimmed = input.trim();
+          if (!/^-?\d+(\.\d+)?([eE][+-]?\d+)?$/.test(trimmed)) {
+            throw new RuntimeError(`Type mismatch: Cannot assign STRING value to REAL variable '${promptName}'`, node.line);
+          }
+          value = parseFloat(trimmed);
           break;
-        case 'BOOLEAN':
-          value = input.toLowerCase() === 'true';
+        }
+        case 'BOOLEAN': {
+          const trimmed = input.trim().toLowerCase();
+          if (trimmed !== 'true' && trimmed !== 'false') {
+            throw new RuntimeError(`Invalid BOOLEAN input '${input}' for variable '${promptName}'. Expected TRUE or FALSE.`, node.line);
+          }
+          value = trimmed === 'true';
           break;
+        }
+        case 'CHAR': {
+          if (input.length !== 1) {
+            throw new RuntimeError(`Type mismatch: Cannot assign STRING value to CHAR variable '${promptName}'`, node.line);
+          }
+          value = input;
+          break;
+        }
         default:
           value = input;
       }
