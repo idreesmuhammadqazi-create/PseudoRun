@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, placeholder, lineNumbers } from '@codemirror/view';
 import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
-import { syntaxHighlighting, HighlightStyle } from '@codemirror/language';
+import { syntaxHighlighting, HighlightStyle, indentService, indentOnInput, IndentContext, indentUnit } from '@codemirror/language';
 import { tags as t } from '@lezer/highlight';
 import { autocompletion, CompletionContext, acceptCompletion } from '@codemirror/autocomplete';
 import styles from './Editor.module.css';
@@ -95,6 +95,48 @@ function igcseAutocomplete(context: CompletionContext) {
   };
 }
 
+// Keywords that open a new indented block (line must end with or contain these)
+const BLOCK_OPEN_END = /\b(THEN|DO|REPEAT|OF)\s*$/i;
+const BLOCK_OPEN_START = /^\s*(PROCEDURE|FUNCTION|FOR\b)/i;
+
+// Keywords that close a block (line starts with these — should be dedented)
+const BLOCK_CLOSE = /^\s*(ENDIF|ENDWHILE|ENDCASE|ENDPROCEDURE|ENDFUNCTION|NEXT\b|UNTIL\b|ELSE\b|OTHERWISE\b)/i;
+
+const igcseIndentService = indentService.of((context: IndentContext, pos: number) => {
+  const line = context.lineAt(pos, -1);
+  const lineText = line.text;
+
+  // Find previous non-empty line
+  let prevLineText = '';
+  let checkPos = line.from - 1;
+  while (checkPos > 0) {
+    const prevLine = context.lineAt(checkPos, -1);
+    if (prevLine.text.trim().length > 0) {
+      prevLineText = prevLine.text;
+      break;
+    }
+    checkPos = prevLine.from - 1;
+  }
+
+  // Get indentation of previous non-empty line
+  const prevIndentMatch = prevLineText.match(/^(\s*)/);
+  const prevIndent = prevIndentMatch ? prevIndentMatch[1].length : 0;
+  const indentUnitSize = context.unit;
+
+  // If the current line starts with a block-closing keyword, dedent it
+  if (BLOCK_CLOSE.test(lineText)) {
+    return Math.max(0, prevIndent - indentUnitSize);
+  }
+
+  // If the previous line opens a block, indent current line
+  if (BLOCK_OPEN_END.test(prevLineText) || BLOCK_OPEN_START.test(prevLineText)) {
+    return prevIndent + indentUnitSize;
+  }
+
+  // Otherwise match previous line's indentation
+  return prevIndent;
+});
+
 // Custom syntax highlighting for IGCSE/A-LEVELS pseudocode
 const igcseHighlightStyle = HighlightStyle.define([
   { tag: t.keyword, color: '#0066cc', fontWeight: 'bold' },
@@ -117,6 +159,9 @@ export default function Editor({ value, onChange, readOnly = false, viewingUserE
       extensions: [
         lineNumbers(),
         history(),
+        igcseIndentService,
+        indentOnInput(),
+        indentUnit.of("    "),
         keymap.of([{ key: 'Tab', run: acceptCompletion }, indentWithTab, ...defaultKeymap, ...historyKeymap]),
         placeholder('// Start typing your IGCSE/A-LEVELS pseudocode here\n// Press Ctrl+Space for autocomplete suggestions'),
         syntaxHighlighting(igcseHighlightStyle),
