@@ -117,7 +117,7 @@ export default function Editor({ value, onChange, readOnly = false, viewingUserE
       extensions: [
         lineNumbers(),
         history(),
-        keymap.of([{ key: 'Enter', run: acceptCompletion }, indentWithTab, ...defaultKeymap, ...historyKeymap]),
+        keymap.of([{ key: 'Tab', run: acceptCompletion }, indentWithTab, ...defaultKeymap, ...historyKeymap]),
         placeholder('// Start typing your IGCSE/A-LEVELS pseudocode here\n// Press Ctrl+Space for autocomplete suggestions'),
         syntaxHighlighting(igcseHighlightStyle),
         autocompletion({ override: [igcseAutocomplete] }),
