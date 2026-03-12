@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, placeholder, lineNumbers } from '@codemirror/view';
-import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
+import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
 import { syntaxHighlighting, HighlightStyle } from '@codemirror/language';
 import { tags as t } from '@lezer/highlight';
-import { autocompletion, CompletionContext } from '@codemirror/autocomplete';
+import { autocompletion, CompletionContext, acceptCompletion } from '@codemirror/autocomplete';
 import styles from './Editor.module.css';
 
 interface EditorProps {
@@ -117,7 +117,7 @@ export default function Editor({ value, onChange, readOnly = false, viewingUserE
       extensions: [
         lineNumbers(),
         history(),
-        keymap.of([...defaultKeymap, ...historyKeymap]),
+        keymap.of([{ key: 'Tab', run: acceptCompletion }, indentWithTab, ...defaultKeymap, ...historyKeymap]),
         placeholder('// Start typing your IGCSE/A-LEVELS pseudocode here\n// Press Ctrl+Space for autocomplete suggestions'),
         syntaxHighlighting(igcseHighlightStyle),
         autocompletion({ override: [igcseAutocomplete] }),
