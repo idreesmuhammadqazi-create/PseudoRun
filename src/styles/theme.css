@@ -56,9 +56,9 @@
   --dropdown-hover: #f8fafc;
   --dropdown-shadow: rgba(15, 23, 42, 0.1);
 
-  --landing-gradient-start: #6366f1;
-  --landing-gradient-mid: #8b5cf6;
-  --landing-gradient-end: #a855f7;
+  --landing-gradient-start: #09090b;
+  --landing-gradient-mid: #09090b;
+  --landing-gradient-end: #09090b;
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -125,9 +125,9 @@
   --dropdown-hover: #334155;
   --dropdown-shadow: rgba(0, 0, 0, 0.5);
 
-  --landing-gradient-start: #6366f1;
-  --landing-gradient-mid: #8b5cf6;
-  --landing-gradient-end: #a855f7;
+  --landing-gradient-start: #09090b;
+  --landing-gradient-mid: #09090b;
+  --landing-gradient-end: #09090b;
 
   /* Shadows in dark mode */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
