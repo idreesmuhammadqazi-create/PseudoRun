@@ -138,13 +138,14 @@ const igcseIndentService = indentService.of((context: IndentContext, pos: number
 });
 
 // Custom syntax highlighting for IGCSE/A-LEVELS pseudocode
+// Colors chosen to work on both light and dark backgrounds
 const igcseHighlightStyle = HighlightStyle.define([
-  { tag: t.keyword, color: '#0066cc', fontWeight: 'bold' },
-  { tag: t.typeName, color: '#008800' },
-  { tag: t.operator, color: '#cc6600' },
-  { tag: t.comment, color: '#999999', fontStyle: 'italic' },
-  { tag: t.string, color: '#cc0000' },
-  { tag: t.number, color: '#9933cc' },
+  { tag: t.keyword, color: '#7c3aed', fontWeight: 'bold' },
+  { tag: t.typeName, color: '#0891b2' },
+  { tag: t.operator, color: '#d97706' },
+  { tag: t.comment, color: '#6b7280', fontStyle: 'italic' },
+  { tag: t.string, color: '#059669' },
+  { tag: t.number, color: '#c026d3' },
 ]);
 
 export default function Editor({ value, onChange, readOnly = false, viewingUserEmail }: EditorProps) {
@@ -187,18 +188,18 @@ export default function Editor({ value, onChange, readOnly = false, viewingUserE
           '.cm-content': {
             fontFamily: 'Consolas, Monaco, "Courier New", monospace',
             padding: '10px 0',
-            backgroundColor: readOnly ? '#f9f9f9' : 'transparent',
+            backgroundColor: 'transparent',
           },
           '.cm-line': {
             padding: '0 8px',
             lineHeight: '1.5',
           },
           '.cm-gutters': {
-            backgroundColor: readOnly ? '#eeeeee' : '#f5f5f5',
+            backgroundColor: 'transparent',
             border: 'none',
           },
           '.cm-activeLineGutter': {
-            backgroundColor: '#e0e0e0',
+            backgroundColor: 'transparent',
           },
         }),
       ],

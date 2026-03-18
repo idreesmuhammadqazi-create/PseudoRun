@@ -27,7 +27,7 @@ export default function DebugControls({
   return (
     <div className={styles.container}>
       <div className={styles.status}>
-        {isPaused ? '⏸️ Paused' : '▶️ Running'}
+        {isPaused ? 'Paused' : 'Running'}
       </div>
 
       <div className={styles.buttons}>
@@ -37,7 +37,7 @@ export default function DebugControls({
           disabled={!isPaused}
           title="Step to next line (F10)"
         >
-          ⏭️ Step
+          Step
         </button>
 
         <button
@@ -46,7 +46,7 @@ export default function DebugControls({
           disabled={!isPaused}
           title="Continue execution (F5)"
         >
-          ▶️ Continue
+          Continue
         </button>
 
         <button
@@ -54,7 +54,7 @@ export default function DebugControls({
           onClick={onStop}
           title="Stop debugging"
         >
-          ⏹️ Stop
+          Stop
         </button>
       </div>
     </div>

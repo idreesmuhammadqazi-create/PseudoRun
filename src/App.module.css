@@ -11,60 +11,44 @@
   display: flex;
   flex-direction: row;
   flex: 1;
-  gap: 16px;
-  padding: 16px;
+  gap: 1px;
+  padding: 0;
   overflow: hidden;
+  background-color: var(--border-color);
 }
 
 .leftPanel {
-  flex: 1;
+  flex: 3;
   display: flex;
   flex-direction: column;
   background-color: var(--editor-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: box-shadow 0.3s ease;
-}
-
-.leftPanel:hover {
-  box-shadow: var(--shadow-lg);
+  min-width: 0;
 }
 
 .rightPanel {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1px;
   overflow: hidden;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .splitView {
-    gap: 12px;
-    padding: 12px;
-  }
+  min-width: 0;
 }
 
 @media (max-width: 768px) {
   .splitView {
     flex-direction: column;
-    gap: 12px;
-    padding: 12px;
+    gap: 1px;
+    padding: 0;
   }
 
-  .leftPanel,
+  .leftPanel {
+    flex: 3;
+    min-height: 0;
+  }
+
   .rightPanel {
-    flex: none;
-    height: 50vh;
-  }
-}
-
-@media (max-width: 480px) {
-  .splitView {
-    padding: 8px;
-    gap: 8px;
+    flex: 2;
+    min-height: 0;
   }
 }

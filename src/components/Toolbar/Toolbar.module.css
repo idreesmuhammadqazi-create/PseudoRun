@@ -1,128 +1,188 @@
+/* ── Toolbar layout ── */
 .toolbar {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
+  gap: 6px;
+  padding: 8px 12px;
   background-color: var(--bg-card);
   border-bottom: 1px solid var(--border-color);
-  box-shadow: var(--shadow-sm);
   flex-wrap: wrap;
 }
 
+/* ── Base button ── */
 .button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: var(--radius-md);
+  padding: 0 12px;
+  height: 32px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  height: 40px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 13px;
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  box-shadow: var(--shadow-sm);
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  transition: background 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
 }
 
 .button:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.button:active:not(:disabled) {
-  transform: translateY(0);
+  background-color: var(--button-hover);
+  border-color: var(--border-light);
 }
 
 .button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
+/* ── Run button ── */
 .runButton {
   composes: button;
   background-color: var(--run-button-bg);
-  color: var(--run-button-text);
+  color: #ffffff;
+  border-color: transparent;
+  font-weight: 600;
 }
 
 .runButton:hover:not(:disabled) {
   background-color: var(--run-button-hover);
+  border-color: transparent;
 }
 
 .runButton:disabled {
   background-color: var(--border-color);
+  color: var(--text-tertiary);
 }
 
+/* ── Debug button ── */
 .debugButton {
   composes: button;
   background-color: var(--debug-button-bg);
-  color: white;
+  color: #ffffff;
+  border-color: transparent;
 }
 
 .debugButton:hover:not(:disabled) {
   background-color: var(--debug-button-hover);
+  border-color: transparent;
 }
 
 .debugButton:disabled {
   background-color: var(--border-color);
+  color: var(--text-tertiary);
 }
 
+/* ── Secondary button (default) ── */
 .secondaryButton {
   composes: button;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: 1px solid var(--border-color);
 }
 
-.secondaryButton:hover {
+.secondaryButton:hover:not(:disabled) {
   background-color: var(--button-hover);
-  border-color: var(--border-focus);
+  border-color: var(--border-light);
 }
 
-.navLink {
-  text-decoration: none;
+/* ── Separator ── */
+.separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-color);
+  flex-shrink: 0;
+  margin: 0 2px;
 }
 
+/* ── Report bug button — same as secondary ── */
+.reportBugButton {
+  composes: button;
+}
+
+.reportBugButton:hover:not(:disabled) {
+  background-color: var(--button-hover);
+  border-color: var(--border-light);
+}
+
+/* ── Theme toggle ── */
+.themeToggle {
+  composes: button;
+  margin-left: auto;
+}
+
+.themeToggle:hover:not(:disabled) {
+  background-color: var(--button-hover);
+  border-color: var(--border-light);
+}
+
+/* ── User section ── */
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.userName {
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 0;
+  white-space: nowrap;
+}
+
+/* ── Logout / Login button ── */
+.logoutButton {
+  composes: button;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.logoutButton:hover:not(:disabled) {
+  background-color: var(--button-hover);
+  border-color: var(--border-light);
+}
+
+/* ── Hidden file input ── */
 .fileInput {
   display: none;
 }
 
+/* ── Examples dropdown container ── */
 .examplesContainer {
   position: relative;
 }
 
+/* ── Dropdown ── */
 .dropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 4px);
   left: 0;
   background-color: var(--dropdown-bg);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  border-radius: 8px;
   box-shadow: var(--shadow-lg);
   min-width: 240px;
   max-width: 320px;
   z-index: 1000;
   max-height: 400px;
   overflow-y: auto;
-  animation: dropdownFadeIn 0.2s ease-out;
+  animation: dropdownFade 0.15s ease;
 }
 
-@keyframes dropdownFadeIn {
+@keyframes dropdownFade {
   from {
     opacity: 0;
-    transform: translateY(-8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 .dropdownItem {
-  padding: 12px 16px;
+  padding: 10px 14px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-primary);
-  transition: all 0.15s ease;
+  transition: background 0.1s ease;
   border-bottom: 1px solid var(--border-light);
 }
 
@@ -132,167 +192,33 @@
 
 .dropdownItem:hover {
   background-color: var(--dropdown-hover);
-  padding-left: 20px;
 }
 
 .dropdownItem:first-child {
-  border-top-left-radius: var(--radius-md);
-  border-top-right-radius: var(--radius-md);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .dropdownItem:last-child {
-  border-bottom-left-radius: var(--radius-md);
-  border-bottom-right-radius: var(--radius-md);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
-.programName {
-  margin-left: 16px;
-  padding: 10px 16px;
-  background-color: var(--bg-tertiary);
-  border-radius: var(--radius-md);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border: 1px solid var(--border-color);
-}
-
-.themeToggle {
-  composes: button;
-  background-color: var(--button-bg);
-  color: var(--text-primary);
-  font-size: 20px;
-  padding: 10px 12px;
-  margin-left: auto;
-  border: 1px solid var(--border-color);
-  min-width: 44px;
-}
-
-.themeToggle:hover {
-  background-color: var(--button-hover);
-  border-color: var(--border-focus);
-}
-
-.userSection {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.userName {
-  font-size: 14px;
-  color: var(--text-primary);
-  font-weight: 600;
-  padding: 10px 16px;
-  background-color: var(--bg-tertiary);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-}
-
-.logoutButton {
-  composes: button;
-  background-color: #ef4444;
-  color: #ffffff;
-  padding: 10px 20px;
-}
-
-.logoutButton:hover {
-  background-color: #dc2626;
-}
-
-.reportBugButton {
-  composes: button;
-  background-color: #f59e0b;
-  color: white;
-  font-size: 13px;
-  padding: 8px 16px;
-  gap: 6px;
-}
-
-.reportBugButton:hover {
-  background-color: #d97706;
-}
-
-.fazierBadge {
-  display: inline-flex;
-  align-items: center;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0.85;
-  line-height: 0;
-}
-
-.fazierBadge:hover {
-  transform: translateY(-1px);
-  opacity: 1;
-}
-
-.fazierBadge img {
-  display: block;
-  width: 250px;
-  height: 54px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-}
-
-.linktreeBadge {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 16px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  gap: 6px;
-}
-
-.linktreeBadge:hover {
-  background-color: var(--button-hover);
-  border-color: var(--border-focus);
-  transform: translateY(-1px);
-}
-
-.coffeeSupportButton {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 20px;
-  background-color: #3B82F6;
-  color: white;
-  border: 1px solid #2563EB;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  gap: 6px;
-}
-
-.coffeeSupportButton:hover {
-  background-color: #2563EB;
-  transform: translateY(-1px);
-  border-color: #1D4ED8;
-}
-
-/* Responsive Design */
+/* ── Responsive ── */
 @media (max-width: 768px) {
   .toolbar {
-    padding: 12px 16px;
-    gap: 8px;
+    padding: 6px 8px;
+    gap: 4px;
   }
 
   .button {
-    padding: 8px 16px;
-    font-size: 13px;
-    height: 36px;
+    padding: 0 8px;
+    font-size: 12px;
+    height: 28px;
+  }
+
+  .separator {
+    display: none;
   }
 
   .userName {
@@ -302,28 +228,15 @@
   .themeToggle {
     margin-left: 0;
   }
-
-  .fazierBadge {
-    display: none;
-  }
-
-  .reportBugButton {
-    display: none;
-  }
 }
 
-/* Accessibility - Focus States */
+/* ── Accessibility — Focus States ── */
 .button:focus-visible {
   outline: 2px solid var(--border-focus);
   outline-offset: 2px;
 }
 
-.coffeeSupportButton:focus-visible {
-  outline: 2px solid var(--border-focus);
-  outline-offset: 2px;
-}
-
-/* High Contrast Mode */
+/* ── High Contrast Mode ── */
 @media (prefers-contrast: high) {
   .button {
     border: 2px solid currentColor;

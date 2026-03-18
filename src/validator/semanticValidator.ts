@@ -63,7 +63,7 @@ function validateNode(node: ASTNode, scope: VariableScope): ValidationError[] {
 
   switch (node.type) {
     case 'Declare':
-      // Declarations are already processed in first pass
+      scope.processDeclareStatement(node as DeclareNode);
       break;
 
     case 'Constant':
