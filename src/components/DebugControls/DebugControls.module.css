@@ -1,20 +1,24 @@
 .container {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   padding: 6px 12px;
   background-color: var(--bg-card);
-  border-bottom: 1px solid var(--debug-button-bg);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .status {
   font-size: 12px;
   font-weight: 600;
-  color: var(--text-primary);
-  padding: 4px 10px;
+  color: var(--text-secondary);
+  padding: 0 10px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
   background-color: var(--bg-tertiary);
-  border-radius: 4px;
-  font-family: monospace;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
 }
 
 .buttons {
@@ -25,51 +29,32 @@
 .stepButton,
 .continueButton,
 .stopButton {
-  height: 28px;
-  padding: 0 14px;
-  font-size: 12px;
-  font-weight: 600;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
   border-radius: 6px;
-  border: none;
+  border: 1px solid var(--border-color);
   cursor: pointer;
-  transition: background 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  transition: background 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
 }
 
-.stepButton {
-  background-color: #3b82f6;
-  color: white;
+.stepButton:hover:not(:disabled),
+.continueButton:hover:not(:disabled),
+.stopButton:hover {
+  background-color: var(--button-hover);
+  border-color: var(--border-light);
 }
 
-.stepButton:hover:not(:disabled) {
-  background-color: #2563eb;
-}
-
-.stepButton:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.continueButton {
-  background-color: var(--run-button-bg);
-  color: white;
-}
-
-.continueButton:hover:not(:disabled) {
-  background-color: var(--run-button-hover);
-}
-
+.stepButton:disabled,
 .continueButton:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-}
-
-.stopButton {
-  background-color: #ef4444;
-  color: white;
-}
-
-.stopButton:hover {
-  background-color: #dc2626;
 }
 
 /* Accessibility */
@@ -84,6 +69,8 @@
 @media (max-width: 768px) {
   .container {
     flex-wrap: wrap;
+    padding: 6px 8px;
+    gap: 4px;
   }
 
   .buttons {
@@ -94,5 +81,8 @@
   .continueButton,
   .stopButton {
     flex: 1;
+    height: 28px;
+    padding: 0 8px;
+    font-size: 12px;
   }
 }
