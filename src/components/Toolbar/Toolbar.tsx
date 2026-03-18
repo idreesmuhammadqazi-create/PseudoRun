@@ -111,6 +111,7 @@ export default function Toolbar({
 
   return (
     <div className={styles.toolbar}>
+      {/* ── Execution group ── */}
       <button
         className={styles.runButton}
         onClick={onRun}
@@ -124,19 +125,18 @@ export default function Toolbar({
         onClick={onDebug}
         disabled={isRunning}
       >
-        🐛 Debug
+        Debug
       </button>
 
+      <div className={styles.separator} />
+
+      {/* ── File operations group ── */}
       <button className={styles.secondaryButton} onClick={onClear}>
         Clear
       </button>
 
       <button className={styles.secondaryButton} onClick={onDownload}>
         Download
-      </button>
-
-      <button className={styles.secondaryButton} onClick={onExport}>
-        📤 Export
       </button>
 
       <button className={styles.secondaryButton} onClick={handleUploadClick}>
@@ -150,6 +150,10 @@ export default function Toolbar({
         onChange={handleFileChange}
         className={styles.fileInput}
       />
+
+      <button className={styles.secondaryButton} onClick={onExport}>
+        Export
+      </button>
 
       <div className={styles.examplesContainer} ref={examplesRef}>
         <button
@@ -175,39 +179,34 @@ export default function Toolbar({
         )}
       </div>
 
-      <button 
-        className={styles.secondaryButton} 
+      <div className={styles.separator} />
+
+      {/* ── Learning group ── */}
+      <button
+        className={styles.secondaryButton}
         onClick={onOpenTutorial}
         title="Interactive Tutorial"
       >
-        📚 Tutorial
+        Tutorial
       </button>
 
-      <button 
-        className={styles.secondaryButton} 
+      <button
+        className={styles.secondaryButton}
         onClick={onOpenSyntaxReference}
         disabled={examModeActive}
         title="Syntax Reference"
       >
-        📖 Syntax
+        Syntax
       </button>
 
-      <button 
-        className={styles.secondaryButton} 
+      <button
+        className={styles.secondaryButton}
         onClick={onOpenPracticeProblems}
         disabled={examModeActive}
         title="Practice Problems"
       >
-        🎯 Practice
+        Practice
       </button>
-
-      {/* <button 
-        className={styles.secondaryButton} 
-        onClick={onOpenLearningTools}
-        title="Code Analysis & Tips"
-      >
-        💡 Analyze
-      </button> */}
 
       <button
         className={styles.secondaryButton}
@@ -215,39 +214,48 @@ export default function Toolbar({
         disabled={examModeActive}
         title="Start Exam Mode"
       >
-        ⏱️ Exam Mode
+        Exam
       </button>
 
+      <div className={styles.separator} />
+
+      {/* ── Save / share group ── */}
       {!isGuestMode && currentUser?.emailVerified && (
         <>
           <button className={styles.secondaryButton} onClick={onSaveAs}>
-            💾 Save As
+            Save
           </button>
 
           <button className={styles.secondaryButton} onClick={onShare}>
-            🔗 Share
+            Share
           </button>
 
           <button className={styles.secondaryButton} onClick={onOpenLibrary}>
-            📂 My Programs
+            Programs
           </button>
+
+          <div className={styles.separator} />
         </>
       )}
 
+      {/* ── Bug report ── */}
       <button
         className={styles.reportBugButton}
         onClick={handleReportBug}
         title="Report a Bug"
       >
-        🐛 Report Bug
+        Bug Report
       </button>
 
+      <div className={styles.separator} />
+
+      {/* ── Right-aligned: theme, user ── */}
       <button
         className={styles.themeToggle}
         onClick={toggleTheme}
         title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       >
-        {theme === 'light' ? '🌙' : '☀️'}
+        {theme === 'light' ? 'Dark' : 'Light'}
       </button>
 
       <div className={styles.userSection}>
@@ -258,39 +266,6 @@ export default function Toolbar({
           {isGuestMode ? 'Login' : 'Logout'}
         </button>
       </div>
-
-      <a
-        href="https://linktr.ee/pseudorun"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.linktreeBadge}
-      >
-        🔗 Connect
-      </a>
-
-      <a
-        href="https://fazier.com/launches/pseudorun"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.fazierBadge}
-      >
-        <img
-          src={`https://fazier.com/api/v1/public/badges/embed_image.svg?launch_id=5789&badge_type=monthly&theme=${theme === 'dark' ? 'dark' : 'light'}`}
-          width={250}
-          height={54}
-          alt="Fazier badge"
-        />
-      </a>
-
-      <a
-        href="https://crypt0phage.gumroad.com/coffee"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.coffeeSupportButton}
-        title="Buy us a coffee to support PseudoRun"
-      >
-        ☕ Buy Me a Coffee
-      </a>
 
       {showBugReportModal && (
         <BugReportModal onClose={() => setShowBugReportModal(false)} />

@@ -1,71 +1,38 @@
 .container {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 14px 20px;
+  gap: 8px;
+  padding: 6px 12px;
   background-color: var(--bg-card);
-  border-bottom: 2px solid var(--debug-button-bg);
-  box-shadow: var(--shadow-md);
-  animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  border-bottom: 1px solid var(--debug-button-bg);
 }
 
 .status {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   color: var(--text-primary);
-  padding: 8px 16px;
+  padding: 4px 10px;
   background-color: var(--bg-tertiary);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: monospace;
 }
 
 .buttons {
   display: flex;
-  gap: 10px;
-  flex: 1;
+  gap: 6px;
 }
 
 .stepButton,
 .continueButton,
 .stopButton {
-  padding: 10px 20px;
+  height: 28px;
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
   border: none;
-  border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: var(--shadow-sm);
-}
-
-.stepButton:hover:not(:disabled),
-.continueButton:hover:not(:disabled),
-.stopButton:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.stepButton:active:not(:disabled),
-.continueButton:active:not(:disabled),
-.stopButton:active {
-  transform: translateY(0);
+  transition: background 0.15s ease;
 }
 
 .stepButton {
@@ -78,11 +45,8 @@
 }
 
 .stepButton:disabled {
-  background-color: var(--border-color);
-  color: var(--text-tertiary);
+  opacity: 0.4;
   cursor: not-allowed;
-  opacity: 0.6;
-  transform: none;
 }
 
 .continueButton {
@@ -95,11 +59,8 @@
 }
 
 .continueButton:disabled {
-  background-color: var(--border-color);
-  color: var(--text-tertiary);
+  opacity: 0.4;
   cursor: not-allowed;
-  opacity: 0.6;
-  transform: none;
 }
 
 .stopButton {
@@ -111,32 +72,27 @@
   background-color: #dc2626;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    padding: 12px 16px;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .buttons {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .stepButton,
-  .continueButton,
-  .stopButton {
-    flex: 1;
-    padding: 10px 12px;
-    font-size: 13px;
-  }
-}
-
 /* Accessibility */
 .stepButton:focus-visible,
 .continueButton:focus-visible,
 .stopButton:focus-visible {
   outline: 2px solid var(--border-focus);
   outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+  }
+
+  .buttons {
+    width: 100%;
+  }
+
+  .stepButton,
+  .continueButton,
+  .stopButton {
+    flex: 1;
+  }
 }
