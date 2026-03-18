@@ -806,9 +806,10 @@ export class Parser {
       return parameters;
     }
 
-    let currentByRef = false; // default is BYVAL
+    let currentByRef: boolean;
 
     do {
+      currentByRef = false; // Reset to default BYVAL for each parameter
       if (this.check('KEYWORD') && this.peek().value === 'BYREF') {
         currentByRef = true;
         this.advance();
