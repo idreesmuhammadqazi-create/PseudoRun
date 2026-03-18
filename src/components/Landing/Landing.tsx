@@ -1,6 +1,6 @@
 /**
- * Landing Page
- * Shown to unauthenticated users
+ * Landing Page — "Midnight Workshop" redesign
+ * Warm dark aesthetic, left-aligned hero, split IDE demo
  */
 
 import { useState } from 'react';
@@ -20,10 +20,12 @@ export default function Landing() {
     <div className={styles.container}>
       {/* Nav */}
       <nav className={styles.nav}>
-        <span className={styles.logo}>PseudoRun</span>
+        <span className={styles.logo}>
+          PseudoRun<span className={styles.cursor}>_</span>
+        </span>
         <button
           onClick={() => setShowAuth(true)}
-          className={styles.signInLink}
+          className={styles.signInBtn}
         >
           Sign in
         </button>
@@ -31,122 +33,148 @@ export default function Landing() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <span className={styles.label}>Free &amp; open for IGCSE students</span>
+        <span className={styles.label}>for IGCSE Computer Science</span>
         <h1 className={styles.heading}>
-          Write pseudocode.{'\n'}Run it instantly.
+          {'The pseudocode editor\nthat actually runs your code.'}
         </h1>
         <p className={styles.subtext}>
-          A free editor built for Cambridge IGCSE Computer Science.
-          Write, run, and debug pseudocode — no setup, no ads, no paywalls.
+          Write Cambridge IGCSE pseudocode in a real editor with syntax
+          highlighting, step-through debugging, and instant execution. Free
+          forever.
         </p>
         <div className={styles.buttons}>
           <button
             onClick={() => setShowAuth(true)}
             className={styles.primaryBtn}
           >
-            Open editor
+            Open editor &rarr;
           </button>
-          <button onClick={handleTryNow} className={styles.secondaryBtn}>
-            Try without account
+          <button onClick={handleTryNow} className={styles.ghostBtn}>
+            Try without signing up
           </button>
         </div>
       </section>
 
-      {/* Code Preview */}
-      <section className={styles.codePreview}>
-        <div className={styles.codeWindow}>
+      {/* Split Demo */}
+      <section className={styles.demo}>
+        <div className={styles.demoContainer}>
           <div className={styles.windowChrome}>
             <span className={styles.dot} data-color="red" />
             <span className={styles.dot} data-color="yellow" />
             <span className={styles.dot} data-color="green" />
           </div>
-          <pre className={styles.codeBlock}>
-            <code>
-              <span className={styles.keyword}>DECLARE</span>{' '}
-              <span className={styles.variable}>Count</span>{' '}
-              <span className={styles.punctuation}>:</span>{' '}
-              <span className={styles.type}>INTEGER</span>
-              {'\n'}
-              <span className={styles.keyword}>FOR</span>{' '}
-              <span className={styles.variable}>Count</span>{' '}
-              <span className={styles.punctuation}>←</span>{' '}
-              <span className={styles.number}>1</span>{' '}
-              <span className={styles.keyword}>TO</span>{' '}
-              <span className={styles.number}>10</span>
-              {'\n'}
-              {'    '}
-              <span className={styles.keyword}>IF</span>{' '}
-              <span className={styles.variable}>Count</span>{' '}
-              <span className={styles.keyword}>MOD</span>{' '}
-              <span className={styles.number}>2</span>{' '}
-              <span className={styles.punctuation}>=</span>{' '}
-              <span className={styles.number}>0</span>{' '}
-              <span className={styles.keyword}>THEN</span>
-              {'\n'}
-              {'        '}
-              <span className={styles.keyword}>OUTPUT</span>{' '}
-              <span className={styles.variable}>Count</span>
-              <span className={styles.punctuation}>,</span>{' '}
-              <span className={styles.string}>" is even"</span>
-              {'\n'}
-              {'    '}
-              <span className={styles.keyword}>ENDIF</span>
-              {'\n'}
-              <span className={styles.keyword}>NEXT</span>{' '}
-              <span className={styles.variable}>Count</span>
-            </code>
-          </pre>
+          <div className={styles.panels}>
+            {/* Editor Panel */}
+            <div className={styles.panel}>
+              <div className={styles.panelTab}>editor.pseudo</div>
+              <pre className={styles.codeBlock}>
+                <code>
+                  <span className={styles.lineNum}>1</span>
+                  <span className={styles.keyword}>DECLARE</span>{' '}
+                  <span className={styles.variable}>Count</span>{' '}
+                  <span className={styles.punctuation}>:</span>{' '}
+                  <span className={styles.type}>INTEGER</span>
+                  {'\n'}
+                  <span className={styles.lineNum}>2</span>
+                  <span className={styles.keyword}>FOR</span>{' '}
+                  <span className={styles.variable}>Count</span>{' '}
+                  <span className={styles.punctuation}>&larr;</span>{' '}
+                  <span className={styles.number}>1</span>{' '}
+                  <span className={styles.keyword}>TO</span>{' '}
+                  <span className={styles.number}>10</span>
+                  {'\n'}
+                  <span className={styles.lineNum}>3</span>
+                  {'  '}
+                  <span className={styles.keyword}>IF</span>{' '}
+                  <span className={styles.variable}>Count</span>{' '}
+                  <span className={styles.keyword}>MOD</span>{' '}
+                  <span className={styles.number}>2</span>{' '}
+                  <span className={styles.punctuation}>=</span>{' '}
+                  <span className={styles.number}>0</span>{' '}
+                  <span className={styles.keyword}>THEN</span>
+                  {'\n'}
+                  <span className={styles.lineNum}>4</span>
+                  {'    '}
+                  <span className={styles.keyword}>OUTPUT</span>{' '}
+                  <span className={styles.variable}>Count</span>
+                  <span className={styles.punctuation}>,</span>{' '}
+                  <span className={styles.string}>" is even"</span>
+                  {'\n'}
+                  <span className={styles.lineNum}>5</span>
+                  {'  '}
+                  <span className={styles.keyword}>ENDIF</span>
+                  {'\n'}
+                  <span className={styles.lineNum}>6</span>
+                  <span className={styles.keyword}>NEXT</span>{' '}
+                  <span className={styles.variable}>Count</span>
+                </code>
+              </pre>
+            </div>
+
+            {/* Output Panel */}
+            <div className={styles.panel}>
+              <div className={styles.panelTab}>output</div>
+              <pre className={styles.outputBlock}>
+                <code className={styles.outputText}>
+                  {'2 is even\n4 is even\n6 is even\n8 is even\n10 is even'}
+                </code>
+              </pre>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Features */}
       <section className={styles.features}>
-        <article className={styles.featureCard}>
-          <h3 className={styles.featureTitle}>Runs in your browser</h3>
-          <p className={styles.featureDesc}>
-            No downloads. Open the editor and start writing pseudocode immediately.
-          </p>
-        </article>
-        <article className={styles.featureCard}>
-          <h3 className={styles.featureTitle}>Built for IGCSE</h3>
-          <p className={styles.featureDesc}>
-            Aligned with Cambridge IGCSE pseudocode syntax. Practice exactly what's on the exam.
-          </p>
-        </article>
-        <article className={styles.featureCard}>
-          <h3 className={styles.featureTitle}>Step-through debugger</h3>
-          <p className={styles.featureDesc}>
-            Execute line by line. Watch variables change. Understand how your code actually works.
-          </p>
-        </article>
-        <article className={styles.featureCard}>
-          <h3 className={styles.featureTitle}>Save your work</h3>
-          <p className={styles.featureDesc}>
-            Sign in to save programs to the cloud. Access them from any device.
-          </p>
-        </article>
+        <div className={styles.divider} />
+        <div className={styles.featureGrid}>
+          <div className={styles.feature}>
+            <h3 className={styles.featureTitle}>Cambridge IGCSE syntax</h3>
+            <p className={styles.featureDesc}>
+              Follows the exact pseudocode specification. No guessing what's
+              valid.
+            </p>
+          </div>
+          <div className={styles.feature}>
+            <h3 className={styles.featureTitle}>Line-by-line debugger</h3>
+            <p className={styles.featureDesc}>
+              Step through execution, inspect variables, understand control flow.
+            </p>
+          </div>
+          <div className={styles.feature}>
+            <h3 className={styles.featureTitle}>Cloud saves</h3>
+            <p className={styles.featureDesc}>
+              Sign in to save your work. Pick up where you left off on any
+              device.
+            </p>
+          </div>
+        </div>
       </section>
 
-      {/* Why this exists */}
+      {/* Why free? */}
       <section className={styles.whySection}>
-        <h2 className={styles.whyHeading}>Why this exists</h2>
+        <h2 className={styles.whyHeading}>Why is this free?</h2>
         <p className={styles.whyText}>
-          I built PseudoRun because every pseudocode tool I found was either
-          buried in ads or locked behind a paywall. This is free, and it stays free.
+          I was tired of pseudocode tools covered in ads or locked behind
+          subscriptions. PseudoRun is a side project — it costs almost nothing to
+          run and I want students to have something that just works.
         </p>
-        <a
-          href="https://crypt0phage.gumroad.com/coffee"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.supportLink}
-        >
-          Support the project →
-        </a>
+        <p className={styles.whyText}>
+          If you find it useful,{' '}
+          <a
+            href="https://crypt0phage.gumroad.com/coffee"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.coffeeLink}
+          >
+            buy me a coffee
+          </a>{' '}
+          — it keeps the servers running.
+        </p>
       </section>
 
       {/* Footer */}
       <footer className={styles.footer}>
-        <p className={styles.footerText}>Built for students, not for profit.</p>
         <div className={styles.badges}>
           <a
             href="https://fazier.com/launches/pseudorun"
@@ -156,7 +184,18 @@ export default function Landing() {
             <img
               src="https://fazier.com/api/v1/public/badges/embed_image.svg?launch_id=5789&badge_type=monthly&theme=light"
               alt="Fazier badge"
-              height={32}
+              height={36}
+            />
+          </a>
+          <a
+            href="https://frogdr.com/pseudorun.tech?utm_source=pseudorun.tech"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://frogdr.com/pseudorun.tech/badge-white.svg"
+              alt="FrogDR badge"
+              height={36}
             />
           </a>
           <a
@@ -167,7 +206,7 @@ export default function Landing() {
             <img
               src="https://launchigniter.com/api/badge/pseudorun?theme=light"
               alt="Featured on LaunchIgniter"
-              height={32}
+              height={36}
             />
           </a>
           <a
@@ -178,10 +217,132 @@ export default function Landing() {
             <img
               src="https://twelve.tools/badge3-dark.svg"
               alt="Featured on Twelve Tools"
-              height={32}
+              height={36}
+            />
+          </a>
+          <a
+            href="https://wired.business"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://wired.business/badge3-light.svg"
+              alt="Featured on Wired Business"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://findly.tools/pseudorun?utm_source=www.pseudorun.tech"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://findly.tools/badges/findly-tools-badge-light.svg"
+              alt="Featured on findly.tools"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://ufind.best/products/pseudorun?utm_source=www.pseudorun.tech"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://ufind.best/badges/ufind-best-badge-light.svg"
+              alt="Featured on ufind.best"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://dofollow.tools"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://dofollow.tools/badge/badge_light.svg"
+              alt="Featured on Dofollow.Tools"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://launch-list.org/product/pseudorun"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://launch-list.org/badges/svg/launch_list_badge_live.svg"
+              alt="Featured on Launch List"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://turbo0.com/item/pseudorun"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://img.turbo0.com/badge-listed-light.svg"
+              alt="Featured on Turbo0"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://startupfa.me/s/pseudorun?utm_source=www.pseudorun.tech"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://startupfa.me/badges/featured-badge.webp"
+              alt="Featured on Startup Fame"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://fwfw.app/item/pseudorun"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://fwfw.app/badge-white.svg"
+              alt="Featured on FWFW"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://submithunt.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://submithunt.com/badge.png"
+              alt="Featured on SubmitHunt"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://saasfame.com/item/pseudorun"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://saasfame.com/badge-light.svg"
+              alt="Featured on SaasFame"
+              height={36}
+            />
+          </a>
+          <a
+            href="https://toolfame.com/item/pseudorun"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://toolfame.com/badge-light.svg"
+              alt="Featured on ToolFame"
+              height={36}
             />
           </a>
         </div>
+        <p className={styles.copyright}>&copy; 2025 PseudoRun</p>
       </footer>
 
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
