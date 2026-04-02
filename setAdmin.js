@@ -6,35 +6,27 @@
  */
 
 import { createRequire } from 'module';
+import { initializeApp, cert } from 'firebase-admin/app';
+import { getAuth } from 'firebase-admin/auth';
+
 const require = createRequire(import.meta.url);
+const serviceAccount = require('./service-account-key.json');
 
-import admin from 'firebase-admin';
-const serviceAccount = require('./service-account-key.json'); // You'll need to provide this
+const uid = process.argv[2];
+const isAdmin = process.argv[3] === 'true';
 
-(async () => {
-  try {
-    // Initialize with service account
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount)
-    });
+if (!uid) {
+  console.error('Please provide user UID as second argument');
+  process.exit(1);
+}
 
-    // Get UID from command line
-    const uid = process.argv[2];
-    const isAdmin = process.argv[3] === 'true';
+initializeApp({ credential: cert(serviceAccount) });
 
-    if (!uid) {
-      console.error('Please provide user UID as second argument');
-      process.exit(1);
-    }
-
-    // Set custom claims
-    const claims = { admin: isAdmin };
-    await admin.auth().setCustomUserClaims(uid, claims);
-
-    console.log(`✅ Success! ${isAdmin ? 'Granted' : 'Revoked'} admin claim for user ${uid}`);
-    console.log('User must log out and log back in to refresh token.');
-  } catch (error) {
-    console.error('❌ Error setting admin claim:', error);
-    process.exit(1);
-  }
-})();
+try {
+  await getAuth().setCustomUserClaims(uid, { admin: isAdmin });
+  console.log(`✅ Success! ${isAdmin ? 'Granted' : 'Revoked'} admin claim for user ${uid}`);
+  console.log('User must log out and log back in to refresh token.');
+} catch (error) {
+  console.error('❌ Error setting admin claim:', error);
+  process.exit(1);
+}
