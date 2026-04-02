@@ -24,6 +24,7 @@ export default function AdminDashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [userFilter, setUserFilter] = useState('');
   const [programsToShow, setProgramsToShow] = useState(20);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   // Check admin authorization
   useEffect(() => {
@@ -98,11 +99,10 @@ export default function AdminDashboard() {
     setProgramsToShow(prev => prev + 20);
   }
 
-  function handleViewProgram(program: Program) {
-    // For now, just log - will implement navigation in next step
-    console.log('View program:', program.id, program.name);
-    // TODO: Navigate to program with read-only mode
-    window.location.href = `/?programId=${program.id}&readOnly=true`;
+  function handleCopyId(program: Program) {
+    navigator.clipboard.writeText(program.id);
+    setCopiedId(program.id);
+    setTimeout(() => setCopiedId(null), 2000);
   }
 
   function formatDate(date: Date): string {
@@ -183,9 +183,9 @@ export default function AdminDashboard() {
             </div>
 
             {/* Recent Programs */}
-            <h2>Recent Programs</h2>
+            <h2>Recent Programs (Last 10)</h2>
             <div className={styles.programList}>
-              {displayedPrograms.slice(0, 20).map((program) => (
+              {programs.slice(0, 10).map((program) => (
                 <div key={program.id} className={styles.programItem}>
                   <div className={styles.programInfo}>
                     <div className={styles.programName}>{program.name}</div>
@@ -196,13 +196,13 @@ export default function AdminDashboard() {
                   </div>
                   <button
                     className={styles.viewButton}
-                    onClick={() => handleViewProgram(program)}
+                    onClick={() => handleCopyId(program)}
                   >
-                    View
+                    {copiedId === program.id ? 'Copied!' : 'Copy ID'}
                   </button>
                 </div>
               ))}
-              {displayedPrograms.length === 0 && (
+              {programs.length === 0 && (
                 <div className={styles.noResults}>No programs found</div>
               )}
             </div>
@@ -250,9 +250,9 @@ export default function AdminDashboard() {
                   </div>
                   <button
                     className={styles.viewButton}
-                    onClick={() => handleViewProgram(program)}
+                    onClick={() => handleCopyId(program)}
                   >
-                    View
+                    {copiedId === program.id ? 'Copied!' : 'Copy ID'}
                   </button>
                 </div>
               ))}
@@ -262,7 +262,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Load More Button */}
-            {displayedPrograms.length < programs.length && programs.length > programsToShow && (
+            {!searchTerm && !userFilter && programs.length > programsToShow && (
               <button
                 className={styles.loadMoreButton}
                 onClick={handleLoadMore}
