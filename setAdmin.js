@@ -5,7 +5,10 @@
  * Usage: node setAdmin.js <USER_UID> <true|false>
  */
 
-const admin = require('firebase-admin');
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+import admin from 'firebase-admin';
 const serviceAccount = require('./service-account-key.json'); // You'll need to provide this
 
 (async () => {
