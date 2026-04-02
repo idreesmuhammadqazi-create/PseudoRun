@@ -12,7 +12,8 @@ import {
   onAuthStateChanged,
   signInWithPopup,
   updateProfile,
-  sendEmailVerification
+  sendEmailVerification,
+  getIdTokenResult
 } from 'firebase/auth';
 import { auth, googleProvider } from '../config/firebase';
 
@@ -135,22 +136,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
-  // Check if current user has admin role
+  // Check if current user has admin role via Firebase Custom Claims
   async function isAdmin(): Promise<boolean> {
     if (!currentUser) {
       return false;
     }
 
-    // Fallback: Check if email matches admin email
-    // This works without Cloud Functions deployment
-    const ADMIN_EMAIL = 'idreesmuhammadqazi@gmail.com';
-    const isEmailMatch = currentUser.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
-
-    // Also verify by UID for Firestore rules
-    const ADMIN_UID = 'uCq41rG68iS9piAhlCpZdtXI8zC3';
-    const isUidMatch = currentUser.uid === ADMIN_UID;
-
-    return isEmailMatch && isUidMatch;
+    try {
+      const tokenResult = await getIdTokenResult(currentUser, false);
+      return !!tokenResult.claims.admin;
+    } catch {
+      return false;
+    }
   }
 
   // Listen for auth state changes
