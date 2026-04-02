@@ -3,6 +3,12 @@
  * Use this script to set admin claim without deploying Cloud Functions
  *
  * Usage: node setAdmin.js <USER_UID> <true|false>
+ *
+ * Requires firebase-admin. Run from the functions/ directory where it is installed:
+ *   cd functions && node ../setAdmin.js <UID> true
+ *
+ * Or install it in the root first:
+ *   npm install firebase-admin --no-save
  */
 
 import { createRequire } from 'module';
