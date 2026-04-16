@@ -100,22 +100,44 @@ export class Interpreter {
   }
 
   public getFileContent(filename: string): string | null {
+    // Check open files first
     const fileHandle = this.fileHandles.get(filename);
-    if (!fileHandle) {
-      return null;
+    if (fileHandle) {
+      return fileHandle.data.join('\n');
     }
-    return fileHandle.data.join('\n');
+    // Check closed files (files that were written to and then closed)
+    const closedData = this.closedFileData.get(filename);
+    if (closedData) {
+      return closedData.join('\n');
+    }
+    return null;
   }
 
   public getAllFiles(): Array<{ filename: string; mode: string; lineCount: number }> {
     const files: Array<{ filename: string; mode: string; lineCount: number }> = [];
+    const seenFilenames = new Set<string>();
+
+    // Add open files
     for (const [filename, handle] of this.fileHandles.entries()) {
       files.push({
         filename,
         mode: handle.mode,
         lineCount: handle.data.length
       });
+      seenFilenames.add(filename);
     }
+
+    // Add closed files that were written to (not already in open files)
+    for (const [filename, data] of this.closedFileData.entries()) {
+      if (!seenFilenames.has(filename)) {
+        files.push({
+          filename,
+          mode: 'WRITE', // Closed files were written to
+          lineCount: data.length
+        });
+      }
+    }
+
     return files;
   }
 

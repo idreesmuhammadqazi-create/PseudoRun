@@ -298,6 +298,10 @@ function App() {
       inputResolveRef.current = null;
       setWaitingForInput(false);
       setInputPrompt('');
+      // If in debug mode, re-pause after input is provided
+      if (isDebugging) {
+        setIsPaused(true);
+      }
     }
   };
 
@@ -310,6 +314,10 @@ function App() {
         fileUploadResolveRef.current = null;
         setWaitingForFileUpload(false);
         setFileUploadPrompt('');
+        // If in debug mode, re-pause after file upload is handled
+        if (isDebugging) {
+          setIsPaused(true);
+        }
       } catch (error) {
         alert((error as Error).message);
       }
@@ -323,6 +331,10 @@ function App() {
       fileUploadResolveRef.current = null;
       setWaitingForFileUpload(false);
       setFileUploadPrompt('');
+      // If in debug mode, re-pause after file upload is handled
+      if (isDebugging) {
+        setIsPaused(true);
+      }
     }
   };
 
@@ -351,6 +363,9 @@ function App() {
       // Create interpreter in debug mode first
       const interpreter = new Interpreter(
         async (variableName: string, variableType: string) => {
+          // When input is needed during debug, temporarily unpause the debug state
+          // so the input field is clearly visible and not hidden behind the "Paused" state
+          setIsPaused(false);
           return new Promise<string>((resolve) => {
             setInputPrompt(`Enter value for ${variableName} (${variableType}):`);
             setWaitingForInput(true);
@@ -371,6 +386,8 @@ function App() {
         },
         true, // file write output
         async (filename: string) => {
+          // When file upload is needed during debug, temporarily unpause
+          setIsPaused(false);
           return new Promise<string>((resolve) => {
             setFileUploadPrompt(`Upload file: ${filename}`);
             setWaitingForFileUpload(true);

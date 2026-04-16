@@ -58,7 +58,9 @@ export default function OutputPanel({
     <div className={styles.container}>
       <header className={styles.header}>
         <span>Output</span>
-        {isRunning && <span className={styles.statusRunning}>Running...</span>}
+        {isRunning && !waitingForInput && !waitingForFileUpload && <span className={styles.statusRunning}>Running...</span>}
+        {waitingForInput && <span className={styles.statusInput}>Waiting for Input</span>}
+        {waitingForFileUpload && <span className={styles.statusInput}>Waiting for File</span>}
         {!isRunning && output.length > 0 && <span className={styles.statusCompleted}>Completed</span>}
       </header>
 
@@ -86,7 +88,11 @@ export default function OutputPanel({
                 onChange={(e) => setInputValue(e.target.value)}
                 className={styles.inlineInputField}
                 autoComplete="off"
+                placeholder="Type value and press Enter or click Submit"
               />
+              <button type="submit" className={styles.submitButton}>
+                Submit
+              </button>
             </form>
           </div>
         )}
