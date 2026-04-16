@@ -70,6 +70,7 @@ function App() {
   const [isPaused, setIsPaused] = useState(false);
   const stepResolveRef = useRef<(() => void) | null>(null);
   const interpreterRef = useRef<Interpreter | null>(null);
+  const debugAbortRef = useRef<boolean>(false);
 
   // Guest mode auth modal state
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -354,6 +355,7 @@ function App() {
     setIsPaused(false);
     setWaitingForInput(false);
     setCreatedFiles([]);
+    debugAbortRef.current = false;
 
     try {
       // Tokenize and parse
@@ -374,6 +376,10 @@ function App() {
         },
         true, // debug mode
         async () => {
+          // Check if debugging was aborted
+          if (debugAbortRef.current) {
+            throw new RuntimeError('Debug session stopped', 0);
+          }
           // Update debug state when pausing
           const currentDebugState = interpreter.getDebugState();
           setDebugState(currentDebugState);
@@ -416,12 +422,20 @@ function App() {
       setIsPaused(false);
       setDebugState(null);
       setWaitingForInput(false);
+      setWaitingForFileUpload(false);
     } catch (error) {
       setIsRunning(false);
       setIsDebugging(false);
       setIsPaused(false);
       setDebugState(null);
       setWaitingForInput(false);
+      setWaitingForFileUpload(false);
+
+      // Don't show error if user stopped the debug session
+      if (debugAbortRef.current) {
+        debugAbortRef.current = false;
+        return;
+      }
 
       if (error instanceof RuntimeError) {
         setErrors([{
@@ -465,15 +479,27 @@ function App() {
   };
 
   const handleDebugStop = () => {
+    debugAbortRef.current = true;
     setIsDebugging(false);
     setIsPaused(false);
     setIsRunning(false);
     setDebugState(null);
+    setWaitingForInput(false);
+    setWaitingForFileUpload(false);
     
     // This will cause the execution to complete
     if (stepResolveRef.current) {
       stepResolveRef.current();
       stepResolveRef.current = null;
+    }
+    // Also resolve any pending input/file upload
+    if (inputResolveRef.current) {
+      inputResolveRef.current('');
+      inputResolveRef.current = null;
+    }
+    if (fileUploadResolveRef.current) {
+      fileUploadResolveRef.current('');
+      fileUploadResolveRef.current = null;
     }
   };
 
@@ -650,6 +676,8 @@ function App() {
           onStop={handleDebugStop}
           isDebugging={isDebugging}
           isPaused={isPaused}
+          waitingForInput={waitingForInput}
+          waitingForFileUpload={waitingForFileUpload}
         />
       )}
 
@@ -680,6 +708,7 @@ function App() {
             onFileUploadCancel={handleFileUploadCancel}
             createdFiles={createdFiles}
             interpreterRef={interpreterRef}
+            isDebugging={isDebugging}
           />
           <ErrorDisplay errors={errors} isValidating={isValidating} />
         </div>

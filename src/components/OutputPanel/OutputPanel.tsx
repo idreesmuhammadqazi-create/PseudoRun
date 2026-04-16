@@ -13,6 +13,7 @@ interface OutputPanelProps {
   onFileUploadCancel?: () => void;
   createdFiles?: Array<{ filename: string; mode: string; lineCount: number }>;
   interpreterRef?: React.RefObject<any>;
+  isDebugging?: boolean;
 }
 
 export default function OutputPanel({ 
@@ -26,7 +27,8 @@ export default function OutputPanel({
   onFileUploadSubmit,
   onFileUploadCancel,
   createdFiles = [],
-  interpreterRef
+  interpreterRef,
+  isDebugging = false
 }: OutputPanelProps) {
   const outputRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -65,10 +67,12 @@ export default function OutputPanel({
       </header>
 
       <div className={styles.outputArea} ref={outputRef}>
-        {output.length === 0 && !isRunning && (
-          <div className={styles.emptyMessage}>No output yet</div>
+        {output.length === 0 && !isRunning && !waitingForInput && !waitingForFileUpload && (
+          <div className={styles.emptyMessage}>
+            {isDebugging ? 'Debug mode: Use Step/Continue to execute' : 'No output yet'}
+          </div>
         )}
-        {output.length === 0 && isRunning && (
+        {output.length === 0 && isRunning && !waitingForInput && !waitingForFileUpload && (
           <div className={styles.emptyMessage}>Running...</div>
         )}
         {output.map((line, index) => (
