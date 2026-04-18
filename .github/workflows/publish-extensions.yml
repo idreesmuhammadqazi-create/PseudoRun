@@ -26,7 +26,9 @@ jobs:
       run: npm ci
 
     - name: Package Firefox extension
-      run: npm run package --workspace=@pseudorun/extension-firefox
+      run: |
+        npm run package --workspace=@pseudorun/extension-firefox
+        cd apps/extension-firefox && tar -czf source.tar.gz src/ manifest.json background.js package.json tsconfig.json tsconfig.node.json vite.config.ts scripts/
 
     - name: Package Edge extension
       run: npm run package --workspace=@pseudorun/extension-edge
@@ -39,7 +41,7 @@ jobs:
         jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
         jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
         approval-notes: Automated release from GitHub Actions
-        source-file-path: apps/extension-firefox/dist/**
+        source-file-path: apps/extension-firefox/source.tar.gz
 
     - name: Publish to Edge Add-ons
       uses: wdzeng/edge-addon@v2
