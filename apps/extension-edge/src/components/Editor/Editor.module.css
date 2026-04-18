@@ -6,111 +6,122 @@
   font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
+.readOnlyBanner {
+  text-align: center;
+  padding: 10px 12px;
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
 .editor {
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
-.cm-editor {
+/* CodeMirror overrides — must be :global() to target CM's own classes */
+
+:global(.cm-editor) {
   height: 100% !important;
   max-height: 100% !important;
-  font-size: 15px;
-  line-height: 1.6;
 }
 
-.cm-scroller {
+:global(.cm-scroller) {
   font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace !important;
   overflow: auto !important;
   max-height: 100% !important;
 }
 
 /* Custom Scrollbar for Code Editor */
-.cm-scroller::-webkit-scrollbar {
+:global(.cm-scroller)::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-.cm-scroller::-webkit-scrollbar-track {
+:global(.cm-scroller)::-webkit-scrollbar-track {
   background: var(--editor-gutter);
   border-radius: 5px;
 }
 
-.cm-scroller::-webkit-scrollbar-thumb {
+:global(.cm-scroller)::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 5px;
   border: 2px solid var(--editor-gutter);
 }
 
-.cm-scroller::-webkit-scrollbar-thumb:hover {
+:global(.cm-scroller)::-webkit-scrollbar-thumb:hover {
   background: var(--text-tertiary);
 }
 
-.cm-scroller::-webkit-scrollbar-corner {
+:global(.cm-scroller)::-webkit-scrollbar-corner {
   background: var(--editor-gutter);
 }
 
 /* Firefox Scrollbar */
-.cm-scroller {
+:global(.cm-scroller) {
   scrollbar-width: thin;
   scrollbar-color: var(--border-color) var(--editor-gutter);
 }
 
-.cm-gutters {
-  background-color: var(--editor-gutter);
-  border-right: 1px solid var(--border-color);
+:global(.cm-gutters) {
+  background-color: var(--editor-gutter) !important;
+  border-right: 1px solid var(--border-color) !important;
   padding-right: 8px;
 }
 
-.cm-lineNumbers .cm-gutterElement {
+:global(.cm-lineNumbers .cm-gutterElement) {
   padding: 0 12px;
   min-width: 40px;
   color: var(--editor-line-numbers);
   font-size: 13px;
 }
 
-.cm-activeLine {
-  background-color: rgba(99, 102, 241, 0.05) !important;
+:global(.cm-activeLine) {
+  background-color: rgba(167, 139, 250, 0.04) !important;
 }
 
-.cm-selectionBackground {
-  background-color: rgba(99, 102, 241, 0.2) !important;
+:global(.cm-selectionBackground) {
+  background-color: rgba(167, 139, 250, 0.15) !important;
 }
 
-.cm-focused .cm-selectionBackground {
-  background-color: rgba(99, 102, 241, 0.3) !important;
+:global(.cm-focused .cm-selectionBackground) {
+  background-color: rgba(167, 139, 250, 0.25) !important;
 }
 
-.cm-cursor {
+:global(.cm-cursor) {
   border-left: 2px solid var(--primary-color) !important;
 }
 
-/* Dark mode cursor - make it visible */
-[data-theme='dark'] .cm-cursor {
-  border-left: 2px solid #f1f5f9 !important;
+/* Dark mode cursor */
+:global([data-theme='dark'] .cm-cursor) {
+  border-left: 2px solid #e4e4e7 !important;
 }
 
 /* CodeMirror Content Styling */
-.cm-content {
+:global(.cm-content) {
   padding: 8px 0;
   caret-color: var(--primary-color);
 }
 
-/* Dark mode caret color */
-[data-theme='dark'] .cm-content {
-  caret-color: #f1f5f9 !important;
+:global([data-theme='dark'] .cm-content) {
+  caret-color: #e4e4e7 !important;
 }
 
 /* Placeholder Styling */
-.cm-placeholder {
+:global(.cm-placeholder) {
   color: var(--text-tertiary) !important;
   font-style: italic;
 }
 
-/* Autocomplete Dropdown Styling - Global styles for CodeMirror tooltips */
+/* Autocomplete Dropdown Styling */
 :global(.cm-tooltip-autocomplete) {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-light) !important;
   border-radius: 6px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
   padding: 4px !important;
@@ -118,8 +129,6 @@
 }
 
 :global([data-theme='dark'] .cm-tooltip-autocomplete) {
-  background-color: #1e293b !important;
-  border-color: #334155 !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
 }
 
@@ -135,24 +144,19 @@
   padding: 6px 10px !important;
   cursor: pointer !important;
   border-radius: 4px !important;
-  color: #1e293b !important;
+  color: var(--text-primary) !important;
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
 }
 
-:global([data-theme='dark'] .cm-tooltip-autocomplete li) {
-  color: #e2e8f0 !important;
-}
-
 :global(.cm-tooltip-autocomplete li[aria-selected]) {
-  background-color: rgba(99, 102, 241, 0.1) !important;
-  color: #6366f1 !important;
+  background-color: rgba(167, 139, 250, 0.1) !important;
+  color: var(--primary-color) !important;
 }
 
 :global([data-theme='dark'] .cm-tooltip-autocomplete li[aria-selected]) {
-  background-color: rgba(99, 102, 241, 0.25) !important;
-  color: #a5b4fc !important;
+  background-color: rgba(167, 139, 250, 0.2) !important;
 }
 
 :global(.cm-completionLabel) {
@@ -161,43 +165,33 @@
 }
 
 :global(.cm-completionDetail) {
-  color: #64748b !important;
+  color: var(--text-tertiary) !important;
   font-size: 0.85em !important;
   margin-left: auto !important;
 }
 
-:global([data-theme='dark'] .cm-completionDetail) {
-  color: #94a3b8 !important;
-}
-
 :global(.cm-completionInfo) {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-light) !important;
   border-radius: 6px !important;
   padding: 8px 12px !important;
-  color: #475569 !important;
+  color: var(--text-secondary) !important;
   font-size: 0.9em !important;
-}
-
-:global([data-theme='dark'] .cm-completionInfo) {
-  background-color: #1e293b !important;
-  border-color: #334155 !important;
-  color: #cbd5e1 !important;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .cm-editor {
+  :global(.cm-editor) {
     font-size: 14px;
   }
 
-  .cm-lineNumbers .cm-gutterElement {
+  :global(.cm-lineNumbers .cm-gutterElement) {
     padding: 0 8px;
     min-width: 32px;
     font-size: 12px;
   }
 
-  .cm-scroller::-webkit-scrollbar {
+  :global(.cm-scroller)::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }

@@ -17,8 +17,8 @@ const tutorialSteps: TutorialStep[] = [
     content: 'Variables store data. Use DECLARE to create them with a type (INTEGER, REAL, STRING, BOOLEAN).',
     code: `DECLARE Age : INTEGER
 DECLARE Name : STRING
-Age <- 16
-Name <- "Alice"
+Age <-- 16
+Name <-- "Alice"
 OUTPUT Name, " is ", Age, " years old"`,
   },
   {
@@ -33,7 +33,7 @@ OUTPUT "You entered: ", Number`,
     title: 'Step 3: IF Statements',
     content: 'Make decisions with IF-THEN-ELSE statements.',
     code: `DECLARE Score : INTEGER
-Score <- 85
+Score <-- 85
 IF Score >= 70 THEN
     OUTPUT "Pass"
 ELSE
@@ -44,7 +44,7 @@ ENDIF`,
     title: 'Step 4: Loops',
     content: 'Repeat code with FOR, WHILE, or REPEAT loops.',
     code: `DECLARE Counter : INTEGER
-FOR Counter <- 1 TO 5
+FOR Counter <-- 1 TO 5
     OUTPUT "Count: ", Counter
 NEXT Counter`,
   },
@@ -53,8 +53,8 @@ NEXT Counter`,
     content: 'Store multiple values in arrays. Arrays start at index 1.',
     code: `DECLARE Numbers : ARRAY[1:5] OF INTEGER
 DECLARE i : INTEGER
-FOR i <- 1 TO 5
-    Numbers[i] <- i * 10
+FOR i <-- 1 TO 5
+    Numbers[i] <-- i * 10
 NEXT i
 OUTPUT Numbers[3]`,
   },
@@ -75,7 +75,7 @@ CALL Greet("Student")`,
 ENDFUNCTION
 
 DECLARE Result : INTEGER
-Result <- Square(5)
+Result <-- Square(5)
 OUTPUT "5 squared is ", Result`,
   },
   {
@@ -119,10 +119,10 @@ export default function Tutorial({ onClose, onLoadCode }: TutorialProps) {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <h2>{step.title}</h2>
           <button className={styles.closeButton} onClick={onClose}>×</button>
-        </div>
+        </header>
 
         <div className={styles.content}>
           <p className={styles.description}>{step.content}</p>
@@ -137,7 +137,7 @@ export default function Tutorial({ onClose, onLoadCode }: TutorialProps) {
           )}
         </div>
 
-        <div className={styles.footer}>
+        <footer className={styles.footer}>
           <div className={styles.progress}>
             Step {currentStep + 1} of {tutorialSteps.length}
           </div>
@@ -156,7 +156,7 @@ export default function Tutorial({ onClose, onLoadCode }: TutorialProps) {
               {currentStep === tutorialSteps.length - 1 ? 'Finish' : 'Next'}
             </button>
           </div>
-        </div>
+        </footer>
       </div>
     </div>
   );

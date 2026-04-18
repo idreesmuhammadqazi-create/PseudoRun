@@ -13,6 +13,7 @@ interface OutputPanelProps {
   onFileUploadCancel?: () => void;
   createdFiles?: Array<{ filename: string; mode: string; lineCount: number }>;
   interpreterRef?: React.RefObject<any>;
+  isDebugging?: boolean;
 }
 
 export default function OutputPanel({ 
@@ -26,7 +27,8 @@ export default function OutputPanel({
   onFileUploadSubmit,
   onFileUploadCancel,
   createdFiles = [],
-  interpreterRef
+  interpreterRef,
+  isDebugging = false
 }: OutputPanelProps) {
   const outputRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -56,17 +58,21 @@ export default function OutputPanel({
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <header className={styles.header}>
         <span>Output</span>
-        {isRunning && <span className={styles.statusRunning}>Running...</span>}
+        {isRunning && !waitingForInput && !waitingForFileUpload && <span className={styles.statusRunning}>Running...</span>}
+        {waitingForInput && <span className={styles.statusInput}>Waiting for Input</span>}
+        {waitingForFileUpload && <span className={styles.statusInput}>Waiting for File</span>}
         {!isRunning && output.length > 0 && <span className={styles.statusCompleted}>Completed</span>}
-      </div>
+      </header>
 
       <div className={styles.outputArea} ref={outputRef}>
-        {output.length === 0 && !isRunning && (
-          <div className={styles.emptyMessage}>No output yet</div>
+        {output.length === 0 && !isRunning && !waitingForInput && !waitingForFileUpload && (
+          <div className={styles.emptyMessage}>
+            {isDebugging ? 'Debug mode: Use Step/Continue to execute' : 'No output yet'}
+          </div>
         )}
-        {output.length === 0 && isRunning && (
+        {output.length === 0 && isRunning && !waitingForInput && !waitingForFileUpload && (
           <div className={styles.emptyMessage}>Running...</div>
         )}
         {output.map((line, index) => (
@@ -86,7 +92,11 @@ export default function OutputPanel({
                 onChange={(e) => setInputValue(e.target.value)}
                 className={styles.inlineInputField}
                 autoComplete="off"
+                placeholder="Type value and press Enter or click Submit"
               />
+              <button type="submit" className={styles.submitButton}>
+                Submit
+              </button>
             </form>
           </div>
         )}
@@ -116,7 +126,7 @@ export default function OutputPanel({
       </div>
 
       {createdFiles && createdFiles.length > 0 && (
-        <div className={styles.filesSection}>
+        <section className={styles.filesSection} aria-label="Created Files">
           <h3 className={styles.filesHeader}>Files Created/Opened:</h3>
           {createdFiles.map((file, index) => (
             <div key={index} className={styles.fileItem}>
@@ -145,7 +155,7 @@ export default function OutputPanel({
               )}
             </div>
           ))}
-        </div>
+        </section>
       )}
     </div>
   );

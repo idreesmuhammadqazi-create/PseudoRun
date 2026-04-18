@@ -73,12 +73,12 @@ export const ExportModal: React.FC<ExportModalProps> = ({ code, programName, onC
   return (
     <div className={styles.backdrop} onClick={handleBackdropClick}>
       <div className={styles.modal}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <h2 className={styles.title}>Export Code</h2>
           <button className={styles.closeButton} onClick={onClose}>
             ×
           </button>
-        </div>
+        </header>
 
         <div className={styles.content}>
           <div className={styles.section}>
@@ -148,7 +148,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({ code, programName, onC
           </div>
         </div>
 
-        <div className={styles.footer}>
+        <footer className={styles.footer}>
           <button
             className={styles.exportButton}
             onClick={() => handleExport('pdf')}
@@ -170,7 +170,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({ code, programName, onC
           >
             🖨️ Print
           </button>
-        </div>
+        </footer>
       </div>
     </div>
   );

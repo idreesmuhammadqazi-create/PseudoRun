@@ -1,15 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { EditorState } from '@codemirror/state';
 import { EditorView, keymap, placeholder, lineNumbers } from '@codemirror/view';
-import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
-import { syntaxHighlighting, HighlightStyle } from '@codemirror/language';
+import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
+import { syntaxHighlighting, HighlightStyle, indentService, indentOnInput, IndentContext, indentUnit } from '@codemirror/language';
 import { tags as t } from '@lezer/highlight';
-import { autocompletion, CompletionContext } from '@codemirror/autocomplete';
+import { autocompletion, CompletionContext, acceptCompletion } from '@codemirror/autocomplete';
 import styles from './Editor.module.css';
 
 interface EditorProps {
   value: string;
   onChange: (value: string) => void;
+  readOnly?: boolean;
+  viewingUserEmail?: string;
 }
 
 // IGCSE Pseudocode autocomplete suggestions
@@ -93,17 +95,60 @@ function igcseAutocomplete(context: CompletionContext) {
   };
 }
 
+// Keywords that open a new indented block (line must end with or contain these)
+const BLOCK_OPEN_END = /\b(THEN|DO|REPEAT|OF)\s*$/i;
+const BLOCK_OPEN_START = /^\s*(PROCEDURE|FUNCTION|FOR\b)/i;
+
+// Keywords that close a block (line starts with these — should be dedented)
+const BLOCK_CLOSE = /^\s*(ENDIF|ENDWHILE|ENDCASE|ENDPROCEDURE|ENDFUNCTION|NEXT\b|UNTIL\b|ELSE\b|OTHERWISE\b)/i;
+
+const igcseIndentService = indentService.of((context: IndentContext, pos: number) => {
+  const line = context.lineAt(pos, -1);
+  const lineText = line.text;
+
+  // Find previous non-empty line
+  let prevLineText = '';
+  let checkPos = line.from - 1;
+  while (checkPos > 0) {
+    const prevLine = context.lineAt(checkPos, -1);
+    if (prevLine.text.trim().length > 0) {
+      prevLineText = prevLine.text;
+      break;
+    }
+    checkPos = prevLine.from - 1;
+  }
+
+  // Get indentation of previous non-empty line
+  const prevIndentMatch = prevLineText.match(/^(\s*)/);
+  const prevIndent = prevIndentMatch ? prevIndentMatch[1].length : 0;
+  const indentUnitSize = context.unit;
+
+  // If the current line starts with a block-closing keyword, dedent it
+  if (BLOCK_CLOSE.test(lineText)) {
+    return Math.max(0, prevIndent - indentUnitSize);
+  }
+
+  // If the previous line opens a block, indent current line
+  if (BLOCK_OPEN_END.test(prevLineText) || BLOCK_OPEN_START.test(prevLineText)) {
+    return prevIndent + indentUnitSize;
+  }
+
+  // Otherwise match previous line's indentation
+  return prevIndent;
+});
+
 // Custom syntax highlighting for IGCSE/A-LEVELS pseudocode
+// Colors chosen to work on both light and dark backgrounds
 const igcseHighlightStyle = HighlightStyle.define([
-  { tag: t.keyword, color: '#0066cc', fontWeight: 'bold' },
-  { tag: t.typeName, color: '#008800' },
-  { tag: t.operator, color: '#cc6600' },
-  { tag: t.comment, color: '#999999', fontStyle: 'italic' },
-  { tag: t.string, color: '#cc0000' },
-  { tag: t.number, color: '#9933cc' },
+  { tag: t.keyword, color: '#7c3aed', fontWeight: 'bold' },
+  { tag: t.typeName, color: '#0891b2' },
+  { tag: t.operator, color: '#d97706' },
+  { tag: t.comment, color: '#6b7280', fontStyle: 'italic' },
+  { tag: t.string, color: '#059669' },
+  { tag: t.number, color: '#c026d3' },
 ]);
 
-export default function Editor({ value, onChange }: EditorProps) {
+export default function Editor({ value, onChange, readOnly = false, viewingUserEmail }: EditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
 
@@ -115,11 +160,15 @@ export default function Editor({ value, onChange }: EditorProps) {
       extensions: [
         lineNumbers(),
         history(),
-        keymap.of([...defaultKeymap, ...historyKeymap]),
+        igcseIndentService,
+        indentOnInput(),
+        indentUnit.of("    "),
+        keymap.of([{ key: 'Tab', run: acceptCompletion }, indentWithTab, ...defaultKeymap, ...historyKeymap]),
         placeholder('// Start typing your IGCSE/A-LEVELS pseudocode here\n// Press Ctrl+Space for autocomplete suggestions'),
         syntaxHighlighting(igcseHighlightStyle),
         autocompletion({ override: [igcseAutocomplete] }),
         EditorView.lineWrapping,
+        EditorState.readOnly.of(readOnly),
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
             const newValue = update.state.doc.toString();
@@ -139,17 +188,18 @@ export default function Editor({ value, onChange }: EditorProps) {
           '.cm-content': {
             fontFamily: 'Consolas, Monaco, "Courier New", monospace',
             padding: '10px 0',
+            backgroundColor: 'transparent',
           },
           '.cm-line': {
             padding: '0 8px',
             lineHeight: '1.5',
           },
           '.cm-gutters': {
-            backgroundColor: '#f5f5f5',
+            backgroundColor: 'transparent',
             border: 'none',
           },
           '.cm-activeLineGutter': {
-            backgroundColor: '#e0e0e0',
+            backgroundColor: 'transparent',
           },
         }),
       ],
@@ -185,6 +235,11 @@ export default function Editor({ value, onChange }: EditorProps) {
 
   return (
     <div className={styles.editorContainer}>
+      {readOnly && viewingUserEmail && (
+        <div className={styles.readOnlyBanner}>
+          Viewing program by {viewingUserEmail}
+        </div>
+      )}
       <div ref={editorRef} className={styles.editor}></div>
     </div>
   );

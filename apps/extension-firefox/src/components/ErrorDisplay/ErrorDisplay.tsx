@@ -14,30 +14,35 @@ interface ErrorDisplayProps {
 export default function ErrorDisplay({ errors, isValidating }: ErrorDisplayProps) {
   return (
     <div className={styles.container}>
-      <div className={styles.header}>Errors</div>
+      <div className={styles.header}>
+        <span className={styles.headerLabel}>Problems</span>
+        {errors.length > 0 && (
+          <span className={styles.count}>{errors.length}</span>
+        )}
+      </div>
 
       {isValidating && <div className={styles.validating}>Validating...</div>}
 
       {!isValidating && errors.length === 0 && (
-        <div className={styles.noErrors}>No errors detected</div>
+        <div className={styles.noErrors}>No problems</div>
       )}
 
       {!isValidating && errors.length > 0 && (
-        <ul className={styles.errorList}>
+        <div className={styles.errorList}>
           {errors.map((error, index) => (
-            <li key={index} className={styles.errorItem}>
-              <span className={styles.errorLine}>Line {error.line}:</span>
-              <span className={error.type === 'syntax' ? styles.syntaxBadge : styles.runtimeBadge}>
-                {error.type === 'syntax'
-                  ? 'Syntax Error'
-                  : error.type === 'semantic'
-                    ? 'Semantic Error'
-                    : 'Runtime Error'}
+            <div key={index} className={styles.errorRow}>
+              <span className={styles.errorLine}>Ln {error.line}</span>
+              <span className={`${styles.errorType} ${
+                error.type === 'syntax' ? styles.typeSyntax :
+                error.type === 'semantic' ? styles.typeSemantic :
+                styles.typeRuntime
+              }`}>
+                {error.type}
               </span>
-              <div className={styles.errorMessage}>{error.message}</div>
-            </li>
+              <span className={styles.errorMessage}>{error.message}</span>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

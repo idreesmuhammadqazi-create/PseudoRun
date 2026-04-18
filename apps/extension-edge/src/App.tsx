@@ -228,6 +228,7 @@ function App() {
       inputResolveRef.current = null;
       setWaitingForInput(false);
       setInputPrompt('');
+      if (isDebugging) setIsPaused(true);
     }
   };
 
@@ -240,6 +241,7 @@ function App() {
         fileUploadResolveRef.current = null;
         setWaitingForFileUpload(false);
         setFileUploadPrompt('');
+        if (isDebugging) setIsPaused(true);
       } catch (error) {
         alert((error as Error).message);
       }
@@ -253,6 +255,7 @@ function App() {
       fileUploadResolveRef.current = null;
       setWaitingForFileUpload(false);
       setFileUploadPrompt('');
+      if (isDebugging) setIsPaused(true);
     }
   };
 
@@ -281,6 +284,7 @@ function App() {
       // Create interpreter in debug mode first
       const interpreter = new Interpreter(
         async (variableName: string, variableType: string) => {
+          setIsPaused(false);
           return new Promise<string>((resolve) => {
             setInputPrompt(`Enter value for ${variableName} (${variableType}):`);
             setWaitingForInput(true);
@@ -301,6 +305,7 @@ function App() {
         },
         true, // file write output
         async (filename: string) => {
+          setIsPaused(false);
           return new Promise<string>((resolve) => {
             setFileUploadPrompt(`Upload file: ${filename}`);
             setWaitingForFileUpload(true);
@@ -335,6 +340,7 @@ function App() {
       setIsPaused(false);
       setDebugState(null);
       setWaitingForInput(false);
+      setWaitingForFileUpload(false);
 
       if (error instanceof RuntimeError) {
         setErrors([{
@@ -387,6 +393,14 @@ function App() {
     if (stepResolveRef.current) {
       stepResolveRef.current();
       stepResolveRef.current = null;
+    }
+    if (inputResolveRef.current) {
+      inputResolveRef.current('');
+      inputResolveRef.current = null;
+    }
+    if (fileUploadResolveRef.current) {
+      fileUploadResolveRef.current('');
+      fileUploadResolveRef.current = null;
     }
   };
 
@@ -493,6 +507,8 @@ function App() {
           onStop={handleDebugStop}
           isDebugging={isDebugging}
           isPaused={isPaused}
+          waitingForInput={waitingForInput}
+          waitingForFileUpload={waitingForFileUpload}
         />
       )}
 
@@ -513,6 +529,7 @@ function App() {
           <OutputPanel 
             output={output} 
             isRunning={isRunning}
+            isDebugging={isDebugging}
             waitingForInput={waitingForInput}
             inputPrompt={inputPrompt}
             onInputSubmit={handleInputSubmit}
