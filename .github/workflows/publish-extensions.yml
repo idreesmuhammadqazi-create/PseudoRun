@@ -1,0 +1,51 @@
+name: Publish Extensions
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apps/extension-*/**'
+      - 'packages/core/**'
+      - '.github/workflows/publish-extensions.yml'
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build Firefox extension
+      run: npm run build:ext:firefox
+
+    - name: Build Edge extension
+      run: npm run build:ext:edge
+
+    - name: Publish to Firefox Add-ons
+      uses: wdzeng/firefox-addon@v1
+      with:
+        addon-guid: pseudorun-offline@pseudorun.extension
+        xpi-path: apps/extension-firefox/pseudorun-firefox-extension.zip
+        jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
+        jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
+        approval-notes: Automated release from GitHub Actions
+        source-file-path: apps/extension-firefox/dist/**
+
+    - name: Publish to Edge Add-ons
+      uses: wdzeng/edge-addon@v2
+      with:
+        product-id: ${{ secrets.EDGE_PRODUCT_ID }}
+        zip-path: apps/extension-edge/pseudorun-edge-extension.zip
+        api-key: ${{ secrets.EDGE_API_KEY }}
+        client-id: ${{ secrets.EDGE_CLIENT_ID }}
+        notes-for-certification: Automated release from GitHub Actions
