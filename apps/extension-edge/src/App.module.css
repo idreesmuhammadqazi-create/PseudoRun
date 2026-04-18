@@ -1,0 +1,70 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-secondary);
+  overflow: hidden;
+}
+
+.splitView {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  gap: 16px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.leftPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--editor-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.3s ease;
+}
+
+.leftPanel:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.rightPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .splitView {
+    gap: 12px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .splitView {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .leftPanel,
+  .rightPanel {
+    flex: none;
+    height: 50vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .splitView {
+    padding: 8px;
+    gap: 8px;
+  }
+}

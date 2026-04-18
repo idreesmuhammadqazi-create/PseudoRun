@@ -1,0 +1,196 @@
+/**
+ * Global Theme Variables
+ * Modern, accessible color scheme for Pseudocode Runner
+ * Optimized for students and educators
+ */
+
+:root {
+  /* Brand Colors - Modern purple/blue gradient */
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-light: #818cf8;
+  --accent-color: #8b5cf6;
+  --accent-hover: #7c3aed;
+
+  /* Light Theme (Default) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-card: #ffffff;
+
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  --border-focus: #6366f1;
+
+  --button-bg: #f1f5f9;
+  --button-hover: #e2e8f0;
+  --button-text: #1e293b;
+
+  --run-button-bg: #10b981;
+  --run-button-hover: #059669;
+  --run-button-text: #ffffff;
+
+  --debug-button-bg: #f59e0b;
+  --debug-button-hover: #d97706;
+
+  --error-bg: #fef3c7;
+  --error-border: #fde68a;
+  --error-text: #92400e;
+
+  --success-bg: #d1fae5;
+  --success-text: #065f46;
+
+  --output-bg: #f8fafc;
+  --output-text: #1e293b;
+  --output-input: #6366f1;
+
+  --editor-bg: #ffffff;
+  --editor-gutter: #f8fafc;
+  --editor-line-numbers: #94a3b8;
+
+  --dropdown-bg: #ffffff;
+  --dropdown-hover: #f8fafc;
+  --dropdown-shadow: rgba(15, 23, 42, 0.1);
+
+  --landing-gradient-start: #6366f1;
+  --landing-gradient-mid: #8b5cf6;
+  --landing-gradient-end: #a855f7;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-card: #1e293b;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+
+  --border-color: #334155;
+  --border-light: #475569;
+  --border-focus: #818cf8;
+
+  --button-bg: #334155;
+  --button-hover: #475569;
+  --button-text: #f1f5f9;
+
+  --run-button-bg: #10b981;
+  --run-button-hover: #34d399;
+  --run-button-text: #ffffff;
+
+  --debug-button-bg: #f59e0b;
+  --debug-button-hover: #fbbf24;
+
+  --error-bg: #422006;
+  --error-border: #713f12;
+  --error-text: #fbbf24;
+
+  --success-bg: #064e3b;
+  --success-text: #6ee7b7;
+
+  --output-bg: #1e293b;
+  --output-text: #f1f5f9;
+  --output-input: #818cf8;
+
+  --editor-bg: #0f172a;
+  --editor-gutter: #1e293b;
+  --editor-line-numbers: #64748b;
+
+  --dropdown-bg: #1e293b;
+  --dropdown-hover: #334155;
+  --dropdown-shadow: rgba(0, 0, 0, 0.5);
+
+  --landing-gradient-start: #6366f1;
+  --landing-gradient-mid: #8b5cf6;
+  --landing-gradient-end: #a855f7;
+
+  /* Shadows in dark mode */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Smooth transition for theme changes */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Global styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Monospace font for code */
+code, pre, .monospace {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* CodeMirror dark theme overrides */
+[data-theme='dark'] .cm-editor {
+  background-color: var(--editor-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .cm-gutters {
+  background-color: var(--editor-gutter) !important;
+  border-right: 1px solid var(--border-color) !important;
+}
+
+[data-theme='dark'] .cm-lineNumbers .cm-gutterElement {
+  color: var(--editor-line-numbers) !important;
+}
+
+[data-theme='dark'] .cm-activeLine {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme='dark'] .cm-selectionBackground {
+  background-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+[data-theme='dark'] .cm-cursor {
+  border-left-color: var(--text-primary) !important;
+}

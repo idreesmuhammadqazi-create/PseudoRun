@@ -1,0 +1,313 @@
+.container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+}
+
+.info {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  padding: 8px 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.clockIcon {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.time {
+  min-width: 80px;
+}
+
+.timeGood {
+  color: white;
+}
+
+.timeWarning {
+  color: #ffd700;
+}
+
+.timeCritical {
+  color: #ff6b6b;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.right {
+  display: flex;
+  gap: 12px;
+}
+
+.pauseButton,
+.exitButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pauseButton {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.pauseButton:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.exitButton {
+  background-color: rgba(255, 107, 107, 0.3);
+  color: white;
+}
+
+.exitButton:hover {
+  background-color: rgba(255, 107, 107, 0.5);
+}
+
+/* Modal Styles */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-lg);
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modalHeader {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modalHeader h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modalContent {
+  padding: 24px;
+}
+
+.description {
+  margin: 0 0 16px 0;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.features {
+  margin: 0 0 24px 0;
+  padding-left: 24px;
+}
+
+.features li {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.durationSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.durationSelector label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.select {
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.modalFooter {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cancelButton,
+.startButton {
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.cancelButton {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--border-color);
+}
+
+.cancelButton:hover {
+  background-color: var(--button-hover);
+}
+
+.startButton {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.startButton:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .banner {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .left,
+  .center,
+  .right {
+    flex: 1 1 100%;
+  }
+
+  .center {
+    order: -1;
+  }
+
+  .timer {
+    font-size: 20px;
+  }
+
+  .info {
+    font-size: 12px;
+  }
+
+  .pauseButton,
+  .exitButton {
+    flex: 1;
+  }
+}
