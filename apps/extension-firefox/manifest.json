@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "PseudoRun - IGCSE Pseudocode Editor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Offline IGCSE/A-Level pseudocode editor and simulator with examples, tutorial, syntax validation, and exam mode.",
 
   "permissions": [
