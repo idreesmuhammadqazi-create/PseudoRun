@@ -1,0 +1,18 @@
+# Build outputs
+bin/
+obj/
+
+# User settings
+*.user
+*.suo
+.vs/
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+
+# Publish output
+publish/
+*.pdb

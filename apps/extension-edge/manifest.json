@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "PseudoRun - IGCSE Pseudocode Editor",
+  "version": "1.0.0",
+  "description": "Offline IGCSE pseudocode editor with 22 examples, tutorial, syntax validation, and exam mode for Computer Science students.",
+
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_title": "Open PseudoRun Editor",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

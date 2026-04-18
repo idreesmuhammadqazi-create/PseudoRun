@@ -1,493 +1,74 @@
-# 🎓 IGCSE/A-LEVELS Pseudocode Editor
+# PseudoRun
 
-<div align="center">
+PseudoRun is an IGCSE Pseudocode editor and simulator for Computer Science students. This repository is organised as an npm-workspaces monorepo containing the web application, browser extensions, a Windows desktop client, Firebase Cloud Functions, and shared libraries.
 
-**A powerful web-based pseudocode editor for Cambridge IGCSE Computer Science (0478/0984) and A-Level (9618)**
+## Structure
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://www.pseudorun.tech/)
+| Path | Description |
+| --- | --- |
+| `apps/web` | Main web application (Vite + React + TypeScript). |
+| `apps/extension-firefox` | Firefox browser extension. |
+| `apps/extension-edge` | Microsoft Edge (Chromium) browser extension. |
+| `apps/windows-desktop` | Windows desktop client (.NET / Visual Studio solution). |
+| `functions` | Firebase Cloud Functions (TypeScript). |
+| `packages/core` | Shared core library (planned - pseudocode parser, runtime, validators). |
 
-**[🚀 Try it Live](https://www.pseudorun.tech/)** | [📚 Examples](#examples) | [💻 Local Setup](#local-development) | [🔗 Connect With Us](https://www.pseudorun.tech/tryingtogetbacklinks)
+## Prerequisites
 
----
+- Node.js 18+
+- npm 8+ (workspaces support)
+- Visual Studio 2022 or the .NET SDK (for the Windows desktop app only)
 
-*Built with* [**Compyle**](https://compyle.ai) *- AI-powered development platform*
+## Getting started
 
-</div>
+Install all workspace dependencies from the repository root:
 
-## ✨ Features
-
-### 🎯 Core Functionality
-- ✅ **Full IGCSE/A-LEVELS Syntax Support** - 100% compliant with Cambridge syllabus
-- ✅ **Real-time Validation** - Syntax errors detected as you type (500ms debounced)
-- ✅ **Animated Execution** - Watch output appear line-by-line (300ms between lines)
-- ✅ **Line Numbers** - Easy navigation and error reference
-- ✅ **Syntax Highlighting** - Keywords, operators, and data types color-coded
-- ✅ **Error Detection** - Detailed syntax and runtime error messages with line numbers
-- ✅ **Auto-save** - Code persists in browser LocalStorage
-- ✅ **File Operations** - Download/upload code as .txt files
-- ✅ **22 Built-in Examples** - Learn from comprehensive sample programs
-- ✅ **Responsive Design** - Works on desktop, tablet, and mobile
-- ✅ **User Authentication** - Secure login with Google or Email/Password
-- ✅ **Step-by-Step Debugger** - Debug code line by line with variable tracking
-- ✅ **Free Cloud Storage** - Save unlimited programs with user accounts
-- ✅ **Share Code** - Generate shareable links to your pseudocode
-- ✅ **Practice Problems** - 50+ IGCSE-style exercises and examples
-- ✅ **Timed Exam Mode** - Practice under exam conditions
-- ✅ **Interactive Tutorial** - Learn pseudocode concepts step-by-step
-- ✅ **Syntax Reference** - Complete Cambridge IGCSE pseudocode guide
-
-### 🌟 Student-Focused Features
-- 🚫 **100% Ad-Free** - No distractions, zero pop-ups, no ads forever
-- 🎓 **IGCSE Exam Focused** - Perfectly aligned with Cambridge syllabus requirements
-- 💡 **Interactive Learning** - Hands-on practice with instant feedback
-- 🔒 **Privacy First** - Student data protection and security prioritized
-- 🆓 **Completely Free** - All features accessible without payment or premium barriers
-
-### 🎨 User Experience
-- 🖱️ **Split-view Editor** - Code on left, output on right
-- ⚡ **Instant Feedback** - See errors before you run
-- 🎬 **Step-by-step Output** - Animated execution helps understand flow
-- 💾 **Persistent Code** - Never lose your work
-- 📱 **Mobile Friendly** - Code on the go
-
-## 🎓 Supported Syntax
-
-### 📊 Data Types
 ```
-INTEGER     - Whole numbers
-REAL        - Decimal numbers
-STRING      - Text values
-CHAR        - Single character
-BOOLEAN     - TRUE or FALSE
-ARRAY       - Single and multi-dimensional arrays
-```
-
-### 🔀 Control Structures
-
-#### Conditionals
-```pseudocode
-IF condition THEN
-    statements
-ELSE IF condition THEN
-    statements
-ELSE
-    statements
-ENDIF
-```
-
-```pseudocode
-CASE OF variable
-    value1 : statement
-    value2 : statement
-    OTHERWISE : statement
-ENDCASE
-```
-
-#### Loops
-```pseudocode
-FOR counter <-- start TO end STEP increment
-    statements
-NEXT counter
-
-WHILE condition DO
-    statements
-ENDWHILE
-
-REPEAT
-    statements
-UNTIL condition
-```
-
-### 🔧 Functions & Procedures
-
-#### Functions
-```pseudocode
-FUNCTION Name(param : TYPE) RETURNS TYPE
-    DECLARE local : TYPE
-    // function body
-    RETURN value
-ENDFUNCTION
-```
-
-#### Procedures
-```pseudocode
-PROCEDURE Name(BYVAL param1 : TYPE, BYREF param2 : TYPE)
-    DECLARE local : TYPE
-    // procedure body
-ENDPROCEDURE
-
-CALL Name(arg1, arg2)
-```
-
-### 📥 Input/Output
-```pseudocode
-INPUT variable
-OUTPUT expression, "text", variable
-```
-
-### 🧮 Operators
-
-**Arithmetic:** `+` `-` `*` `/` `DIV` `MOD`
-**Comparison:** `=` `<>` `<` `>` `<=` `>=`
-**Logical:** `AND` `OR` `NOT`
-**String:** `&` (concatenation)
-**Assignment:** `<--` or `←`
-
-### 📚 Built-in Functions
-
-**String Functions:**
-- `LENGTH(string)` - Returns string length
-- `SUBSTRING(string, start, length)` - Extracts substring (1-indexed)
-- `UCASE(string)` - Converts to uppercase
-- `LCASE(string)` - Converts to lowercase
-
-**Type Conversion:**
-- `INT(x)` - Converts to integer (truncates)
-- `REAL(x)` - Converts to real number
-- `STRING(x)` - Converts to string
-
-**Math Functions:**
-- `ROUND(x, decimals)` - Rounds to decimal places
-- `RANDOM()` - Returns random 0.0 to 1.0
-
-### 💬 Comments
-```pseudocode
-// Single-line comments
-```
-
-## 📚 Examples
-
-The editor includes **22 comprehensive examples** covering:
-
-1. **Basic Input/Output** - Simple I/O operations
-2. **IF Statement** - Grade calculator with multiple conditions
-3. **FOR Loop** - Counter demonstration
-4. **WHILE Loop** - Sum calculation
-5. **Arrays** - 1D array manipulation
-6. **Functions** - Factorial and IsPrime calculations
-7. **Procedures** - Bubble Sort algorithm
-8. **String Manipulation** - String function showcase with vowel counting
-9. **2D Arrays** - Matrix operations with row and diagonal sums
-10. **Linear Search** - Search with string arrays
-11. **Binary Search** - Efficient search algorithm
-12. **Selection Sort** - Complete sorting algorithm
-13. **CASE Statement with Ranges** - Grade assignment using ranges
-14. **REPEAT UNTIL Loop** - Counter demonstration
-15. **BYREF Parameters** - Swap procedure demonstration
-16. **Nested Loops** - Multiplication table and pattern generation
-17. **Parallel Arrays** - Simulating records with multiple arrays
-18. **Type Conversion** - INT, REAL, STRING functions
-19. **String Concatenation** - Combining strings with & operator
-20. **Nested IF Statements** - Complex conditional logic
-21. **Mathematical Operations** - All arithmetic operators including DIV and MOD
-22. **Advanced Examples** - Combining multiple concepts
-
-## 🚀 Quick Start
-
-### Online (Recommended)
-
-Simply visit **[https://www.pseudorun.tech/](https://www.pseudorun.tech/)** and start coding immediately!
-
-### Connect With Us
-
-Want to see all our links and stay updated? Visit our connection page:
-- **[🔗 Connect With Us](https://www.pseudorun.tech/tryingtogetbacklinks)** - All our social links and resources
-- **🐛 Report a Bug** - Found an issue? Email us at [support@pseudorun.tech](mailto:support@pseudorun.tech)
-
-### Local Development
-
-```bash
-# Clone the repository
-git clone https://github.com/idreesmuhammadqazi-create/test.git
-cd test
-
-# Install dependencies
 npm install
-
-# Set up Firebase Authentication (required)
-# See Firebase Setup section below
-
-# Start development server
-npm run dev
-
-# Open http://localhost:3000
 ```
 
-### Firebase Authentication Setup
+## Common commands
 
-This application uses Firebase for user authentication. Follow these steps to set up:
+Run from the repository root.
 
-1. **Create a Firebase Project**
-   - Go to [Firebase Console](https://console.firebase.google.com/)
-   - Click "Add project" and follow the setup wizard
-   - Once created, you'll be in your project dashboard
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the web app dev server (`@pseudorun/web`). |
+| `npm run build:web` | Build the web app to `apps/web/dist`. |
+| `npm run build:ext:firefox` | Build the Firefox extension. |
+| `npm run build:ext:edge` | Build the Edge extension. |
+| `npm run build:extensions` | Build both browser extensions. |
+| `npm run build:all` | Build the web app and both extensions. |
+| `npm run build:functions` | Build Firebase Cloud Functions. |
+| `npm run typecheck` | Run `typecheck` in any workspace that defines it. |
 
-2. **Enable Authentication Methods**
-   - Click "Authentication" in the left sidebar
-   - Go to the "Sign-in method" tab
-   - Enable **Email/Password** authentication
-   - Enable **Google** authentication
-   - For Google sign-in, you may need to set a support email
+### Windows desktop
 
-3. **Register Your Web App**
-   - Click the gear icon (⚙️) next to "Project Overview"
-   - Select "Project settings"
-   - Scroll to "Your apps" section
-   - Click the web icon (`</>`) to add a web app
-   - Give it a nickname (e.g., "Pseudocode Editor")
-   - Copy the Firebase configuration object
-
-4. **Configure Environment Variables**
-   ```bash
-   # Copy the example environment file
-   cp .env.example .env
-   
-   # Edit .env and paste your Firebase config values
-   # Get these from Firebase Console > Project Settings > Your apps
-   ```
-   
-   Your `.env` file should look like:
-   ```env
-   VITE_FIREBASE_API_KEY=AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-   VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
-   VITE_FIREBASE_PROJECT_ID=your-project-id
-   VITE_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
-   VITE_FIREBASE_MESSAGING_SENDER_ID=123456789012
-   VITE_FIREBASE_APP_ID=1:123456789012:web:abcdef123456
-   ```
-
-5. **Restart Development Server**
-   ```bash
-   # Stop the server (Ctrl+C) and restart
-   npm run dev
-   ```
-
-**Security Note:** Never commit your `.env` file to version control. The `.gitignore` file is already configured to exclude it.
-
-### Build for Production
-
-```bash
-# Create production build
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-## 📖 Usage Guide
-
-### Writing Code
-
-1. **Type your pseudocode** in the left editor panel
-2. **Syntax highlighting** helps identify keywords and structure
-3. **Line numbers** help reference code locations
-4. **Auto-save** keeps your work safe (saves every second)
-
-### Running Code
-
-1. **Click "Run"** button to execute
-2. **Watch output** appear line-by-line with animation
-3. **INPUT prompts** appear as browser dialogs
-4. **Errors** show in the error panel with line numbers
-
-### Managing Code
-
-- **Clear** - Remove all code (with confirmation)
-- **Download** - Save code as timestamped .txt file
-- **Upload** - Load code from .txt file
-- **Examples** - Load any of 15 sample programs
-
-### Learning Features
-
-- **Real-time validation** - See errors before running
-- **Detailed error messages** - Understand what went wrong
-- **Line number references** - Jump directly to problems
-- **Example programs** - Learn by studying working code
-
-## 🎯 IGCSE/A-LEVELS Compliance
-
-This editor strictly follows Cambridge IGCSE/A-LEVELS pseudocode standards:
-
-✅ **Syntax Rules**
-- Keywords in UPPERCASE
-- Case-sensitive identifiers
-- No semicolons required
-- One statement per line
-
-✅ **Array Behavior**
-- Static array bounds (literal numbers only)
-- Custom index ranges (e.g., ARRAY[1:10] or ARRAY[0:9])
-- Multi-dimensional support
-- Bounds checking at runtime
-
-✅ **Variable Scoping**
-- Global and local scope support
-- FOR loop variables auto-declared
-- Parameter passing (BYVAL/BYREF)
-
-✅ **Error Handling**
-- Division by zero detection
-- Uninitialized variable checks
-- Type mismatch detection
-- Array bounds validation
-- Infinite loop protection (10,000 iteration limit)
-- Recursion depth limit (1,000 calls)
-
-## 🛠️ Technologies
-
-- **React 18** - Modern UI framework
-- **TypeScript** - Type-safe development
-- **Vite** - Fast build tool and dev server
-- **CodeMirror 6** - Professional code editor
-- **Firebase Authentication** - Secure user management (Google OAuth & Email/Password)
-- **CSS Modules** - Scoped styling
-- **Netlify** - Production hosting
-
-## 🎨 Architecture
+Open `apps/windows-desktop/PseudoRun.sln` in Visual Studio, or build from the CLI:
 
 ```
-src/
-├── components/          # React UI components
-│   ├── Editor/         # CodeMirror editor with syntax highlighting
-│   ├── OutputPanel/    # Animated output display
-│   ├── ErrorDisplay/   # Error message panel
-│   └── Toolbar/        # Control buttons
-├── interpreter/        # Core execution engine
-│   ├── lexer.ts       # Tokenization
-│   ├── parser.ts      # AST generation
-│   ├── interpreter.ts # Code execution
-│   └── types.ts       # Type definitions
-├── validator/          # Real-time syntax validation
-├── utils/             # Helper functions
-└── constants/         # Example programs
+dotnet build apps/windows-desktop/PseudoRun.sln
 ```
 
-## 📝 Example Code
+## Apps at a glance
 
-```pseudocode
-// Bubble Sort Algorithm
-DECLARE nums : ARRAY[1:5] OF INTEGER
-DECLARE temp, index : INTEGER
-DECLARE isSorted : BOOLEAN
-DECLARE endIndex : INTEGER
+- **apps/web** - The primary editor and simulator UI. Deployed to Firebase Hosting / Vercel / Netlify.
+- **apps/extension-firefox** - Firefox extension wrapping the editor for in-browser use.
+- **apps/extension-edge** - Edge extension equivalent to the Firefox build.
+- **apps/windows-desktop** - Native Windows client built on .NET.
+- **functions** - Server-side Firebase Cloud Functions (admin tooling, email, etc.).
+- **packages/core** - Planned shared library for pseudocode parsing and execution logic.
 
-// Initialize array
-nums[1] <-- 64
-nums[2] <-- 34
-nums[3] <-- 25
-nums[4] <-- 12
-nums[5] <-- 22
+## Deployment
 
-// Bubble sort
-endIndex <-- 4
-isSorted <-- FALSE
+- Firebase Hosting reads `firebase.json` (publishes `apps/web/dist`).
+- Vercel reads `vercel.json` (builds `@pseudorun/web`, publishes `apps/web/dist`).
+- Netlify reads `netlify.toml` (same build + publish directory).
 
-WHILE isSorted = FALSE DO
-    isSorted <-- TRUE
-    FOR index <-- 1 TO endIndex
-        IF nums[index] > nums[index + 1] THEN
-            temp <-- nums[index]
-            nums[index] <-- nums[index + 1]
-            nums[index + 1] <-- temp
-            isSorted <-- FALSE
-        ENDIF
-    NEXT index
-    endIndex <-- endIndex - 1
-ENDWHILE
+## Documentation
 
-// Display sorted array
-OUTPUT "Sorted array:"
-FOR index <-- 1 TO 5
-    OUTPUT nums[index]
-NEXT index
-```
+App-specific documentation lives alongside each workspace, e.g. `apps/web/docs/` contains admin setup guides, Firestore rules notes, and the IGCSE pseudocode reference material.
 
-## 🐛 Error Detection
+## License
 
-The editor detects and reports:
-
-### Syntax Errors
-- Missing ENDIF, ENDWHILE, etc.
-- Undeclared variables
-- Invalid identifier names
-- Mismatched FOR/NEXT variables
-- Invalid array declarations
-
-### Runtime Errors
-- Division by zero
-- Array index out of bounds
-- Type mismatches
-- Uninitialized variables
-- Invalid function parameters
-
-## 🌟 Use Cases
-
-- 📚 **Learning** - Practice IGCSE/A-LEVELS pseudocode
-- 📝 **Exam Prep** - Test algorithms before exams
-- 👨‍🏫 **Teaching** - Demonstrate concepts in class
-- 🔬 **Algorithm Testing** - Verify logic before implementation
-- 💡 **Quick Prototyping** - Test ideas rapidly
-
-## 🎯 Recent Updates
-
-### ✅ Latest Features (November 2024)
-- ✅ **Step-by-Step Debugger** - Debug code line by line with variable tracking
-- ✅ **Free Cloud Storage** - Save unlimited programs with user accounts
-- ✅ **Report a Bug** - Easy bug reporting with pre-filled email to support@pseudorun.tech
-- ✅ **Connect Page** - New `/tryingtogetbacklinks` page with all our social links
-- ✅ **Complete SEO Optimization** - All pages optimized for search engines
-- ✅ **Enhanced Mobile Experience** - Improved responsive design and usability
-
-### 🎯 Roadmap
-
-Future enhancements:
-- [ ] Dark mode (under consideration)
-- [ ] Syntax highlighting customization
-- [ ] More collaborative features
-- [ ] Additional export formats (PDF, Word)
-- [ ] More practice problems and challenges
-- [ ] Teacher dashboard features
-- [ ] Progress tracking and analytics
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-- Report bugs via email: [support@pseudorun.tech](mailto:support@pseudorun.tech)
-- Suggest features
-- Submit pull requests
-- Improve documentation
-- Help with practice problems and examples
-
-### 🐛 Bug Reporting
-Found an issue? Please report it with:
-- Browser and version
-- Steps to reproduce
-- Expected vs actual behavior
-- Any screenshots if applicable
-
-**Quick Report:** Use the "🐛 Report Bug" button in the toolbar or email [support@pseudorun.tech](mailto:support@pseudorun.tech)
-
-## 📄 License
-
-MIT License - feel free to use in your projects!
-
-## 🙏 Acknowledgments
-
-- **Cambridge International** - For the IGCSE/A-LEVELS pseudocode specification
-- **CodeMirror** - For the excellent code editor
-- **Vercel** - For reliable hosting
-- **Compyle** - For AI-powered development tools
-
----
-
-<div align="center">
-
-**Made with ❤️ using [Compyle](https://compyle.ai)**
-
-*Compyle - Build software faster with AI-powered development*
-
-[![Visit Compyle](https://img.shields.io/badge/Powered%20by-Compyle-blue?style=for-the-badge)](https://compyle.ai)
-
-[🌐 Live Demo](https://www.pseudorun.tech/) • [⭐ Star on GitHub](https://github.com/idreesmuhammadqazi-create/PseudoRun) • [🔗 Connect](https://www.pseudorun.tech/tryingtogetbacklinks) • [🐛 Report Bug](mailto:support@pseudorun.tech)
-
-</div>
+MIT

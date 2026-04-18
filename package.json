@@ -1,56 +1,28 @@
 {
-  "name": "pseudorun",
+  "name": "pseudorun-monorepo",
   "version": "1.0.0",
-  "description": "PseudoRun - The #1 IGCSE Pseudocode Editor & Simulator for Computer Science students",
-  "keywords": [
-    "IGCSE",
-    "pseudocode",
-    "editor",
-    "simulator",
-    "computer science",
-    "education",
-    "debugger",
-    "validator",
-    "exam preparation",
-    "learning tools"
-  ],
-  "author": "PseudoRun",
-  "homepage": "https://www.pseudorun.tech/",
+  "private": true,
+  "description": "PseudoRun monorepo — web app, browser extensions (Firefox/Edge), Windows desktop app, and shared core.",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/pseudorun/pseudorun"
   },
-  "license": "MIT",
-  "type": "module",
+  "workspaces": [
+    "apps/web",
+    "apps/extension-firefox",
+    "apps/extension-edge",
+    "packages/*",
+    "functions"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@codemirror/autocomplete": "^6.19.0",
-    "@codemirror/commands": "^6.3.0",
-    "@codemirror/language": "^6.10.0",
-    "@codemirror/state": "^6.4.0",
-    "@codemirror/view": "^6.24.0",
-    "@lezer/highlight": "^1.2.0",
-    "@vercel/analytics": "^1.5.0",
-    "docx": "^9.5.1",
-    "firebase": "^12.4.0",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^3.0.3",
-    "mammoth": "^1.11.0",
-    "pdf-parse": "^2.4.5",
-    "pdf2json": "^4.0.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^7.9.4"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "@vitejs/plugin-react": "^4.2.0",
-    "typescript": "^5.3.0",
-    "vite": "^5.0.0"
+    "dev": "npm run dev --workspace=@pseudorun/web",
+    "build:web": "npm run build --workspace=@pseudorun/web",
+    "build:ext:firefox": "npm run build --workspace=@pseudorun/extension-firefox",
+    "build:ext:edge": "npm run build --workspace=@pseudorun/extension-edge",
+    "build:extensions": "npm run build:ext:firefox && npm run build:ext:edge",
+    "build:all": "npm run build:web && npm run build:extensions",
+    "build:functions": "npm run build --workspace=functions",
+    "typecheck": "npm run -ws --if-present typecheck"
   }
 }
