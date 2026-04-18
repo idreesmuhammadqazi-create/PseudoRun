@@ -11,7 +11,7 @@ PseudoRun is an IGCSE Pseudocode editor and simulator for Computer Science stude
 | `apps/extension-edge` | Microsoft Edge (Chromium) browser extension. |
 | `apps/windows-desktop` | Windows desktop client (.NET / Visual Studio solution). |
 | `functions` | Firebase Cloud Functions (TypeScript). |
-| `packages/core` | Shared core library (planned - pseudocode parser, runtime, validators). |
+| `packages/core` | Shared core library (pseudocode lexer, parser, interpreter, validator, utils). |
 
 ## Prerequisites
 
@@ -57,13 +57,32 @@ dotnet build apps/windows-desktop/PseudoRun.sln
 - **apps/extension-edge** - Edge extension equivalent to the Firefox build.
 - **apps/windows-desktop** - Native Windows client built on .NET.
 - **functions** - Server-side Firebase Cloud Functions (admin tooling, email, etc.).
-- **packages/core** - Planned shared library for pseudocode parsing and execution logic.
+- **packages/core** - Shared library for pseudocode parsing and execution logic (used by web app and extensions).
 
 ## Deployment
 
 - Firebase Hosting reads `firebase.json` (publishes `apps/web/dist`).
 - Vercel reads `vercel.json` (builds `@pseudorun/web`, publishes `apps/web/dist`).
 - Netlify reads `netlify.toml` (same build + publish directory).
+
+## CI/CD and Publishing
+
+- **Web app**: Vercel auto-deploys on every push to `main`.
+- **Windows desktop**: GitHub Actions (`windows-desktop.yml`) builds and publishes on changes to `apps/windows-desktop/**`.
+- **Extensions**: GitHub Actions (`publish-extensions.yml`) builds and publishes Firefox and Edge extensions on changes to `apps/extension-*/**` or `packages/core/**`.
+
+### Publishing Browser Extensions
+
+The `publish-extensions.yml` workflow auto-updates AMO (Firefox) and Microsoft Edge Add-ons on relevant pushes to `main`. Initial publication requires manual submission via the web stores.
+
+#### Secrets Required
+
+Set these in GitHub repo → **Settings** → **Secrets and variables** → **Actions**:
+
+- `FIREFOX_JWT_ISSUER` and `FIREFOX_JWT_SECRET`: From https://addons.mozilla.org/en-US/developers/addon/api/key/
+- `EDGE_PRODUCT_ID`, `EDGE_API_KEY`, `EDGE_CLIENT_ID`: From Microsoft Edge Add-ons API setup
+
+To trigger extension publishing, push changes to extension code or `packages/core` to `main`.
 
 ## Documentation
 
