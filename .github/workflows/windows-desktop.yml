@@ -105,14 +105,15 @@ jobs:
         # to x64 for the wapproj via ProjectConfigurationPlatforms.
         run: msbuild ${{ env.SOLUTION }} /t:Restore /p:Configuration=Release /p:Platform="Any CPU"
       - name: Build MSIX
-        # Build through the .sln (not the wapproj directly) so DesktopBridge
-        # can resolve ProjectReference metadata via solution context — otherwise
-        # it errors with "Project must have a reference to an application"
-        # (DesktopBridge.targets line 746). Target just the Package project so
-        # we don't also build the xUnit test project.
+        # Build the FULL solution (no /t: filter) so all three projects resolve
+        # their cross-references simultaneously. DesktopBridge resolves its
+        # ProjectReference -> application mapping only when the referenced
+        # csproj is being built in the same msbuild invocation. Building the
+        # wapproj alone, or with /t:PackageProject, fails with
+        # "Project must have a reference to an application" because the csproj
+        # output isn't visible yet.
         run: >
           msbuild ${{ env.SOLUTION }}
-          /t:PseudoRun_Desktop_Package
           /p:Configuration=Release
           /p:Platform="Any CPU"
           /p:AppxBundle=Never
