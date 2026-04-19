@@ -9,6 +9,12 @@
     <!-- MSIX packaging needs an explicit Platform=x64 build, which in turn needs the
          net8.0-windows/win-x64 RID target pre-computed by restore. -->
     <Platforms>AnyCPU;x64</Platforms>
+    <!-- Tell the .NET SDK this app is packaged by an EXTERNAL tool (our wapproj),
+         not self-packaged. Without this, DesktopBridge's _ConvertItems target
+         can't see the csproj output as a package-layout candidate and errors
+         with "Project must have a reference to an application". -->
+    <WindowsPackageType>None</WindowsPackageType>
+    <EnableMsixTooling>true</EnableMsixTooling>
     <!-- <ApplicationIcon>Resources\Icons\app.ico</ApplicationIcon> -->
     <AssemblyName>PseudoRun</AssemblyName>
     <RootNamespace>PseudoRun.Desktop</RootNamespace>
