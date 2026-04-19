@@ -115,12 +115,16 @@ jobs:
           }
 
           # Fill identity / publisher / version placeholders in the staged manifest.
+          # Use string replace for the placeholder tokens (safe, non-ambiguous),
+          # and scope the Version substitution to <Identity> ONLY so we don't
+          # accidentally clobber MinVersion / MaxVersionTested on TargetDeviceFamily
+          # (both of which also contain 'Version="..."' substrings).
           $p = "msix-staging/AppxManifest.xml"
           $c = Get-Content $p -Raw
           $c = $c.Replace('PSEUDORUN_PACKAGE_IDENTITY_NAME_PLACEHOLDER', $env:STORE_PACKAGE_IDENTITY_NAME)
           $c = $c.Replace('PSEUDORUN_PUBLISHER_CN_PLACEHOLDER', $env:STORE_PUBLISHER_CN)
           $c = $c.Replace('PSEUDORUN_PUBLISHER_DISPLAY_NAME_PLACEHOLDER', $env:STORE_PUBLISHER_DISPLAY_NAME)
-          $c = $c -replace 'Version="\d+\.\d+\.\d+\.\d+"', 'Version="${{ steps.version.outputs.version }}"'
+          $c = $c -replace '(?s)(<Identity\b[^>]*?)Version="\d+\.\d+\.\d+\.\d+"', ('$1Version="${{ steps.version.outputs.version }}"')
           # Rewrite the Executable path: the wapproj manifest assumed
           # "PseudoRun.Desktop\PseudoRun.exe" (subfolder layout inside the
           # package). With makeappx our layout is flat — executable is at root.
