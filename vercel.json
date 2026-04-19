@@ -5,6 +5,7 @@
   "buildCommand": "npm run build --workspace=@pseudorun/web",
   "outputDirectory": "apps/web/dist",
   "rewrites": [
+    { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
