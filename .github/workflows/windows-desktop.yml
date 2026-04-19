@@ -95,7 +95,9 @@ jobs:
           $c = $c -replace 'Version="\d+\.\d+\.\d+\.\d+"', 'Version="${{ steps.version.outputs.version }}"'
           Set-Content $p $c -NoNewline
       - name: Restore solution
-        run: msbuild ${{ env.SOLUTION }} /t:Restore /p:Configuration=Release /p:Platform=x64
+        # sln declares only Any CPU at the solution level; it maps internally
+        # to x64 for the wapproj via ProjectConfigurationPlatforms.
+        run: msbuild ${{ env.SOLUTION }} /t:Restore /p:Configuration=Release /p:Platform="Any CPU"
       - name: Build MSIX
         run: >
           msbuild ${{ env.WAPPROJ }}
