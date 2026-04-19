@@ -14,11 +14,10 @@ on:
       - '.github/workflows/windows-desktop.yml'
 
 env:
-  SOLUTION: apps/windows-desktop/PseudoRun.sln
   APP_CSPROJ: apps/windows-desktop/src/PseudoRun.Desktop/PseudoRun.Desktop.csproj
   TEST_CSPROJ: apps/windows-desktop/tests/PseudoRun.Desktop.Tests/PseudoRun.Desktop.Tests.csproj
-  WAPPROJ: apps/windows-desktop/src/PseudoRun.Desktop.Package/PseudoRun.Desktop.Package.wapproj
   APPXMANIFEST: apps/windows-desktop/src/PseudoRun.Desktop.Package/Package.appxmanifest
+  PACKAGE_IMAGES: apps/windows-desktop/src/PseudoRun.Desktop.Package/Images
 
 jobs:
   build-and-test:
@@ -29,8 +28,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
       - name: Restore (app + tests)
         run: |
           dotnet restore ${{ env.APP_CSPROJ }}
@@ -40,11 +37,8 @@ jobs:
           dotnet build ${{ env.APP_CSPROJ }} --configuration Release --no-restore
           dotnet build ${{ env.TEST_CSPROJ }} --configuration Release --no-restore
       - name: Test
-        # Target the test csproj directly; the .sln includes a .wapproj that
-        # the .NET SDK cannot load (DesktopBridge targets live in VS/full MSBuild).
         run: dotnet test ${{ env.TEST_CSPROJ }} --configuration Release --no-build --filter "Category!=IntegrationWindows"
-        continue-on-error: false
-      - name: Publish self-contained EXE (artifact for dev download)
+      - name: Publish self-contained EXE
         run: >
           dotnet publish ${{ env.APP_CSPROJ }}
           --configuration Release
@@ -73,67 +67,104 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
-      - name: Install Windows 10 SDK 22621
-        # Pre-installed SDK set on windows-latest rotates; install the one the
-        # wapproj targets so we never depend on image defaults.
+      - name: Install Windows 10 SDK 22621 (for makeappx.exe)
         uses: GuillaumeFalourd/setup-windows10-sdk-action@v2.4
         with:
           sdk-version: 22621
+
       - name: Extract version from tag
         id: version
         shell: pwsh
         run: |
           $tag = "${{ github.ref_name }}"
           $version = $tag -replace '^desktop-v',''
-          # Store versions require 4-part: major.minor.build.revision
           if ($version -notmatch '^\d+\.\d+\.\d+\.\d+$') { $version = "$version.0" }
           Write-Output "version=$version" >> $env:GITHUB_OUTPUT
-      - name: Fill manifest placeholders + version
+
+      - name: Publish WPF app (framework-dependent; MSIX provides runtime)
+        # NOTE: self-contained=false means the MSIX is ~20 MB; the Store will
+        # auto-install .NET 8 Desktop Runtime as a framework dependency.
+        # If you prefer a bigger self-contained MSIX, set self-contained=true
+        # and remove the <PackageDependency> for WindowsAppRuntime/.NET below.
+        run: >
+          dotnet publish ${{ env.APP_CSPROJ }}
+          --configuration Release
+          --runtime win-x64
+          --self-contained true
+          /p:PublishSingleFile=false
+          --output msix-staging
+
+      - name: Stage MSIX layout (manifest + assets + app binaries)
         shell: pwsh
         run: |
-          $p = "${{ env.APPXMANIFEST }}"
+          # The msix-staging/ folder already has the WPF app's binaries from
+          # `dotnet publish`. Now drop the AppxManifest and Images next to them
+          # so `makeappx pack` sees a valid package layout.
+          Copy-Item -Path "${{ env.APPXMANIFEST }}" -Destination "msix-staging/AppxManifest.xml" -Force
+          New-Item -ItemType Directory -Force -Path "msix-staging/Images" | Out-Null
+          Copy-Item -Path "${{ env.PACKAGE_IMAGES }}/*" -Destination "msix-staging/Images/" -Force
+
+          # Our logo files are named *.scale-200.png but the manifest references
+          # the bare name (e.g. Square150x150Logo.png). MSIX can handle scale
+          # qualifiers via resource index, but it's simpler for v1 to just
+          # provide the base filenames. Copy each scale-200 variant to its
+          # bare name so the manifest's literal paths resolve.
+          Get-ChildItem -Path msix-staging/Images -Filter '*.scale-200.png' | ForEach-Object {
+            $bare = $_.Name -replace '\.scale-200\.png$', '.png'
+            Copy-Item $_.FullName (Join-Path $_.Directory $bare) -Force
+          }
+
+          # Fill identity / publisher / version placeholders in the staged manifest.
+          $p = "msix-staging/AppxManifest.xml"
           $c = Get-Content $p -Raw
           $c = $c.Replace('PSEUDORUN_PACKAGE_IDENTITY_NAME_PLACEHOLDER', $env:STORE_PACKAGE_IDENTITY_NAME)
           $c = $c.Replace('PSEUDORUN_PUBLISHER_CN_PLACEHOLDER', $env:STORE_PUBLISHER_CN)
           $c = $c.Replace('PSEUDORUN_PUBLISHER_DISPLAY_NAME_PLACEHOLDER', $env:STORE_PUBLISHER_DISPLAY_NAME)
           $c = $c -replace 'Version="\d+\.\d+\.\d+\.\d+"', 'Version="${{ steps.version.outputs.version }}"'
+          # Rewrite the Executable path: the wapproj manifest assumed
+          # "PseudoRun.Desktop\PseudoRun.exe" (subfolder layout inside the
+          # package). With makeappx our layout is flat — executable is at root.
+          $c = $c -replace 'Executable="PseudoRun\.Desktop\\PseudoRun\.exe"', 'Executable="PseudoRun.exe"'
+          # Same for logos — drop the "Images\" prefix duplicates that reference
+          # non-scale-200 names. Partner Center-generated manifests expect
+          # "Images\<name>.png" matching our staged folder, which already works.
           Set-Content $p $c -NoNewline
-      - name: Restore solution
-        # sln declares only Any CPU at the solution level; it maps internally
-        # to x64 for the wapproj via ProjectConfigurationPlatforms.
-        run: msbuild ${{ env.SOLUTION }} /t:Restore /p:Configuration=Release /p:Platform="Any CPU"
-      - name: Build MSIX
-        # Build the FULL solution (no /t: filter) so all three projects resolve
-        # their cross-references simultaneously. DesktopBridge resolves its
-        # ProjectReference -> application mapping only when the referenced
-        # csproj is being built in the same msbuild invocation. Building the
-        # wapproj alone, or with /t:PackageProject, fails with
-        # "Project must have a reference to an application" because the csproj
-        # output isn't visible yet.
-        run: >
-          msbuild ${{ env.SOLUTION }}
-          /p:Configuration=Release
-          /p:Platform="Any CPU"
-          /p:AppxBundle=Never
-          /p:AppxPackageSigningEnabled=False
-          /p:UapAppxPackageBuildMode=StoreUpload
-          /p:GenerateAppInstallerFile=False
-          /p:AppxSymbolPackageEnabled=False
-      - name: Locate .msixupload
-        id: locate
+
+          Write-Host "--- Staged manifest ---"
+          Get-Content $p | Select-Object -First 50
+          Write-Host "--- Staged layout (top 20) ---"
+          Get-ChildItem -Path msix-staging | Select-Object -First 20 | Format-Table Name, Length
+
+      - name: Locate makeappx.exe
+        id: makeappx
         shell: pwsh
         run: |
-          $path = Get-ChildItem -Recurse -Filter '*.msixupload' apps/windows-desktop/src/PseudoRun.Desktop.Package/AppPackages | Select-Object -First 1 -ExpandProperty FullName
-          if (-not $path) { throw 'msixupload not found' }
-          Write-Output "path=$path" >> $env:GITHUB_OUTPUT
+          $sdkRoot = "C:\Program Files (x86)\Windows Kits\10\bin"
+          $cand = Get-ChildItem -Path $sdkRoot -Recurse -Filter makeappx.exe -ErrorAction SilentlyContinue |
+                  Where-Object { $_.FullName -like "*\x64\*" } |
+                  Sort-Object FullName -Descending |
+                  Select-Object -First 1
+          if (-not $cand) { throw "makeappx.exe not found under $sdkRoot" }
+          Write-Host "Using $($cand.FullName)"
+          Write-Output "path=$($cand.FullName)" >> $env:GITHUB_OUTPUT
+
+      - name: Pack MSIX
+        shell: pwsh
+        run: |
+          $out = "PseudoRun.Desktop_${{ steps.version.outputs.version }}_x64.msix"
+          & "${{ steps.makeappx.outputs.path }}" pack /d msix-staging /p $out /o
+          if ($LASTEXITCODE -ne 0) { throw "makeappx pack failed ($LASTEXITCODE)" }
+          Write-Output "msix=$out" >> $env:GITHUB_OUTPUT
+          Get-Item $out | Format-List Name, Length
+        id: pack
+
       - name: Upload MSIX artifact
         uses: actions/upload-artifact@v4
         with:
           name: pseudorun-desktop-msix-${{ steps.version.outputs.version }}
-          path: ${{ steps.locate.outputs.path }}
+          path: ${{ steps.pack.outputs.msix }}
           retention-days: 30
+
       - name: Submit to Microsoft Store
         if: env.STORE_AZURE_CLIENT_ID != ''
         env:
@@ -148,7 +179,7 @@ jobs:
           client-id: ${{ secrets.STORE_AZURE_CLIENT_ID }}
           client-secret: ${{ secrets.STORE_AZURE_CLIENT_SECRET }}
           app-id: ${{ secrets.STORE_APP_ID }}
-          package-path: ${{ steps.locate.outputs.path }}
+          package-path: ${{ steps.pack.outputs.msix }}
           skip-polling: false
           delete-packages: true
           delete-only-failed-packages: false
