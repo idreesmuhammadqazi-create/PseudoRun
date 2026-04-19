@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | PseudoRun</title>
+  <meta name="description" content="PseudoRun privacy policy - what we collect, how we use it, and your rights." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.pseudorun.tech/privacy" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --fg: #111;
+      --muted: #555;
+      --accent: #2563eb;
+      --bg: #fff;
+      --border: #e5e7eb;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --fg: #eaeaea; --muted: #aaa; --bg: #0b0d12; --border: #1f2937; }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--fg);
+      background: var(--bg);
+      line-height: 1.65;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.25rem; }
+    h2 { margin-top: 2.25rem; font-size: 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
+    h3 { margin-top: 1.5rem; font-size: 1.05rem; }
+    .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    a { color: var(--accent); }
+    code { background: rgba(127,127,127,0.12); padding: 0.05em 0.35em; border-radius: 4px; font-size: 0.92em; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0 1rem; }
+    th, td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; font-size: 0.95rem; vertical-align: top; }
+    th { background: rgba(127,127,127,0.08); }
+    ul { padding-left: 1.25rem; }
+    .back { display: inline-block; margin-top: 2rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Last updated: 19 April 2026</p>
+
+  <p>
+    PseudoRun is an educational tool that helps IGCSE and A-Level students write, run,
+    and debug CAIE pseudocode. This policy explains exactly what data we collect across
+    our products, what we do with it, and what your rights are.
+  </p>
+
+  <p>We publish four products. Each collects different data:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Offline-only?</th>
+        <th>What we collect</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Web app (<a href="https://www.pseudorun.tech">pseudorun.tech</a>)</td>
+        <td>No (optional account)</td>
+        <td>Email (if you sign up), programs you save, anonymous usage metrics</td>
+      </tr>
+      <tr>
+        <td>Firefox extension</td>
+        <td>Yes</td>
+        <td>Nothing is transmitted</td>
+      </tr>
+      <tr>
+        <td>Microsoft Edge extension</td>
+        <td>Yes</td>
+        <td>Nothing is transmitted</td>
+      </tr>
+      <tr>
+        <td>PseudoRun for Windows (Microsoft Store)</td>
+        <td>Yes</td>
+        <td>Nothing is transmitted</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>1. Desktop app and browser extensions</h2>
+
+  <p>
+    The PseudoRun Windows desktop application, the Firefox extension, and the Microsoft Edge
+    extension are <strong>fully offline</strong>. They do not:
+  </p>
+  <ul>
+    <li>Create user accounts or require sign-in.</li>
+    <li>Transmit the code you write, the input you enter, or the output your programs produce.</li>
+    <li>Collect analytics, crash reports, or telemetry.</li>
+    <li>Contact any server controlled by us or by any third party.</li>
+  </ul>
+
+  <p>
+    All your programs and settings are stored locally on your device:
+  </p>
+  <ul>
+    <li><strong>Windows desktop:</strong> files are written under your local user profile
+      (<code>%LOCALAPPDATA%\PseudoRun</code>). Uninstalling the app from Settings &gt; Apps removes them.</li>
+    <li><strong>Firefox extension:</strong> data is stored in the browser's extension storage for
+      PseudoRun. Removing the extension clears it.</li>
+    <li><strong>Edge extension:</strong> same as Firefox - data lives in the browser's per-extension
+      local storage and is cleared when the extension is removed.</li>
+  </ul>
+
+  <h2>2. Web application (pseudorun.tech)</h2>
+
+  <p>
+    You can use the web app without creating an account, and in that case nothing personal is
+    stored on our servers. If you <strong>choose</strong> to create an account to save programs
+    across devices or share them via link, we store the following on our behalf:
+  </p>
+
+  <h3>2.1 Information you provide</h3>
+  <ul>
+    <li><strong>Email address</strong>. Used to authenticate you and to recover your password if
+      you forget it. We do not send marketing email.</li>
+    <li><strong>Display name</strong> (optional).</li>
+    <li><strong>Pseudocode programs you explicitly save</strong> to your account.</li>
+    <li><strong>Programs you explicitly share</strong> via a share link.</li>
+  </ul>
+
+  <h3>2.2 Information collected automatically</h3>
+  <ul>
+    <li><strong>Basic authentication metadata</strong> (time of last sign-in, hashed password) -
+      handled on our behalf by Firebase Authentication.</li>
+    <li><strong>Aggregate, anonymous usage analytics</strong> (page views, referrer,
+      browser family, country) - collected by Vercel Analytics. This data does not identify
+      you and is retained for a maximum of 30 days.</li>
+  </ul>
+
+  <h3>2.3 What we do NOT do</h3>
+  <ul>
+    <li>We do not sell your data, ever.</li>
+    <li>We do not serve advertising and we do not load third-party ad-tracking scripts.</li>
+    <li>We do not profile you, fingerprint your device, or attempt to identify you across
+      unrelated websites.</li>
+    <li>We do not read the contents of your programs to train machine-learning models.</li>
+  </ul>
+
+  <h2>3. Who processes your data on our behalf</h2>
+
+  <p>
+    We use the following sub-processors. Each is contractually bound to handle your data only for
+    the purposes we describe.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th>Sub-processor</th><th>Purpose</th><th>Data category</th><th>Location</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Google Firebase (Authentication, Firestore)</td>
+        <td>Store your account + saved programs; sign-in</td>
+        <td>Email, hashed password, program text</td>
+        <td>Google Cloud, EU/US regions</td>
+      </tr>
+      <tr>
+        <td>Vercel</td>
+        <td>Host the web app; anonymous analytics</td>
+        <td>Aggregate traffic data, no PII</td>
+        <td>Vercel edge, global</td>
+      </tr>
+      <tr>
+        <td>Resend</td>
+        <td>Send password reset and account-related email</td>
+        <td>Email address, message content</td>
+        <td>Resend, US/EU</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Legal basis (GDPR)</h2>
+  <ul>
+    <li><strong>Account data</strong>: processed on the basis of a contract with you (the terms
+      of service you accept when you create an account).</li>
+    <li><strong>Aggregate analytics</strong>: processed on the basis of our legitimate interest
+      in maintaining and improving the service, minimised so that no individual is identified.</li>
+  </ul>
+
+  <h2>5. How long we keep your data</h2>
+  <ul>
+    <li>Account and saved programs: kept until you delete your account or individual programs.</li>
+    <li>Share-link records: kept until you delete the link.</li>
+    <li>Authentication logs: 90 days (retained by Firebase for abuse and security review).</li>
+    <li>Anonymous usage analytics: up to 30 days.</li>
+  </ul>
+
+  <h2>6. Your rights</h2>
+  <p>
+    Regardless of where you live, you can:
+  </p>
+  <ul>
+    <li><strong>Access</strong> all data we hold about you - use the account settings page, or email
+      us.</li>
+    <li><strong>Correct</strong> inaccuracies in your profile at any time.</li>
+    <li><strong>Delete</strong> your account and all associated saved programs, share links, and
+      authentication records - use the "Delete account" option in account settings, or email us.</li>
+    <li><strong>Export</strong> a copy of your saved programs as .txt / .docx / .pdf at any time
+      from the programs library.</li>
+    <li><strong>Opt out</strong> of anonymous analytics by enabling "Do Not Track" or an ad-blocker;
+      the site functions normally without analytics.</li>
+  </ul>
+  <p>
+    If you are in the EU/UK and believe we have mishandled your data, you have the right to lodge
+    a complaint with your local data-protection authority. We'd appreciate you contacting us first
+    so we can fix it.
+  </p>
+
+  <h2>7. Children</h2>
+  <p>
+    PseudoRun is intended for secondary-school students (typically ages 14+). If a child under 13
+    uses the service, we recommend they use it without creating an account. We do not knowingly
+    collect personal information from children under 13 without parental consent. If you believe a
+    child under 13 has created an account, contact us and we will delete the account promptly.
+  </p>
+
+  <h2>8. Security</h2>
+  <p>
+    All traffic to pseudorun.tech is served over HTTPS. Passwords are stored hashed (bcrypt-family)
+    by Firebase Authentication; we do not see your plaintext password. Saved programs are stored in
+    Firestore with access rules limited to the owning account. We do not disable browser security
+    features (Subresource Integrity, Content Security Policy) for the web app.
+  </p>
+
+  <h2>9. Changes to this policy</h2>
+  <p>
+    If we change this policy materially, we will update the "Last updated" date at the top and,
+    for registered web-app users, display an in-app notice the next time you sign in. Minor
+    clarifications may be published without notice.
+  </p>
+
+  <h2>10. Contact</h2>
+  <p>
+    Questions, requests, or complaints? Email
+    <a href="mailto:support@pseudorun.tech">support@pseudorun.tech</a>. We aim to reply within
+    five business days.
+  </p>
+
+  <p>
+    The controller for the purposes of UK/EU data-protection law is
+    <strong>Muhammad Idrees Qazi</strong>, operating as PseudoRun.
+  </p>
+
+  <p><a class="back" href="/">&larr; Back to PseudoRun</a></p>
+</body>
+</html>
