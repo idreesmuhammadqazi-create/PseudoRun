@@ -16,6 +16,7 @@ on:
 env:
   SOLUTION: apps/windows-desktop/PseudoRun.sln
   APP_CSPROJ: apps/windows-desktop/src/PseudoRun.Desktop/PseudoRun.Desktop.csproj
+  TEST_CSPROJ: apps/windows-desktop/tests/PseudoRun.Desktop.Tests/PseudoRun.Desktop.Tests.csproj
   WAPPROJ: apps/windows-desktop/src/PseudoRun.Desktop.Package/PseudoRun.Desktop.Package.wapproj
   APPXMANIFEST: apps/windows-desktop/src/PseudoRun.Desktop.Package/Package.appxmanifest
 
@@ -30,12 +31,18 @@ jobs:
           dotnet-version: 8.0.x
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
-      - name: Restore
-        run: dotnet restore ${{ env.APP_CSPROJ }}
-      - name: Build (exe)
-        run: dotnet build ${{ env.APP_CSPROJ }} --configuration Release --no-restore
+      - name: Restore (app + tests)
+        run: |
+          dotnet restore ${{ env.APP_CSPROJ }}
+          dotnet restore ${{ env.TEST_CSPROJ }}
+      - name: Build (app + tests)
+        run: |
+          dotnet build ${{ env.APP_CSPROJ }} --configuration Release --no-restore
+          dotnet build ${{ env.TEST_CSPROJ }} --configuration Release --no-restore
       - name: Test
-        run: dotnet test ${{ env.SOLUTION }} --configuration Release --no-build --filter "FullyQualifiedName!~DataIntegrityTests|Category!=IntegrationWindows"
+        # Target the test csproj directly; the .sln includes a .wapproj that
+        # the .NET SDK cannot load (DesktopBridge targets live in VS/full MSBuild).
+        run: dotnet test ${{ env.TEST_CSPROJ }} --configuration Release --no-build --filter "Category!=IntegrationWindows"
         continue-on-error: false
       - name: Publish self-contained EXE (artifact for dev download)
         run: >
