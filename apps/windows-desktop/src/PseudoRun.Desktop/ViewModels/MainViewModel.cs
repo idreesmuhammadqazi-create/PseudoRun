@@ -99,6 +99,54 @@ namespace PseudoRun.Desktop.ViewModels
         }
 
         [RelayCommand]
+        private async Task RunInDebug()
+        {
+            if (IsRunning) return;
+
+            IsRunning = true;
+            Output = "";
+            ErrorViewModel.ClearErrorsCommand.Execute(null);
+
+            // Flip the debug flag so DebugControls / VariablesPanel become visible
+            // while we execute. InterpreterService.ExecuteDebugAsync pushes live
+            // state into DebugViewModel via the StepCallback wired up in wave 5.
+            DebugViewModel.IsDebugging = true;
+
+            try
+            {
+                // Validate first - same as RunProgram
+                var errors = await _validationService.ValidateAsync(Code);
+                if (errors.Any())
+                {
+                    foreach (var error in errors)
+                    {
+                        ErrorViewModel.AddError(error.Message, "Syntax Error", error.Line, error.Column);
+                        Output += $"Syntax Error (Line {error.Line}, Col {error.Column}): {error.Message}\n";
+                    }
+                    return;
+                }
+
+                // Execute in debug mode - the step callback will push updates
+                // to DebugViewModel for the watch / call stack panels.
+                await foreach (var line in _interpreterService.ExecuteDebugAsync(Code))
+                {
+                    Output += line + "\n";
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorViewModel.AddError(ex.Message, "Runtime Error");
+                Output += $"Runtime Error: {ex.Message}\n";
+            }
+            finally
+            {
+                IsRunning = false;
+                // Leave IsDebugging true so the user can inspect final state;
+                // the DebugViewModel.StopDebugCommand (or re-running) will clear it.
+            }
+        }
+
+        [RelayCommand]
         private void StopProgram()
         {
             _interpreterService.Stop();

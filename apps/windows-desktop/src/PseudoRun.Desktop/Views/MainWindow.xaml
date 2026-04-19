@@ -38,6 +38,7 @@
             </MenuItem>
             <MenuItem Header="_Run">
                 <MenuItem Header="_Run Program" Command="{Binding RunProgramCommand}" InputGestureText="F5"/>
+                <MenuItem Header="Run in _Debug" Command="{Binding RunInDebugCommand}" InputGestureText="F6"/>
                 <MenuItem Header="_Stop" Command="{Binding StopProgramCommand}" InputGestureText="Shift+F5"/>
             </MenuItem>
             <MenuItem Header="_Tools">
@@ -60,9 +61,11 @@
             <Button Content="Save" Command="{Binding SaveFileCommand}" ToolTip="Save File (Ctrl+S)"/>
             <Separator/>
             <Button Content="Run" Command="{Binding RunProgramCommand}" ToolTip="Run Program (F5)" Style="{StaticResource PrimaryButton}"/>
+            <Button Content="Run in Debug" Command="{Binding RunInDebugCommand}" ToolTip="Run Program in Debug Mode (F6)" Style="{StaticResource PrimaryButton}"/>
             <Button Content="Stop" Command="{Binding StopProgramCommand}" ToolTip="Stop Execution (Shift+F5)"/>
             <Separator/>
-            <controls:DebugControls DataContext="{Binding DebugViewModel}"/>
+            <controls:DebugControls DataContext="{Binding DebugViewModel}"
+                                    Visibility="{Binding DebugViewModel.IsDebugging, Converter={StaticResource BoolToVisibilityConverter}}"/>
         </ToolBar>
 
         <!-- Main Content Area -->

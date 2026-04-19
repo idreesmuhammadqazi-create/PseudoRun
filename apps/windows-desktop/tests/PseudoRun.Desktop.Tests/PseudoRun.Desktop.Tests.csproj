@@ -18,4 +18,13 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\PseudoRun.Desktop\PseudoRun.Desktop.csproj" />
   </ItemGroup>
+
+  <!-- Copy the main project's Data\*.json next to the test assembly so
+       DataIntegrityTests can load them the same way the app does. -->
+  <ItemGroup>
+    <Content Include="..\..\src\PseudoRun.Desktop\Data\**\*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Link>Data\%(Filename)%(Extension)</Link>
+    </Content>
+  </ItemGroup>
 </Project>

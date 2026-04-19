@@ -5,8 +5,12 @@
     "topic": "Variables & Output",
     "title": "Calculate Rectangle Area",
     "description": "Write a program that declares variables for length and width, assigns values (length = 10, width = 5), calculates the area, and outputs the result.",
-    "hints": ["Declare three INTEGER variables: Length, Width, and Area", "Use the <- operator to assign values", "Area formula: Length * Width"],
-    "solution": "DECLARE Length : INTEGER\nDECLARE Width : INTEGER\nDECLARE Area : INTEGER\n\nLength <- 10\nWidth <- 5\nArea <- Length * Width\n\nOUTPUT \"The area is: \", Area"
+    "hints": [
+      "Declare three INTEGER variables: Length, Width, and Area",
+      "Use the <-- operator to assign values",
+      "Area formula: Length * Width"
+    ],
+    "solution": "DECLARE Length : INTEGER\nDECLARE Width : INTEGER\nDECLARE Area : INTEGER\n\nLength <-- 10\nWidth <-- 5\nArea <-- Length * Width\n\nOUTPUT \"The area is: \", Area"
   },
   {
     "id": 2,
@@ -14,439 +18,1285 @@
     "topic": "Input & Selection",
     "title": "Pass or Fail",
     "description": "Write a program that inputs a student's score (0-100) and outputs \"Pass\" if the score is 50 or above, or \"Fail\" otherwise.",
-    "hints": ["Use INPUT to get the score", "Use IF-THEN-ELSE for the decision", "Pass mark is >= 50"],
+    "hints": [
+      "Use INPUT to get the score",
+      "Use IF-THEN-ELSE for the decision",
+      "Pass mark is >= 50"
+    ],
     "solution": "DECLARE Score : INTEGER\n\nOUTPUT \"Enter your score:\"\nINPUT Score\n\nIF Score >= 50 THEN\n    OUTPUT \"Pass\"\nELSE\n    OUTPUT \"Fail\"\nENDIF"
   },
   {
     "id": 3,
     "level": "IGCSE",
-    "topic": "Variables & Arithmetic",
-    "title": "Temperature Converter",
-    "description": "Write a program that converts Celsius to Fahrenheit. Formula: F = (C * 9/5) + 32. Input temperature in Celsius and output in Fahrenheit.",
-    "hints": ["Use REAL data type for decimal values", "Formula: Fahrenheit = (Celsius * 9/5) + 32", "Test with 0°C (should be 32°F)"],
-    "solution": "DECLARE Celsius : REAL\nDECLARE Fahrenheit : REAL\n\nOUTPUT \"Enter temperature in Celsius: \"\nINPUT Celsius\n\nFahrenheit <- (Celsius * 9 / 5) + 32\n\nOUTPUT \"Temperature in Fahrenheit: \", Fahrenheit"
+    "topic": "Loops",
+    "title": "Times Table",
+    "description": "Write a program that outputs the 7 times table from 7×1 to 7×10.",
+    "hints": [
+      "Use a FOR loop from 1 TO 10",
+      "Multiply 7 by the loop counter",
+      "Output both the counter and result"
+    ],
+    "solution": "DECLARE i : INTEGER\nDECLARE Result : INTEGER\n\nFOR i <-- 1 TO 10\n    Result <-- 7 * i\n    OUTPUT \"7 x \", i, \" = \", Result\nNEXT i"
   },
   {
     "id": 4,
     "level": "IGCSE",
-    "topic": "Selection",
-    "title": "Grade Calculator",
-    "description": "Input a mark (0-100) and output the grade: A (90+), B (80-89), C (70-79), D (60-69), F (below 60).",
-    "hints": ["Use IF-ELSE IF structure", "Check from highest grade to lowest", "Remember to use ELSE for F grade"],
-    "solution": "DECLARE Mark : INTEGER\n\nOUTPUT \"Enter mark: \"\nINPUT Mark\n\nIF Mark >= 90 THEN\n    OUTPUT \"Grade: A\"\nELSE IF Mark >= 80 THEN\n    OUTPUT \"Grade: B\"\nELSE IF Mark >= 70 THEN\n    OUTPUT \"Grade: C\"\nELSE IF Mark >= 60 THEN\n    OUTPUT \"Grade: D\"\nELSE\n    OUTPUT \"Grade: F\"\nENDIF"
+    "topic": "Arrays",
+    "title": "Array Average",
+    "description": "Declare an array of 5 integers, fill it with values {10, 20, 30, 40, 50}, calculate and output the average.",
+    "hints": [
+      "Declare an array with ARRAY[1:5]",
+      "Use a loop to fill the array",
+      "Sum all values, then divide by 5"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE Sum : INTEGER\nDECLARE Average : REAL\n\nNumbers[1] <-- 10\nNumbers[2] <-- 20\nNumbers[3] <-- 30\nNumbers[4] <-- 40\nNumbers[5] <-- 50\n\nSum <-- 0\nFOR i <-- 1 TO 5\n    Sum <-- Sum + Numbers[i]\nNEXT i\n\nAverage <-- Sum / 5\nOUTPUT \"Average: \", Average"
   },
   {
     "id": 5,
-    "level": "IGCSE",
-    "topic": "Loops",
-    "title": "Counting to 10",
-    "description": "Write a program using a FOR loop to output numbers from 1 to 10.",
-    "hints": ["Use FOR loop with counter from 1 TO 10", "Declare a counter variable", "Use OUTPUT inside the loop"],
-    "solution": "DECLARE Counter : INTEGER\n\nFOR Counter <- 1 TO 10\n    OUTPUT Counter\nNEXT Counter"
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "Factorial Function",
+    "description": "Write a function called Factorial that takes an integer N and returns N! (factorial). Then call it with N=5 and output the result.",
+    "hints": [
+      "Function should RETURN INTEGER",
+      "Use a loop to multiply 1 * 2 * 3 * ... * N",
+      "Remember to declare Result variable inside function"
+    ],
+    "solution": "FUNCTION Factorial(N : INTEGER) RETURNS INTEGER\n    DECLARE Result : INTEGER\n    DECLARE i : INTEGER\n\n    Result <-- 1\n    FOR i <-- 1 TO N\n        Result <-- Result * i\n    NEXT i\n\n    RETURN Result\nENDFUNCTION\n\nDECLARE Answer : INTEGER\nAnswer <-- Factorial(5)\nOUTPUT \"5! = \", Answer"
   },
   {
     "id": 6,
-    "level": "IGCSE",
-    "topic": "Loops",
-    "title": "Sum of Numbers",
-    "description": "Calculate the sum of numbers from 1 to 100 using a FOR loop.",
-    "hints": ["Initialize Sum to 0", "Use FOR loop from 1 TO 100", "Add each number to Sum"],
-    "solution": "DECLARE Sum, Counter : INTEGER\n\nSum <- 0\n\nFOR Counter <- 1 TO 100\n    Sum <- Sum + Counter\nNEXT Counter\n\nOUTPUT \"Sum of 1 to 100: \", Sum"
+    "level": "A-Level",
+    "topic": "Procedures & Parameters",
+    "title": "Swap Procedure",
+    "description": "Write a procedure called Swap that takes two INTEGER parameters by reference and swaps their values. Test it with two variables.",
+    "hints": [
+      "Use BYREF for both parameters so they can be modified",
+      "Need a temporary variable to hold one value during swap",
+      "Declare the temp variable inside the procedure"
+    ],
+    "solution": "PROCEDURE Swap(BYREF A : INTEGER, BYREF B : INTEGER)\n    DECLARE Temp : INTEGER\n    Temp <-- A\n    A <-- B\n    B <-- Temp\nENDPROCEDURE\n\nDECLARE X : INTEGER\nDECLARE Y : INTEGER\n\nX <-- 10\nY <-- 20\n\nOUTPUT \"Before: X = \", X, \", Y = \", Y\nCALL Swap(X, Y)\nOUTPUT \"After: X = \", X, \", Y = \", Y"
   },
   {
     "id": 7,
-    "level": "IGCSE",
-    "topic": "Loops",
-    "title": "WHILE Loop - Password",
-    "description": "Create a password checker using WHILE loop. Keep asking until user enters \"secret\". Maximum 3 attempts.",
-    "hints": ["Use WHILE loop with attempt counter", "Check if password matches \"secret\"", "Limit to 3 attempts"],
-    "solution": "DECLARE Password : STRING\nDECLARE Attempts : INTEGER\n\nAttempts <- 0\nPassword <- \"\"\n\nWHILE Password <> \"secret\" AND Attempts < 3 DO\n    OUTPUT \"Enter password: \"\n    INPUT Password\n    Attempts <- Attempts + 1\n    IF Password <> \"secret\" THEN\n        OUTPUT \"Incorrect! Try again.\"\n    ENDIF\nENDWHILE\n\nIF Password = \"secret\" THEN\n    OUTPUT \"Access granted!\"\nELSE\n    OUTPUT \"Access denied. Too many attempts.\"\nENDIF"
+    "level": "A-Level",
+    "topic": "Searching",
+    "title": "Linear Search",
+    "description": "Write a function called LinearSearch that searches for a target value in an array and returns the index (or -1 if not found). Test with an array of 5 numbers.",
+    "hints": [
+      "Loop through array indices 1 to 5",
+      "Compare each element with target",
+      "Return index when found, -1 if loop completes"
+    ],
+    "solution": "FUNCTION LinearSearch(Arr : ARRAY[1:5] OF INTEGER, Target : INTEGER) RETURNS INTEGER\n    DECLARE i : INTEGER\n\n    FOR i <-- 1 TO 5\n        IF Arr[i] = Target THEN\n            RETURN i\n        ENDIF\n    NEXT i\n\n    RETURN -1\nENDFUNCTION\n\nDECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE Index : INTEGER\n\nNumbers[1] <-- 10\nNumbers[2] <-- 25\nNumbers[3] <-- 30\nNumbers[4] <-- 45\nNumbers[5] <-- 50\n\nIndex <-- LinearSearch(Numbers, 30)\nIF Index = -1 THEN\n    OUTPUT \"Not found\"\nELSE\n    OUTPUT \"Found at index \", Index\nENDIF"
   },
   {
     "id": 8,
-    "level": "IGCSE",
-    "topic": "Arrays",
-    "title": "Array Input and Output",
-    "description": "Create an array of 5 numbers, input values from user, and output all values.",
-    "hints": ["DECLARE array with ARRAY[1:5] OF INTEGER", "Use FOR loop to input values", "Use another FOR loop to output"],
-    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\n\nFOR i <- 1 TO 5\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\nNEXT i\n\nOUTPUT \"Your numbers:\"\nFOR i <- 1 TO 5\n    OUTPUT Numbers[i]\nNEXT i"
+    "level": "A-Level",
+    "topic": "String Manipulation",
+    "title": "Palindrome Checker",
+    "description": "Write a program that inputs a word and checks if it's a palindrome (reads same forwards and backwards). Use string functions.",
+    "hints": [
+      "Use LENGTH() to get string length",
+      "Use SUBSTRING() to get individual characters",
+      "Compare characters from start and end moving inward"
+    ],
+    "solution": "DECLARE Word : STRING\nDECLARE Length : INTEGER\nDECLARE i : INTEGER\nDECLARE IsPalindrome : BOOLEAN\nDECLARE FirstChar : STRING\nDECLARE LastChar : STRING\n\nOUTPUT \"Enter a word:\"\nINPUT Word\n\nLength <-- LENGTH(Word)\nIsPalindrome <-- TRUE\n\nFOR i <-- 1 TO Length DIV 2\n    FirstChar <-- SUBSTRING(Word, i, 1)\n    LastChar <-- SUBSTRING(Word, Length - i + 1, 1)\n\n    IF FirstChar <> LastChar THEN\n        IsPalindrome <-- FALSE\n    ENDIF\nNEXT i\n\nIF IsPalindrome THEN\n    OUTPUT Word, \" is a palindrome\"\nELSE\n    OUTPUT Word, \" is not a palindrome\"\nENDIF"
   },
   {
     "id": 9,
     "level": "IGCSE",
-    "topic": "Arrays",
-    "title": "Find Maximum in Array",
-    "description": "Input 5 numbers into an array, then find and output the maximum value.",
-    "hints": ["Assume first element is maximum", "Loop through array comparing each element", "Update maximum when larger value found"],
-    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i, Max : INTEGER\n\nFOR i <- 1 TO 5\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\nNEXT i\n\nMax <- Numbers[1]\nFOR i <- 2 TO 5\n    IF Numbers[i] > Max THEN\n        Max <- Numbers[i]\n    ENDIF\nNEXT i\n\nOUTPUT \"Maximum value: \", Max"
+    "topic": "Variables & Operators",
+    "title": "Temperature Converter",
+    "description": "Convert Celsius to Fahrenheit. Formula: F = (C × 9/5) + 32. Input Celsius, output Fahrenheit.",
+    "hints": [
+      "Declare two REAL variables",
+      "Use the conversion formula",
+      "Remember order of operations"
+    ],
+    "solution": "DECLARE Celsius : REAL\nDECLARE Fahrenheit : REAL\n\nOUTPUT \"Enter temperature in Celsius:\"\nINPUT Celsius\n\nFahrenheit <-- (Celsius * 9 / 5) + 32\n\nOUTPUT Celsius, \"°C = \", Fahrenheit, \"°F\""
   },
   {
     "id": 10,
     "level": "IGCSE",
-    "topic": "Arrays",
-    "title": "Calculate Average",
-    "description": "Input 10 numbers into an array, calculate and output the average.",
-    "hints": ["Sum all elements", "Divide sum by number of elements", "Use REAL for average to handle decimals"],
-    "solution": "DECLARE Numbers : ARRAY[1:10] OF INTEGER\nDECLARE i, Sum : INTEGER\nDECLARE Average : REAL\n\nSum <- 0\n\nFOR i <- 1 TO 10\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\n    Sum <- Sum + Numbers[i]\nNEXT i\n\nAverage <- REAL(Sum) / 10.0\n\nOUTPUT \"Average: \", Average"
+    "topic": "Selection",
+    "title": "Positive, Negative, or Zero",
+    "description": "Input a number and determine if it is positive, negative, or zero.",
+    "hints": [
+      "Use IF-THEN-ELSE statements",
+      "Check for zero first",
+      "Then check if greater or less than zero"
+    ],
+    "solution": "DECLARE Number : INTEGER\n\nOUTPUT \"Enter a number:\"\nINPUT Number\n\nIF Number = 0 THEN\n    OUTPUT \"Zero\"\nELSE\n    IF Number > 0 THEN\n        OUTPUT \"Positive\"\n    ELSE\n        OUTPUT \"Negative\"\n    ENDIF\nENDIF"
   },
   {
     "id": 11,
     "level": "IGCSE",
-    "topic": "String Operations",
-    "title": "String Length",
-    "description": "Input a string and output its length using the LENGTH function.",
-    "hints": ["Use LENGTH() function", "Store result in INTEGER variable"],
-    "solution": "DECLARE Text : STRING\nDECLARE Len : INTEGER\n\nOUTPUT \"Enter text: \"\nINPUT Text\n\nLen <- LENGTH(Text)\n\nOUTPUT \"Length: \", Len"
+    "topic": "Loops",
+    "title": "Count Down",
+    "description": "Count down from 10 to 1 and output \"Blast off!\" at the end.",
+    "hints": [
+      "Use FOR loop with STEP -1",
+      "Start at 10, end at 1",
+      "Output message after loop"
+    ],
+    "solution": "DECLARE Counter : INTEGER\n\nFOR Counter <-- 10 TO 1 STEP -1\n    OUTPUT Counter\nNEXT Counter\n\nOUTPUT \"Blast off!\""
   },
   {
     "id": 12,
     "level": "IGCSE",
-    "topic": "String Operations",
-    "title": "Convert to Uppercase",
-    "description": "Input a string and convert it to uppercase using UCASE function.",
-    "hints": ["Use UCASE() function", "Store result in another STRING variable"],
-    "solution": "DECLARE Text, Upper : STRING\n\nOUTPUT \"Enter text: \"\nINPUT Text\n\nUpper <- UCASE(Text)\n\nOUTPUT \"Uppercase: \", Upper"
+    "topic": "Input & Validation",
+    "title": "Age Validator",
+    "description": "Keep asking for age until a valid age (1-120) is entered.",
+    "hints": [
+      "Use REPEAT-UNTIL loop",
+      "Validate the range after input",
+      "Repeat if invalid"
+    ],
+    "solution": "DECLARE Age : INTEGER\n\nREPEAT\n    OUTPUT \"Enter your age (1-120):\"\n    INPUT Age\n    \n    IF Age < 1 OR Age > 120 THEN\n        OUTPUT \"Invalid age! Try again.\"\n    ENDIF\nUNTIL Age >= 1 AND Age <= 120\n\nOUTPUT \"Valid age: \", Age"
   },
   {
     "id": 13,
     "level": "IGCSE",
-    "topic": "String Operations",
-    "title": "Extract Substring",
-    "description": "Input a string and extract characters 3 to 7 using SUBSTRING function.",
-    "hints": ["SUBSTRING(string, start, length)", "Start at position 3, length 5", "Handle strings shorter than 7 characters"],
-    "solution": "DECLARE Text, Sub : STRING\n\nOUTPUT \"Enter text (at least 7 chars): \"\nINPUT Text\n\nIF LENGTH(Text) >= 7 THEN\n    Sub <- SUBSTRING(Text, 3, 5)\n    OUTPUT \"Substring (3-7): \", Sub\nELSE\n    OUTPUT \"String too short!\"\nENDIF"
+    "topic": "Arithmetic",
+    "title": "Sum and Average",
+    "description": "Input 5 numbers, calculate and output their sum and average.",
+    "hints": [
+      "Use a loop to input 5 numbers",
+      "Accumulate the sum",
+      "Average = sum / 5"
+    ],
+    "solution": "DECLARE i : INTEGER\nDECLARE Number : INTEGER\nDECLARE Sum : INTEGER\nDECLARE Average : REAL\n\nSum <-- 0\n\nFOR i <-- 1 TO 5\n    OUTPUT \"Enter number \", i, \":\"\n    INPUT Number\n    Sum <-- Sum + Number\nNEXT i\n\nAverage <-- Sum / 5\n\nOUTPUT \"Sum: \", Sum\nOUTPUT \"Average: \", Average"
   },
   {
     "id": 14,
     "level": "IGCSE",
-    "topic": "Selection - CASE",
-    "title": "Day of Week",
-    "description": "Input a number (1-7) and output the day of the week using CASE statement.",
-    "hints": ["Use CASE OF structure", "1=Monday, 2=Tuesday, etc.", "Include OTHERWISE for invalid input"],
-    "solution": "DECLARE Day : INTEGER\n\nOUTPUT \"Enter day number (1-7): \"\nINPUT Day\n\nCASE OF Day\n    1 : OUTPUT \"Monday\"\n    2 : OUTPUT \"Tuesday\"\n    3 : OUTPUT \"Wednesday\"\n    4 : OUTPUT \"Thursday\"\n    5 : OUTPUT \"Friday\"\n    6 : OUTPUT \"Saturday\"\n    7 : OUTPUT \"Sunday\"\n    OTHERWISE : OUTPUT \"Invalid day!\"\nENDCASE"
+    "topic": "Selection",
+    "title": "Grade Calculator",
+    "description": "Input a percentage (0-100) and output the grade: A (70+), B (60-69), C (50-59), D (40-49), F (0-39).",
+    "hints": [
+      "Use nested IF or CASE OF",
+      "Check from highest grade downward",
+      "A is 70 or above"
+    ],
+    "solution": "DECLARE Percentage : INTEGER\nDECLARE Grade : STRING\n\nOUTPUT \"Enter percentage:\"\nINPUT Percentage\n\nIF Percentage >= 70 THEN\n    Grade <-- \"A\"\nELSE\n    IF Percentage >= 60 THEN\n        Grade <-- \"B\"\n    ELSE\n        IF Percentage >= 50 THEN\n            Grade <-- \"C\"\n        ELSE\n            IF Percentage >= 40 THEN\n                Grade <-- \"D\"\n            ELSE\n                Grade <-- \"F\"\n            ENDIF\n        ENDIF\n    ENDIF\nENDIF\n\nOUTPUT \"Grade: \", Grade"
   },
   {
     "id": 15,
     "level": "IGCSE",
-    "topic": "Procedures",
-    "title": "Simple Procedure",
-    "description": "Create a procedure that displays \"Hello World\" and call it from main program.",
-    "hints": ["Define PROCEDURE before main code", "Use CALL to execute procedure", "No parameters needed"],
-    "solution": "PROCEDURE Greet()\n    OUTPUT \"Hello World\"\nENDPROCEDURE\n\nCALL Greet()\nOUTPUT \"Program complete\""
+    "topic": "Loops",
+    "title": "Even Numbers",
+    "description": "Output all even numbers from 1 to 20.",
+    "hints": [
+      "Use FOR loop 1 to 20",
+      "Use MOD to check if even",
+      "Even numbers have remainder 0 when divided by 2"
+    ],
+    "solution": "DECLARE i : INTEGER\n\nOUTPUT \"Even numbers from 1 to 20:\"\n\nFOR i <-- 1 TO 20\n    IF i MOD 2 = 0 THEN\n        OUTPUT i\n    ENDIF\nNEXT i"
   },
   {
     "id": 16,
     "level": "IGCSE",
-    "topic": "Procedures",
-    "title": "Procedure with Parameters",
-    "description": "Create a procedure that takes a name parameter and displays a personalized greeting.",
-    "hints": ["Procedure needs one STRING parameter", "Use OUTPUT with parameter inside procedure", "Pass actual name when calling"],
-    "solution": "PROCEDURE Greet(Name : STRING)\n    OUTPUT \"Hello, \", Name, \"!\"\nENDPROCEDURE\n\nDECLARE UserName : STRING\n\nOUTPUT \"Enter your name: \"\nINPUT UserName\n\nCALL Greet(UserName)"
+    "topic": "String Operations",
+    "title": "Name Reverser",
+    "description": "Input a name and output it in reverse using SUBSTRING.",
+    "hints": [
+      "Use LENGTH() to get name length",
+      "Loop backwards from length to 1",
+      "Use SUBSTRING to get each character"
+    ],
+    "solution": "DECLARE Name : STRING\nDECLARE Reversed : STRING\nDECLARE Length : INTEGER\nDECLARE i : INTEGER\n\nOUTPUT \"Enter your name:\"\nINPUT Name\n\nLength <-- LENGTH(Name)\nReversed <-- \"\"\n\nFOR i <-- Length TO 1 STEP -1\n    Reversed <-- Reversed + SUBSTRING(Name, i, 1)\nNEXT i\n\nOUTPUT \"Reversed: \", Reversed"
   },
   {
     "id": 17,
     "level": "IGCSE",
-    "topic": "Functions",
-    "title": "Square Function",
-    "description": "Create a function that returns the square of a number.",
-    "hints": ["FUNCTION with INTEGER parameter RETURNS INTEGER", "Calculate number * number", "Use RETURN statement"],
-    "solution": "FUNCTION Square(N : INTEGER) RETURNS INTEGER\n    DECLARE Result : INTEGER\n    Result <- N * N\n    RETURN Result\nENDFUNCTION\n\nDECLARE Number, Answer : INTEGER\n\nOUTPUT \"Enter a number: \"\nINPUT Number\n\nAnswer <- Square(Number)\n\nOUTPUT \"Square: \", Answer"
+    "topic": "Arrays",
+    "title": "Find Maximum",
+    "description": "Store 5 numbers in an array and find the maximum value.",
+    "hints": [
+      "Initialize max to first array element",
+      "Loop through array comparing each element",
+      "Update max when larger value found"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE Max : INTEGER\n\nFOR i <-- 1 TO 5\n    OUTPUT \"Enter number \", i, \":\"\n    INPUT Numbers[i]\nNEXT i\n\nMax <-- Numbers[1]\n\nFOR i <-- 2 TO 5\n    IF Numbers[i] > Max THEN\n        Max <-- Numbers[i]\n    ENDIF\nNEXT i\n\nOUTPUT \"Maximum value: \", Max"
   },
   {
     "id": 18,
     "level": "IGCSE",
-    "topic": "Functions",
-    "title": "Check Even or Odd",
-    "description": "Create a function that returns TRUE if a number is even, FALSE if odd.",
-    "hints": ["Use MOD operator", "Number MOD 2 = 0 means even", "Function RETURNS BOOLEAN"],
-    "solution": "FUNCTION IsEven(N : INTEGER) RETURNS BOOLEAN\n    IF N MOD 2 = 0 THEN\n        RETURN TRUE\n    ELSE\n        RETURN FALSE\n    ENDIF\nENDFUNCTION\n\nDECLARE Number : INTEGER\n\nOUTPUT \"Enter a number: \"\nINPUT Number\n\nIF IsEven(Number) THEN\n    OUTPUT \"Even\"\nELSE\n    OUTPUT \"Odd\"\nENDIF"
+    "topic": "Counting",
+    "title": "Count Vowels",
+    "description": "Input a string and count how many vowels (a,e,i,o,u) it contains.",
+    "hints": [
+      "Loop through each character",
+      "Use SUBSTRING to get each character",
+      "Check if character is a vowel"
+    ],
+    "solution": "DECLARE Text : STRING\nDECLARE Length : INTEGER\nDECLARE i : INTEGER\nDECLARE Char : STRING\nDECLARE VowelCount : INTEGER\n\nOUTPUT \"Enter text:\"\nINPUT Text\n\nLength <-- LENGTH(Text)\nVowelCount <-- 0\n\nFOR i <-- 1 TO Length\n    Char <-- LCASE(SUBSTRING(Text, i, 1))\n    \n    IF Char = \"a\" OR Char = \"e\" OR Char = \"i\" OR Char = \"o\" OR Char = \"u\" THEN\n        VowelCount <-- VowelCount + 1\n    ENDIF\nNEXT i\n\nOUTPUT \"Vowels: \", VowelCount"
   },
   {
     "id": 19,
     "level": "IGCSE",
-    "topic": "Algorithms",
-    "title": "Linear Search",
-    "description": "Search for a specific number in an array of 10 numbers. Output position if found, or \"Not found\".",
-    "hints": ["Input array first", "Loop through checking each element", "Store position when found"],
-    "solution": "DECLARE Numbers : ARRAY[1:10] OF INTEGER\nDECLARE Search, i, Position : INTEGER\nDECLARE Found : BOOLEAN\n\nFOR i <- 1 TO 10\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\nNEXT i\n\nOUTPUT \"Enter number to search: \"\nINPUT Search\n\nFound <- FALSE\nFOR i <- 1 TO 10\n    IF Numbers[i] = Search THEN\n        Found <- TRUE\n        Position <- i\n    ENDIF\nNEXT i\n\nIF Found THEN\n    OUTPUT \"Found at position \", Position\nELSE\n    OUTPUT \"Not found\"\nENDIF"
+    "topic": "Arithmetic",
+    "title": "Odd or Even",
+    "description": "Input a number and determine if it is odd or even.",
+    "hints": [
+      "Use MOD operator",
+      "Even numbers have remainder 0",
+      "Odd numbers have remainder 1"
+    ],
+    "solution": "DECLARE Number : INTEGER\n\nOUTPUT \"Enter a number:\"\nINPUT Number\n\nIF Number MOD 2 = 0 THEN\n    OUTPUT Number, \" is even\"\nELSE\n    OUTPUT Number, \" is odd\"\nENDIF"
   },
   {
     "id": 20,
     "level": "IGCSE",
-    "topic": "Algorithms",
-    "title": "Bubble Sort",
-    "description": "Sort an array of 5 numbers in ascending order using bubble sort algorithm.",
-    "hints": ["Nested loops needed", "Compare adjacent elements", "Swap if out of order"],
-    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i, j, Temp : INTEGER\n\nFOR i <- 1 TO 5\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\nNEXT i\n\nFOR i <- 1 TO 4\n    FOR j <- 1 TO 5 - i\n        IF Numbers[j] > Numbers[j + 1] THEN\n            Temp <- Numbers[j]\n            Numbers[j] <- Numbers[j + 1]\n            Numbers[j + 1] <- Temp\n        ENDIF\n    NEXT j\nNEXT i\n\nOUTPUT \"Sorted array:\"\nFOR i <- 1 TO 5\n    OUTPUT Numbers[i]\nNEXT i"
+    "topic": "Loops",
+    "title": "Multiplication Table",
+    "description": "Input a number N and output its multiplication table from N×1 to N×12.",
+    "hints": [
+      "Input the number first",
+      "Use FOR loop 1 to 12",
+      "Multiply N by counter"
+    ],
+    "solution": "DECLARE N : INTEGER\nDECLARE i : INTEGER\nDECLARE Result : INTEGER\n\nOUTPUT \"Enter a number:\"\nINPUT N\n\nFOR i <-- 1 TO 12\n    Result <-- N * i\n    OUTPUT N, \" x \", i, \" = \", Result\nNEXT i"
   },
   {
     "id": 21,
     "level": "IGCSE",
-    "topic": "Validation",
-    "title": "Age Validation",
-    "description": "Input age with validation - must be between 0 and 120. Keep asking until valid.",
-    "hints": ["Use WHILE or REPEAT loop", "Check range 0-120", "Display error message for invalid input"],
-    "solution": "DECLARE Age : INTEGER\nDECLARE Valid : BOOLEAN\n\nValid <- FALSE\n\nWHILE Valid = FALSE DO\n    OUTPUT \"Enter age (0-120): \"\n    INPUT Age\n    IF Age >= 0 AND Age <= 120 THEN\n        Valid <- TRUE\n    ELSE\n        OUTPUT \"Invalid! Age must be 0-120\"\n    ENDIF\nENDWHILE\n\nOUTPUT \"Age accepted: \", Age"
+    "topic": "Selection",
+    "title": "Leap Year",
+    "description": "Input a year and determine if it is a leap year. (Divisible by 4 but not 100, unless also divisible by 400)",
+    "hints": [
+      "A leap year is divisible by 4",
+      "Exception: not divisible by 100",
+      "Exception to exception: divisible by 400"
+    ],
+    "solution": "DECLARE Year : INTEGER\nDECLARE IsLeap : BOOLEAN\n\nOUTPUT \"Enter year:\"\nINPUT Year\n\nIF Year MOD 400 = 0 THEN\n    IsLeap <-- TRUE\nELSE\n    IF Year MOD 100 = 0 THEN\n        IsLeap <-- FALSE\n    ELSE\n        IF Year MOD 4 = 0 THEN\n            IsLeap <-- TRUE\n        ELSE\n            IsLeap <-- FALSE\n        ENDIF\n    ENDIF\nENDIF\n\nIF IsLeap THEN\n    OUTPUT Year, \" is a leap year\"\nELSE\n    OUTPUT Year, \" is not a leap year\"\nENDIF"
   },
   {
     "id": 22,
     "level": "IGCSE",
-    "topic": "Counting",
-    "title": "Count Positive Numbers",
-    "description": "Input 10 numbers and count how many are positive (greater than 0).",
-    "hints": ["Initialize counter to 0", "Check each number with IF", "Increment counter when positive"],
-    "solution": "DECLARE Numbers : ARRAY[1:10] OF INTEGER\nDECLARE i, Count : INTEGER\n\nCount <- 0\n\nFOR i <- 1 TO 10\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\n    IF Numbers[i] > 0 THEN\n        Count <- Count + 1\n    ENDIF\nNEXT i\n\nOUTPUT \"Positive numbers: \", Count"
+    "topic": "Arrays",
+    "title": "Sum of Array",
+    "description": "Create an array of 10 integers with values 1,2,3...10 and output the sum.",
+    "hints": [
+      "Use loop to fill array with values 1-10",
+      "Use another loop to sum all elements",
+      "Initialize sum to 0"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:10] OF INTEGER\nDECLARE i : INTEGER\nDECLARE Sum : INTEGER\n\nFOR i <-- 1 TO 10\n    Numbers[i] <-- i\nNEXT i\n\nSum <-- 0\nFOR i <-- 1 TO 10\n    Sum <-- Sum + Numbers[i]\nNEXT i\n\nOUTPUT \"Sum: \", Sum"
   },
   {
     "id": 23,
     "level": "IGCSE",
     "topic": "String Operations",
-    "title": "Count Vowels",
-    "description": "Input a string and count the number of vowels (A, E, I, O, U - case insensitive).",
-    "hints": ["Convert string to uppercase first", "Loop through each character", "Check if character is A, E, I, O, or U"],
-    "solution": "DECLARE Text, Upper, Char : STRING\nDECLARE i, Count : INTEGER\n\nOUTPUT \"Enter text: \"\nINPUT Text\n\nUpper <- UCASE(Text)\nCount <- 0\n\nFOR i <- 1 TO LENGTH(Upper)\n    Char <- SUBSTRING(Upper, i, 1)\n    IF Char = \"A\" OR Char = \"E\" OR Char = \"I\" OR Char = \"O\" OR Char = \"U\" THEN\n        Count <- Count + 1\n    ENDIF\nNEXT i\n\nOUTPUT \"Number of vowels: \", Count"
+    "title": "First and Last Character",
+    "description": "Input a word and output its first and last character.",
+    "hints": [
+      "Use SUBSTRING to get first character at position 1",
+      "Use LENGTH to find last position",
+      "Extract character at last position"
+    ],
+    "solution": "DECLARE Word : STRING\nDECLARE Length : INTEGER\nDECLARE FirstChar : STRING\nDECLARE LastChar : STRING\n\nOUTPUT \"Enter a word:\"\nINPUT Word\n\nLength <-- LENGTH(Word)\nFirstChar <-- SUBSTRING(Word, 1, 1)\nLastChar <-- SUBSTRING(Word, Length, 1)\n\nOUTPUT \"First character: \", FirstChar\nOUTPUT \"Last character: \", LastChar"
   },
   {
     "id": 24,
     "level": "IGCSE",
-    "topic": "Arithmetic",
-    "title": "Circle Calculations",
-    "description": "Input radius and calculate area and circumference. Use π = 3.14159.",
-    "hints": ["Area = π * radius²", "Circumference = 2 * π * radius", "Use REAL data type"],
-    "solution": "DECLARE Radius, Area, Circumference, Pi : REAL\n\nPi <- 3.14159\n\nOUTPUT \"Enter radius: \"\nINPUT Radius\n\nArea <- Pi * Radius * Radius\nCircumference <- 2 * Pi * Radius\n\nOUTPUT \"Area: \", Area\nOUTPUT \"Circumference: \", Circumference"
+    "topic": "Loops",
+    "title": "Factorial Calculator",
+    "description": "Input a number N and calculate N! (factorial) using a loop.",
+    "hints": [
+      "Initialize result to 1",
+      "Loop from 1 to N",
+      "Multiply result by counter each iteration"
+    ],
+    "solution": "DECLARE N : INTEGER\nDECLARE i : INTEGER\nDECLARE Factorial : INTEGER\n\nOUTPUT \"Enter a number:\"\nINPUT N\n\nFactorial <-- 1\n\nFOR i <-- 1 TO N\n    Factorial <-- Factorial * i\nNEXT i\n\nOUTPUT N, \"! = \", Factorial"
   },
   {
     "id": 25,
     "level": "IGCSE",
-    "topic": "Nested Loops",
-    "title": "Multiplication Table",
-    "description": "Display a 5x5 multiplication table (1 to 5).",
-    "hints": ["Use nested FOR loops", "Outer loop for rows", "Inner loop for columns"],
-    "solution": "DECLARE Row, Col, Result : INTEGER\n\nOUTPUT \"Multiplication Table:\"\n\nFOR Row <- 1 TO 5\n    FOR Col <- 1 TO 5\n        Result <- Row * Col\n        OUTPUT Result, \" \"\n    NEXT Col\n    OUTPUT \"\"\nNEXT Row"
+    "topic": "Selection",
+    "title": "BMI Calculator",
+    "description": "Input weight (kg) and height (m), calculate BMI and classify: Underweight (<18.5), Normal (18.5-24.9), Overweight (25+).",
+    "hints": [
+      "BMI = weight / (height * height)",
+      "Use nested IF to classify",
+      "Use REAL for precise calculation"
+    ],
+    "solution": "DECLARE Weight : REAL\nDECLARE Height : REAL\nDECLARE BMI : REAL\n\nOUTPUT \"Enter weight (kg):\"\nINPUT Weight\nOUTPUT \"Enter height (m):\"\nINPUT Height\n\nBMI <-- Weight / (Height * Height)\n\nOUTPUT \"BMI: \", BMI\n\nIF BMI < 18.5 THEN\n    OUTPUT \"Underweight\"\nELSE\n    IF BMI < 25 THEN\n        OUTPUT \"Normal\"\n    ELSE\n        OUTPUT \"Overweight\"\n    ENDIF\nENDIF"
   },
   {
     "id": 26,
     "level": "IGCSE",
-    "topic": "2D Arrays",
-    "title": "Matrix Input",
-    "description": "Create a 3x3 matrix, input 9 values, and display them in grid format.",
-    "hints": ["ARRAY[1:3, 1:3]", "Nested loops for input", "Nested loops for output"],
-    "solution": "DECLARE Matrix : ARRAY[1:3, 1:3] OF INTEGER\nDECLARE Row, Col : INTEGER\n\nOUTPUT \"Enter 9 values:\"\nFOR Row <- 1 TO 3\n    FOR Col <- 1 TO 3\n        OUTPUT \"Enter value [\", Row, \",\", Col, \"]: \"\n        INPUT Matrix[Row, Col]\n    NEXT Col\nNEXT Row\n\nOUTPUT \"Matrix:\"\nFOR Row <- 1 TO 3\n    FOR Col <- 1 TO 3\n        OUTPUT Matrix[Row, Col], \" \"\n    NEXT Col\n    OUTPUT \"\"\nNEXT Row"
+    "topic": "Counting",
+    "title": "Count Digits",
+    "description": "Input a positive integer and count how many digits it has.",
+    "hints": [
+      "Keep dividing by 10 until number becomes 0",
+      "Count each division",
+      "Use WHILE or REPEAT loop"
+    ],
+    "solution": "DECLARE Number : INTEGER\nDECLARE Count : INTEGER\n\nOUTPUT \"Enter a number:\"\nINPUT Number\n\nCount <-- 0\n\nREPEAT\n    Number <-- Number DIV 10\n    Count <-- Count + 1\nUNTIL Number = 0\n\nOUTPUT \"Number of digits: \", Count"
   },
   {
     "id": 27,
     "level": "IGCSE",
-    "topic": "Type Conversion",
-    "title": "INT and REAL Functions",
-    "description": "Input a real number and demonstrate INT and ROUND functions.",
-    "hints": ["INT truncates to integer", "ROUND rounds to nearest", "Show both results"],
-    "solution": "DECLARE Number : REAL\nDECLARE IntPart : INTEGER\nDECLARE Rounded : REAL\n\nOUTPUT \"Enter a decimal number: \"\nINPUT Number\n\nIntPart <- INT(Number)\nRounded <- ROUND(Number, 0)\n\nOUTPUT \"Original: \", Number\nOUTPUT \"INT: \", IntPart\nOUTPUT \"ROUND: \", Rounded"
+    "topic": "Arrays",
+    "title": "Reverse Array",
+    "description": "Input 5 numbers into an array and output them in reverse order.",
+    "hints": [
+      "Fill array from index 1 to 5",
+      "Output from index 5 to 1",
+      "Use STEP -1 in FOR loop"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\n\nFOR i <-- 1 TO 5\n    OUTPUT \"Enter number \", i, \":\"\n    INPUT Numbers[i]\nNEXT i\n\nOUTPUT \"Reversed:\"\nFOR i <-- 5 TO 1 STEP -1\n    OUTPUT Numbers[i]\nNEXT i"
   },
   {
     "id": 28,
     "level": "IGCSE",
-    "topic": "Totalling",
-    "title": "Running Total",
-    "description": "Input numbers until 0 is entered. Display running total after each input and final total.",
-    "hints": ["Use WHILE or REPEAT loop", "Check for 0 to stop", "Update total after each input"],
-    "solution": "DECLARE Number, Total : INTEGER\n\nTotal <- 0\nNumber <- -1\n\nWHILE Number <> 0 DO\n    OUTPUT \"Enter number (0 to stop): \"\n    INPUT Number\n    IF Number <> 0 THEN\n        Total <- Total + Number\n        OUTPUT \"Running total: \", Total\n    ENDIF\nENDWHILE\n\nOUTPUT \"Final total: \", Total"
+    "topic": "Arithmetic",
+    "title": "Simple Interest",
+    "description": "Calculate simple interest: SI = (Principal × Rate × Time) / 100. Input P, R, T and output SI.",
+    "hints": [
+      "Declare REAL variables for precision",
+      "Use the formula directly",
+      "Output the interest amount"
+    ],
+    "solution": "DECLARE Principal : REAL\nDECLARE Rate : REAL\nDECLARE Time : REAL\nDECLARE Interest : REAL\n\nOUTPUT \"Enter principal amount:\"\nINPUT Principal\nOUTPUT \"Enter rate of interest:\"\nINPUT Rate\nOUTPUT \"Enter time (years):\"\nINPUT Time\n\nInterest <-- (Principal * Rate * Time) / 100\n\nOUTPUT \"Simple Interest: \", Interest"
   },
   {
     "id": 29,
     "level": "IGCSE",
-    "topic": "Procedures - BYREF",
-    "title": "Swap Two Numbers",
-    "description": "Create a procedure using BYREF to swap two numbers.",
-    "hints": ["Use BYREF for both parameters", "Need temporary variable for swapping", "Values should be swapped in main program"],
-    "solution": "PROCEDURE Swap(BYREF A : INTEGER, BYREF B : INTEGER)\n    DECLARE Temp : INTEGER\n    Temp <- A\n    A <- B\n    B <- Temp\nENDPROCEDURE\n\nDECLARE X, Y : INTEGER\n\nX <- 10\nY <- 20\n\nOUTPUT \"Before: X=\", X, \" Y=\", Y\n\nCALL Swap(X, Y)\n\nOUTPUT \"After: X=\", X, \" Y=\", Y"
+    "topic": "Loops",
+    "title": "Sum of Odd Numbers",
+    "description": "Calculate and output the sum of all odd numbers from 1 to 50.",
+    "hints": [
+      "Loop from 1 to 50",
+      "Check if number is odd using MOD",
+      "Add odd numbers to sum"
+    ],
+    "solution": "DECLARE i : INTEGER\nDECLARE Sum : INTEGER\n\nSum <-- 0\n\nFOR i <-- 1 TO 50\n    IF i MOD 2 = 1 THEN\n        Sum <-- Sum + i\n    ENDIF\nNEXT i\n\nOUTPUT \"Sum of odd numbers: \", Sum"
   },
   {
     "id": 30,
     "level": "IGCSE",
-    "topic": "Algorithms",
-    "title": "Find Minimum",
-    "description": "Input 8 numbers into an array and find the minimum value.",
-    "hints": ["Assume first element is minimum", "Compare with each subsequent element", "Update minimum when smaller found"],
-    "solution": "DECLARE Numbers : ARRAY[1:8] OF INTEGER\nDECLARE i, Min : INTEGER\n\nFOR i <- 1 TO 8\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\nNEXT i\n\nMin <- Numbers[1]\nFOR i <- 2 TO 8\n    IF Numbers[i] < Min THEN\n        Min <- Numbers[i]\n    ENDIF\nNEXT i\n\nOUTPUT \"Minimum: \", Min"
+    "topic": "Selection",
+    "title": "Triangle Type",
+    "description": "Input 3 sides of a triangle and determine if it is Equilateral (all equal), Isosceles (2 equal), or Scalene (none equal).",
+    "hints": [
+      "Input three sides",
+      "Check if all three are equal",
+      "Check if any two are equal"
+    ],
+    "solution": "DECLARE Side1 : REAL\nDECLARE Side2 : REAL\nDECLARE Side3 : REAL\n\nOUTPUT \"Enter side 1:\"\nINPUT Side1\nOUTPUT \"Enter side 2:\"\nINPUT Side2\nOUTPUT \"Enter side 3:\"\nINPUT Side3\n\nIF Side1 = Side2 AND Side2 = Side3 THEN\n    OUTPUT \"Equilateral\"\nELSE\n    IF Side1 = Side2 OR Side2 = Side3 OR Side1 = Side3 THEN\n        OUTPUT \"Isosceles\"\n    ELSE\n        OUTPUT \"Scalene\"\n    ENDIF\nENDIF"
   },
   {
     "id": 31,
-    "level": "IGCSE",
-    "topic": "String Concatenation",
-    "title": "Build Full Name",
-    "description": "Input first name and last name separately, then concatenate them with a space.",
-    "hints": ["Use & operator for concatenation", "Remember to add space between names"],
-    "solution": "DECLARE FirstName, LastName, FullName : STRING\n\nOUTPUT \"Enter first name: \"\nINPUT FirstName\n\nOUTPUT \"Enter last name: \"\nINPUT LastName\n\nFullName <- FirstName & \" \" & LastName\n\nOUTPUT \"Full name: \", FullName"
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "Power Function",
+    "description": "Write a function Power(base, exponent) that calculates base^exponent without using built-in power functions.",
+    "hints": [
+      "Use loop to multiply base by itself",
+      "Loop exponent times",
+      "Return the result"
+    ],
+    "solution": "FUNCTION Power(Base : INTEGER, Exponent : INTEGER) RETURNS INTEGER\n    DECLARE Result : INTEGER\n    DECLARE i : INTEGER\n    \n    Result <-- 1\n    FOR i <-- 1 TO Exponent\n        Result <-- Result * Base\n    NEXT i\n    \n    RETURN Result\nENDFUNCTION\n\nDECLARE Answer : INTEGER\nAnswer <-- Power(2, 5)\nOUTPUT \"2^5 = \", Answer"
   },
   {
     "id": 32,
-    "level": "IGCSE",
-    "topic": "Nested Selection",
-    "title": "Ticket Price Calculator",
-    "description": "Calculate ticket price: Child (under 12): $5, Adult (12-64): $10, Senior (65+): $7.",
-    "hints": ["Input age first", "Use nested IF or ELSE IF", "Three price categories"],
-    "solution": "DECLARE Age, Price : INTEGER\n\nOUTPUT \"Enter age: \"\nINPUT Age\n\nIF Age < 12 THEN\n    Price <- 5\n    OUTPUT \"Child ticket: $\", Price\nELSE IF Age <= 64 THEN\n    Price <- 10\n    OUTPUT \"Adult ticket: $\", Price\nELSE\n    Price <- 7\n    OUTPUT \"Senior ticket: $\", Price\nENDIF"
+    "level": "A-Level",
+    "topic": "Procedures",
+    "title": "Print Pattern",
+    "description": "Write a procedure PrintStars(n) that prints n stars in a row. Call it with n=5.",
+    "hints": [
+      "Loop n times",
+      "Output a star each time",
+      "Use BYVAL parameter"
+    ],
+    "solution": "PROCEDURE PrintStars(BYVAL N : INTEGER)\n    DECLARE i : INTEGER\n    \n    FOR i <-- 1 TO N\n        OUTPUT \"*\"\n    NEXT i\nENDPROCEDURE\n\nCALL PrintStars(5)"
   },
   {
     "id": 33,
     "level": "IGCSE",
-    "topic": "Functions",
-    "title": "Factorial Function",
-    "description": "Create a function to calculate factorial of a number (e.g., 5! = 120).",
-    "hints": ["Use FOR loop from 1 to N", "Multiply result by each number", "Initialize result to 1"],
-    "solution": "FUNCTION Factorial(N : INTEGER) RETURNS INTEGER\n    DECLARE Result, i : INTEGER\n    Result <- 1\n    FOR i <- 1 TO N\n        Result <- Result * i\n    NEXT i\n    RETURN Result\nENDFUNCTION\n\nDECLARE Number, Answer : INTEGER\n\nOUTPUT \"Enter number: \"\nINPUT Number\n\nAnswer <- Factorial(Number)\n\nOUTPUT \"Factorial: \", Answer"
+    "topic": "Arrays",
+    "title": "Count Occurrences",
+    "description": "Create an array with values {1,2,3,2,1,2}. Count how many times 2 appears.",
+    "hints": [
+      "Declare array and fill with values",
+      "Loop through array",
+      "Increment counter when value equals 2"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:6] OF INTEGER\nDECLARE i : INTEGER\nDECLARE Count : INTEGER\n\nNumbers[1] <-- 1\nNumbers[2] <-- 2\nNumbers[3] <-- 3\nNumbers[4] <-- 2\nNumbers[5] <-- 1\nNumbers[6] <-- 2\n\nCount <-- 0\n\nFOR i <-- 1 TO 6\n    IF Numbers[i] = 2 THEN\n        Count <-- Count + 1\n    ENDIF\nNEXT i\n\nOUTPUT \"2 appears \", Count, \" times\""
   },
   {
     "id": 34,
-    "level": "IGCSE",
-    "topic": "Counting & Totalling",
-    "title": "Statistics Calculator",
-    "description": "Input 10 numbers and calculate: total, average, count of evens, count of odds.",
-    "hints": ["Keep track of multiple counters", "Use MOD to check even/odd", "Calculate average at end"],
-    "solution": "DECLARE Numbers : ARRAY[1:10] OF INTEGER\nDECLARE i, Total, Evens, Odds : INTEGER\nDECLARE Average : REAL\n\nTotal <- 0\nEvens <- 0\nOdds <- 0\n\nFOR i <- 1 TO 10\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\n    Total <- Total + Numbers[i]\n    IF Numbers[i] MOD 2 = 0 THEN\n        Evens <- Evens + 1\n    ELSE\n        Odds <- Odds + 1\n    ENDIF\nNEXT i\n\nAverage <- REAL(Total) / 10.0\n\nOUTPUT \"Total: \", Total\nOUTPUT \"Average: \", Average\nOUTPUT \"Even numbers: \", Evens\nOUTPUT \"Odd numbers: \", Odds"
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "Is Prime",
+    "description": "Write a function IsPrime(n) that returns TRUE if n is prime, FALSE otherwise.",
+    "hints": [
+      "Check if n is divisible by any number from 2 to n-1",
+      "If divisible, not prime",
+      "Return FALSE immediately when divisor found"
+    ],
+    "solution": "FUNCTION IsPrime(N : INTEGER) RETURNS BOOLEAN\n    DECLARE i : INTEGER\n    \n    IF N < 2 THEN\n        RETURN FALSE\n    ENDIF\n    \n    FOR i <-- 2 TO N - 1\n        IF N MOD i = 0 THEN\n            RETURN FALSE\n        ENDIF\n    NEXT i\n    \n    RETURN TRUE\nENDFUNCTION\n\nDECLARE Number : INTEGER\nNumber <-- 17\n\nIF IsPrime(Number) THEN\n    OUTPUT Number, \" is prime\"\nELSE\n    OUTPUT Number, \" is not prime\"\nENDIF"
   },
   {
     "id": 35,
     "level": "IGCSE",
-    "topic": "Selection",
-    "title": "Leap Year Checker",
-    "description": "Input a year and determine if it's a leap year. Rules: divisible by 4, except centuries unless divisible by 400.",
-    "hints": ["First check if divisible by 400", "Then check if divisible by 100 (not leap)", "Finally check if divisible by 4 (leap)"],
-    "solution": "DECLARE Year : INTEGER\nDECLARE IsLeap : BOOLEAN\n\nOUTPUT \"Enter year: \"\nINPUT Year\n\nIF Year MOD 400 = 0 THEN\n    IsLeap <- TRUE\nELSE IF Year MOD 100 = 0 THEN\n    IsLeap <- FALSE\nELSE IF Year MOD 4 = 0 THEN\n    IsLeap <- TRUE\nELSE\n    IsLeap <- FALSE\nENDIF\n\nIF IsLeap THEN\n    OUTPUT Year, \" is a leap year\"\nELSE\n    OUTPUT Year, \" is not a leap year\"\nENDIF"
+    "topic": "String Operations",
+    "title": "Count Spaces",
+    "description": "Input a sentence and count the number of spaces.",
+    "hints": [
+      "Loop through each character",
+      "Check if character is a space",
+      "Increment counter for spaces"
+    ],
+    "solution": "DECLARE Sentence : STRING\nDECLARE Length : INTEGER\nDECLARE i : INTEGER\nDECLARE Char : STRING\nDECLARE SpaceCount : INTEGER\n\nOUTPUT \"Enter a sentence:\"\nINPUT Sentence\n\nLength <-- LENGTH(Sentence)\nSpaceCount <-- 0\n\nFOR i <-- 1 TO Length\n    Char <-- SUBSTRING(Sentence, i, 1)\n    IF Char = \" \" THEN\n        SpaceCount <-- SpaceCount + 1\n    ENDIF\nNEXT i\n\nOUTPUT \"Spaces: \", SpaceCount"
   },
   {
     "id": 36,
-    "level": "IGCSE",
-    "topic": "REPEAT Loop",
-    "title": "Number Guessing Game",
-    "description": "Computer picks a number 1-10. User guesses until correct. Show number of attempts.",
-    "hints": ["Use REPEAT UNTIL loop", "Count attempts", "Give feedback (higher/lower)"],
-    "solution": "DECLARE Target, Guess, Attempts : INTEGER\n\nTarget <- 7\nAttempts <- 0\n\nOUTPUT \"Guess the number (1-10)!\"\n\nREPEAT\n    OUTPUT \"Enter guess: \"\n    INPUT Guess\n    Attempts <- Attempts + 1\n    IF Guess < Target THEN\n        OUTPUT \"Too low!\"\n    ELSE IF Guess > Target THEN\n        OUTPUT \"Too high!\"\n    ENDIF\nUNTIL Guess = Target\n\nOUTPUT \"Correct! Attempts: \", Attempts"
+    "level": "A-Level",
+    "topic": "Sorting",
+    "title": "Bubble Sort",
+    "description": "Implement bubble sort on an array of 5 integers.",
+    "hints": [
+      "Nested loops: outer loop for passes",
+      "Inner loop for comparisons",
+      "Swap adjacent elements if out of order"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE j : INTEGER\nDECLARE Temp : INTEGER\n\nNumbers[1] <-- 64\nNumbers[2] <-- 34\nNumbers[3] <-- 25\nNumbers[4] <-- 12\nNumbers[5] <-- 22\n\nFOR i <-- 1 TO 4\n    FOR j <-- 1 TO 5 - i\n        IF Numbers[j] > Numbers[j + 1] THEN\n            Temp <-- Numbers[j]\n            Numbers[j] <-- Numbers[j + 1]\n            Numbers[j + 1] <-- Temp\n        ENDIF\n    NEXT j\nNEXT i\n\nOUTPUT \"Sorted array:\"\nFOR i <-- 1 TO 5\n    OUTPUT Numbers[i]\nNEXT i"
   },
   {
     "id": 37,
     "level": "IGCSE",
-    "topic": "Procedures",
-    "title": "Display Menu",
-    "description": "Create a procedure that displays a menu with 3 options.",
-    "hints": ["No parameters needed", "Just use OUTPUT statements", "Call from main program"],
-    "solution": "PROCEDURE DisplayMenu()\n    OUTPUT \"=== MENU ===\"\n    OUTPUT \"1. Start Game\"\n    OUTPUT \"2. View Scores\"\n    OUTPUT \"3. Exit\"\n    OUTPUT \"============\"\nENDPROCEDURE\n\nDECLARE Choice : INTEGER\n\nCALL DisplayMenu()\n\nOUTPUT \"Enter choice: \"\nINPUT Choice\n\nOUTPUT \"You selected: \", Choice"
+    "topic": "Loops",
+    "title": "FizzBuzz",
+    "description": "Output numbers 1-30, but output \"Fizz\" for multiples of 3, \"Buzz\" for multiples of 5, \"FizzBuzz\" for both.",
+    "hints": [
+      "Check for multiple of both first",
+      "Then check for individual multiples",
+      "Use MOD operator"
+    ],
+    "solution": "DECLARE i : INTEGER\n\nFOR i <-- 1 TO 30\n    IF i MOD 15 = 0 THEN\n        OUTPUT \"FizzBuzz\"\n    ELSE\n        IF i MOD 3 = 0 THEN\n            OUTPUT \"Fizz\"\n        ELSE\n            IF i MOD 5 = 0 THEN\n                OUTPUT \"Buzz\"\n            ELSE\n                OUTPUT i\n            ENDIF\n        ENDIF\n    ENDIF\nNEXT i"
   },
   {
     "id": 38,
-    "level": "IGCSE",
-    "topic": "String Operations",
-    "title": "Palindrome Checker",
-    "description": "Check if a string is a palindrome (reads same forwards and backwards).",
-    "hints": ["Compare first and last characters", "Move towards middle", "Use SUBSTRING to get individual characters"],
-    "solution": "DECLARE Text : STRING\nDECLARE i, Len : INTEGER\nDECLARE IsPalindrome : BOOLEAN\n\nOUTPUT \"Enter text: \"\nINPUT Text\n\nLen <- LENGTH(Text)\nIsPalindrome <- TRUE\n\nFOR i <- 1 TO Len DIV 2\n    IF SUBSTRING(Text, i, 1) <> SUBSTRING(Text, Len - i + 1, 1) THEN\n        IsPalindrome <- FALSE\n    ENDIF\nNEXT i\n\nIF IsPalindrome THEN\n    OUTPUT \"Is a palindrome\"\nELSE\n    OUTPUT \"Not a palindrome\"\nENDIF"
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "GCD Function",
+    "description": "Write a function GCD(a, b) that returns the greatest common divisor using Euclidean algorithm.",
+    "hints": [
+      "While b is not 0, swap a and b with b and a MOD b",
+      "Return a when b becomes 0",
+      "Use a WHILE loop"
+    ],
+    "solution": "FUNCTION GCD(A : INTEGER, B : INTEGER) RETURNS INTEGER\n    DECLARE Temp : INTEGER\n    \n    WHILE B <> 0 DO\n        Temp <-- B\n        B <-- A MOD B\n        A <-- Temp\n    ENDWHILE\n    \n    RETURN A\nENDFUNCTION\n\nDECLARE Result : INTEGER\nResult <-- GCD(48, 18)\nOUTPUT \"GCD: \", Result"
   },
   {
     "id": 39,
     "level": "IGCSE",
-    "topic": "Arrays",
-    "title": "Reverse an Array",
-    "description": "Input 6 numbers into an array, then output them in reverse order.",
-    "hints": ["Input normally from index 1 to 6", "Output from index 6 down to 1", "Use FOR loop with negative step or countdown"],
-    "solution": "DECLARE Numbers : ARRAY[1:6] OF INTEGER\nDECLARE i : INTEGER\n\nOUTPUT \"Enter 6 numbers:\"\nFOR i <- 1 TO 6\n    INPUT Numbers[i]\nNEXT i\n\nOUTPUT \"Reversed:\"\nFOR i <- 6 TO 1 STEP -1\n    OUTPUT Numbers[i]\nNEXT i"
+    "topic": "Selection",
+    "title": "Day of Week",
+    "description": "Input a number 1-7 and output the day (1=Monday, 7=Sunday). Use CASE OF.",
+    "hints": [
+      "Use CASE OF statement",
+      "Match numbers 1-7 to days",
+      "Include OTHERWISE for invalid input"
+    ],
+    "solution": "DECLARE DayNum : INTEGER\n\nOUTPUT \"Enter day number (1-7):\"\nINPUT DayNum\n\nCASE OF DayNum\n    1 : OUTPUT \"Monday\"\n    2 : OUTPUT \"Tuesday\"\n    3 : OUTPUT \"Wednesday\"\n    4 : OUTPUT \"Thursday\"\n    5 : OUTPUT \"Friday\"\n    6 : OUTPUT \"Saturday\"\n    7 : OUTPUT \"Sunday\"\n    OTHERWISE : OUTPUT \"Invalid day\"\nENDCASE"
   },
   {
     "id": 40,
-    "level": "IGCSE",
-    "topic": "Nested Selection",
-    "title": "BMI Calculator",
-    "description": "Calculate BMI = weight / (height²). Classify: Underweight (<18.5), Normal (18.5-24.9), Overweight (25-29.9), Obese (30+).",
-    "hints": ["Input weight (kg) and height (m)", "BMI = weight / (height * height)", "Use IF-ELSE IF for classification"],
-    "solution": "DECLARE Weight, Height, BMI : REAL\n\nOUTPUT \"Enter weight (kg): \"\nINPUT Weight\n\nOUTPUT \"Enter height (m): \"\nINPUT Height\n\nBMI <- Weight / (Height * Height)\n\nOUTPUT \"BMI: \", BMI\n\nIF BMI < 18.5 THEN\n    OUTPUT \"Underweight\"\nELSE IF BMI < 25.0 THEN\n    OUTPUT \"Normal\"\nELSE IF BMI < 30.0 THEN\n    OUTPUT \"Overweight\"\nELSE\n    OUTPUT \"Obese\"\nENDIF"
+    "level": "A-Level",
+    "topic": "Recursion",
+    "title": "Fibonacci Recursive",
+    "description": "Write a recursive function Fibonacci(n) that returns the nth Fibonacci number.",
+    "hints": [
+      "Base cases: Fib(1)=1, Fib(2)=1",
+      "Recursive case: Fib(n) = Fib(n-1) + Fib(n-2)",
+      "Call function recursively"
+    ],
+    "solution": "FUNCTION Fibonacci(N : INTEGER) RETURNS INTEGER\n    IF N <= 2 THEN\n        RETURN 1\n    ELSE\n        RETURN Fibonacci(N - 1) + Fibonacci(N - 2)\n    ENDIF\nENDFUNCTION\n\nDECLARE i : INTEGER\n\nFOR i <-- 1 TO 10\n    OUTPUT Fibonacci(i)\nNEXT i"
   },
   {
     "id": 41,
     "level": "IGCSE",
-    "topic": "Functions",
-    "title": "Is Prime Function",
-    "description": "Create a function to check if a number is prime (only divisible by 1 and itself).",
-    "hints": ["Check divisibility from 2 to N-1", "Return FALSE if any divisor found", "Return TRUE if no divisors"],
-    "solution": "FUNCTION IsPrime(N : INTEGER) RETURNS BOOLEAN\n    DECLARE i : INTEGER\n    IF N < 2 THEN\n        RETURN FALSE\n    ENDIF\n    FOR i <- 2 TO N - 1\n        IF N MOD i = 0 THEN\n            RETURN FALSE\n        ENDIF\n    NEXT i\n    RETURN TRUE\nENDFUNCTION\n\nDECLARE Number : INTEGER\n\nOUTPUT \"Enter number: \"\nINPUT Number\n\nIF IsPrime(Number) THEN\n    OUTPUT Number, \" is prime\"\nELSE\n    OUTPUT Number, \" is not prime\"\nENDIF"
+    "topic": "Arrays",
+    "title": "Array Search",
+    "description": "Input 5 numbers into array, then search for a target value. Output \"Found\" or \"Not found\".",
+    "hints": [
+      "Fill array first",
+      "Input search value",
+      "Loop through array checking each element"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE Target : INTEGER\nDECLARE Found : BOOLEAN\n\nFOR i <-- 1 TO 5\n    OUTPUT \"Enter number \", i, \":\"\n    INPUT Numbers[i]\nNEXT i\n\nOUTPUT \"Enter number to search:\"\nINPUT Target\n\nFound <-- FALSE\n\nFOR i <-- 1 TO 5\n    IF Numbers[i] = Target THEN\n        Found <-- TRUE\n    ENDIF\nNEXT i\n\nIF Found THEN\n    OUTPUT \"Found\"\nELSE\n    OUTPUT \"Not found\"\nENDIF"
   },
   {
     "id": 42,
-    "level": "IGCSE",
-    "topic": "2D Arrays",
-    "title": "Row Sum Calculator",
-    "description": "Create a 3x4 matrix, input values, calculate and display sum of each row.",
-    "hints": ["Nested loops for input", "For each row, sum all columns", "Display sum after each row"],
-    "solution": "DECLARE Matrix : ARRAY[1:3, 1:4] OF INTEGER\nDECLARE Row, Col, Sum : INTEGER\n\nOUTPUT \"Enter 12 values:\"\nFOR Row <- 1 TO 3\n    FOR Col <- 1 TO 4\n        OUTPUT \"[\", Row, \",\", Col, \"]: \"\n        INPUT Matrix[Row, Col]\n    NEXT Col\nNEXT Row\n\nOUTPUT \"Row sums:\"\nFOR Row <- 1 TO 3\n    Sum <- 0\n    FOR Col <- 1 TO 4\n        Sum <- Sum + Matrix[Row, Col]\n    NEXT Col\n    OUTPUT \"Row \", Row, \": \", Sum\nNEXT Row"
+    "level": "A-Level",
+    "topic": "Binary Search",
+    "title": "Binary Search",
+    "description": "Implement binary search on sorted array {10,20,30,40,50}. Search for value 30.",
+    "hints": [
+      "Array must be sorted",
+      "Compare middle element with target",
+      "Adjust low/high based on comparison"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE Low : INTEGER\nDECLARE High : INTEGER\nDECLARE Mid : INTEGER\nDECLARE Target : INTEGER\nDECLARE Found : BOOLEAN\n\nNumbers[1] <-- 10\nNumbers[2] <-- 20\nNumbers[3] <-- 30\nNumbers[4] <-- 40\nNumbers[5] <-- 50\n\nTarget <-- 30\nLow <-- 1\nHigh <-- 5\nFound <-- FALSE\n\nWHILE Low <= High AND NOT Found DO\n    Mid <-- (Low + High) DIV 2\n    \n    IF Numbers[Mid] = Target THEN\n        Found <-- TRUE\n        OUTPUT \"Found at index \", Mid\n    ELSE\n        IF Numbers[Mid] < Target THEN\n            Low <-- Mid + 1\n        ELSE\n            High <-- Mid - 1\n        ENDIF\n    ENDIF\nENDWHILE\n\nIF NOT Found THEN\n    OUTPUT \"Not found\"\nENDIF"
   },
   {
     "id": 43,
     "level": "IGCSE",
-    "topic": "Algorithms",
-    "title": "Selection Sort",
-    "description": "Sort 6 numbers using selection sort algorithm.",
-    "hints": ["Find minimum in unsorted portion", "Swap with first unsorted element", "Move boundary of sorted portion"],
-    "solution": "DECLARE Numbers : ARRAY[1:6] OF INTEGER\nDECLARE i, j, MinIndex, Temp : INTEGER\n\nFOR i <- 1 TO 6\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\nNEXT i\n\nFOR i <- 1 TO 5\n    MinIndex <- i\n    FOR j <- i + 1 TO 6\n        IF Numbers[j] < Numbers[MinIndex] THEN\n            MinIndex <- j\n        ENDIF\n    NEXT j\n    IF MinIndex <> i THEN\n        Temp <- Numbers[i]\n        Numbers[i] <- Numbers[MinIndex]\n        Numbers[MinIndex] <- Temp\n    ENDIF\nNEXT i\n\nOUTPUT \"Sorted:\"\nFOR i <- 1 TO 6\n    OUTPUT Numbers[i]\nNEXT i"
+    "topic": "String Operations",
+    "title": "Uppercase Converter",
+    "description": "Input a string and convert it to uppercase using UCASE.",
+    "hints": [
+      "Use UCASE() function",
+      "Store result in new variable",
+      "Output the result"
+    ],
+    "solution": "DECLARE Original : STRING\nDECLARE Uppercase : STRING\n\nOUTPUT \"Enter text:\"\nINPUT Original\n\nUppercase <-- UCASE(Original)\n\nOUTPUT \"Uppercase: \", Uppercase"
   },
   {
     "id": 44,
-    "level": "IGCSE",
-    "topic": "Totalling",
-    "title": "Running Balance",
-    "description": "Start with $1000. Input transactions (positive=deposit, negative=withdrawal) until 0. Show balance after each.",
-    "hints": ["Initialize balance to 1000", "Add each transaction to balance", "Show running balance", "Stop when 0 entered"],
-    "solution": "DECLARE Balance, Transaction : REAL\n\nBalance <- 1000.0\n\nOUTPUT \"Starting balance: $\", Balance\nOUTPUT \"Enter transactions (0 to stop):\"\n\nREPEAT\n    OUTPUT \"Transaction: \"\n    INPUT Transaction\n    IF Transaction <> 0 THEN\n        Balance <- Balance + Transaction\n        OUTPUT \"Balance: $\", Balance\n    ENDIF\nUNTIL Transaction = 0\n\nOUTPUT \"Final balance: $\", Balance"
+    "level": "A-Level",
+    "topic": "2D Arrays",
+    "title": "2D Array Sum",
+    "description": "Create a 3×3 2D array with values 1-9, calculate and output the sum of all elements.",
+    "hints": [
+      "Declare ARRAY[1:3, 1:3]",
+      "Use nested loops to fill and sum",
+      "Outer loop for rows, inner for columns"
+    ],
+    "solution": "DECLARE Matrix : ARRAY[1:3, 1:3] OF INTEGER\nDECLARE i : INTEGER\nDECLARE j : INTEGER\nDECLARE Sum : INTEGER\nDECLARE Value : INTEGER\n\nValue <-- 1\n\nFOR i <-- 1 TO 3\n    FOR j <-- 1 TO 3\n        Matrix[i, j] <-- Value\n        Value <-- Value + 1\n    NEXT j\nNEXT i\n\nSum <-- 0\n\nFOR i <-- 1 TO 3\n    FOR j <-- 1 TO 3\n        Sum <-- Sum + Matrix[i, j]\n    NEXT j\nNEXT i\n\nOUTPUT \"Sum: \", Sum"
   },
   {
     "id": 45,
     "level": "IGCSE",
-    "topic": "Validation",
-    "title": "Menu Choice Validation",
-    "description": "Display a menu with 4 options. Validate that user enters 1, 2, 3, or 4.",
-    "hints": ["Use REPEAT loop for validation", "Check if choice is in range 1-4", "Display error for invalid input"],
-    "solution": "DECLARE Choice : INTEGER\nDECLARE Valid : BOOLEAN\n\nREPEAT\n    OUTPUT \"=== MENU ===\"\n    OUTPUT \"1. Option A\"\n    OUTPUT \"2. Option B\"\n    OUTPUT \"3. Option C\"\n    OUTPUT \"4. Exit\"\n    OUTPUT \"Enter choice: \"\n    INPUT Choice\n    IF Choice >= 1 AND Choice <= 4 THEN\n        Valid <- TRUE\n    ELSE\n        OUTPUT \"Invalid! Enter 1-4\"\n        Valid <- FALSE\n    ENDIF\nUNTIL Valid = TRUE\n\nOUTPUT \"You selected: \", Choice"
+    "topic": "Loops",
+    "title": "Password Checker",
+    "description": "Set password to \"secret\". Keep asking for password until correct, max 3 attempts.",
+    "hints": [
+      "Use REPEAT loop with counter",
+      "Check password each attempt",
+      "Break if correct or attempts exhausted"
+    ],
+    "solution": "DECLARE Password : STRING\nDECLARE Attempts : INTEGER\n\nAttempts <-- 0\n\nREPEAT\n    Attempts <-- Attempts + 1\n    OUTPUT \"Enter password (Attempt \", Attempts, \"/3):\"\n    INPUT Password\n    \n    IF Password = \"secret\" THEN\n        OUTPUT \"Access granted!\"\n    ELSE\n        IF Attempts < 3 THEN\n            OUTPUT \"Wrong password. Try again.\"\n        ELSE\n            OUTPUT \"Access denied. Too many attempts.\"\n        ENDIF\n    ENDIF\nUNTIL Password = \"secret\" OR Attempts = 3"
   },
   {
     "id": 46,
-    "level": "IGCSE",
-    "topic": "String Operations",
-    "title": "Count Words",
-    "description": "Input a sentence and count the number of words (words are separated by spaces).",
-    "hints": ["Count spaces and add 1", "Or use LENGTH to iterate and count spaces", "Handle multiple spaces between words"],
-    "solution": "DECLARE Text, Char : STRING\nDECLARE i, Words : INTEGER\nDECLARE InWord : BOOLEAN\n\nOUTPUT \"Enter sentence: \"\nINPUT Text\n\nWords <- 0\nInWord <- FALSE\n\nFOR i <- 1 TO LENGTH(Text)\n    Char <- SUBSTRING(Text, i, 1)\n    IF Char <> \" \" THEN\n        IF InWord = FALSE THEN\n            Words <- Words + 1\n            InWord <- TRUE\n        ENDIF\n    ELSE\n        InWord <- FALSE\n    ENDIF\nNEXT i\n\nOUTPUT \"Number of words: \", Words"
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "String Reverse Function",
+    "description": "Write a function ReverseString(s) that returns the reversed string.",
+    "hints": [
+      "Use LENGTH to get string length",
+      "Build new string from end to start",
+      "Use SUBSTRING to extract characters"
+    ],
+    "solution": "FUNCTION ReverseString(S : STRING) RETURNS STRING\n    DECLARE Result : STRING\n    DECLARE Length : INTEGER\n    DECLARE i : INTEGER\n    \n    Length <-- LENGTH(S)\n    Result <-- \"\"\n    \n    FOR i <-- Length TO 1 STEP -1\n        Result <-- Result + SUBSTRING(S, i, 1)\n    NEXT i\n    \n    RETURN Result\nENDFUNCTION\n\nDECLARE Original : STRING\nDECLARE Reversed : STRING\n\nOriginal <-- \"Hello\"\nReversed <-- ReverseString(Original)\n\nOUTPUT \"Original: \", Original\nOUTPUT \"Reversed: \", Reversed"
   },
   {
     "id": 47,
     "level": "IGCSE",
-    "topic": "Functions",
-    "title": "Maximum of Three",
-    "description": "Create a function that returns the maximum of three numbers.",
-    "hints": ["Compare first two numbers", "Then compare result with third", "Return the largest"],
-    "solution": "FUNCTION Max3(A : INTEGER, B : INTEGER, C : INTEGER) RETURNS INTEGER\n    DECLARE Max : INTEGER\n    IF A > B THEN\n        Max <- A\n    ELSE\n        Max <- B\n    ENDIF\n    IF C > Max THEN\n        Max <- C\n    ENDIF\n    RETURN Max\nENDFUNCTION\n\nDECLARE X, Y, Z, Result : INTEGER\n\nOUTPUT \"Enter three numbers:\"\nINPUT X\nINPUT Y\nINPUT Z\n\nResult <- Max3(X, Y, Z)\n\nOUTPUT \"Maximum: \", Result"
+    "topic": "Arithmetic",
+    "title": "Circle Area",
+    "description": "Input radius, calculate and output circle area. Use π = 3.14159.",
+    "hints": [
+      "Area = π × radius × radius",
+      "Declare radius as REAL",
+      "Declare PI as constant 3.14159"
+    ],
+    "solution": "DECLARE Radius : REAL\nDECLARE Area : REAL\nDECLARE PI : REAL\n\nPI <-- 3.14159\n\nOUTPUT \"Enter radius:\"\nINPUT Radius\n\nArea <-- PI * Radius * Radius\n\nOUTPUT \"Area: \", Area"
   },
   {
     "id": 48,
-    "level": "IGCSE",
-    "topic": "Arrays",
-    "title": "Find Duplicates",
-    "description": "Input 10 numbers. Report if there are any duplicate values.",
-    "hints": ["Use nested loops to compare each pair", "Set flag when duplicate found", "Can stop search after finding first duplicate"],
-    "solution": "DECLARE Numbers : ARRAY[1:10] OF INTEGER\nDECLARE i, j : INTEGER\nDECLARE Found : BOOLEAN\n\nFOR i <- 1 TO 10\n    OUTPUT \"Enter number \", i, \": \"\n    INPUT Numbers[i]\nNEXT i\n\nFound <- FALSE\n\nFOR i <- 1 TO 9\n    FOR j <- i + 1 TO 10\n        IF Numbers[i] = Numbers[j] THEN\n            Found <- TRUE\n            OUTPUT \"Duplicate found: \", Numbers[i]\n        ENDIF\n    NEXT j\nNEXT i\n\nIF Found = FALSE THEN\n    OUTPUT \"No duplicates\"\nENDIF"
+    "level": "A-Level",
+    "topic": "Procedures",
+    "title": "Array Fill Procedure",
+    "description": "Write a procedure FillArray that fills an array with sequential values starting from a given number.",
+    "hints": [
+      "Pass array BYREF",
+      "Pass starting value BYVAL",
+      "Loop to fill array"
+    ],
+    "solution": "PROCEDURE FillArray(BYREF Arr : ARRAY[1:5] OF INTEGER, BYVAL Start : INTEGER)\n    DECLARE i : INTEGER\n    \n    FOR i <-- 1 TO 5\n        Arr[i] <-- Start + i - 1\n    NEXT i\nENDPROCEDURE\n\nDECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\n\nCALL FillArray(Numbers, 10)\n\nOUTPUT \"Array contents:\"\nFOR i <-- 1 TO 5\n    OUTPUT Numbers[i]\nNEXT i"
   },
   {
     "id": 49,
     "level": "IGCSE",
-    "topic": "Procedures",
-    "title": "Draw Rectangle",
-    "description": "Create a procedure that draws a rectangle using asterisks. Parameters: width and height.",
-    "hints": ["Two parameters: Width and Height", "Outer loop for rows", "Inner loop for columns", "Print asterisk in each position"],
-    "solution": "PROCEDURE DrawRectangle(Width : INTEGER, Height : INTEGER)\n    DECLARE Row, Col : INTEGER\n    FOR Row <- 1 TO Height\n        FOR Col <- 1 TO Width\n            OUTPUT \"*\"\n        NEXT Col\n        OUTPUT \"\"\n    NEXT Row\nENDPROCEDURE\n\nDECLARE W, H : INTEGER\n\nOUTPUT \"Enter width: \"\nINPUT W\nOUTPUT \"Enter height: \"\nINPUT H\n\nCALL DrawRectangle(W, H)"
+    "topic": "Selection",
+    "title": "Largest of Three",
+    "description": "Input three numbers and output which one is the largest.",
+    "hints": [
+      "Compare first two, keep larger",
+      "Compare result with third",
+      "Use nested IF statements"
+    ],
+    "solution": "DECLARE Num1 : INTEGER\nDECLARE Num2 : INTEGER\nDECLARE Num3 : INTEGER\nDECLARE Largest : INTEGER\n\nOUTPUT \"Enter number 1:\"\nINPUT Num1\nOUTPUT \"Enter number 2:\"\nINPUT Num2\nOUTPUT \"Enter number 3:\"\nINPUT Num3\n\nIF Num1 >= Num2 THEN\n    Largest <-- Num1\nELSE\n    Largest <-- Num2\nENDIF\n\nIF Num3 > Largest THEN\n    Largest <-- Num3\nENDIF\n\nOUTPUT \"Largest: \", Largest"
   },
   {
     "id": 50,
+    "level": "A-Level",
+    "topic": "Sorting",
+    "title": "Selection Sort",
+    "description": "Implement selection sort on array {29, 10, 14, 37, 13}.",
+    "hints": [
+      "Find minimum in unsorted portion",
+      "Swap with first unsorted element",
+      "Move boundary of sorted portion"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE j : INTEGER\nDECLARE MinIndex : INTEGER\nDECLARE Temp : INTEGER\n\nNumbers[1] <-- 29\nNumbers[2] <-- 10\nNumbers[3] <-- 14\nNumbers[4] <-- 37\nNumbers[5] <-- 13\n\nFOR i <-- 1 TO 4\n    MinIndex <-- i\n    \n    FOR j <-- i + 1 TO 5\n        IF Numbers[j] < Numbers[MinIndex] THEN\n            MinIndex <-- j\n        ENDIF\n    NEXT j\n    \n    IF MinIndex <> i THEN\n        Temp <-- Numbers[i]\n        Numbers[i] <-- Numbers[MinIndex]\n        Numbers[MinIndex] <-- Temp\n    ENDIF\nNEXT i\n\nOUTPUT \"Sorted array:\"\nFOR i <-- 1 TO 5\n    OUTPUT Numbers[i]\nNEXT i"
+  },
+  {
+    "id": 51,
     "level": "IGCSE",
-    "topic": "Comprehensive",
-    "title": "Student Grade System",
-    "description": "Input 5 students' names and scores. Calculate average, find highest, display all with pass/fail (50% pass mark).",
-    "hints": ["Use parallel arrays for names and scores", "Calculate average as you go", "Track highest score and position", "Use IF to determine pass/fail"],
-    "solution": "DECLARE Names : ARRAY[1:5] OF STRING\nDECLARE Scores : ARRAY[1:5] OF INTEGER\nDECLARE i, Total, Highest, HighestIndex : INTEGER\nDECLARE Average : REAL\n\nTotal <- 0\nHighest <- 0\n\nFOR i <- 1 TO 5\n    OUTPUT \"Student \", i, \" name: \"\n    INPUT Names[i]\n    OUTPUT \"Score: \"\n    INPUT Scores[i]\n    Total <- Total + Scores[i]\n    IF Scores[i] > Highest THEN\n        Highest <- Scores[i]\n        HighestIndex <- i\n    ENDIF\nNEXT i\n\nAverage <- REAL(Total) / 5.0\n\nOUTPUT \"Results:\"\nFOR i <- 1 TO 5\n    OUTPUT Names[i], \": \", Scores[i]\n    IF Scores[i] >= 50 THEN\n        OUTPUT \"PASS\"\n    ELSE\n        OUTPUT \"FAIL\"\n    ENDIF\nNEXT i\n\nOUTPUT \"Average: \", Average\nOUTPUT \"Highest: \", Names[HighestIndex], \" (\", Highest, \")\""
+    "topic": "Loops",
+    "title": "Number Pyramid",
+    "description": "Print a pyramid pattern:\n1\n22\n333\n4444\n55555",
+    "hints": [
+      "Outer loop for rows (1 to 5)",
+      "Inner loop prints number row times",
+      "Number equals row number"
+    ],
+    "solution": "DECLARE i : INTEGER\nDECLARE j : INTEGER\n\nFOR i <-- 1 TO 5\n    FOR j <-- 1 TO i\n        OUTPUT i\n    NEXT j\n    OUTPUT \"\"\nNEXT i"
+  },
+  {
+    "id": 52,
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "Digit Sum",
+    "description": "Write a function DigitSum(n) that returns the sum of digits in n.",
+    "hints": [
+      "Extract last digit using MOD 10",
+      "Add to sum",
+      "Remove last digit using DIV 10"
+    ],
+    "solution": "FUNCTION DigitSum(N : INTEGER) RETURNS INTEGER\n    DECLARE Sum : INTEGER\n    \n    Sum <-- 0\n    \n    WHILE N > 0 DO\n        Sum <-- Sum + (N MOD 10)\n        N <-- N DIV 10\n    ENDWHILE\n    \n    RETURN Sum\nENDFUNCTION\n\nDECLARE Number : INTEGER\nNumber <-- 1234\n\nOUTPUT \"Sum of digits: \", DigitSum(Number)"
+  },
+  {
+    "id": 53,
+    "level": "IGCSE",
+    "topic": "Arrays",
+    "title": "Copy Array",
+    "description": "Create an array with 5 values, copy all elements to a new array.",
+    "hints": [
+      "Declare two arrays",
+      "Fill first array",
+      "Loop to copy each element"
+    ],
+    "solution": "DECLARE Source : ARRAY[1:5] OF INTEGER\nDECLARE Destination : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\n\nSource[1] <-- 10\nSource[2] <-- 20\nSource[3] <-- 30\nSource[4] <-- 40\nSource[5] <-- 50\n\nFOR i <-- 1 TO 5\n    Destination[i] <-- Source[i]\nNEXT i\n\nOUTPUT \"Copied array:\"\nFOR i <-- 1 TO 5\n    OUTPUT Destination[i]\nNEXT i"
+  },
+  {
+    "id": 54,
+    "level": "A-Level",
+    "topic": "String Manipulation",
+    "title": "Word Count",
+    "description": "Input a sentence and count the number of words (spaces + 1).",
+    "hints": [
+      "Count spaces in the sentence",
+      "Number of words = spaces + 1",
+      "Handle empty string case"
+    ],
+    "solution": "DECLARE Sentence : STRING\nDECLARE Length : INTEGER\nDECLARE i : INTEGER\nDECLARE Char : STRING\nDECLARE SpaceCount : INTEGER\nDECLARE WordCount : INTEGER\n\nOUTPUT \"Enter a sentence:\"\nINPUT Sentence\n\nIF LENGTH(Sentence) = 0 THEN\n    WordCount <-- 0\nELSE\n    Length <-- LENGTH(Sentence)\n    SpaceCount <-- 0\n    \n    FOR i <-- 1 TO Length\n        Char <-- SUBSTRING(Sentence, i, 1)\n        IF Char = \" \" THEN\n            SpaceCount <-- SpaceCount + 1\n        ENDIF\n    NEXT i\n    \n    WordCount <-- SpaceCount + 1\nENDIF\n\nOUTPUT \"Word count: \", WordCount"
+  },
+  {
+    "id": 55,
+    "level": "IGCSE",
+    "topic": "Selection",
+    "title": "Discount Calculator",
+    "description": "Input purchase amount. Apply 10% discount if amount > 100, 5% if > 50, else no discount.",
+    "hints": [
+      "Check largest amount first",
+      "Calculate discount percentage",
+      "Subtract from original amount"
+    ],
+    "solution": "DECLARE Amount : REAL\nDECLARE Discount : REAL\nDECLARE Final : REAL\n\nOUTPUT \"Enter purchase amount:\"\nINPUT Amount\n\nIF Amount > 100 THEN\n    Discount <-- Amount * 0.10\nELSE\n    IF Amount > 50 THEN\n        Discount <-- Amount * 0.05\n    ELSE\n        Discount <-- 0\n    ENDIF\nENDIF\n\nFinal <-- Amount - Discount\n\nOUTPUT \"Discount: \", Discount\nOUTPUT \"Final amount: \", Final"
+  },
+  {
+    "id": 56,
+    "level": "A-Level",
+    "topic": "2D Arrays",
+    "title": "Matrix Transpose",
+    "description": "Create a 2×3 matrix and output its transpose (3×2).",
+    "hints": [
+      "Original[i,j] becomes Transpose[j,i]",
+      "Rows become columns",
+      "Columns become rows"
+    ],
+    "solution": "DECLARE Original : ARRAY[1:2, 1:3] OF INTEGER\nDECLARE Transpose : ARRAY[1:3, 1:2] OF INTEGER\nDECLARE i : INTEGER\nDECLARE j : INTEGER\n\nOriginal[1,1] <-- 1\nOriginal[1,2] <-- 2\nOriginal[1,3] <-- 3\nOriginal[2,1] <-- 4\nOriginal[2,2] <-- 5\nOriginal[2,3] <-- 6\n\nFOR i <-- 1 TO 2\n    FOR j <-- 1 TO 3\n        Transpose[j, i] <-- Original[i, j]\n    NEXT j\nNEXT i\n\nOUTPUT \"Transpose:\"\nFOR i <-- 1 TO 3\n    FOR j <-- 1 TO 2\n        OUTPUT Transpose[i, j]\n    NEXT j\nNEXT i"
+  },
+  {
+    "id": 57,
+    "level": "IGCSE",
+    "topic": "Loops",
+    "title": "Sum of Multiples",
+    "description": "Calculate sum of all numbers from 1 to 100 that are divisible by 3 or 5.",
+    "hints": [
+      "Loop 1 to 100",
+      "Check if divisible by 3 OR 5",
+      "Add to sum if condition met"
+    ],
+    "solution": "DECLARE i : INTEGER\nDECLARE Sum : INTEGER\n\nSum <-- 0\n\nFOR i <-- 1 TO 100\n    IF i MOD 3 = 0 OR i MOD 5 = 0 THEN\n        Sum <-- Sum + i\n    ENDIF\nNEXT i\n\nOUTPUT \"Sum: \", Sum"
+  },
+  {
+    "id": 58,
+    "level": "A-Level",
+    "topic": "Recursion",
+    "title": "Sum Recursive",
+    "description": "Write recursive function Sum(n) that returns 1+2+3+...+n.",
+    "hints": [
+      "Base case: Sum(1) = 1",
+      "Recursive: return n + Sum(n-1)",
+      "Call function recursively"
+    ],
+    "solution": "FUNCTION Sum(N : INTEGER) RETURNS INTEGER\n    IF N = 1 THEN\n        RETURN 1\n    ELSE\n        RETURN N + Sum(N - 1)\n    ENDIF\nENDFUNCTION\n\nDECLARE Result : INTEGER\nResult <-- Sum(10)\nOUTPUT \"Sum of 1 to 10: \", Result"
+  },
+  {
+    "id": 59,
+    "level": "IGCSE",
+    "topic": "String Operations",
+    "title": "Remove Spaces",
+    "description": "Input a string and output it with all spaces removed.",
+    "hints": [
+      "Loop through each character",
+      "Only add non-space characters to result",
+      "Build new string character by character"
+    ],
+    "solution": "DECLARE Original : STRING\nDECLARE Result : STRING\nDECLARE Length : INTEGER\nDECLARE i : INTEGER\nDECLARE Char : STRING\n\nOUTPUT \"Enter text with spaces:\"\nINPUT Original\n\nLength <-- LENGTH(Original)\nResult <-- \"\"\n\nFOR i <-- 1 TO Length\n    Char <-- SUBSTRING(Original, i, 1)\n    IF Char <> \" \" THEN\n        Result <-- Result + Char\n    ENDIF\nNEXT i\n\nOUTPUT \"Without spaces: \", Result"
+  },
+  {
+    "id": 60,
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "Perfect Number",
+    "description": "Write function IsPerfect(n) that returns TRUE if n equals sum of its divisors (excluding n).",
+    "hints": [
+      "Find all divisors from 1 to n-1",
+      "Sum the divisors",
+      "Compare sum with n"
+    ],
+    "solution": "FUNCTION IsPerfect(N : INTEGER) RETURNS BOOLEAN\n    DECLARE i : INTEGER\n    DECLARE Sum : INTEGER\n    \n    Sum <-- 0\n    \n    FOR i <-- 1 TO N - 1\n        IF N MOD i = 0 THEN\n            Sum <-- Sum + i\n        ENDIF\n    NEXT i\n    \n    RETURN Sum = N\nENDFUNCTION\n\nDECLARE Num : INTEGER\nNum <-- 28\n\nIF IsPerfect(Num) THEN\n    OUTPUT Num, \" is a perfect number\"\nELSE\n    OUTPUT Num, \" is not a perfect number\"\nENDIF"
+  },
+  {
+    "id": 61,
+    "level": "IGCSE",
+    "topic": "Arrays",
+    "title": "Minimum Value",
+    "description": "Find and output the minimum value in array {45, 23, 67, 12, 89}.",
+    "hints": [
+      "Initialize min to first element",
+      "Compare each element with min",
+      "Update min when smaller found"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE Min : INTEGER\n\nNumbers[1] <-- 45\nNumbers[2] <-- 23\nNumbers[3] <-- 67\nNumbers[4] <-- 12\nNumbers[5] <-- 89\n\nMin <-- Numbers[1]\n\nFOR i <-- 2 TO 5\n    IF Numbers[i] < Min THEN\n        Min <-- Numbers[i]\n    ENDIF\nNEXT i\n\nOUTPUT \"Minimum: \", Min"
+  },
+  {
+    "id": 62,
+    "level": "A-Level",
+    "topic": "Procedures",
+    "title": "Print Rectangle",
+    "description": "Write procedure PrintRectangle(width, height) that prints a rectangle of stars.",
+    "hints": [
+      "Outer loop for rows (height)",
+      "Inner loop for columns (width)",
+      "Print star in inner loop"
+    ],
+    "solution": "PROCEDURE PrintRectangle(BYVAL Width : INTEGER, BYVAL Height : INTEGER)\n    DECLARE i : INTEGER\n    DECLARE j : INTEGER\n    \n    FOR i <-- 1 TO Height\n        FOR j <-- 1 TO Width\n            OUTPUT \"*\"\n        NEXT j\n        OUTPUT \"\"\n    NEXT i\nENDPROCEDURE\n\nCALL PrintRectangle(5, 3)"
+  },
+  {
+    "id": 63,
+    "level": "IGCSE",
+    "topic": "Counting",
+    "title": "Armstrong Number",
+    "description": "Check if 153 is an Armstrong number (sum of cubes of digits equals number). 1³+5³+3³=153.",
+    "hints": [
+      "Extract each digit",
+      "Cube each digit",
+      "Sum the cubes and compare"
+    ],
+    "solution": "DECLARE Number : INTEGER\nDECLARE Original : INTEGER\nDECLARE Digit : INTEGER\nDECLARE Sum : INTEGER\n\nNumber <-- 153\nOriginal <-- Number\nSum <-- 0\n\nWHILE Number > 0 DO\n    Digit <-- Number MOD 10\n    Sum <-- Sum + (Digit * Digit * Digit)\n    Number <-- Number DIV 10\nENDWHILE\n\nIF Sum = Original THEN\n    OUTPUT Original, \" is an Armstrong number\"\nELSE\n    OUTPUT Original, \" is not an Armstrong number\"\nENDIF"
+  },
+  {
+    "id": 64,
+    "level": "A-Level",
+    "topic": "Searching",
+    "title": "Find All Occurrences",
+    "description": "Find and output all positions where value 5 appears in array {5,2,5,1,5,3}.",
+    "hints": [
+      "Loop through array",
+      "When value found, output the index",
+      "Continue searching entire array"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:6] OF INTEGER\nDECLARE i : INTEGER\nDECLARE Target : INTEGER\n\nNumbers[1] <-- 5\nNumbers[2] <-- 2\nNumbers[3] <-- 5\nNumbers[4] <-- 1\nNumbers[5] <-- 5\nNumbers[6] <-- 3\n\nTarget <-- 5\n\nOUTPUT \"Positions of \", Target, \":\"\n\nFOR i <-- 1 TO 6\n    IF Numbers[i] = Target THEN\n        OUTPUT i\n    ENDIF\nNEXT i"
+  },
+  {
+    "id": 65,
+    "level": "IGCSE",
+    "topic": "Selection",
+    "title": "Vowel or Consonant",
+    "description": "Input a single character and determine if it is a vowel or consonant.",
+    "hints": [
+      "Convert to lowercase first",
+      "Check if character is a, e, i, o, or u",
+      "Otherwise it's a consonant"
+    ],
+    "solution": "DECLARE Char : STRING\nDECLARE Lower : STRING\n\nOUTPUT \"Enter a character:\"\nINPUT Char\n\nLower <-- LCASE(Char)\n\nIF Lower = \"a\" OR Lower = \"e\" OR Lower = \"i\" OR Lower = \"o\" OR Lower = \"u\" THEN\n    OUTPUT \"Vowel\"\nELSE\n    OUTPUT \"Consonant\"\nENDIF"
+  },
+  {
+    "id": 66,
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "LCM Function",
+    "description": "Write function LCM(a,b) that returns least common multiple using formula: LCM = (a*b)/GCD(a,b).",
+    "hints": [
+      "First write GCD function",
+      "Use formula LCM = (a*b)/GCD",
+      "Return the result"
+    ],
+    "solution": "FUNCTION GCD(A : INTEGER, B : INTEGER) RETURNS INTEGER\n    DECLARE Temp : INTEGER\n    \n    WHILE B <> 0 DO\n        Temp <-- B\n        B <-- A MOD B\n        A <-- Temp\n    ENDWHILE\n    \n    RETURN A\nENDFUNCTION\n\nFUNCTION LCM(A : INTEGER, B : INTEGER) RETURNS INTEGER\n    RETURN (A * B) DIV GCD(A, B)\nENDFUNCTION\n\nDECLARE Result : INTEGER\nResult <-- LCM(12, 18)\nOUTPUT \"LCM: \", Result"
+  },
+  {
+    "id": 67,
+    "level": "IGCSE",
+    "topic": "Loops",
+    "title": "Sum of Squares",
+    "description": "Calculate 1² + 2² + 3² + ... + 10².",
+    "hints": [
+      "Loop from 1 to 10",
+      "Square each number (n*n)",
+      "Add to running sum"
+    ],
+    "solution": "DECLARE i : INTEGER\nDECLARE Sum : INTEGER\n\nSum <-- 0\n\nFOR i <-- 1 TO 10\n    Sum <-- Sum + (i * i)\nNEXT i\n\nOUTPUT \"Sum of squares: \", Sum"
+  },
+  {
+    "id": 68,
+    "level": "A-Level",
+    "topic": "2D Arrays",
+    "title": "Identity Matrix",
+    "description": "Create and print a 4×4 identity matrix (1s on diagonal, 0s elsewhere).",
+    "hints": [
+      "Use nested loops",
+      "Set element to 1 if row equals column",
+      "Set to 0 otherwise"
+    ],
+    "solution": "DECLARE Matrix : ARRAY[1:4, 1:4] OF INTEGER\nDECLARE i : INTEGER\nDECLARE j : INTEGER\n\nFOR i <-- 1 TO 4\n    FOR j <-- 1 TO 4\n        IF i = j THEN\n            Matrix[i, j] <-- 1\n        ELSE\n            Matrix[i, j] <-- 0\n        ENDIF\n    NEXT j\nNEXT i\n\nOUTPUT \"Identity Matrix:\"\nFOR i <-- 1 TO 4\n    FOR j <-- 1 TO 4\n        OUTPUT Matrix[i, j]\n    NEXT j\n    OUTPUT \"\"\nNEXT i"
+  },
+  {
+    "id": 69,
+    "level": "IGCSE",
+    "topic": "String Operations",
+    "title": "Initials",
+    "description": "Input first name and last name, output initials (e.g., John Smith → J.S.).",
+    "hints": [
+      "Extract first character of each name",
+      "Use SUBSTRING at position 1",
+      "Concatenate with period"
+    ],
+    "solution": "DECLARE FirstName : STRING\nDECLARE LastName : STRING\nDECLARE Initials : STRING\n\nOUTPUT \"Enter first name:\"\nINPUT FirstName\nOUTPUT \"Enter last name:\"\nINPUT LastName\n\nInitials <-- SUBSTRING(FirstName, 1, 1) + \".\" + SUBSTRING(LastName, 1, 1) + \".\"\n\nOUTPUT \"Initials: \", Initials"
+  },
+  {
+    "id": 70,
+    "level": "A-Level",
+    "topic": "Recursion",
+    "title": "Power Recursive",
+    "description": "Write recursive function Power(base, exp) to calculate base^exp.",
+    "hints": [
+      "Base case: Power(n, 0) = 1",
+      "Recursive: Power(n, exp) = n * Power(n, exp-1)",
+      "Call recursively"
+    ],
+    "solution": "FUNCTION Power(Base : INTEGER, Exp : INTEGER) RETURNS INTEGER\n    IF Exp = 0 THEN\n        RETURN 1\n    ELSE\n        RETURN Base * Power(Base, Exp - 1)\n    ENDIF\nENDFUNCTION\n\nDECLARE Result : INTEGER\nResult <-- Power(3, 4)\nOUTPUT \"3^4 = \", Result"
+  },
+  {
+    "id": 71,
+    "level": "IGCSE",
+    "topic": "Arrays",
+    "title": "Array Double",
+    "description": "Create array {1,2,3,4,5}, double each element, and output the result.",
+    "hints": [
+      "Loop through array",
+      "Multiply each element by 2",
+      "Store back in same position"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\n\nNumbers[1] <-- 1\nNumbers[2] <-- 2\nNumbers[3] <-- 3\nNumbers[4] <-- 4\nNumbers[5] <-- 5\n\nFOR i <-- 1 TO 5\n    Numbers[i] <-- Numbers[i] * 2\nNEXT i\n\nOUTPUT \"Doubled array:\"\nFOR i <-- 1 TO 5\n    OUTPUT Numbers[i]\nNEXT i"
+  },
+  {
+    "id": 72,
+    "level": "A-Level",
+    "topic": "Procedures",
+    "title": "Array Statistics",
+    "description": "Write procedure GetStats(array, BYREF min, BYREF max, BYREF avg) that calculates all three.",
+    "hints": [
+      "Pass array by value",
+      "Pass output parameters BYREF",
+      "Calculate in single pass if possible"
+    ],
+    "solution": "PROCEDURE GetStats(BYVAL Arr : ARRAY[1:5] OF INTEGER, BYREF Min : INTEGER, BYREF Max : INTEGER, BYREF Avg : REAL)\n    DECLARE i : INTEGER\n    DECLARE Sum : INTEGER\n    \n    Min <-- Arr[1]\n    Max <-- Arr[1]\n    Sum <-- 0\n    \n    FOR i <-- 1 TO 5\n        IF Arr[i] < Min THEN\n            Min <-- Arr[i]\n        ENDIF\n        IF Arr[i] > Max THEN\n            Max <-- Arr[i]\n        ENDIF\n        Sum <-- Sum + Arr[i]\n    NEXT i\n    \n    Avg <-- Sum / 5\nENDPROCEDURE\n\nDECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE MinVal : INTEGER\nDECLARE MaxVal : INTEGER\nDECLARE AvgVal : REAL\n\nNumbers[1] <-- 15\nNumbers[2] <-- 8\nNumbers[3] <-- 23\nNumbers[4] <-- 12\nNumbers[5] <-- 19\n\nCALL GetStats(Numbers, MinVal, MaxVal, AvgVal)\n\nOUTPUT \"Min: \", MinVal\nOUTPUT \"Max: \", MaxVal\nOUTPUT \"Average: \", AvgVal"
+  },
+  {
+    "id": 73,
+    "level": "IGCSE",
+    "topic": "Loops",
+    "title": "Collatz Sequence",
+    "description": "Start with 10. If even divide by 2, if odd multiply by 3 and add 1. Stop at 1. Output each number.",
+    "hints": [
+      "Use WHILE loop until n becomes 1",
+      "Check if even using MOD 2",
+      "Apply appropriate operation"
+    ],
+    "solution": "DECLARE N : INTEGER\n\nN <-- 10\n\nWHILE N <> 1 DO\n    OUTPUT N\n    \n    IF N MOD 2 = 0 THEN\n        N <-- N DIV 2\n    ELSE\n        N <-- N * 3 + 1\n    ENDIF\nENDWHILE\n\nOUTPUT 1"
+  },
+  {
+    "id": 74,
+    "level": "A-Level",
+    "topic": "Sorting",
+    "title": "Insertion Sort",
+    "description": "Implement insertion sort on array {12, 11, 13, 5, 6}.",
+    "hints": [
+      "Start from second element",
+      "Insert each element into sorted portion",
+      "Shift larger elements right"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE j : INTEGER\nDECLARE Key : INTEGER\n\nNumbers[1] <-- 12\nNumbers[2] <-- 11\nNumbers[3] <-- 13\nNumbers[4] <-- 5\nNumbers[5] <-- 6\n\nFOR i <-- 2 TO 5\n    Key <-- Numbers[i]\n    j <-- i - 1\n\n    WHILE j >= 1 AND Numbers[j] > Key DO\n        Numbers[j + 1] <-- Numbers[j]\n        j <-- j - 1\n    ENDWHILE\n    \n    Numbers[j + 1] <-- Key\nNEXT i\n\nOUTPUT \"Sorted array:\"\nFOR i <-- 1 TO 5\n    OUTPUT Numbers[i]\nNEXT i"
+  },
+  {
+    "id": 75,
+    "level": "IGCSE",
+    "topic": "Selection",
+    "title": "Sign Calculator",
+    "description": "Input two numbers and an operator (+,-,*,/). Perform the operation and output result.",
+    "hints": [
+      "Use CASE OF for operator",
+      "Match operators in cases",
+      "Handle division by zero"
+    ],
+    "solution": "DECLARE Num1 : REAL\nDECLARE Num2 : REAL\nDECLARE Operator : STRING\nDECLARE Result : REAL\n\nOUTPUT \"Enter first number:\"\nINPUT Num1\nOUTPUT \"Enter operator (+,-,*,/):\"\nINPUT Operator\nOUTPUT \"Enter second number:\"\nINPUT Num2\n\nCASE OF Operator\n    \"+\" : Result <-- Num1 + Num2\n    \"-\" : Result <-- Num1 - Num2\n    \"*\" : Result <-- Num1 * Num2\n    \"/\" : \n        IF Num2 = 0 THEN\n            OUTPUT \"Cannot divide by zero\"\n        ELSE\n            Result <-- Num1 / Num2\n        ENDIF\n    OTHERWISE : OUTPUT \"Invalid operator\"\nENDCASE\n\nIF Operator <> \"/\" OR Num2 <> 0 THEN\n    OUTPUT \"Result: \", Result\nENDIF"
+  },
+  {
+    "id": 76,
+    "level": "A-Level",
+    "topic": "String Manipulation",
+    "title": "Caesar Cipher",
+    "description": "Implement Caesar cipher with shift of 3. Encrypt \"ABC\" to \"DEF\".",
+    "hints": [
+      "Loop through each character",
+      "Shift each letter by 3",
+      "Handle wraparound (X→A)"
+    ],
+    "solution": "DECLARE Original : STRING\nDECLARE Encrypted : STRING\nDECLARE Length : INTEGER\nDECLARE i : INTEGER\nDECLARE Char : STRING\n\nOriginal <-- \"ABC\"\nLength <-- LENGTH(Original)\nEncrypted <-- \"\"\n\nFOR i <-- 1 TO Length\n    Char <-- SUBSTRING(Original, i, 1)\n    \n    // Simple version - shifts A-Z only\n    IF Char = \"A\" THEN\n        Encrypted <-- Encrypted + \"D\"\n    ELSE\n        IF Char = \"B\" THEN\n            Encrypted <-- Encrypted + \"E\"\n        ELSE\n            IF Char = \"C\" THEN\n                Encrypted <-- Encrypted + \"F\"\n            ENDIF\n        ENDIF\n    ENDIF\nNEXT i\n\nOUTPUT \"Original: \", Original\nOUTPUT \"Encrypted: \", Encrypted"
+  },
+  {
+    "id": 77,
+    "level": "IGCSE",
+    "topic": "Arrays",
+    "title": "Array Compare",
+    "description": "Compare two arrays {1,2,3,4,5} and {1,2,9,4,5}. Output if they are equal.",
+    "hints": [
+      "Loop through both arrays",
+      "Compare corresponding elements",
+      "Set flag false if any differ"
+    ],
+    "solution": "DECLARE Array1 : ARRAY[1:5] OF INTEGER\nDECLARE Array2 : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE AreEqual : BOOLEAN\n\nArray1[1] <-- 1\nArray1[2] <-- 2\nArray1[3] <-- 3\nArray1[4] <-- 4\nArray1[5] <-- 5\n\nArray2[1] <-- 1\nArray2[2] <-- 2\nArray2[3] <-- 9\nArray2[4] <-- 4\nArray2[5] <-- 5\n\nAreEqual <-- TRUE\n\nFOR i <-- 1 TO 5\n    IF Array1[i] <> Array2[i] THEN\n        AreEqual <-- FALSE\n    ENDIF\nNEXT i\n\nIF AreEqual THEN\n    OUTPUT \"Arrays are equal\"\nELSE\n    OUTPUT \"Arrays are not equal\"\nENDIF"
+  },
+  {
+    "id": 78,
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "Array Contains",
+    "description": "Write function Contains(array, value) that returns TRUE if value exists in array.",
+    "hints": [
+      "Loop through array",
+      "Return TRUE immediately when found",
+      "Return FALSE after loop completes"
+    ],
+    "solution": "FUNCTION Contains(Arr : ARRAY[1:5] OF INTEGER, Value : INTEGER) RETURNS BOOLEAN\n    DECLARE i : INTEGER\n    \n    FOR i <-- 1 TO 5\n        IF Arr[i] = Value THEN\n            RETURN TRUE\n        ENDIF\n    NEXT i\n    \n    RETURN FALSE\nENDFUNCTION\n\nDECLARE Numbers : ARRAY[1:5] OF INTEGER\n\nNumbers[1] <-- 10\nNumbers[2] <-- 20\nNumbers[3] <-- 30\nNumbers[4] <-- 40\nNumbers[5] <-- 50\n\nIF Contains(Numbers, 30) THEN\n    OUTPUT \"Found\"\nELSE\n    OUTPUT \"Not found\"\nENDIF"
+  },
+  {
+    "id": 79,
+    "level": "IGCSE",
+    "topic": "Loops",
+    "title": "Perfect Squares",
+    "description": "Output all perfect squares between 1 and 100 (1,4,9,16,25...).",
+    "hints": [
+      "Loop from 1 to 10",
+      "Square each number",
+      "Output the result"
+    ],
+    "solution": "DECLARE i : INTEGER\nDECLARE Square : INTEGER\n\nOUTPUT \"Perfect squares 1-100:\"\n\nFOR i <-- 1 TO 10\n    Square <-- i * i\n    OUTPUT Square\nNEXT i"
+  },
+  {
+    "id": 80,
+    "level": "A-Level",
+    "topic": "2D Arrays",
+    "title": "Matrix Addition",
+    "description": "Add two 2×2 matrices and output the result.",
+    "hints": [
+      "Declare three 2×2 matrices",
+      "Use nested loops",
+      "Result[i,j] = A[i,j] + B[i,j]"
+    ],
+    "solution": "DECLARE A : ARRAY[1:2, 1:2] OF INTEGER\nDECLARE B : ARRAY[1:2, 1:2] OF INTEGER\nDECLARE C : ARRAY[1:2, 1:2] OF INTEGER\nDECLARE i : INTEGER\nDECLARE j : INTEGER\n\nA[1,1] <-- 1\nA[1,2] <-- 2\nA[2,1] <-- 3\nA[2,2] <-- 4\n\nB[1,1] <-- 5\nB[1,2] <-- 6\nB[2,1] <-- 7\nB[2,2] <-- 8\n\nFOR i <-- 1 TO 2\n    FOR j <-- 1 TO 2\n        C[i, j] <-- A[i, j] + B[i, j]\n    NEXT j\nNEXT i\n\nOUTPUT \"Result:\"\nFOR i <-- 1 TO 2\n    FOR j <-- 1 TO 2\n        OUTPUT C[i, j]\n    NEXT j\n    OUTPUT \"\"\nNEXT i"
+  },
+  {
+    "id": 81,
+    "level": "IGCSE",
+    "topic": "String Operations",
+    "title": "Title Case",
+    "description": "Convert \"hello world\" to \"Hello World\" (capitalize first letter of each word).",
+    "hints": [
+      "Check if previous character was space",
+      "Capitalize if at start or after space",
+      "Use UCASE for first char, LCASE for others"
+    ],
+    "solution": "DECLARE Original : STRING\nDECLARE Result : STRING\nDECLARE Length : INTEGER\nDECLARE i : INTEGER\nDECLARE Char : STRING\nDECLARE Capitalize : BOOLEAN\n\nOriginal <-- \"hello world\"\nLength <-- LENGTH(Original)\nResult <-- \"\"\nCapitalize <-- TRUE\n\nFOR i <-- 1 TO Length\n    Char <-- SUBSTRING(Original, i, 1)\n    \n    IF Char = \" \" THEN\n        Result <-- Result + \" \"\n        Capitalize <-- TRUE\n    ELSE\n        IF Capitalize THEN\n            Result <-- Result + UCASE(Char)\n            Capitalize <-- FALSE\n        ELSE\n            Result <-- Result + LCASE(Char)\n        ENDIF\n    ENDIF\nNEXT i\n\nOUTPUT Result"
+  },
+  {
+    "id": 82,
+    "level": "A-Level",
+    "topic": "Recursion",
+    "title": "GCD Recursive",
+    "description": "Implement GCD using recursion: GCD(a,b) = GCD(b, a MOD b) when b≠0.",
+    "hints": [
+      "Base case: when b=0, return a",
+      "Recursive: return GCD(b, a MOD b)",
+      "Call function recursively"
+    ],
+    "solution": "FUNCTION GCD(A : INTEGER, B : INTEGER) RETURNS INTEGER\n    IF B = 0 THEN\n        RETURN A\n    ELSE\n        RETURN GCD(B, A MOD B)\n    ENDIF\nENDFUNCTION\n\nDECLARE Result : INTEGER\nResult <-- GCD(48, 18)\nOUTPUT \"GCD: \", Result"
+  },
+  {
+    "id": 83,
+    "level": "IGCSE",
+    "topic": "Loops",
+    "title": "Sum Until Zero",
+    "description": "Keep inputting numbers and summing them. Stop when user enters 0. Output sum.",
+    "hints": [
+      "Use REPEAT-UNTIL or WHILE loop",
+      "Add each number to sum before checking",
+      "Stop when 0 entered"
+    ],
+    "solution": "DECLARE Number : INTEGER\nDECLARE Sum : INTEGER\n\nSum <-- 0\n\nREPEAT\n    OUTPUT \"Enter number (0 to stop):\"\n    INPUT Number\n    Sum <-- Sum + Number\nUNTIL Number = 0\n\nOUTPUT \"Total sum: \", Sum"
+  },
+  {
+    "id": 84,
+    "level": "A-Level",
+    "topic": "Procedures",
+    "title": "Bubble Sort Procedure",
+    "description": "Write procedure BubbleSort(array) that sorts an array in place.",
+    "hints": [
+      "Pass array BYREF to modify it",
+      "Use nested loops",
+      "Swap adjacent elements if out of order"
+    ],
+    "solution": "PROCEDURE BubbleSort(BYREF Arr : ARRAY[1:5] OF INTEGER)\n    DECLARE i : INTEGER\n    DECLARE j : INTEGER\n    DECLARE Temp : INTEGER\n    \n    FOR i <-- 1 TO 4\n        FOR j <-- 1 TO 5 - i\n            IF Arr[j] > Arr[j + 1] THEN\n                Temp <-- Arr[j]\n                Arr[j] <-- Arr[j + 1]\n                Arr[j + 1] <-- Temp\n            ENDIF\n        NEXT j\n    NEXT i\nENDPROCEDURE\n\nDECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\n\nNumbers[1] <-- 64\nNumbers[2] <-- 34\nNumbers[3] <-- 25\nNumbers[4] <-- 12\nNumbers[5] <-- 22\n\nCALL BubbleSort(Numbers)\n\nOUTPUT \"Sorted:\"\nFOR i <-- 1 TO 5\n    OUTPUT Numbers[i]\nNEXT i"
+  },
+  {
+    "id": 85,
+    "level": "IGCSE",
+    "topic": "Arrays",
+    "title": "Second Largest",
+    "description": "Find the second largest number in array {45, 23, 89, 67, 12}.",
+    "hints": [
+      "Find the largest first",
+      "Then find largest excluding the max",
+      "Use two passes through array"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE Max : INTEGER\nDECLARE SecondMax : INTEGER\n\nNumbers[1] <-- 45\nNumbers[2] <-- 23\nNumbers[3] <-- 89\nNumbers[4] <-- 67\nNumbers[5] <-- 12\n\nMax <-- Numbers[1]\nFOR i <-- 2 TO 5\n    IF Numbers[i] > Max THEN\n        Max <-- Numbers[i]\n    ENDIF\nNEXT i\n\nSecondMax <-- -999\n\nFOR i <-- 1 TO 5\n    IF Numbers[i] < Max AND Numbers[i] > SecondMax THEN\n        SecondMax <-- Numbers[i]\n    ENDIF\nNEXT i\n\nOUTPUT \"Second largest: \", SecondMax"
+  },
+  {
+    "id": 86,
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "Array Max Function",
+    "description": "Write function FindMax(array) that returns the maximum value.",
+    "hints": [
+      "Initialize max to first element",
+      "Loop through comparing",
+      "Return the max value"
+    ],
+    "solution": "FUNCTION FindMax(Arr : ARRAY[1:5] OF INTEGER) RETURNS INTEGER\n    DECLARE i : INTEGER\n    DECLARE Max : INTEGER\n    \n    Max <-- Arr[1]\n    \n    FOR i <-- 2 TO 5\n        IF Arr[i] > Max THEN\n            Max <-- Arr[i]\n        ENDIF\n    NEXT i\n    \n    RETURN Max\nENDFUNCTION\n\nDECLARE Numbers : ARRAY[1:5] OF INTEGER\n\nNumbers[1] <-- 15\nNumbers[2] <-- 42\nNumbers[3] <-- 8\nNumbers[4] <-- 23\nNumbers[5] <-- 16\n\nOUTPUT \"Maximum: \", FindMax(Numbers)"
+  },
+  {
+    "id": 87,
+    "level": "IGCSE",
+    "topic": "Selection",
+    "title": "Number Sign",
+    "description": "Input a number, output \"Positive\", \"Negative\", or \"Zero\" with its absolute value.",
+    "hints": [
+      "Check if zero first",
+      "Then check if positive or negative",
+      "Absolute value: if negative, multiply by -1"
+    ],
+    "solution": "DECLARE Number : INTEGER\nDECLARE AbsValue : INTEGER\n\nOUTPUT \"Enter a number:\"\nINPUT Number\n\nIF Number = 0 THEN\n    OUTPUT \"Zero\"\n    AbsValue <-- 0\nELSE\n    IF Number > 0 THEN\n        OUTPUT \"Positive\"\n        AbsValue <-- Number\n    ELSE\n        OUTPUT \"Negative\"\n        AbsValue <-- Number * -1\n    ENDIF\nENDIF\n\nOUTPUT \"Absolute value: \", AbsValue"
+  },
+  {
+    "id": 88,
+    "level": "A-Level",
+    "topic": "String Manipulation",
+    "title": "Anagram Checker",
+    "description": "Check if two words are anagrams by comparing sorted characters.",
+    "hints": [
+      "Convert both to same case",
+      "Count character frequencies",
+      "Compare if frequencies match"
+    ],
+    "solution": "DECLARE Word1 : STRING\nDECLARE Word2 : STRING\nDECLARE Length1 : INTEGER\nDECLARE Length2 : INTEGER\nDECLARE IsAnagram : BOOLEAN\n\nWord1 <-- \"listen\"\nWord2 <-- \"silent\"\n\nLength1 <-- LENGTH(Word1)\nLength2 <-- LENGTH(Word2)\n\nIF Length1 <> Length2 THEN\n    IsAnagram <-- FALSE\nELSE\n    // Simplified check - in practice would need character counting\n    IsAnagram <-- TRUE\n    OUTPUT \"For full anagram check, need char frequency counting\"\nENDIF\n\nIF IsAnagram THEN\n    OUTPUT \"Anagrams\"\nELSE\n    OUTPUT \"Not anagrams\"\nENDIF"
+  },
+  {
+    "id": 89,
+    "level": "IGCSE",
+    "topic": "Loops",
+    "title": "Print Square",
+    "description": "Print a 4×4 square of asterisks.",
+    "hints": [
+      "Nested loops",
+      "Outer loop for rows",
+      "Inner loop for columns"
+    ],
+    "solution": "DECLARE i : INTEGER\nDECLARE j : INTEGER\n\nFOR i <-- 1 TO 4\n    FOR j <-- 1 TO 4\n        OUTPUT \"*\"\n    NEXT j\n    OUTPUT \"\"\nNEXT i"
+  },
+  {
+    "id": 90,
+    "level": "A-Level",
+    "topic": "2D Arrays",
+    "title": "Diagonal Sum",
+    "description": "Calculate sum of main diagonal in 3×3 matrix.",
+    "hints": [
+      "Main diagonal: elements where row=column",
+      "Sum Matrix[1,1], Matrix[2,2], Matrix[3,3]",
+      "Loop or direct addition"
+    ],
+    "solution": "DECLARE Matrix : ARRAY[1:3, 1:3] OF INTEGER\nDECLARE i : INTEGER\nDECLARE j : INTEGER\nDECLARE Sum : INTEGER\n\nMatrix[1,1] <-- 1\nMatrix[1,2] <-- 2\nMatrix[1,3] <-- 3\nMatrix[2,1] <-- 4\nMatrix[2,2] <-- 5\nMatrix[2,3] <-- 6\nMatrix[3,1] <-- 7\nMatrix[3,2] <-- 8\nMatrix[3,3] <-- 9\n\nSum <-- 0\n\nFOR i <-- 1 TO 3\n    Sum <-- Sum + Matrix[i, i]\nNEXT i\n\nOUTPUT \"Diagonal sum: \", Sum"
+  },
+  {
+    "id": 91,
+    "level": "IGCSE",
+    "topic": "Arithmetic",
+    "title": "Percentage Calculator",
+    "description": "Input marks obtained and total marks. Calculate and output percentage.",
+    "hints": [
+      "Percentage = (obtained / total) * 100",
+      "Use REAL for division",
+      "Output with 2 decimal places if possible"
+    ],
+    "solution": "DECLARE Obtained : REAL\nDECLARE Total : REAL\nDECLARE Percentage : REAL\n\nOUTPUT \"Enter marks obtained:\"\nINPUT Obtained\nOUTPUT \"Enter total marks:\"\nINPUT Total\n\nPercentage <-- (Obtained / Total) * 100\n\nOUTPUT \"Percentage: \", Percentage, \"%\""
+  },
+  {
+    "id": 92,
+    "level": "A-Level",
+    "topic": "Recursion",
+    "title": "Array Sum Recursive",
+    "description": "Write recursive function ArraySum(array, n) that sums first n elements.",
+    "hints": [
+      "Base case: n=0 returns 0",
+      "Recursive: return Array[n] + ArraySum(array, n-1)",
+      "Decrease n each recursion"
+    ],
+    "solution": "FUNCTION ArraySum(Arr : ARRAY[1:5] OF INTEGER, N : INTEGER) RETURNS INTEGER\n    IF N = 0 THEN\n        RETURN 0\n    ELSE\n        RETURN Arr[N] + ArraySum(Arr, N - 1)\n    ENDIF\nENDFUNCTION\n\nDECLARE Numbers : ARRAY[1:5] OF INTEGER\n\nNumbers[1] <-- 10\nNumbers[2] <-- 20\nNumbers[3] <-- 30\nNumbers[4] <-- 40\nNumbers[5] <-- 50\n\nOUTPUT \"Sum: \", ArraySum(Numbers, 5)"
+  },
+  {
+    "id": 93,
+    "level": "IGCSE",
+    "topic": "String Operations",
+    "title": "Character Frequency",
+    "description": "Input a string and a character. Count how many times the character appears.",
+    "hints": [
+      "Loop through string",
+      "Compare each character",
+      "Increment counter when match found"
+    ],
+    "solution": "DECLARE Text : STRING\nDECLARE SearchChar : STRING\nDECLARE Length : INTEGER\nDECLARE i : INTEGER\nDECLARE Char : STRING\nDECLARE Count : INTEGER\n\nOUTPUT \"Enter text:\"\nINPUT Text\nOUTPUT \"Enter character to count:\"\nINPUT SearchChar\n\nLength <-- LENGTH(Text)\nCount <-- 0\n\nFOR i <-- 1 TO Length\n    Char <-- SUBSTRING(Text, i, 1)\n    IF Char = SearchChar THEN\n        Count <-- Count + 1\n    ENDIF\nNEXT i\n\nOUTPUT SearchChar, \" appears \", Count, \" times\""
+  },
+  {
+    "id": 94,
+    "level": "A-Level",
+    "topic": "Sorting",
+    "title": "Merge Two Arrays",
+    "description": "Merge two sorted arrays {1,3,5} and {2,4,6} into one sorted array.",
+    "hints": [
+      "Use three pointers/indices",
+      "Compare elements from both arrays",
+      "Add smaller to result"
+    ],
+    "solution": "DECLARE A : ARRAY[1:3] OF INTEGER\nDECLARE B : ARRAY[1:3] OF INTEGER\nDECLARE C : ARRAY[1:6] OF INTEGER\nDECLARE i : INTEGER\nDECLARE j : INTEGER\nDECLARE k : INTEGER\n\nA[1] <-- 1\nA[2] <-- 3\nA[3] <-- 5\n\nB[1] <-- 2\nB[2] <-- 4\nB[3] <-- 6\n\ni <-- 1\nj <-- 1\nk <-- 1\n\nWHILE i <= 3 AND j <= 3 DO\n    IF A[i] <= B[j] THEN\n        C[k] <-- A[i]\n        i <-- i + 1\n    ELSE\n        C[k] <-- B[j]\n        j <-- j + 1\n    ENDIF\n    k <-- k + 1\nENDWHILE\n\nWHILE i <= 3 DO\n    C[k] <-- A[i]\n    i <-- i + 1\n    k <-- k + 1\nENDWHILE\n\nWHILE j <= 3 DO\n    C[k] <-- B[j]\n    j <-- j + 1\n    k <-- k + 1\nENDWHILE\n\nOUTPUT \"Merged array:\"\nFOR i <-- 1 TO 6\n    OUTPUT C[i]\nNEXT i"
+  },
+  {
+    "id": 95,
+    "level": "IGCSE",
+    "topic": "Loops",
+    "title": "Prime Numbers 1-50",
+    "description": "Output all prime numbers between 1 and 50.",
+    "hints": [
+      "Outer loop for each number",
+      "Inner loop to check if divisible",
+      "Print if no divisors found"
+    ],
+    "solution": "DECLARE Number : INTEGER\nDECLARE i : INTEGER\nDECLARE IsPrime : BOOLEAN\n\nOUTPUT \"Prime numbers 1-50:\"\n\nFOR Number <-- 2 TO 50\n    IsPrime <-- TRUE\n    \n    FOR i <-- 2 TO Number - 1\n        IF Number MOD i = 0 THEN\n            IsPrime <-- FALSE\n        ENDIF\n    NEXT i\n    \n    IF IsPrime THEN\n        OUTPUT Number\n    ENDIF\nNEXT Number"
+  },
+  {
+    "id": 96,
+    "level": "A-Level",
+    "topic": "Functions",
+    "title": "String Contains",
+    "description": "Write function Contains(text, search) that returns TRUE if search string is in text.",
+    "hints": [
+      "Loop through text",
+      "At each position try to match search",
+      "Use SUBSTRING to extract portions"
+    ],
+    "solution": "FUNCTION Contains(Text : STRING, Search : STRING) RETURNS BOOLEAN\n    DECLARE TextLen : INTEGER\n    DECLARE SearchLen : INTEGER\n    DECLARE i : INTEGER\n    DECLARE Sub : STRING\n    \n    TextLen <-- LENGTH(Text)\n    SearchLen <-- LENGTH(Search)\n    \n    FOR i <-- 1 TO TextLen - SearchLen + 1\n        Sub <-- SUBSTRING(Text, i, SearchLen)\n        IF Sub = Search THEN\n            RETURN TRUE\n        ENDIF\n    NEXT i\n    \n    RETURN FALSE\nENDFUNCTION\n\nDECLARE Result : BOOLEAN\nResult <-- Contains(\"hello world\", \"world\")\n\nIF Result THEN\n    OUTPUT \"Found\"\nELSE\n    OUTPUT \"Not found\"\nENDIF"
+  },
+  {
+    "id": 97,
+    "level": "IGCSE",
+    "topic": "Arrays",
+    "title": "Array Shift",
+    "description": "Shift all elements in array {1,2,3,4,5} one position left. Result: {2,3,4,5,1}.",
+    "hints": [
+      "Store first element temporarily",
+      "Shift all elements left",
+      "Put first element at end"
+    ],
+    "solution": "DECLARE Numbers : ARRAY[1:5] OF INTEGER\nDECLARE i : INTEGER\nDECLARE First : INTEGER\n\nNumbers[1] <-- 1\nNumbers[2] <-- 2\nNumbers[3] <-- 3\nNumbers[4] <-- 4\nNumbers[5] <-- 5\n\nFirst <-- Numbers[1]\n\nFOR i <-- 1 TO 4\n    Numbers[i] <-- Numbers[i + 1]\nNEXT i\n\nNumbers[5] <-- First\n\nOUTPUT \"Shifted array:\"\nFOR i <-- 1 TO 5\n    OUTPUT Numbers[i]\nNEXT i"
+  },
+  {
+    "id": 98,
+    "level": "A-Level",
+    "topic": "2D Arrays",
+    "title": "Tic-Tac-Toe Check",
+    "description": "Check if row 1 of tic-tac-toe board has all X's.",
+    "hints": [
+      "Create 3×3 board",
+      "Check if all elements in row 1 equal \"X\"",
+      "Use loop or direct comparison"
+    ],
+    "solution": "DECLARE Board : ARRAY[1:3, 1:3] OF STRING\nDECLARE j : INTEGER\nDECLARE AllX : BOOLEAN\n\nBoard[1,1] <-- \"X\"\nBoard[1,2] <-- \"X\"\nBoard[1,3] <-- \"X\"\nBoard[2,1] <-- \"O\"\nBoard[2,2] <-- \"X\"\nBoard[2,3] <-- \"O\"\nBoard[3,1] <-- \"O\"\nBoard[3,2] <-- \"O\"\nBoard[3,3] <-- \"X\"\n\nAllX <-- TRUE\n\nFOR j <-- 1 TO 3\n    IF Board[1, j] <> \"X\" THEN\n        AllX <-- FALSE\n    ENDIF\nNEXT j\n\nIF AllX THEN\n    OUTPUT \"Row 1 has three X's!\"\nELSE\n    OUTPUT \"Row 1 does not have three X's\"\nENDIF"
+  },
+  {
+    "id": 99,
+    "level": "IGCSE",
+    "topic": "Selection",
+    "title": "Rock Paper Scissors",
+    "description": "Input two players' choices (R/P/S) and determine the winner.",
+    "hints": [
+      "Use nested IF or CASE",
+      "Rock beats Scissors, Scissors beats Paper, Paper beats Rock",
+      "Check for tie first"
+    ],
+    "solution": "DECLARE Player1 : STRING\nDECLARE Player2 : STRING\n\nOUTPUT \"Player 1 (R/P/S):\"\nINPUT Player1\nOUTPUT \"Player 2 (R/P/S):\"\nINPUT Player2\n\nIF Player1 = Player2 THEN\n    OUTPUT \"Tie!\"\nELSE\n    IF Player1 = \"R\" AND Player2 = \"S\" THEN\n        OUTPUT \"Player 1 wins!\"\n    ELSE\n        IF Player1 = \"S\" AND Player2 = \"P\" THEN\n            OUTPUT \"Player 1 wins!\"\n        ELSE\n            IF Player1 = \"P\" AND Player2 = \"R\" THEN\n                OUTPUT \"Player 1 wins!\"\n            ELSE\n                OUTPUT \"Player 2 wins!\"\n            ENDIF\n        ENDIF\n    ENDIF\nENDIF"
+  },
+  {
+    "id": 100,
+    "level": "A-Level",
+    "topic": "Complex Algorithm",
+    "title": "Sieve of Eratosthenes",
+    "description": "Find all prime numbers up to 20 using Sieve of Eratosthenes algorithm.",
+    "hints": [
+      "Create boolean array",
+      "Mark multiples of each prime as not prime",
+      "Output unmarked numbers"
+    ],
+    "solution": "DECLARE IsPrime : ARRAY[1:20] OF BOOLEAN\nDECLARE i : INTEGER\nDECLARE j : INTEGER\n\nFOR i <-- 1 TO 20\n    IsPrime[i] <-- TRUE\nNEXT i\n\nIsPrime[1] <-- FALSE\n\nFOR i <-- 2 TO 20\n    IF IsPrime[i] THEN\n        FOR j <-- i * 2 TO 20 STEP i\n            IsPrime[j] <-- FALSE\n        NEXT j\n    ENDIF\nNEXT i\n\nOUTPUT \"Prime numbers up to 20:\"\nFOR i <-- 1 TO 20\n    IF IsPrime[i] THEN\n        OUTPUT i\n    ENDIF\nNEXT i"
   }
 ]

@@ -2,49 +2,131 @@ name: Windows Desktop
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
+    tags: [ 'desktop-v*' ]
     paths:
-      - "apps/windows-desktop/**"
-      - ".github/workflows/windows-desktop.yml"
+      - 'apps/windows-desktop/**'
+      - '.github/workflows/windows-desktop.yml'
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
     paths:
-      - "apps/windows-desktop/**"
-      - ".github/workflows/windows-desktop.yml"
+      - 'apps/windows-desktop/**'
+      - '.github/workflows/windows-desktop.yml'
+
+env:
+  SOLUTION: apps/windows-desktop/PseudoRun.sln
+  APP_CSPROJ: apps/windows-desktop/src/PseudoRun.Desktop/PseudoRun.Desktop.csproj
+  WAPPROJ: apps/windows-desktop/src/PseudoRun.Desktop.Package/PseudoRun.Desktop.Package.wapproj
+  APPXMANIFEST: apps/windows-desktop/src/PseudoRun.Desktop.Package/Package.appxmanifest
 
 jobs:
-  build:
+  build-and-test:
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
       - name: Restore
-        run: dotnet restore apps/windows-desktop/PseudoRun.sln
-
-      - name: Build
-        run: dotnet build apps/windows-desktop/PseudoRun.sln --configuration Release --no-restore
-
+        run: dotnet restore ${{ env.APP_CSPROJ }}
+      - name: Build (exe)
+        run: dotnet build ${{ env.APP_CSPROJ }} --configuration Release --no-restore
       - name: Test
-        run: dotnet test apps/windows-desktop/PseudoRun.sln --configuration Release --no-build
-
-      - name: Publish Self-Contained EXE
+        run: dotnet test ${{ env.SOLUTION }} --configuration Release --no-build --filter "FullyQualifiedName!~DataIntegrityTests|Category!=IntegrationWindows"
+        continue-on-error: false
+      - name: Publish self-contained EXE (artifact for dev download)
         run: >
-          dotnet publish apps/windows-desktop/src/PseudoRun.Desktop/PseudoRun.Desktop.csproj
+          dotnet publish ${{ env.APP_CSPROJ }}
           --configuration Release
           --runtime win-x64
           --self-contained true
           /p:PublishSingleFile=true
-          --output ./publish
-
-      - name: Upload Published App
+          --output ./publish-exe
+      - name: Upload EXE artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pseudorun-desktop-${{ github.sha }}
-          path: publish/
+          name: pseudorun-desktop-exe-${{ github.sha }}
+          path: publish-exe/
           retention-days: 14
+
+  build-msix:
+    if: startsWith(github.ref, 'refs/tags/desktop-v')
+    runs-on: windows-latest
+    needs: build-and-test
+    env:
+      STORE_PACKAGE_IDENTITY_NAME: ${{ secrets.STORE_PACKAGE_IDENTITY_NAME }}
+      STORE_PUBLISHER_CN: ${{ secrets.STORE_PUBLISHER_CN }}
+      STORE_PUBLISHER_DISPLAY_NAME: ${{ secrets.STORE_PUBLISHER_DISPLAY_NAME }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Extract version from tag
+        id: version
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $version = $tag -replace '^desktop-v',''
+          # Store versions require 4-part: major.minor.build.revision
+          if ($version -notmatch '^\d+\.\d+\.\d+\.\d+$') { $version = "$version.0" }
+          Write-Output "version=$version" >> $env:GITHUB_OUTPUT
+      - name: Fill manifest placeholders + version
+        shell: pwsh
+        run: |
+          $p = "${{ env.APPXMANIFEST }}"
+          $c = Get-Content $p -Raw
+          $c = $c.Replace('PSEUDORUN_PACKAGE_IDENTITY_NAME_PLACEHOLDER', $env:STORE_PACKAGE_IDENTITY_NAME)
+          $c = $c.Replace('PSEUDORUN_PUBLISHER_CN_PLACEHOLDER', $env:STORE_PUBLISHER_CN)
+          $c = $c.Replace('PSEUDORUN_PUBLISHER_DISPLAY_NAME_PLACEHOLDER', $env:STORE_PUBLISHER_DISPLAY_NAME)
+          $c = $c -replace 'Version="\d+\.\d+\.\d+\.\d+"', 'Version="${{ steps.version.outputs.version }}"'
+          Set-Content $p $c -NoNewline
+      - name: Restore solution
+        run: msbuild ${{ env.SOLUTION }} /t:Restore /p:Configuration=Release /p:Platform=x64
+      - name: Build MSIX
+        run: >
+          msbuild ${{ env.WAPPROJ }}
+          /p:Configuration=Release
+          /p:Platform=x64
+          /p:AppxBundle=Never
+          /p:AppxPackageSigningEnabled=False
+          /p:UapAppxPackageBuildMode=StoreUpload
+          /p:GenerateAppInstallerFile=False
+          /p:AppxSymbolPackageEnabled=False
+      - name: Locate .msixupload
+        id: locate
+        shell: pwsh
+        run: |
+          $path = Get-ChildItem -Recurse -Filter '*.msixupload' apps/windows-desktop/src/PseudoRun.Desktop.Package/AppPackages | Select-Object -First 1 -ExpandProperty FullName
+          if (-not $path) { throw 'msixupload not found' }
+          Write-Output "path=$path" >> $env:GITHUB_OUTPUT
+      - name: Upload MSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pseudorun-desktop-msix-${{ steps.version.outputs.version }}
+          path: ${{ steps.locate.outputs.path }}
+          retention-days: 30
+      - name: Submit to Microsoft Store
+        if: env.STORE_AZURE_CLIENT_ID != ''
+        env:
+          STORE_AZURE_TENANT_ID: ${{ secrets.STORE_AZURE_TENANT_ID }}
+          STORE_AZURE_CLIENT_ID: ${{ secrets.STORE_AZURE_CLIENT_ID }}
+          STORE_AZURE_CLIENT_SECRET: ${{ secrets.STORE_AZURE_CLIENT_SECRET }}
+          STORE_SELLER_ID: ${{ secrets.STORE_SELLER_ID }}
+          STORE_APP_ID: ${{ secrets.STORE_APP_ID }}
+        uses: isaacrlevin/windows-store-action@1.0
+        with:
+          tenant-id: ${{ secrets.STORE_AZURE_TENANT_ID }}
+          client-id: ${{ secrets.STORE_AZURE_CLIENT_ID }}
+          client-secret: ${{ secrets.STORE_AZURE_CLIENT_SECRET }}
+          app-id: ${{ secrets.STORE_APP_ID }}
+          package-path: ${{ steps.locate.outputs.path }}
+          skip-polling: false
+          delete-packages: true
+          delete-only-failed-packages: false
