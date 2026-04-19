@@ -75,6 +75,12 @@ jobs:
           dotnet-version: 8.0.x
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+      - name: Install Windows 10 SDK 22621
+        # Pre-installed SDK set on windows-latest rotates; install the one the
+        # wapproj targets so we never depend on image defaults.
+        uses: GuillaumeFalourd/setup-windows10-sdk-action@v2.4
+        with:
+          sdk-version: 22621
       - name: Extract version from tag
         id: version
         shell: pwsh
