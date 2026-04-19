@@ -3,8 +3,12 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <!-- MSIX packaging needs an explicit Platform=x64 build, which in turn needs the
+         net8.0-windows/win-x64 RID target pre-computed by restore. -->
+    <Platforms>AnyCPU;x64</Platforms>
     <!-- <ApplicationIcon>Resources\Icons\app.ico</ApplicationIcon> -->
     <AssemblyName>PseudoRun</AssemblyName>
     <RootNamespace>PseudoRun.Desktop</RootNamespace>
