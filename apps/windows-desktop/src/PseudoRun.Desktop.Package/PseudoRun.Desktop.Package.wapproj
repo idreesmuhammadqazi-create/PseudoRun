@@ -37,7 +37,10 @@
     <None Include="Images\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PseudoRun.Desktop\PseudoRun.Desktop.csproj" />
+    <Applications Include="..\PseudoRun.Desktop\PseudoRun.Desktop.csproj">
+      <Project>{b0c0b0c0-0000-0000-0000-000000000001}</Project>
+      <Name>PseudoRun.Desktop</Name>
+    </Applications>
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>
