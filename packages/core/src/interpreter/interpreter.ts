@@ -1587,9 +1587,6 @@ export class Interpreter {
         if (typeof ucaseStr !== 'string') {
           throw new RuntimeError(`UCASE requires string parameter`, line);
         }
-        if (ucaseStr.length !== 1) {
-          throw new RuntimeError(`UCASE requires a single character (CHAR) parameter, got string of length ${ucaseStr.length}`, line);
-        }
         return ucaseStr.toUpperCase();
 
       case 'LCASE':
@@ -1599,9 +1596,6 @@ export class Interpreter {
         const lcaseStr = this.evaluateExpression(args[0], context);
         if (typeof lcaseStr !== 'string') {
           throw new RuntimeError(`LCASE requires string parameter`, line);
-        }
-        if (lcaseStr.length !== 1) {
-          throw new RuntimeError(`LCASE requires a single character (CHAR) parameter, got string of length ${lcaseStr.length}`, line);
         }
         return lcaseStr.toLowerCase();
 
