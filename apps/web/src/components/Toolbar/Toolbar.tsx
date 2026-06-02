@@ -238,7 +238,7 @@ export default function Toolbar({
         </>
       )}
 
-      {/* ── Bug report ── */}
+      {/* ── Report bug ── */}
       <button
         className={styles.reportBugButton}
         onClick={handleReportBug}
@@ -246,6 +246,16 @@ export default function Toolbar({
       >
         Bug Report
       </button>
+
+      <a
+        href="https://discord.gg/qmgmQSRcv"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.discordButton}
+        title="Join our Discord community"
+      >
+        Discord
+      </a>
 
       <div className={styles.separator} />
 

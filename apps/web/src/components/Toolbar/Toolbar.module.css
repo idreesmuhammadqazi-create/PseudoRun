@@ -103,6 +103,20 @@
   border-color: var(--border-light);
 }
 
+/* ── Discord button ── */
+.discordButton {
+  composes: button;
+  background-color: #5865F2;
+  color: #ffffff;
+  border-color: #5865F2;
+  text-decoration: none;
+}
+
+.discordButton:hover:not(:disabled) {
+  background-color: #4752c4;
+  border-color: #4752c4;
+}
+
 /* ── Theme toggle ── */
 .themeToggle {
   composes: button;
