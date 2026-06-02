@@ -52,6 +52,14 @@ export default function Landing() {
           <button onClick={handleTryNow} className={styles.ghostBtn}>
             Try without signing up
           </button>
+          <a
+            href="https://discord.gg/qmgmQSRcv"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.discordBtn}
+          >
+            Join Discord
+          </a>
         </div>
       </section>
 

@@ -156,6 +156,28 @@
   background: rgba(255, 255, 255, 0.04);
 }
 
+.discordBtn {
+  background: #5865F2;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.discordBtn:hover {
+  background: #4752c4;
+}
+
+.discordBtn:active {
+  transform: scale(0.98);
+}
+
 /* Split Demo */
 .demo {
   width: 100%;
@@ -406,6 +428,7 @@
 /* Accessibility — Focus States */
 .primaryBtn:focus-visible,
 .ghostBtn:focus-visible,
+.discordBtn:focus-visible,
 .signInBtn:focus-visible {
   outline: 2px solid #a78bfa;
   outline-offset: 2px;
@@ -447,7 +470,8 @@
   }
 
   .primaryBtn,
-  .ghostBtn {
+  .ghostBtn,
+  .discordBtn {
     width: 100%;
     max-width: 320px;
     text-align: center;
