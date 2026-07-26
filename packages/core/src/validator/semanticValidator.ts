@@ -579,6 +579,8 @@ function isTypeCompatible(declaredType: string, valueType: string): boolean {
   if (declaredType === 'REAL' && valueType === 'INTEGER') return true;
   // Allow assigning CHAR to STRING (a single char is a valid string)
   if (declaredType === 'STRING' && valueType === 'CHAR') return true;
+  // Allow assigning INTEGER or REAL to STRING (numeric values are stringified)
+  if (declaredType === 'STRING' && (valueType === 'INTEGER' || valueType === 'REAL')) return true;
   return false;
 }
 
