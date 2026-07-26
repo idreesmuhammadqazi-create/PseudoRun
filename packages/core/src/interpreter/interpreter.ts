@@ -359,6 +359,7 @@ export class Interpreter {
       
       case 'STRING':
         if (typeof value === 'string') return value;
+        if (typeof value === 'number') return String(value);
         throw new RuntimeError(`Type mismatch: Cannot assign ${typeof value === 'number' ? 'NUMBER' : typeof value} value to STRING variable '${varName}'`, line);
       
       case 'CHAR':
