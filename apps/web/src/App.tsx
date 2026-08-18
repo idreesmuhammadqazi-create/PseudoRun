@@ -11,6 +11,7 @@ import ProgramsLibrary from './components/ProgramsLibrary/ProgramsLibrary';
 import DebugControls from './components/DebugControls/DebugControls';
 import VariablesPanel from './components/VariablesPanel/VariablesPanel';
 import EmailVerificationBanner from './components/EmailVerificationBanner/EmailVerificationBanner';
+import AdBanner from './components/AdBanner/AdBanner';
 import { ShareModal } from './components/ShareModal/ShareModal';
 import { ExportModal } from './components/ExportModal/ExportModal';
 import Tutorial from './components/Tutorial/Tutorial';
@@ -677,6 +678,8 @@ function App() {
       )}
 
       <EmailVerificationBanner />
+
+      <AdBanner />
 
       <div className={styles.splitView}>
         <div className={styles.leftPanel}>
