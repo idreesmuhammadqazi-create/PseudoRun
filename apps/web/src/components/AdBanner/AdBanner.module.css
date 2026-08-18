@@ -2,66 +2,75 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 16px;
-  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-  color: white;
+  padding: 6px 14px;
+  margin: 8px 12px 0;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   flex-shrink: 0;
 }
 
-.badge {
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: var(--radius-sm);
-  padding: 1px 6px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   flex-shrink: 0;
+}
+
+.brandText {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: #111820;
+  line-height: 1;
+}
+
+[data-theme='dark'] .brandText {
+  color: #e9eaec;
+}
+
+.brandText span {
+  font-weight: 300;
+  color: #0DB763;
+}
+
+[data-theme='dark'] .brandText span {
+  color: #0DB763;
 }
 
 .text {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-size: 13px;
-  min-width: 0;
-}
-
-.text strong {
-  font-weight: 600;
-  font-size: 13px;
-}
-
-.text span {
-  font-size: 12px;
-  opacity: 0.9;
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.45;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .link {
   flex-shrink: 0;
-  background-color: white;
-  color: var(--primary-color);
+  background-color: #0DB763;
+  color: #ffffff;
   text-decoration: none;
   padding: 5px 14px;
-  border-radius: var(--radius-sm);
+  border-radius: 999px;
   font-size: 12px;
-  font-weight: 700;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  font-weight: 600;
+  transition: background-color 0.15s ease, transform 0.15s ease;
 }
 
 .link:hover {
+  background-color: #0aa356;
+  color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
   text-decoration: none;
-  color: var(--primary-hover);
 }
 
 .link:focus-visible {
-  outline: 2px solid white;
+  outline: 2px solid #0DB763;
   outline-offset: 2px;
 }
 
@@ -69,21 +78,28 @@
   flex-shrink: 0;
   background: transparent;
   border: none;
-  color: white;
-  font-size: 18px;
+  color: var(--text-tertiary);
+  font-size: 17px;
   line-height: 1;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 2px;
   opacity: 0.8;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.15s ease, color 0.15s ease;
 }
 
 .close:hover {
   opacity: 1;
+  color: var(--text-primary);
 }
 
 @media (max-width: 640px) {
-  .text span {
-    white-space: normal;
+  .banner {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .text {
+    flex-basis: 100%;
+    overflow: visible;
   }
 }
