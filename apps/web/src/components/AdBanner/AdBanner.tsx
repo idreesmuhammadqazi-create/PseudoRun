@@ -12,9 +12,9 @@ const AD_STORAGE_KEY = 'pseudorun_ad_banner_dismissed';
 
 function AideLogo() {
   return (
-    <svg width="22" height="22" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-      <path d="M22 6L34 38H27.5L22 22L16.5 38H10Z" fill="#111820" />
-      <path d="M13 29H31" stroke="#111820" strokeWidth="2.5" strokeLinecap="round" opacity="0.2" />
+    <svg className={styles.logo} width="22" height="22" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+      <path d="M22 6L34 38H27.5L22 22L16.5 38H10Z" fill="currentColor" />
+      <path d="M13 29H31" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.2" />
       <path d="M29 26L34 20" stroke="#0DB763" strokeWidth="3" strokeLinecap="round" />
     </svg>
   );

@@ -18,6 +18,14 @@
   flex-shrink: 0;
 }
 
+.logo {
+  color: #111820;
+}
+
+[data-theme='dark'] .logo {
+  color: #e9eaec;
+}
+
 .brandText {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
