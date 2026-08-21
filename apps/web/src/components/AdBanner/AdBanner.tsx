@@ -3,10 +3,11 @@
  * Compact dismissible promotion banner for LearningAide
  */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './AdBanner.module.css';
+import { trackAdView, trackAdClick } from '../../services/adAnalyticsService';
 
-const AD_URL = 'https://test.learningaide.ai';
+const AD_URL = 'https://recheck.learningaide.ai?ref=PseudoRun';
 const AD_STORAGE_KEY = 'pseudorun_ad_banner_dismissed';
 
 function AideLogo() {
@@ -24,6 +25,12 @@ export default function AdBanner() {
     () => localStorage.getItem(AD_STORAGE_KEY) === 'true'
   );
 
+  useEffect(() => {
+    if (!dismissed) {
+      trackAdView();
+    }
+  }, [dismissed]);
+
   if (dismissed) {
     return null;
   }
@@ -31,6 +38,10 @@ export default function AdBanner() {
   const handleDismiss = () => {
     localStorage.setItem(AD_STORAGE_KEY, 'true');
     setDismissed(true);
+  };
+
+  const handleClick = () => {
+    trackAdClick();
   };
 
   return (
@@ -49,8 +60,9 @@ export default function AdBanner() {
         target="_blank"
         rel="noopener noreferrer"
         className={styles.link}
+        onClick={handleClick}
       >
-        Check for recheck
+        Recheck your paper
       </a>
       <button
         onClick={handleDismiss}

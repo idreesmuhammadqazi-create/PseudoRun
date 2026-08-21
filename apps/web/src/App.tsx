@@ -84,16 +84,30 @@ function App() {
   const isDraggingRef = useRef(false);
   const [isDragging, setIsDragging] = useState(false);
 
+  const [problemsHeight, setProblemsHeight] = useState(28);
+  const rightPanelRef = useRef<HTMLDivElement>(null);
+  const isDraggingVerticalRef = useRef(false);
+  const [isDraggingVertical, setIsDraggingVertical] = useState(false);
+
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
-      if (!isDraggingRef.current || !splitRef.current) return;
-      const rect = splitRef.current.getBoundingClientRect();
-      const pct = ((e.clientX - rect.left) / rect.width) * 100;
-      if (pct > 20 && pct < 80) setLeftWidth(pct);
+      if (isDraggingRef.current && splitRef.current) {
+        const rect = splitRef.current.getBoundingClientRect();
+        const pct = ((e.clientX - rect.left) / rect.width) * 100;
+        if (pct > 20 && pct < 80) setLeftWidth(pct);
+      }
+      if (isDraggingVerticalRef.current && rightPanelRef.current) {
+        const rect = rightPanelRef.current.getBoundingClientRect();
+        const pctFromTop = ((e.clientY - rect.top) / rect.height) * 100;
+        const newProblems = 100 - pctFromTop;
+        if (newProblems > 10 && newProblems < 70) setProblemsHeight(newProblems);
+      }
     };
     const onUp = () => {
       isDraggingRef.current = false;
+      isDraggingVerticalRef.current = false;
       setIsDragging(false);
+      setIsDraggingVertical(false);
       document.body.style.cursor = '';
       document.body.style.userSelect = '';
     };
@@ -726,29 +740,46 @@ function App() {
           aria-label="Resize panels"
         />
 
-        <div className={styles.rightPanel}>
+        <div className={styles.rightPanel} ref={rightPanelRef}>
           {isDebugging && debugState && (
             <VariablesPanel
               variables={debugState.variables}
               currentLine={debugState.currentLine}
             />
           )}
-          
-          <OutputPanel 
-            output={output} 
-            isRunning={isRunning}
-            waitingForInput={waitingForInput}
-            inputPrompt={inputPrompt}
-            onInputSubmit={handleInputSubmit}
-            waitingForFileUpload={waitingForFileUpload}
-            fileUploadPrompt={fileUploadPrompt}
-            onFileUploadSubmit={handleFileUploadSubmit}
-            onFileUploadCancel={handleFileUploadCancel}
-            createdFiles={createdFiles}
-            interpreterRef={interpreterRef}
-            isDebugging={isDebugging}
+           
+          <div className={styles.outputWrapper} style={{ height: `${100 - problemsHeight}%` }}>
+            <OutputPanel 
+              output={output} 
+              isRunning={isRunning}
+              waitingForInput={waitingForInput}
+              inputPrompt={inputPrompt}
+              onInputSubmit={handleInputSubmit}
+              waitingForFileUpload={waitingForFileUpload}
+              fileUploadPrompt={fileUploadPrompt}
+              onFileUploadSubmit={handleFileUploadSubmit}
+              onFileUploadCancel={handleFileUploadCancel}
+              createdFiles={createdFiles}
+              interpreterRef={interpreterRef}
+              isDebugging={isDebugging}
+            />
+          </div>
+          <div
+            className={`${styles.verticalResizer} ${isDraggingVertical ? styles.verticalResizerDragging : ''}`}
+            onMouseDown={(e) => {
+              isDraggingVerticalRef.current = true;
+              setIsDraggingVertical(true);
+              document.body.style.cursor = 'row-resize';
+              document.body.style.userSelect = 'none';
+              e.preventDefault();
+            }}
+            role="separator"
+            aria-orientation="horizontal"
+            aria-label="Resize output and problems"
           />
-          <ErrorDisplay errors={errors} isValidating={isValidating} />
+          <div className={styles.problemsWrapper} style={{ height: `${problemsHeight}%` }}>
+            <ErrorDisplay errors={errors} isValidating={isValidating} />
+          </div>
         </div>
       </div>
 

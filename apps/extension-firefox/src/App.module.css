@@ -29,10 +29,50 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0;
   overflow: hidden;
   min-width: 200px;
   min-height: 0;
+}
+
+.outputWrapper {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 80px;
+}
+
+.problemsWrapper {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 60px;
+}
+
+.verticalResizer {
+  flex: 0 0 6px;
+  background-color: transparent;
+  cursor: row-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.verticalResizer::after {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background-color: var(--border-color);
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+.verticalResizer:hover::after,
+.verticalResizerDragging::after {
+  background-color: var(--primary-color);
 }
 
 .resizer {

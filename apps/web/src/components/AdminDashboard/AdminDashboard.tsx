@@ -182,6 +182,23 @@ export default function AdminDashboard() {
               </div>
             </div>
 
+            <h2>LearningAide Banner</h2>
+            <div className={styles.statsGrid} style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+              <div className={styles.statCard}>
+                <div className={styles.statValue}>{stats.adViews ?? 0}</div>
+                <div className={styles.statLabel}>Banner Views</div>
+                <a href="https://recheck.learningaide.ai?ref=PseudoRun" target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: '#1976d2' }}>recheck.learningaide.ai?ref=PseudoRun</a>
+              </div>
+              <div className={styles.statCard}>
+                <div className={styles.statValue}>{stats.adClicks ?? 0}</div>
+                <div className={styles.statLabel}>Banner Clicks</div>
+              </div>
+              <div className={styles.statCard}>
+                <div className={styles.statValue}>{stats.adCtr ?? 0}%</div>
+                <div className={styles.statLabel}>CTR</div>
+              </div>
+            </div>
+
             {/* Recent Programs */}
             <h2>Recent Programs (Last 10)</h2>
             <div className={styles.programList}>

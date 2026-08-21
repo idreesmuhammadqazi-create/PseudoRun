@@ -11,6 +11,7 @@ import {
 import { db } from '../config/firebase';
 import { Program } from '../types/program';
 import { AdminStats } from '../types/admin';
+import { getAdBannerStats } from './adAnalyticsService';
 
 const PROGRAMS_COLLECTION = 'programs';
 const SHARED_CODE_COLLECTION = 'sharedCode';
@@ -88,11 +89,22 @@ export async function getStats(): Promise<AdminStats> {
       }
     });
 
+    let adViews = 0;
+    let adClicks = 0;
+    try {
+      const ad = await getAdBannerStats();
+      adViews = ad.views;
+      adClicks = ad.clicks;
+    } catch {}
+
     const stats: AdminStats = {
       totalUsers: uniqueUserIds.size,
       totalPrograms: programsSnapshot.size,
       activeUsersToday: usersActiveToday.size,
-      totalSharedLinks: sharedLinksSnapshot.size
+      totalSharedLinks: sharedLinksSnapshot.size,
+      adViews,
+      adClicks,
+      adCtr: adViews > 0 ? Number(((adClicks / adViews) * 100).toFixed(1)) : 0
     };
 
     return stats;

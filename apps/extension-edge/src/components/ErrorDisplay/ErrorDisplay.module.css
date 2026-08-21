@@ -1,9 +1,10 @@
 .container {
-  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background-color: var(--bg-card);
   border-top: 1px solid var(--border-color);
-  max-height: 180px;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .header {
@@ -51,6 +52,8 @@
 .errorList {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .errorRow {
