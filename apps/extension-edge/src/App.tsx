@@ -62,6 +62,32 @@ function App() {
   const [showExamModeStart, setShowExamModeStart] = useState(false);
   const [examMode, setExamMode] = useState<{ active: boolean; duration: number }>({ active: false, duration: 45 });
 
+  const [leftWidth, setLeftWidth] = useState(50);
+  const splitRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      if (!isDraggingRef.current || !splitRef.current) return;
+      const rect = splitRef.current.getBoundingClientRect();
+      const pct = ((e.clientX - rect.left) / rect.width) * 100;
+      if (pct > 20 && pct < 80) setLeftWidth(pct);
+    };
+    const onUp = () => {
+      isDraggingRef.current = false;
+      setIsDragging(false);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    };
+  }, []);
+
   
   // Load code from LocalStorage on mount
   useEffect(() => {
@@ -513,10 +539,24 @@ function App() {
       )}
 
       
-      <div className={styles.splitView}>
-        <div className={styles.leftPanel}>
+      <div className={styles.splitView} ref={splitRef}>
+        <div className={styles.leftPanel} style={{ width: `${leftWidth}%` }}>
           <Editor value={code} onChange={handleCodeChange} />
         </div>
+
+        <div
+          className={`${styles.resizer} ${isDragging ? styles.resizerDragging : ''}`}
+          onMouseDown={(e) => {
+            isDraggingRef.current = true;
+            setIsDragging(true);
+            document.body.style.cursor = 'col-resize';
+            document.body.style.userSelect = 'none';
+            e.preventDefault();
+          }}
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Resize panels"
+        />
 
         <div className={styles.rightPanel}>
           {isDebugging && debugState && (

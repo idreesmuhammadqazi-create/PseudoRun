@@ -11,25 +11,18 @@
   display: flex;
   flex-direction: row;
   flex: 1;
-  gap: 16px;
+  gap: 0;
   padding: 16px;
   overflow: hidden;
+  background-color: var(--bg-secondary);
 }
 
 .leftPanel {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  background-color: var(--editor-bg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: box-shadow 0.3s ease;
-}
-
-.leftPanel:hover {
-  box-shadow: var(--shadow-lg);
+  min-width: 200px;
 }
 
 .rightPanel {
@@ -38,12 +31,37 @@
   flex-direction: column;
   gap: 16px;
   overflow: hidden;
+  min-width: 200px;
+  min-height: 0;
 }
 
-/* Responsive Design */
+.resizer {
+  flex: 0 0 8px;
+  background-color: transparent;
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  position: relative;
+}
+
+.resizer::after {
+  content: '';
+  width: 2px;
+  height: 32px;
+  background-color: var(--border-color);
+  border-radius: 2px;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.resizer:hover::after,
+.resizerDragging::after {
+  background-color: var(--primary-color);
+}
+
 @media (max-width: 1024px) {
   .splitView {
-    gap: 12px;
     padding: 12px;
   }
 }
@@ -57,8 +75,20 @@
 
   .leftPanel,
   .rightPanel {
-    flex: none;
+    flex: 1;
+    width: 100% !important;
     height: 50vh;
+    min-width: 0;
+  }
+
+  .resizer {
+    flex: 0 0 8px;
+    cursor: row-resize;
+  }
+
+  .resizer::after {
+    width: 32px;
+    height: 2px;
   }
 }
 
