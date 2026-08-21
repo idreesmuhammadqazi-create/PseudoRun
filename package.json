@@ -1,6 +1,6 @@
 {
   "name": "pseudorun-monorepo",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "PseudoRun monorepo — web app, browser extensions (Firefox/Edge), Windows desktop app, and shared core.",
   "license": "MIT",
