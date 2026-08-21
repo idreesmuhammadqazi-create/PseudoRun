@@ -235,6 +235,10 @@ export default function Editor({ value, onChange, readOnly = false, viewingUserE
 
   return (
     <div className={styles.editorContainer}>
+      <header className={styles.header}>
+        <span>Input</span>
+        {readOnly && viewingUserEmail && <span className={styles.headerMeta}>Viewing {viewingUserEmail}</span>}
+      </header>
       {readOnly && viewingUserEmail && (
         <div className={styles.readOnlyBanner}>
           Viewing program by {viewingUserEmail}

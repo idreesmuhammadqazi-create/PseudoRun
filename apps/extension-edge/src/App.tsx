@@ -62,6 +62,46 @@ function App() {
   const [showExamModeStart, setShowExamModeStart] = useState(false);
   const [examMode, setExamMode] = useState<{ active: boolean; duration: number }>({ active: false, duration: 45 });
 
+  const [leftWidth, setLeftWidth] = useState(50);
+  const splitRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const [problemsHeight, setProblemsHeight] = useState(28);
+  const rightPanelRef = useRef<HTMLDivElement>(null);
+  const isDraggingVerticalRef = useRef(false);
+  const [isDraggingVertical, setIsDraggingVertical] = useState(false);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      if (isDraggingRef.current && splitRef.current) {
+        const rect = splitRef.current.getBoundingClientRect();
+        const pct = ((e.clientX - rect.left) / rect.width) * 100;
+        if (pct > 20 && pct < 80) setLeftWidth(pct);
+      }
+      if (isDraggingVerticalRef.current && rightPanelRef.current) {
+        const rect = rightPanelRef.current.getBoundingClientRect();
+        const pctFromTop = ((e.clientY - rect.top) / rect.height) * 100;
+        const newProblems = 100 - pctFromTop;
+        if (newProblems > 10 && newProblems < 70) setProblemsHeight(newProblems);
+      }
+    };
+    const onUp = () => {
+      isDraggingRef.current = false;
+      isDraggingVerticalRef.current = false;
+      setIsDragging(false);
+      setIsDraggingVertical(false);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    };
+  }, []);
+
   
   // Load code from LocalStorage on mount
   useEffect(() => {
@@ -513,12 +553,26 @@ function App() {
       )}
 
       
-      <div className={styles.splitView}>
-        <div className={styles.leftPanel}>
+      <div className={styles.splitView} ref={splitRef}>
+        <div className={styles.leftPanel} style={{ width: `${leftWidth}%` }}>
           <Editor value={code} onChange={handleCodeChange} />
         </div>
 
-        <div className={styles.rightPanel}>
+        <div
+          className={`${styles.resizer} ${isDragging ? styles.resizerDragging : ''}`}
+          onMouseDown={(e) => {
+            isDraggingRef.current = true;
+            setIsDragging(true);
+            document.body.style.cursor = 'col-resize';
+            document.body.style.userSelect = 'none';
+            e.preventDefault();
+          }}
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Resize panels"
+        />
+
+        <div className={styles.rightPanel} ref={rightPanelRef}>
           {isDebugging && debugState && (
             <VariablesPanel
               variables={debugState.variables}
@@ -526,21 +580,38 @@ function App() {
             />
           )}
           
-          <OutputPanel 
-            output={output} 
-            isRunning={isRunning}
-            isDebugging={isDebugging}
-            waitingForInput={waitingForInput}
-            inputPrompt={inputPrompt}
-            onInputSubmit={handleInputSubmit}
-            waitingForFileUpload={waitingForFileUpload}
-            fileUploadPrompt={fileUploadPrompt}
-            onFileUploadSubmit={handleFileUploadSubmit}
-            onFileUploadCancel={handleFileUploadCancel}
-            createdFiles={createdFiles}
-            interpreterRef={interpreterRef}
+          <div className={styles.outputWrapper} style={{ height: `${100 - problemsHeight}%` }}>
+            <OutputPanel 
+              output={output} 
+              isRunning={isRunning}
+              isDebugging={isDebugging}
+              waitingForInput={waitingForInput}
+              inputPrompt={inputPrompt}
+              onInputSubmit={handleInputSubmit}
+              waitingForFileUpload={waitingForFileUpload}
+              fileUploadPrompt={fileUploadPrompt}
+              onFileUploadSubmit={handleFileUploadSubmit}
+              onFileUploadCancel={handleFileUploadCancel}
+              createdFiles={createdFiles}
+              interpreterRef={interpreterRef}
+            />
+          </div>
+          <div
+            className={`${styles.verticalResizer} ${isDraggingVertical ? styles.verticalResizerDragging : ''}`}
+            onMouseDown={(e) => {
+              isDraggingVerticalRef.current = true;
+              setIsDraggingVertical(true);
+              document.body.style.cursor = 'row-resize';
+              document.body.style.userSelect = 'none';
+              e.preventDefault();
+            }}
+            role="separator"
+            aria-orientation="horizontal"
+            aria-label="Resize output and problems"
           />
-          <ErrorDisplay errors={errors} isValidating={isValidating} />
+          <div className={styles.problemsWrapper} style={{ height: `${problemsHeight}%` }}>
+            <ErrorDisplay errors={errors} isValidating={isValidating} />
+          </div>
         </div>
       </div>
 

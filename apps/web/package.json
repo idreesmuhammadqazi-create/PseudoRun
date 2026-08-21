@@ -1,6 +1,6 @@
 {
   "name": "@pseudorun/web",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "PseudoRun - The #1 IGCSE Pseudocode Editor & Simulator for Computer Science students",
   "keywords": [

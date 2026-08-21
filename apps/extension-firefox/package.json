@@ -1,6 +1,6 @@
 {
   "name": "@pseudorun/extension-firefox",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Firefox extension for PseudoRun offline pseudocode editor",
   "private": true,
   "type": "module",

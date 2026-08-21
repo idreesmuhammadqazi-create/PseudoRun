@@ -8,4 +8,7 @@ export interface AdminStats {
   totalPrograms: number;
   activeUsersToday: number;
   totalSharedLinks: number;
+  adViews?: number;
+  adClicks?: number;
+  adCtr?: number;
 }
