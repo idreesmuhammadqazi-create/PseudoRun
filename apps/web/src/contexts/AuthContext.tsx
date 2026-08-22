@@ -16,6 +16,7 @@ import {
   getIdTokenResult
 } from 'firebase/auth';
 import { auth, googleProvider } from '../config/firebase';
+import { ensureUserProfile } from '../services/userProfileService';
 
 interface AuthContextType {
   currentUser: User | null;
@@ -155,6 +156,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
+      if (user) {
+        // best-effort: keep users collection in sync for admin dashboard
+        ensureUserProfile(user);
+      }
     });
 
     return unsubscribe;

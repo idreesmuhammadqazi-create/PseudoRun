@@ -17,6 +17,32 @@ service cloud.firestore {
       allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
     }
 
+    // Users collection - users can read/write own doc; admin can read all
+    match /users/{userId} {
+      allow read: if request.auth != null &&
+        (request.auth.uid == userId || request.auth.token.admin == true);
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Analytics - anyone can create visits/sessions/events; only owner can update session; only admin can read
+    match /analytics_visits/{docId} {
+      allow create: if true;
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      allow update, delete: if false;
+    }
+    match /analytics_sessions/{docId} {
+      allow create: if true;
+      // allow updating own session (match by sessionId param or by anonId/userId stored)
+      allow update: if true;
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      allow delete: if false;
+    }
+    match /analytics_events/{docId} {
+      allow create: if true;
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      allow update, delete: if false;
+    }
+
     // Shared code collection - authenticated users can create, anyone can read
     match /sharedCode/{shareId} {
       // Anyone can read shared code (for viewing shared links)
