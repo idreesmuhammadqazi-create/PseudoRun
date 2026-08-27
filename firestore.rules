@@ -30,6 +30,11 @@ service cloud.firestore {
     }
 
     // Analytics - ad banner stats: anyone can increment views/clicks, admins can read
+    match /analytics/adBanner/{adId} {
+      allow read: if request.auth != null && request.auth.token.admin == true;
+      allow create, update: if true;
+      allow delete: if request.auth != null && request.auth.token.admin == true;
+    }
     match /analytics/{docId} {
       allow read: if request.auth != null && request.auth.token.admin == true;
       allow create, update: if true;
