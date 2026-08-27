@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react';
 import styles from './AdBanner.module.css';
 import { trackAdView, trackAdClick } from '../../services/adAnalyticsService';
 
-const AD_URL = 'https://recheck.learningaide.ai?ref=PseudoRun';
-const AD_STORAGE_KEY = 'pseudorun_ad_banner_dismissed';
+const AD_URL = 'https://learningaide.ai/signup?ref=IDREES';
+const AD_STORAGE_KEY = 'learningaide_ad_banner_dismissed';
 
 function AideLogo() {
   return (
@@ -22,7 +22,7 @@ function AideLogo() {
 
 export default function AdBanner() {
   const [dismissed, setDismissed] = useState(
-    () => localStorage.getItem(AD_STORAGE_KEY) === 'true'
+    () => sessionStorage.getItem(AD_STORAGE_KEY) === 'true'
   );
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function AdBanner() {
   }
 
   const handleDismiss = () => {
-    localStorage.setItem(AD_STORAGE_KEY, 'true');
+    sessionStorage.setItem(AD_STORAGE_KEY, 'true');
     setDismissed(true);
   };
 
@@ -53,7 +53,8 @@ export default function AdBanner() {
         </span>
       </div>
       <p className={styles.text}>
-        Think your Cambridge script was under-marked? Get an AI re-grade before paying for a recheck.
+        Practice Cambridge papers on your own — upload handwritten or digital answers and get instant AI marking on your strengths and weak areas.
+        <span className={styles.credits}>Get 200 free credits when you sign up through my link.</span>
       </p>
       <a
         href={AD_URL}
@@ -62,7 +63,7 @@ export default function AdBanner() {
         className={styles.link}
         onClick={handleClick}
       >
-        Recheck your paper
+        Mark & practice your paper
       </a>
       <button
         onClick={handleDismiss}
